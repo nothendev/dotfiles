@@ -1,0 +1,59 @@
+@import "https://nyri4.github.io/Discolored/main.css";
+@import url('https://nyri4.github.io/donators/donators.css');
+@import "https://cdn.jsdelivr.net/gh/CapnKitten/Material-Discord/Material-Discord.theme.css";
+@import "https://mwittrien.github.io/BetterDiscordAddons/Themes/DiscordRecolor/DiscordRecolor.theme.css";
+@import "https://mr-miner1.github.io/Better-Badges/src/badges.css";
+
+
+:root{
+    --badge-size: 22px; /*discord defualt = 18px, theme defualt = 22px;*/
+    --badge-margin: 1.5px; /*discord default = 2px, theme defualt = 1.5px*/
+    --badges-everywhere-size: 15px; /*default = 15px*/
+    --font:      						JetbrainsMono Nerd Font Mono;					/*	General Font				*/
+	--settingsicons:			1;						/*	Use Settings Icons in User/Server/Channel Settings: 1 = yes, 0 = no			*/
+
+	--app-font: var(--font);
+	--app-bg: #000000;
+
+	--accent-hsl: 210, 100%, 40%;
+
+	--main-color:         #000;
+	--accentcolor: 0, 102, 204;                           /*  Blurple				 - 	default:	88,101,242		 - 	hex:	#5865f2		*/
+	--accentcolor2: 			255,115,250;			/*	Boostpink			 - 	default:	255,115,250		 - 	hex:	#ff73fa		*/
+	--linkcolor: 				var(--main-color);		/*	Link Color			 - 	default:	0,176,244		 - 	hex:	#00b0f4		*/
+	--button-link-color: var(--linkcolor);
+	--button-link-text-color: var(--linkcolor);
+
+	--status-picker-color: rgb(5, 5, 5);
+
+	--typing-color: transparent;
+
+	--message-color: rgba(0,0,0,0.1);
+	--message-color-hover: rgb(20, 20, 20);
+
+	--main-textarea-color: rgba(10,10,10,0.8);
+	--main-alt: #000;
+
+	--card-color-filled: #000;
+
+	--mentioncolor: 			250,166,26;				/*	Highlight Color		 - 	default:	250,166,26		 - 	hex:	#faa61a		*/
+	--success-color:   			62,184,108;				/*	Success Color		 - 	default:	59,165,92		 - 	hex:	#3ba55c		*/
+	--warningcolor: 			250,166,26;				/*	Warning Color		 - 	default:	250,166,26		 - 	hex:	#faa61a		*/
+	--dangercolor:  			237,66,69;				/*	Danger Color		 - 	default:	237,66,69		 - 	hex:	#ed4245		*/
+	
+	--textbrightest: 			255,255,255;			/*	Text Color 1		 - 	default:	255,255,255		 - 	hex:	#ffffff		*/
+	--textbrighter: 			222,222,222;			/*	Text Color 2		 - 	default:	220,221,222		 - 	hex:	#dcddde		*/
+	--textbright: 				185,185,185;			/*	Text Color 3		 - 	default:	185,187,190		 - 	hex:	#b9bbbe		*/
+	--textdark: 				140,140,140;			/*	Text Color 4		 - 	default:	142,146,151		 - 	hex:	#8e9297		*/
+	--textdarker: 				115,115,115;			/*	Text Color 5		 - 	default:	114,118,125		 - 	hex:	#72767d		*/
+	--textdarkest: 				80,80,80;				/*	Text Color 6		 - 	default:	79,84,92		 - 	hex:	#4f545c		*/
+	
+	--tooltip-color: rgba(10,10,10,0.9);
+
+	--backgroundaccent:  		0,0,0;					/*	Background Accent	 - 	default:	64,68,75		 - 	hex:	#40444b		*/
+	--backgroundprimary:  		0,0,0;					/*	Background 1		 - 	default:	54,57,63		 - 	hex:	#36393f		*/
+	--backgroundsecondary:  		0,0,0;				/*	Background 2		 - 	default:	47,49,54		 - 	hex:	#2f3136		*/
+	--backgroundsecondaryalt:  	0,0,0;					/*	Background 3		 - 	default:	41,43,47		 - 	hex:	#292b2f		*/
+	--backgroundtertiary:  		0,0,0;					/*	Background 4		 - 	default:	32,34,37		 - 	hex:	#202225		*/
+	--backgroundfloating: 		0,0,0;					/*	Background Elevated	 - 	default:	24,25,28		 - 	hex:	#18191c		*/
+}
