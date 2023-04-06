@@ -18,6 +18,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'preservim/nerdtree'
 Plug 'machakann/vim-highlightedyank'
+Plug 'LnL7/vim-nix'
 call plug#end()
 
 " Get syntax files from config folder
