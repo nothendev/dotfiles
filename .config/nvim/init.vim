@@ -105,7 +105,7 @@ augroup END
  nmap <F8> :TagbarToggle<CR>
 
  " CTags config
- let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+ let g:Tlist_Ctags_Cmd='/nix/store/0shg96iric4n38hvrjd5v14wj1k28jn6-ctags-816/bin/ctags'
 
  " disable backup files
  set nobackup
@@ -216,6 +216,10 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+if exists("g:neovide")
+  set guifont=JetbrainsMono\ Nerd\ Font\ Mono:h12.5
 endif
 
 " Use CTRL-S for selections ranges.
