@@ -15,12 +15,14 @@ local sources = {
       "html",
       "markdown",
       "css",
+      "svelte",
+      "astro"
     },
     extra_filetypes = {
       "svelte",
       "astro",
     },
-  }, -- so prettier works only on these filetypes
+  },
 
   -- Lua
   b.formatting.stylua,

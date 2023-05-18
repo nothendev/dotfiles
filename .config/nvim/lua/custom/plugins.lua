@@ -3,8 +3,6 @@ local overrides = require "custom.configs.overrides"
 ---@type NvPluginSpec[]
 local plugins = {
 
-  -- Override plugin definition options
-
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -15,6 +13,13 @@ local plugins = {
           require "custom.configs.null-ls"
         end,
       },
+      {
+        "williamboman/mason-lspconfig.nvim",
+        config = function(_, opts)
+          require("mason-lspconfig").setup(opts)
+        end,
+      },
+      "mason.nvim"
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -95,14 +100,46 @@ local plugins = {
 
   {
     "editorconfig/editorconfig-vim",
-    event = "BufWrite"
+    event = "BufWrite",
   },
 
-  -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
+  {
+    "NvChad/nvim-colorizer.lua",
+    options = {
+      filetypes = { "*" },
+      user_default_options = {
+        css = true,
+        mode = "virtualtext",
+        tailwind = "both",
+        virtualtext = "■",
+        names = false,
+        sass = { enable = true, parsers = { "css" } },
+      },
+    },
+  },
+
+  {
+    "icedman/nvim-textmate",
+    ft = { "stylus" },
+    opts = {
+      quickload = true,
+    },
+    config = function(_, opts)
+      require("nvim-textmate").setup(opts)
+    end,
+    enabled = false,
+  },
+
+  {
+    "jcdickinson/codeium.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup {}
+    end,
+  },
 }
 
 return plugins

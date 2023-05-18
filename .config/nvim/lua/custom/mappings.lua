@@ -1,6 +1,8 @@
 ---@type MappingsTable
 local M = {}
 
+vim.o.langmap = "шiЖ:фaсcцwрhоjлkдlгuкrб\\,йq"
+
 if vim.g.neovide then
   vim.g.neovide_input_use_logo = 1
 
