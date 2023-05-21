@@ -16,7 +16,8 @@ local sources = {
       "markdown",
       "css",
       "svelte",
-      "astro"
+      "astro",
+      "json"
     },
     extra_filetypes = {
       "svelte",

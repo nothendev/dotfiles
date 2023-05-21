@@ -18,7 +18,7 @@
 (defwidget desktop [] (box
     :class "desktop"
     ;; :style "background-image: url('${EWW_CONFIG_DIR}/assets/wallpapers/${workspaces.active}.jpeg')"
-    :style "background-image: url('${EWW_CONFIG_DIR}/assets/wallpapers/7.jpeg')"
+    :style "background-image: url('${EWW_CONFIG_DIR}/../../wallpapers/hyprland_kitty.jpeg')"
     (desktop_clock)
     ;; (eventbox
     ;;     ;; :onhoverlost "${EWW_CMD} update desktop_reveal=false"

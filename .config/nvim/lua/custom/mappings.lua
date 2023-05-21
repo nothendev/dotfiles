@@ -28,6 +28,7 @@ M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<leader>dd"] = { '"_dd', "voids a line" },
+    ["<leader>fpm"] = { ':%!prettier %', "formats current file with prettier" }
   },
 }
 

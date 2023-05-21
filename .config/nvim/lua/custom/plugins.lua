@@ -13,13 +13,13 @@ local plugins = {
           require "custom.configs.null-ls"
         end,
       },
-      {
-        "williamboman/mason-lspconfig.nvim",
-        config = function(_, opts)
-          require("mason-lspconfig").setup(opts)
-        end,
-      },
-      "mason.nvim"
+      -- {
+      --   "williamboman/mason-lspconfig.nvim",
+      --   config = function(_, opts)
+      --     require("mason-lspconfig").setup(opts)
+      --   end,
+      -- },
+      -- "mason.nvim"
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -43,7 +43,6 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
-  -- Install a plugin
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
@@ -101,11 +100,12 @@ local plugins = {
   {
     "editorconfig/editorconfig-vim",
     event = "BufWrite",
+    enabled = false,
   },
 
   {
     "NvChad/nvim-colorizer.lua",
-    options = {
+    opts = {
       filetypes = { "*" },
       user_default_options = {
         css = true,
@@ -132,6 +132,7 @@ local plugins = {
 
   {
     "jcdickinson/codeium.nvim",
+    lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
@@ -140,6 +141,23 @@ local plugins = {
       require("codeium").setup {}
     end,
   },
+
+  {
+    "saecki/crates.nvim",
+    event = "BufRead Cargo.toml",
+    dependencies = {
+      "plenary.nvim"
+    },
+    opts = {
+      null_ls = {
+        enabled = true,
+        name = "crates"
+      }
+    },
+    config = function(_, opts)
+      require('crates').setup(opts)
+    end
+  }
 }
 
 return plugins
