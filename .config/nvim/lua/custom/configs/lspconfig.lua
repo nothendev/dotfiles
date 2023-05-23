@@ -33,15 +33,7 @@ lspconfig.rust_analyzer.setup {
     ["rust-analyzer"] = {
       check = {
         command = "clippy",
-      },
-      cargo = {
-        buildScripts = {
-          enable = true,
-        },
-      },
-      procMacro = {
-        enable = true,
-      },
+      }
     },
   },
   root_dir = function(fname)
