@@ -3,7 +3,6 @@ set -U fish_greeting
 starship init fish | source
 starship completions fish | source
 set -gx EDITOR nvim
-set -gx GLORYX_USERNAME 'nothen'; set -gx GLORYX_PASSWORD 'ThingsGood:5'
 #if test -d (brew --prefix)"/share/fish/completions"
 #    set -gx fish_complete_path $fish_complete_path (brew --prefix)/share/fish/completions
 #end
