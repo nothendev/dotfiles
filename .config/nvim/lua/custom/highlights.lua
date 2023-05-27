@@ -54,7 +54,7 @@ M.override = {
   ["@function"] = {
     fg = "#b392f0",
   },
-  rustStructure = {
+  ["@lsp.type.class"] = {
     fg = "#ff883e",
   },
   PreProc = macro,

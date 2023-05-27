@@ -75,6 +75,7 @@ local plugins = {
           save_on_toggle = true,
         },
       }
+      require("core.utils").load_mappings "harpoon"
     end,
   },
 
@@ -146,17 +147,28 @@ local plugins = {
     "saecki/crates.nvim",
     event = "BufRead Cargo.toml",
     dependencies = {
-      "plenary.nvim"
+      "plenary.nvim",
     },
     opts = {
       null_ls = {
         enabled = true,
-        name = "crates"
-      }
+        name = "crates",
+      },
     },
     config = function(_, opts)
-      require('crates').setup(opts)
-    end
+      require("crates").setup(opts)
+    end,
+  },
+
+  {
+    "IndianBoy42/tree-sitter-just",
+    event = { "BufRead justfile", "BufRead .justfile" },
+    dependencies = {
+      "nvim-treesitter"
+    },
+    config = function(_, opts)
+      require('tree-sitter-just').setup(opts)
+    end,
   }
 }
 

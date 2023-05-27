@@ -7,8 +7,8 @@ local highlights = require "custom.highlights"
 vim.g.mapleader = ","
 
 M.ui = {
-  theme = "github_dark",
-  theme_toggle = { "github_dark", "one_light" },
+  theme = "acid_green_fanta",
+  theme_toggle = { "github_dark", "acid_green_fanta" },
 
   hl_override = highlights.override,
   hl_add = highlights.add,
@@ -20,15 +20,11 @@ M.plugins = "custom.plugins"
 M.mappings = require "custom.mappings"
 
 if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMono Nerd Font:h13.5"
+  vim.o.guifont = "Monocraft Nerd Font:h13"
 elseif vim.g.goneovim then
-  vim.o.guifont = "JetBrainsMono Nerd Font:h13.5"
-elseif vim.g.fvim_loaded then
-  vim.cmd [[FVimCursorSmoothMove v:true]]
-  vim.cmd [[FVimCursorSmoothBlink v:true]]
-  vim.o.guifont = "JetBrainsMono Nerd Font:h16"
+  vim.o.guifont = "Monocraft Nerd Font:h13"
 else
-  vim.o.guifont = "JetBrainsMono Nerd Font 13.5"
+  vim.o.guifont = "Monocraft Nerd Font 13"
 end
 vim.filetype.add {
   extension = {

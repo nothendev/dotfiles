@@ -48,4 +48,11 @@ M.nvimtree = {
   },
 }
 
+M.telescope = {
+  plugin = true,
+  n = {
+    ["<leader>cd"] = { "<cmd> Telescope diagnostics <CR>", "show diagnostics" },
+  }
+}
+
 return M

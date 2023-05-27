@@ -17,6 +17,7 @@ local servers = {
   "angularls",
   "vuels",
   "emmet_ls",
+  "graphql"
 }
 
 for _, lsp in ipairs(servers) do

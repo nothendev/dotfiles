@@ -47,6 +47,11 @@ local options = {
     mappings = {
       n = { ["q"] = require("telescope.actions").close },
     },
+    pickers = {
+      diagnostics = {
+        bufnr = 0,
+      },
+    },
   },
 
   extensions_list = { "themes", "terms" },
