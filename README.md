@@ -12,6 +12,7 @@ Packages:
   [Aylur/dotfiles](https://github.com/Aylur/dotfiles/tree/main/.config/eww)
 - Editor: nvim (extra: neovim), with goneovim (aur: goneovim-bin)
 - Shell: fish, prompt: starship (extra)
+- Launcher: rofi (aur: rofi-lbonn-wayland-git)
 - AUR helper: paru (aur: paru)
 
 Pacman color: yes
