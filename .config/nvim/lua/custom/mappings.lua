@@ -28,7 +28,7 @@ M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<leader>dd"] = { '"_dd', "voids a line" },
-    ["<leader>fpm"] = { ':%!prettier %', "formats current file with prettier" }
+    ["<leader>fpm"] = { ":%!prettier %", "formats current file with prettier" },
   },
 }
 
@@ -52,7 +52,22 @@ M.telescope = {
   plugin = true,
   n = {
     ["<leader>cd"] = { "<cmd> Telescope diagnostics <CR>", "show diagnostics" },
-  }
+    ["gs"] = { "<cmd> Telescope lsp_document_symbols <CR>", "show / goto symbol(s)" },
+    ["gS"] = { "<cmd> Telescope lsp_workspace_symbols <CR>", "show / goto symbol(s) in entire workspace" },
+  },
+}
+
+local tabnext = { "<cmd> tabnext <CR>", "next tab", { noremap = true, silent = true } }
+local tabprev = { "<cmd> tabprevious <CR>", "previous tab", { noremap = true, silent = true } }
+
+M.tabufline = {
+  plugin = true,
+  n = {
+    ["<C-e>e"] = tabnext,
+    ["<C-e>E"] = tabprev,
+    ["<C-e>q"] = { "<cmd> tabclose <CR>", "close tab" },
+    ["<C-e>n"] = { "<cmd> tabnew <CR>", "new tab" },
+  },
 }
 
 return M

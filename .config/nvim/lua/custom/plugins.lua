@@ -169,6 +169,12 @@ local plugins = {
     config = function(_, opts)
       require('tree-sitter-just').setup(opts)
     end,
+  },
+
+  {
+    "jbyuki/instant.nvim",
+    cmd = { "InstantStartSingle", "InstantJoinSingle", "InstantStartSession", "InstantJoinSession", "InstantStartServer" },
+
   }
 }
 
