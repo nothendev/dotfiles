@@ -164,17 +164,49 @@ local plugins = {
     "IndianBoy42/tree-sitter-just",
     event = { "BufRead justfile", "BufRead .justfile" },
     dependencies = {
-      "nvim-treesitter"
+      "nvim-treesitter",
     },
     config = function(_, opts)
-      require('tree-sitter-just').setup(opts)
+      require("tree-sitter-just").setup(opts)
     end,
   },
 
   {
     "jbyuki/instant.nvim",
-    cmd = { "InstantStartSingle", "InstantJoinSingle", "InstantStartSession", "InstantJoinSession", "InstantStartServer" },
+    cmd = {
+      "InstantStartSingle",
+      "InstantJoinSingle",
+      "InstantStartSession",
+      "InstantJoinSession",
+      "InstantStartServer",
+    },
+  },
 
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+    },
+    config = function(_, opts)
+      require("todo-comments").setup(opts)
+    end
+  },
+
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
+    config = function(_, opts)
+      require('trouble').setup(opts)
+    end
+  },
+
+  {
+    "andweeb/presence.nvim",
+    opts = require("custom.configs.presence"),
+    config = function(_, opts)
+      require("presence").setup(opts)
+    end
   }
 }
 

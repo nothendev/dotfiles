@@ -3,7 +3,6 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
--- if you just want default config for the servers then put them in a table
 local servers = {
   "html",
   "cssls",
@@ -13,7 +12,7 @@ local servers = {
   "taplo",
   "astro",
   "svelte",
-  "tailwindcss",
+  -- "tailwindcss",
   "angularls",
   "vuels",
   "emmet_ls",
@@ -86,5 +85,19 @@ lspconfig.typst_lsp.setup {
   single_file_support = true,
 }
 
---
--- lspconfig.pyright.setup { blabla}
+lspconfig.unocss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {
+    "scss", "css", "svelte", "jsx", "tsx", "vue"
+  },
+  root_dir = lspconfig.util.root_pattern('unocss.config.js', 'unocss.config.ts', 'uno.config.js', 'uno.config.ts')
+}
+
+lspconfig.nixd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    vim.fn.expand("~/.nix-profile/bin/nixd")
+  }
+}

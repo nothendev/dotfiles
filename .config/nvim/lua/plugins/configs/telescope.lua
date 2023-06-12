@@ -9,6 +9,9 @@ local options = {
       "--line-number",
       "--column",
       "--smart-case",
+      "--ignore",
+      "--hidden",
+      "--files"
     },
     prompt_prefix = "   ",
     selection_caret = "  ",

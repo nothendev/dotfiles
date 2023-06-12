@@ -114,7 +114,7 @@ local options = {
   },
   sources = {
     { name = "codeium" },
-    { name = "nvim_lsp" },
+    { name = "nvim_lsp", trigger_characters = { "-" } },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "nvim_lua" },
