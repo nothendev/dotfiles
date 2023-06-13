@@ -4,14 +4,18 @@
 ;; (evil-define-key 'insert 'Company (kbd "C-S-TAB") 'company-select-last)
 
 (map!
+ :after company
  :map company-mode-map
  "C-SPC" 'company-manual-begin)
 
 (map!
+ :after company
  :map company-active-map
 
  "TAB" #'company-select-next
- "backtab" #'company-select-previous
+ "<tab>" #'company-select-next
+ "<backtab>" #'company-select-previous
+ "S-TAB" #'company-select-previous
  "C-TAB" #'company-select-first
  "C-S-TAB" #'company-select-last
  "RET" #'company-complete-selection

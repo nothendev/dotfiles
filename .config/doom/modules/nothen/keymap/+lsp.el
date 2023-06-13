@@ -1,7 +1,7 @@
 (map!
  :leader
  :map evil-normal-state-map
- "fm" #'lsp-format-buffer
+ "fm" #'+format/buffer
  "ca" #'lsp-ui-sideline-apply-code-actions)
 
 (map!

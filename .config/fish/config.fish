@@ -16,5 +16,6 @@ set --export PATH $BUN_INSTALL/bin $PATH
 set -gx DENO_INSTALL "/home/ilya/.deno"
 set -gx PATH $DENO_INSTALL/bin $PATH
 set -gx PATH "/home/ilya/.config/emacs/bin" $PATH
+set -gx PATH "/home/ilya/.local/share/coursier/bin" $PATH
 
 ls > /dev/null
