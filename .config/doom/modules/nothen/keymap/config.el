@@ -6,7 +6,7 @@
 
 (defun inverse-linenumber(linenumber)
   (if (eq linenumber 'relative)
-      (cl-return-from inverse-linenumber t)
+      t
     'relative))
 
 (defun nothen-switch-relative-linenumber()

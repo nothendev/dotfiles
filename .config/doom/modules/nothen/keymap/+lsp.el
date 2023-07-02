@@ -2,11 +2,12 @@
  :leader
  :map evil-normal-state-map
  "fm" #'+format/buffer
- "ca" #'lsp-ui-sideline-apply-code-actions)
+ "ca" #'lsp-execute-code-action
+ "ra" #'lsp-rename)
 
 (map!
  :map evil-normal-state-map
- "gd" #'lsp-find-definition
- "gr" #'lsp-find-references
- "gD" #'lsp-find-declaration
- "gi" #'lsp-find-implementation)
+ "gd" #'+lookup/definition
+ "gr" #'+lookup/references
+ "gD" #'+lookup/type-definition
+ "gi" #'+lookup/implementations)

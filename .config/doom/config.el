@@ -34,13 +34,12 @@
 ;; `load-theme' function. This is the default:
 ;;
 
-(setq doom-font "Monocraft Nerd Font-13")
-(setq doom-big-font "Monocraft Nerd Font-72")
-(setq doom-unicode-font "Monocraft Nerd Font-13")
-(setq doom-variable-pitch-font "Monocraft Nerd Font-14")
+(setq doom-font "JetBrainsMono Nerd Font Mono-13")
+(setq doom-big-font "JetBrainsMono Nerd Font Mono-24")
+(setq doom-unicode-font "JetBrainsMono Nerd Font Mono-13")
+(setq doom-variable-pitch-font "JetBrainsMono Nerd Font Mono-14")
 
 (setq doom-theme 'acid-green-fanta)
-
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
@@ -49,7 +48,24 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
-(setq lsp-rust-analyzer-cargo-watch-command "clippy")
+(after! lsp-mode
+  (setq lsp-semantic-tokens-enable t)
+  (setq lsp-rust-analyzer-cargo-watch-command "clippy")
+  (setq lsp-metals-semantic-tokens-enable t)
+  (setq lsp-semantic-tokens-honor-refresh-requests t)
+  (setq lsp-log-io t)
+  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
+                    :major-modes '(nix-mode)
+                    :server-id 'nix)))
+
+
+(setq lsp-disabled-clients '('typescript-mode . 'lsp-deno))
+
+(after! company
+  (setq company-require-match nil
+        company-minimum-prefix-length 3))
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -86,4 +102,25 @@
 
 (use-package! codeium
   :init
-  (add-to-list 'completion-at-point-functions #'codeium-completion-at-point))
+  (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
+  :config
+  (setq codeium-api-enabled
+        (lambda (api)
+          (memq api '(GetCompletions Heartbeat CancelRequest GetAuthToken RegisterUser auth-redirect AcceptCompletion)))))
+
+(use-package! lsp-metals
+  :config
+  ;; You might set metals server options via -J arguments. This might not always work, for instance when
+  ;; metals is installed using nix. In this case you can use JAVA_TOOL_OPTIONS environment variable.
+  (setq lsp-metals-server-args '(
+                                 ;; Metals claims to support range formatting by default but it supports range
+                                 ;; formatting of multiline strings only. You might want to disable it so that
+                                 ;; emacs can use indentation provided by scala-mode.
+                                 "-J-Dmetals.allow-multiline-string-formatting=off"
+                                 ;; Enable unicode icons. But be warned that emacs might not render unicode
+                                 ;; correctly in all cases.
+                                 "-J-Dmetals.icons=unicode"
+                                 ;; Emacs
+                                 "-J-Dmetals.client=emacs")))
+
+(load! "./sensitive.el")

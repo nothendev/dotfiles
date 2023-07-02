@@ -3,4 +3,4 @@
 (map!
  :leader
  :map evil-normal-state-map
- "ff" #'+default/search-project)
+ "ff" #'find-file)

@@ -19,6 +19,7 @@
  "C-TAB" #'company-select-first
  "C-S-TAB" #'company-select-last
  "RET" #'company-complete-selection
+ "S-RET" #'newline-and-indent
 
  ; unmap up and down for navigation, make them navigate the file instead.
  "<down>" nil
