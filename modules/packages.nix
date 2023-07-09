@@ -46,6 +46,7 @@
     nodejs
     go
     cargo
+    rustup
 
     cachix
     rnix-lsp
