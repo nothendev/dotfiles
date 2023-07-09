@@ -4,5 +4,11 @@ let
   makeCfg = path: { ".config/${path}".source = ../configs/${path}; };
 in
 {
-  home.file = makeCfg "doom" // makeCfg "eww";
+  home.file =
+    # Doom Emacs
+    makeCfg "doom" //
+    # ElKowars wacky widgets (eww)
+    makeCfg "eww" //
+    # Hyprland
+    makeCfg "hypr";
 }
