@@ -4,7 +4,7 @@
     enable = true;
     package = pkgs.kitty;
     font = {
-      name = "JetBrainsMono NF Regular";
+      name = "JetBrainsMono Nerd Font Mono Regular";
       size = 14;
     };
     shellIntegration.enableFishIntegration = true;
