@@ -17,6 +17,7 @@
     ffmpeg
     acpi
     git
+    gh
     just
     neofetch
 
