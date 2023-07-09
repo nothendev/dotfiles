@@ -7,9 +7,9 @@
 
     wayland xdg-utils grim slurp wl-clipboard gnome.gdm
     rofi-wayland-unwrapped eww-wayland hyprpicker hyprpaper
-    watershot pavucontrol
+    watershot pavucontrol playerctl
 
-    opera
+    opera brave
 
     distrobox meson ninja
     nodejs go cargo
