@@ -13,7 +13,6 @@
     wget
     curl
     macchanger
-    exa
     ffmpeg
     acpi
     git
@@ -34,6 +33,7 @@
     watershot
     pavucontrol
     playerctl
+    wev
 
     opera
     brave
