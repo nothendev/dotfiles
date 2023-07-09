@@ -1,17 +1,55 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    kitty emacs neovim fish starship
-    bat htop jq socat wget curl macchanger
-    exa ffmpeg acpi git just
+    kitty
+    emacs
+    neovim
+    fish
+    starship
 
-    wayland xdg-utils grim slurp wl-clipboard gnome.gdm
-    rofi-wayland-unwrapped eww-wayland hyprpicker hyprpaper
-    watershot pavucontrol playerctl
+    bat
+    htop
+    jq
+    socat
+    wget
+    curl
+    macchanger
+    exa
+    ffmpeg
+    acpi
+    git
+    just
+    neofetch
 
-    opera brave
+    wayland
+    xdg-utils
+    grim
+    slurp
+    wl-clipboard
+    gnome.gdm
+    rofi-wayland-unwrapped
+    eww-wayland
+    hyprpicker
+    hyprpaper
+    watershot
+    pavucontrol
+    playerctl
 
-    distrobox meson ninja
-    nodejs go cargo
+    opera
+    brave
+    vivaldi
+
+    distrobox
+    meson
+    ninja
+    cmake
+    nodejs
+    go
+    cargo
+
+    cachix
+    rnix-lsp
+    nixfmt
+
+    prismlauncher
   ];
 }

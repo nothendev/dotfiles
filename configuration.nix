@@ -1,13 +1,12 @@
 { config, lib, nixpkgs, pkgs, home-manager, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      home-manager.nixosModules.default
-      ./packages.nix
-      ./pretty.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./packages.nix
+    ./pretty.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi = {
@@ -18,13 +17,12 @@
   # network
   networking.hostName = "ilynix"; # Define your hostname.
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable =
+    true; # Easiest to use and most distros use this by default.
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  programs.starship = {
-    enable = true;
-  };
+  programs.starship = { enable = true; };
 
   # pipewire
   security.rtkit.enable = true;
@@ -54,7 +52,6 @@
       enable = true;
       wayland = true;
     };
-    # displayManager.sessionPackages = [ pkgs.hyprland ];
     libinput.enable = true;
   };
   hardware.nvidia = {
@@ -63,7 +60,10 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "root" "ilya" ];
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -86,9 +86,7 @@
     shell = pkgs.fish;
   };
   security.sudo.wheelNeedsPassword = false;
-  users.users.root = {
-    initialHashedPassword = "";
-  };
+  users.users.root = { initialHashedPassword = ""; };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -122,4 +120,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 }
-
