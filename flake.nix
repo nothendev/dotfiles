@@ -8,12 +8,13 @@
       system = "x86_64-linux";
       specialArgs = attrs;
       modules = [
-        ./configuration.nix
+        ./hardware-configuration.nix
+        ./modules/init.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.ilya = import ./home.nix;
+          home-manager.users.ilya = import ./home/init.nix;
         }
       ];
     };
