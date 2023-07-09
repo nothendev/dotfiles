@@ -47,6 +47,8 @@
     go
     cargo
     rustup
+    gcc
+    clang
 
     cachix
     rnix-lsp
