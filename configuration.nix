@@ -5,6 +5,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       home-manager.nixosModules.default
+      ./packages.nix
+      ./pretty.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -87,42 +89,6 @@
   users.users.root = {
     initialHashedPassword = "";
   };
-
-  fonts.fonts = with pkgs; [
-    jetbrains-mono
-    monocraft
-  ];
-
-  environment.systemPackages = with pkgs; [
-    exa
-    neovim
-    wget
-    emacs
-    curl
-    fish
-    kitty
-    wayland
-    xdg-utils
-    grim
-    slurp
-    wl-clipboard
-    rofi-wayland-unwrapped
-    eww-wayland
-    hyprpicker
-    macchanger
-    gnome.gdm
-    starship
-    opera
-    hyprpaper
-
-    bat jq ranger socat htop acpi ffmpeg
-    watershot pavucontrol git
-
-    distrobox
-    meson ninja
-    nodejs go
-    cargo
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
