@@ -35,9 +35,7 @@
     playerctl
     wev
 
-    opera
     brave
-    vivaldi
 
     distrobox
     meson
@@ -55,5 +53,8 @@
     nixfmt
 
     prismlauncher
+    qbittorrent
+    ranger
+    steam
   ];
 }
