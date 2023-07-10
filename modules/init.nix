@@ -1,5 +1,4 @@
-{ config, pkgs, osConfig, ... }:
-{
+{ config, pkgs, osConfig, ... }: {
   imports = [
     ./boot.nix
     ./hypr.nix
@@ -9,6 +8,7 @@
     ./packages.nix
     ./pretty.nix
     ./users.nix
+    ./upgrade-diff.nix
   ];
   system.stateVersion = "23.11";
 }
