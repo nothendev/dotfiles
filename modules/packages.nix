@@ -58,5 +58,7 @@
       ranger
       steam
       canon-cups-ufr2
+
+      libreoffice-fresh
     ] ++ (with libsForQt5; [ okular dolphin ]);
 }
