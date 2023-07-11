@@ -1,60 +1,62 @@
 { config, pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    kitty
-    emacs
-    neovim
-    fish
-    starship
+  environment.systemPackages = with pkgs;
+    [
+      kitty
+      emacs
+      neovim
+      fish
+      starship
 
-    bat
-    htop
-    jq
-    socat
-    wget
-    curl
-    macchanger
-    ffmpeg
-    acpi
-    git
-    gh
-    just
-    neofetch
+      bat
+      htop
+      jq
+      socat
+      wget
+      curl
+      macchanger
+      ffmpeg
+      acpi
+      git
+      gh
+      just
+      neofetch
 
-    wayland
-    xdg-utils
-    grim
-    slurp
-    wl-clipboard
-    gnome.gdm
-    rofi-wayland-unwrapped
-    eww-wayland
-    hyprpicker
-    hyprpaper
-    watershot
-    pavucontrol
-    playerctl
-    wev
+      wayland
+      xdg-utils
+      grim
+      slurp
+      wl-clipboard
+      gnome.gdm
+      rofi-wayland-unwrapped
+      eww-wayland
+      hyprpicker
+      hyprpaper
+      watershot
+      pavucontrol
+      playerctl
+      wev
 
-    brave
+      brave
 
-    distrobox
-    meson
-    ninja
-    cmake
-    nodejs
-    go
-    cargo
-    rustup
-    gcc
-    clang
+      distrobox
+      meson
+      ninja
+      cmake
+      nodejs
+      go
+      cargo
+      rustup
+      gcc
+      clang
 
-    cachix
-    rnix-lsp
-    nixfmt
+      cachix
+      rnix-lsp
+      nixfmt
 
-    prismlauncher
-    qbittorrent
-    ranger
-    steam
-  ];
+      prismlauncher
+      qbittorrent
+      ranger
+      steam
+      canon-cups-ufr2
+    ] ++ (with libsForQt5; [ okular dolphin ]);
 }
