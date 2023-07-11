@@ -9,12 +9,12 @@
       specialArgs = attrs;
       modules = [
         ./hardware-configuration.nix
-        ./modules/init.nix
+        ./modules
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.ilya = import ./home/init.nix;
+          home-manager.users.ilya = import ./home;
         }
       ];
     };
