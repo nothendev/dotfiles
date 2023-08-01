@@ -1,5 +1,6 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, nixpkgs, ... }: {
   imports = [ ../overlays ];
+  nix.registry.nixpkgs.flake = nixpkgs;
   environment.systemPackages = with pkgs;
     [
       kitty
