@@ -1,5 +1,6 @@
 final: prev: rec {
   zig = prev.zig.overrideAttrs (old: {
+    version = "0.11.0-dev.4333+4f6013bf5";
     src = prev.fetchFromGitHub {
       owner = "ziglang";
       repo = "zig";
@@ -8,6 +9,7 @@ final: prev: rec {
     };
   });
   zls = (prev.zls.overrideAttrs (old: {
+    version = "0.11.0-dev.4333+f71c42b42";
     src = prev.fetchFromGitHub {
       owner = "zigtools";
       repo = "zls";
