@@ -1,3 +1,1 @@
-final: prev: rec {
-  zig = prev.zigpkgs.master;
-}
+final: prev: rec { zig = prev.zigpkgs.master; }

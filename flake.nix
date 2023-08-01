@@ -2,9 +2,9 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs";
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.zig.url = github:mitchellh/zig-overlay;
+  inputs.zig.url = "github:mitchellh/zig-overlay";
   inputs.zig.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.zls.url = github:zigtools/zls;
+  inputs.zls.url = "github:zigtools/zls";
   inputs.zls.inputs.nixpkgs.follows = "nixpkgs";
   inputs.zls.inputs.zig-overlay.follows = "zig";
 

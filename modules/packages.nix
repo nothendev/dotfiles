@@ -65,5 +65,8 @@
       canon-cups-ufr2
 
       libreoffice-fresh
-    ] ++ (with libsForQt5; [ okular dolphin ]) ++ [ zig.packages.${pkgs.system}.master zls.packages.${pkgs.system}.default ];
+    ] ++ (with libsForQt5; [ okular dolphin ]) ++ [
+      zig.packages.${pkgs.system}.master
+      zls.packages.${pkgs.system}.default
+    ];
 }
