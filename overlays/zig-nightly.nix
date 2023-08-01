@@ -8,6 +8,10 @@ final: prev: rec {
       hash = "sha256-G/SrvgYojIkGREJ455ooFyX1I1xJKdKF2Yw16v/qZX4=";
     };
     patches = [ ];
+    postBuild = ''
+      ./zig2 build-exe ../tools/docgen.zig
+      ./docgen ./zig2 ../doc/langref.html.in ./langref.html
+    '';
   })).override { llvmPackages = prev.llvmPackages_16; };
   zls = (prev.zls.overrideAttrs (old: {
     version = "0.11.0-dev.4333+f71c42b42";
