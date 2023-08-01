@@ -1,0 +1,89 @@
+# This is an example Hyprland config file.
+#
+# Refer to the wiki for more information.
+
+#
+# Please note not all available settings / options are set here.
+# For a full list, see the wiki
+#
+
+# See https://wiki.hyprland.org/Configuring/Monitors/
+monitor=,preferred,auto,auto
+
+
+# See https://wiki.hyprland.org/Configuring/Keywords/ for more
+
+$makeKitty = [workspace special:kitty silent; float; noanim; move 90 10; size 1820 1056] kitty
+
+source = ~/.config/hypr/binds.conf
+source = ~/.config/hypr/execs.conf
+
+env = XCURSOR_SIZE,24
+env = WLR_NO_HARDWARE_CURSORS,1
+
+input {
+    kb_layout = us,ru
+    kb_variant =
+    kb_model =
+    kb_options =
+    kb_rules =
+
+    numlock_by_default = true
+
+    follow_mouse = 1
+
+    touchpad {
+        natural_scroll = false
+    }
+
+    sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+}
+
+general {
+    gaps_in = 5
+    gaps_out = 10
+    border_size = 2
+    col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+    col.inactive_border = rgba(595959aa)
+
+    layout = master
+}
+
+decoration {
+    rounding = 10
+    blur = true
+    blur_size = 3
+    blur_passes = 1
+    blur_new_optimizations = true
+
+    drop_shadow = true
+    shadow_range = 4
+    shadow_render_power = 3
+    col.shadow = rgba(1a1a1aee)
+}
+
+animations {
+    enabled = true
+
+    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+
+    animation = windows, 1, 7, myBezier
+    animation = windowsOut, 1, 7, default, popin 80%
+    animation = border, 1, 10, default
+    animation = borderangle, 1, 8, default
+    animation = fade, 1, 7, default
+    animation = workspaces, 1, 6, default
+}
+
+dwindle {
+    pseudotile = true # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    preserve_split = true # you probably want this
+}
+
+master {
+    new_is_master = true
+}
+
+gestures {
+    workspace_swipe = false
+}

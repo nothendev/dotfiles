@@ -15,14 +15,10 @@ bind = $mainMod, TAB, changegroupactive
 bind = ,Print,exec,grim -g "$(slurp)"
 bind = CTRL,code:49,exec,fish -c "nhyprutil kbswitch"
 bind = $mainMod SHIFT, F, fullscreen
-bind = $mainMod SHIFT, G, moveoutofgroup
-bind = $mainMod SHIFT, H, moveintogroup, l
-bind = $mainMod SHIFT, J, moveintogroup, d
-bind = $mainMod SHIFT, K, moveintogroup, u
-bind = $mainMod SHIFT, L, moveintogroup, r
 
-bind = $mainMod SHIFT, A, exec, ~/.config/eww/scripts/init
-bind = $mainMod SHIFT, S, exec, $makeKitty
+bind = $mainMod SHIFT, W, exec, ~/restart-waybar.sh
+bind = $mainMod SHIFT, E, exec, ~/.config/eww/scripts/init
+bind = $mainMod SHIFT, K, exec, $makeKitty
 
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l

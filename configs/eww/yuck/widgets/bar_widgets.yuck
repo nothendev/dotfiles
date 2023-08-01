@@ -128,22 +128,22 @@
         :icon {volume.mute.icon}
         :style ""
         :angle {orientation == "v" ? 90 : 0})
-    (controls_slider
-        :orientation orientation
-        :transition {orientation == "v" ? "slideup" : "slideleft"}
-        :control "volume"
-        :reveal volume_reveal
-        :value {volume.level}
-        :onchange "${EWW_CONFIG_DIR}/scripts/volume set {}"
-        :icon {volume.icon})
-    (controls_slider
-        :orientation orientation
-        :transition {orientation == "v" ? "slideup" : "slideleft"}
-        :control "screen"
-        :reveal screen_reveal
-        :value {brightness.screen.level}
-        :onchange "${EWW_CONFIG_DIR}/scripts/brightness set_screen {}"
-        :icon {brightness.screen.icon})
+    ;; (controls_slider
+    ;;     :orientation orientation
+    ;;     :transition {orientation == "v" ? "slideup" : "slideleft"}
+    ;;     :control "volume"
+    ;;     :reveal volume_reveal
+    ;;     :value {volume.level}
+    ;;     :onchange "${EWW_CONFIG_DIR}/scripts/volume set {}"
+    ;;     :icon {volume.icon})
+    ;; (controls_slider
+    ;;     :orientation orientation
+    ;;     :transition {orientation == "v" ? "slideup" : "slideleft"}
+    ;;     :control "screen"
+    ;;     :reveal screen_reveal
+    ;;     :value {brightness.screen.level}
+    ;;     :onchange "${EWW_CONFIG_DIR}/scripts/brightness set_screen {}"
+    ;;     :icon {brightness.screen.icon})
     (controls_icon
         :orientation orientation
         :transition {orientation == "v" ? "slideup" : "slideleft"}

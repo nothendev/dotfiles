@@ -1,4 +1,5 @@
 { config, pkgs, ... }: {
+  imports = [ ../overlays ];
   environment.systemPackages = with pkgs;
     [
       kitty
@@ -36,7 +37,8 @@
       playerctl
       wev
 
-      brave
+      # brave
+      librewolf
 
       distrobox
       meson
@@ -48,6 +50,8 @@
       rustup
       gcc
       clang
+      zig
+      zls
 
       cachix
       rnix-lsp

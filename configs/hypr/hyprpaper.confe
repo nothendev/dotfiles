@@ -1,0 +1,6 @@
+ipc = off
+preload = ~/wallpapers/hyprland1-dark.png
+preload = ~/wallpapers/sky-vaporwave-thing-sun.jpg
+
+wallpaper = HDMI-A-1,~/wallpapers/hyprland1-dark.png
+wallpaper = DVI-D-1,~/wallpapers/sky-vaporwave-thing-sun.jpg
