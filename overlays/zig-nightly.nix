@@ -12,7 +12,7 @@ final: prev: {
       owner = "zigtools";
       repo = "zls";
       rev = "f71c42b42d15a02b515806ab4226868180e33b67";
-      hash = "";
+      hash = "sha256-cDPEG4LlAo0FCDoAn9sMABcKuDnTwhMKc1il2odg3pg=";
     };
   });
 }
