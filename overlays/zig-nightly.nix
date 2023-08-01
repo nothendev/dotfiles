@@ -1,4 +1,4 @@
-final: prev: {
+final: prev: rec {
   zig = prev.zig.overrideAttrs (old: {
     src = prev.fetchFromGitHub {
       owner = "ziglang";
@@ -14,5 +14,5 @@ final: prev: {
       rev = "f71c42b42d15a02b515806ab4226868180e33b67";
       hash = "sha256-cDPEG4LlAo0FCDoAn9sMABcKuDnTwhMKc1il2odg3pg=";
     };
-  });
+  }).override { inherit zig; };
 }
