@@ -1,5 +1,5 @@
 final: prev: rec {
-  zig = prev.zig.overrideAttrs (old: {
+  zig = (prev.zig.overrideAttrs (old: {
     version = "0.11.0-dev.4333+4f6013bf5";
     src = prev.fetchFromGitHub {
       owner = "ziglang";
@@ -8,7 +8,7 @@ final: prev: rec {
       hash = "sha256-G/SrvgYojIkGREJ455ooFyX1I1xJKdKF2Yw16v/qZX4=";
     };
     patches = [ ];
-  });
+  })).override { llvmPackages = prev.llvmPackages_16; };
   zls = (prev.zls.overrideAttrs (old: {
     version = "0.11.0-dev.4333+f71c42b42";
     src = prev.fetchFromGitHub {
