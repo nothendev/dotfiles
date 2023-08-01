@@ -1,6 +1,8 @@
 { config, pkgs, nixpkgs, ... }: {
   imports = [ ../overlays ];
   nix.registry.nixpkgs.flake = nixpkgs;
+  nix.nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
+  environment.etc."channels/nixpkgs".source = nixpkgs.outPath;
   environment.systemPackages = with pkgs;
     [
       kitty
