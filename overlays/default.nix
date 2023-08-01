@@ -1,5 +1,7 @@
-{ lib, ... }:
+{ zig, ... }:
 
 {
-  nixpkgs.overlays = map (x: import x) [ ./zig-nightly.nix ];
+  nixpkgs.overlays = [ zig.overlays.default ] ++ (map (x: import x) [
+    ./zig-nightly.nix
+  ]);
 }

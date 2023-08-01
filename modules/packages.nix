@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs, ... }: {
+{ config, pkgs, nixpkgs, zls, zig, ... }: {
   imports = [ ../overlays ];
   nix.registry.nixpkgs.flake = nixpkgs;
   nix.nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
@@ -53,8 +53,6 @@
       rustup
       gcc
       clang
-      zig
-      zls
 
       cachix
       rnix-lsp
@@ -67,5 +65,5 @@
       canon-cups-ufr2
 
       libreoffice-fresh
-    ] ++ (with libsForQt5; [ okular dolphin ]);
+    ] ++ (with libsForQt5; [ okular dolphin ]) ++ [ zig.packages.${pkgs.system}.master zls.packages.${pkgs.system}.default ];
 }
