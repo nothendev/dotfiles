@@ -177,7 +177,7 @@
        ;;terra             ; Earth and Moon in alignment for performance.
        (web +lsp)             ; the tubes
        ;;yaml              ; JSON, but readable
-       (zig +lsp)               ; C, but simpler
+       (zig +lsp +tree-sitter)               ; C, but simpler
 
        :email
        ;;(mu4e +org +gmail)

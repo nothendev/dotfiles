@@ -3,6 +3,8 @@
   nix.registry.nixpkgs.flake = nixpkgs;
   nix.nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
   environment.etc."channels/nixpkgs".source = nixpkgs.outPath;
+  environment.etc."jvm/17".source = pkgs.jdk17;
+  environment.etc."jvm/8".source = pkgs.jdk8;
   environment.systemPackages = with pkgs;
     [
       kitty
@@ -65,6 +67,8 @@
       canon-cups-ufr2
 
       libreoffice-fresh
+      gimp
+      krita
     ] ++ (with libsForQt5; [ okular dolphin ]) ++ [
       zig.packages.${pkgs.system}.master
       zls.packages.${pkgs.system}.default
