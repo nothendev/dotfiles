@@ -26,6 +26,7 @@
       gh
       just
       neofetch
+      insomnia
 
       wayland
       xdg-utils
@@ -55,6 +56,14 @@
       rustup
       gcc
       clang
+      gdb
+      lldb
+      patchelf
+      zip
+      unzip
+      ripgrep
+      tokei
+      python3
 
       cachix
       rnix-lsp
