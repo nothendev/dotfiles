@@ -100,14 +100,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(use-package! codeium
-  :init
-  (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
-  :config
-  (setq codeium-api-enabled
-        (lambda (api)
-          (memq api '(GetCompletions Heartbeat CancelRequest GetAuthToken RegisterUser auth-redirect AcceptCompletion)))))
-
 (use-package! lsp-metals
   :config
   ;; You might set metals server options via -J arguments. This might not always work, for instance when

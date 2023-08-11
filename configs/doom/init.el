@@ -197,4 +197,5 @@
        (default +smartparens)
 
        :nothen
-       keymap)
+       keymap
+       codeium)
