@@ -198,4 +198,5 @@
 
        :nothen
        keymap
-       codeium)
+       ;;codeium
+       )
