@@ -15,6 +15,7 @@
 
       bat
       htop
+      nmon
       jq
       socat
       wget
@@ -27,8 +28,8 @@
       just
       neofetch
       insomnia
+      telegram-desktop
 
-      wayland
       xdg-utils
       grim
       slurp
@@ -54,7 +55,6 @@
       go
       cargo
       rustup
-      gcc
       clang
       gdb
       lldb
@@ -64,6 +64,14 @@
       ripgrep
       tokei
       python3
+      pkg-config
+      gcc
+      alsa-lib
+      udev
+      wayland
+      xorg.libX11
+      xorg.libXcursor
+      mold
 
       cachix
       rnix-lsp
@@ -78,7 +86,11 @@
       libreoffice-fresh
       gimp
       krita
-    ] ++ (with libsForQt5; [ okular dolphin ]) ++ [
+      inkscape
+      gnome.nautilus
+      wineWowPackages.waylandFull
+      glfw-minecraft
+    ] ++ (with libsForQt5; [ okular ark ]) ++ [
       zig.packages.${pkgs.system}.master
       zls.packages.${pkgs.system}.default
     ];
