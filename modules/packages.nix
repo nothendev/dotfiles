@@ -8,7 +8,7 @@
   environment.systemPackages = with pkgs;
     [
       kitty
-      emacs
+      emacs-gtk
       neovim
       fish
       starship
@@ -51,7 +51,6 @@
       meson
       ninja
       cmake
-      nodejs
       go
       cargo
       rustup
@@ -72,6 +71,7 @@
       xorg.libX11
       xorg.libXcursor
       mold
+      nodejs_18
 
       cachix
       rnix-lsp
@@ -90,6 +90,8 @@
       gnome.nautilus
       wineWowPackages.waylandFull
       glfw-minecraft
+      blender
+      obsidian
     ] ++ (with libsForQt5; [ okular ark ]) ++ [
       zig.packages.${pkgs.system}.master
       zls.packages.${pkgs.system}.default
