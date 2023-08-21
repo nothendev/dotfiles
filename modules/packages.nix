@@ -36,7 +36,7 @@
       wl-clipboard
       gnome.gdm
       rofi-wayland-unwrapped
-      eww-wayland
+      (eww-wayland.override { withWayland = true; })
       hyprpicker
       hyprpaper
       watershot
