@@ -55,3 +55,4 @@
 (package! flex :recipe (:host github :repo "jcs-elpa/flex" :branch "master"))
 (package! company-fuzzy)
 (package! lsp-metals :recipe (:host github :repo "nothendev/lsp-metals" :branch "patch-1"))
+(package! catppuccin-theme)

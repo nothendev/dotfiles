@@ -39,7 +39,11 @@
 (setq doom-unicode-font "JetBrainsMono Nerd Font Mono-13")
 (setq doom-variable-pitch-font "JetBrainsMono Nerd Font Mono-14")
 
-(setq doom-theme 'acid-green-fanta)
+(load-theme 'catppuccin t t)
+(setq catppuccin-flavor 'mocha)
+(catppuccin-reload)
+(setq doom-theme 'catppuccin)
+; (setq doom-theme 'acid-green-fanta)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
