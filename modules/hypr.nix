@@ -3,7 +3,7 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    nvidiaPatches = true;
+    enableNvidiaPatches = true;
   };
   security.rtkit.enable = true;
   services.pipewire = {
