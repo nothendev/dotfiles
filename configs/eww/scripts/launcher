@@ -64,10 +64,10 @@ if [[ $1 == 'screenlock'     ]]; then screenlock; fi
 if [[ $1 == 'config'         ]]; then config; fi
 if [[ $1 == 'screenshot'     ]]; then screenshot $2; fi
 
-if [[ $1 == 'firefox'       ]]; then flatpak run org.mozilla.firefox; fi
-if [[ $1 == 'terminal'      ]]; then wezterm; fi
-if [[ $1 == 'file-manager'  ]]; then gtk-launch org.gnome.Nautilus; fi
-if [[ $1 == 'editor'        ]]; then wezterm start $EDITOR; fi
+if [[ $1 == 'firefox'       ]]; then firefox; fi
+if [[ $1 == 'terminal'      ]]; then kitty; fi
+if [[ $1 == 'file-manager'  ]]; then nautilus; fi
+if [[ $1 == 'editor'        ]]; then emacsclient; fi
 if [[ $1 == 'spotify'       ]]; then flatpak run com.spotify.Client; fi
 if [[ $1 == 'caprine'       ]]; then flatpak run com.sindresorhus.Caprine; fi
 if [[ $1 == 'bitwig'        ]]; then gtk-launch bitwig; fi

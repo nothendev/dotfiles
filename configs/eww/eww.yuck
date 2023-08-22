@@ -19,10 +19,10 @@
 (defpoll    events      :interval "3s" :initial "[]" `scripts/todo --eww`)
 (defpoll    weather     :interval "3m" :initial "[]" `scripts/weather`)
 
-(defpoll    panel_clock :interval "5s" `date "+%H:%M  |  %b. %d. %A"`)
+(defpoll    panel_clock :interval "5s" `date "+%H:%M"`)
 (defpoll    hour        :interval "5s" `date "+%H"`)
 (defpoll    minutes     :interval "5s" `date "+%M"`)
-(defpoll    date        :interval "5s" `date "+%b. %d. %A"`)
+(defpoll    date        :interval "5s" `date "+%b %d (%A)"`)
 (defpoll    uptime      :interval "60s" "uptime | awk '{print $3}' | tr ',' ' '")
 
 (defvar real_name "Ilya")
@@ -30,4 +30,4 @@
 
 (include "./yuck/widgets.yuck")
 (include "./yuck/windows.yuck")
-(include "./setups/leftbar.yuck")
+(include "./setups/topbar.yuck")

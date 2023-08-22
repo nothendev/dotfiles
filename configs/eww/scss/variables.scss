@@ -1,15 +1,15 @@
-$assets: '/home/demeter/.config/eww/assets/';
+$assets: '/home/ilya/.config/eww/assets/';
 $wallpaper: $assets+'wallpaper.png';
 $avatar:    $assets+'avatar.jpg';
 
 $hover: transparentize($fg_color, 0.84);
 $accent: $blue;
 
-$wm_gaps: 16px;
+$wm_gaps: 10px;
 $destructive: $red;
 $succes: $green;
-$radii: 13px;
-$spacing: 8px;
+$radii: 10px;
+$spacing: 5px;
 
 $widget_bg: transparentize($fg_color, 0.94);
 $widget_radius: $radii;
@@ -33,7 +33,7 @@ $popover_padding: 14px;
 * {
     all: unset;
     font-size: 14px;
-    font-family: 'Ubuntu Nerd Font';
+    font-family: 'JetBrainsMono Nerd Font';
     transition: 200ms;
 }
-$mono_font: 'mononoki NF';
+$mono_font: 'JetBrainsMono Nerd Font Mono';

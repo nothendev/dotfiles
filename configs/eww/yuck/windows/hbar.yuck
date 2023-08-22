@@ -2,7 +2,10 @@
     (button
         :onclick "${EWW_CONFIG_DIR}/scripts/launcher toggle_menu calendar"
         :class "button clock"
-        (label  :text panel_clock)
+        (centerbox :class "clock-box"
+            (label :text date :class "label date")
+            (box :style "margin: 0 0.8rem")
+            (label :text panel_clock :class "label time"))
     )
 ))
 
@@ -25,9 +28,11 @@
     (box
         :class "leftBar"
         :space-evenly false
-        (panel_launcher)
-        (panel_clock)
-        (panel_workspaces :orientation "h")
+        ;; (panel_launcher)
+        ;; (panel_clock)
+        ;; (panel_workspaces :orientation "h")
+        (eventbox :space-evenly false :orientation "h" :class "workspace-smol"
+             (label :class "label" :text "${workspaces.active}"))
         (panel_window :angle 0)
     )
     (box
@@ -35,11 +40,12 @@
         (panel_media)
     )
     (box
-        :class "righBar"
+        :class "rightBar"
         :space-evenly false
         :halign "end"
-        (panel_colorpicker)
-        (panel_system_indicators :orientation "h")
-        (panel_powermenu)
+        ;; (panel_colorpicker)
+        ;; (panel_system_indicators :orientation "h")
+        ;; (panel_powermenu)
+        (panel_clock)
     )
 ))

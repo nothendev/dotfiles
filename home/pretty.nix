@@ -13,4 +13,26 @@
       disable_ligatures never
     '';
   };
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "WhiteSur-Dark";
+      package = pkgs.whitesur-icon-theme.override { themeVariants = [ "purple" ]; };
+    };
+    theme = {
+      name = "Catppuccin-Mocha-Compact-Sapphire-dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "sapphire" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "mocha";
+      };
+    };
+    font = {
+      name = "JetBrainsMono Nerd Font Mono";
+      package = null;
+      size = 10;
+    };
+  };
 }

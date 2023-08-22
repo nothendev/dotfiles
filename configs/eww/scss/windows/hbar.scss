@@ -1,16 +1,57 @@
+@use "sass:color";
+
 .hpanel {
     min-height: 2.2em;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 1.1em;
     color: $fg_color;
-    background-color: $bg_color;
+    background-color: $ctp_base;
     border-bottom: $border_width solid $popover_border_color;
     box-shadow: 0 0 6px 0 rgba(0,0,0,0.8);
+    margin: $wm_gaps;
+    border-radius: $panel_radius;
+    border: $border_width solid $popover_border_color;
+
+    .window .label {
+        font-size: 1.4em;
+        text-decoration-line: underline;
+        text-decoration-color: $ctp_blue;
+    }
+
+    .clock .clock-box {
+        .date {
+            text-decoration-color: $ctp_mauve;
+        }
+        .time {
+            text-decoration-color: $ctp_green;
+        }
+        .label {
+            text-decoration-line: underline;
+            font-size: 1.4em;
+        }
+    }
     
     .button-bin{
         margin: 3px 2px;
         &.launcher{ margin-left: 4px }
         &.powermenu{ margin-right: 4px }
+    }
+
+    .workspace-smol {
+        margin-top: .7em;
+        margin-left: .7em;
+        .label { font-size: 1.4em; margin: 0 .8rem; }
+        border-radius: .2em;
+
+        &:not(:hover) {
+            border: .1rem solid color.change($ctp_teal, $alpha: 0.2);
+        }
+
+        &:hover {
+            background-color: $ctp_surface1;
+            border: .1rem solid color.change($ctp_teal, $alpha: 1);
+            box-shadow: 0px 0px 6px 0 $ctp_sapphire;
+        }
     }
 
     .button{
