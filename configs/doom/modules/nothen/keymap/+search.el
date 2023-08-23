@@ -3,4 +3,4 @@
 (map!
  :leader
  :map evil-normal-state-map
- "ff" #'find-file)
+ "ff" #'projectile-find-file)
