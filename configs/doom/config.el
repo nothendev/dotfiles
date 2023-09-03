@@ -38,11 +38,15 @@
 (setq doom-big-font "JetBrainsMono Nerd Font Mono-24")
 (setq doom-unicode-font "JetBrainsMono Nerd Font Mono-13")
 (setq doom-variable-pitch-font "JetBrainsMono Nerd Font Mono-14")
+(setq nothen-transparency 80)
 
 (load-theme 'catppuccin t t)
 (setq catppuccin-flavor 'mocha)
 (catppuccin-reload)
 (setq doom-theme 'catppuccin)
+(custom-set-faces! `(font-lock-comment-face :foreground ,(catppuccin-get-color 'subtext0) :inherit italic))
+(set-frame-parameter nil 'alpha-background 80)
+(add-to-list 'default-frame-alist '(alpha-background . 80))
 ; (setq doom-theme 'acid-green-fanta)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.

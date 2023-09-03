@@ -1,7 +1,7 @@
 (defun nothen-close-tab ()
   "close current tab."
   (interactive)
-  (centaur-tabs-buffer-close-tab (centaur-tabs-selected-tab (centaur-tabs-current-tabset)))
+  (kill-buffer)
 )
 
 ;; tabs

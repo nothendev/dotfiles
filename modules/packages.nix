@@ -8,7 +8,7 @@
   environment.systemPackages = with pkgs;
     [
       kitty
-      emacs-gtk
+      emacs29-pgtk
       neovim
       fish
       starship
@@ -28,7 +28,8 @@
       just
       neofetch
       insomnia
-      telegram-desktop
+      # telegram-desktop
+      kotatogram-desktop
 
       xdg-utils
       grim
@@ -54,7 +55,7 @@
       go
       cargo
       rustup
-      clang
+      libclang
       gdb
       lldb
       patchelf
@@ -72,6 +73,7 @@
       xorg.libXcursor
       mold
       nodejs_18
+      blockbench-electron
 
       cachix
       rnix-lsp
@@ -94,6 +96,6 @@
       obsidian
     ] ++ (with libsForQt5; [ okular ark ]) ++ [
       zig.packages.${pkgs.system}.master
-      zls.packages.${pkgs.system}.default
+      # zls.packages.${pkgs.system}.default
     ];
 }
