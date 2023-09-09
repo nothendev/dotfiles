@@ -10,4 +10,9 @@
  "pL" #'projectile-edit-dir-locals
  "pn" #'projectile-add-known-project
  "pt" #'treemacs-projectile
- "pb" #'projectile-switch-to-buffer)
+ "pb" #'projectile-switch-to-buffer
+
+ "ww" #'+workspace/cycle
+ "wD" #'+workspace/delete
+ "wn" #'+workspace/new
+ "wR" #'+workspace/rename)

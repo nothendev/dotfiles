@@ -9,6 +9,7 @@
   inputs.zls.inputs.zig-overlay.follows = "zig";
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs: {
+    packages.x86_64-linux = import ./pkgs { pkgs = nixpkgs.legacyPackages."x86_64-linux"; };
     nixosConfigurations.ilynix = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = attrs;
