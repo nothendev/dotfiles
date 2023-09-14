@@ -10,10 +10,17 @@
     videoDrivers = [ "nvidia" ];
     enable = true;
     displayManager.gdm = {
-      enable = true;
+      enable = false;
       wayland = true;
     };
-    libinput.enable = true;
+    libinput = {
+      enable = true;
+      mouse.additionalOptions =
+        ''
+          Option "ModelBouncingKeys" 1
+        ''
+      ;
+    };
   };
   hardware.nvidia = {
     modesetting.enable = true;

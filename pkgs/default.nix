@@ -9,6 +9,7 @@ with pkgs; let
     in
     {
       focalboard = callPackage ./focalboard.nix { };
+      librewolf-appimage = callPackage ./librewolf.nix { };
     };
 in
 lib.fix (lib.extends overrides packages)

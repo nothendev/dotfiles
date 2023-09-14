@@ -58,7 +58,7 @@
 
 (after! lsp-mode
   (setq lsp-semantic-tokens-enable t)
-  (setq lsp-rust-analyzer-cargo-watch-command "clippy")
+  (setq lsp-rust-analyzer-cargo-watch-enable nil)
   (setq lsp-metals-semantic-tokens-enable t)
   (setq lsp-semantic-tokens-honor-refresh-requests t)
   (setq lsp-log-io t)

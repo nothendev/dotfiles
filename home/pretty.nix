@@ -19,6 +19,7 @@
             sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=";
           } + /palettes/${flavour}.toml));
     };
+
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;

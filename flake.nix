@@ -22,6 +22,10 @@
           home-manager.useUserPackages = true;
           home-manager.users.ilya = import ./home;
         }
+
+        ({ config, pkgs, ... }: {
+          nixpkgs.overlays = [ (sf: super: import ./pkgs { pkgs = super; }) ];
+        })
       ];
     };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;

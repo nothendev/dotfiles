@@ -8,7 +8,7 @@
   environment.systemPackages = with pkgs;
     [
       kitty
-      emacs29-pgtk
+      emacs
       neovim
       fish
       starship
@@ -35,7 +35,6 @@
       grim
       slurp
       wl-clipboard
-      gnome.gdm
       rofi-wayland-unwrapped
       (eww-wayland.override { withWayland = true; })
       hyprpicker
@@ -90,10 +89,10 @@
       krita
       inkscape
       gnome.nautilus
-      wineWowPackages.waylandFull
+      # wineWowPackages.waylandFull
       glfw-minecraft
       blender
-      obsidian
+      # obsidian
     ] ++ (with libsForQt5; [ okular ark ]) ++ [
       zig.packages.${pkgs.system}.master
       # zls.packages.${pkgs.system}.default
