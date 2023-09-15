@@ -45,7 +45,7 @@
       wev
 
       # brave
-      librewolf
+      librewolf-appimage
 
       distrobox
       meson
@@ -93,6 +93,7 @@
       glfw-minecraft
       blender
       # obsidian
+      discord-discorded
     ] ++ (with libsForQt5; [ okular ark ]) ++ [
       zig.packages.${pkgs.system}.master
       # zls.packages.${pkgs.system}.default
