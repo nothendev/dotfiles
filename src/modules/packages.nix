@@ -56,7 +56,7 @@
       # brave
       librewolf
 
-      distrobox
+      # distrobox
       meson
       ninja
       cmake
@@ -80,7 +80,7 @@
       xorg.libX11
       xorg.libXcursor
       mold
-      nodejs_18
+      # nodejs_18
       blockbench-electron
 
       cachix
@@ -95,12 +95,12 @@
 
       libreoffice-fresh
       gimp
-      krita
-      inkscape
+      # krita
+      # inkscape
       gnome.nautilus
       # wineWowPackages.waylandFull
-      glfw-minecraft
-      blender
+      # glfw-minecraft
+      # blender
       # obsidian
     ] ++ (with libsForQt5; [ okular ark ]) ++ [
       zig.packages.${pkgs.system}.master

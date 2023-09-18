@@ -103,7 +103,7 @@ rec {
     // doublearg [
       "movetoworkspace'"
       "movetoworkspacesilent'"
-      "env"
     ];
+  env = var: value: "${var}, ${toString value}";
   bind = mods: keys: action: "${if mods == null then "" else if lib.isString mods then mods else lib.concatStringsSep " " mods}, ${if lib.isString keys then keys else lib.concatStringsSep " " keys}, ${action}";
 }
