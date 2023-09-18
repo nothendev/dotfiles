@@ -30,7 +30,16 @@
       insomnia
       # telegram-desktop
       kotatogram-desktop
+      (element-desktop.overrideAttrs
+        (e: rec {
+          # Add arguments to the .desktop entry
+          desktopItem = e.desktopItem.override (d: {
+            exec = "env NIXOS_OZONE_WL=1 element-desktop --disable-gpu-compositing %u";
+          });
 
+          # Update the install script to use the new .desktop entry
+          installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
+        }))
       xdg-utils
       grim
       slurp
@@ -45,7 +54,7 @@
       wev
 
       # brave
-      librewolf-appimage
+      librewolf
 
       distrobox
       meson
@@ -93,7 +102,6 @@
       glfw-minecraft
       blender
       # obsidian
-      discord-discorded
     ] ++ (with libsForQt5; [ okular ark ]) ++ [
       zig.packages.${pkgs.system}.master
       # zls.packages.${pkgs.system}.default

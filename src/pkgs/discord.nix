@@ -1,6 +1,6 @@
 { discord, nss }:
 discord.override {
-  withOpenASAR = true;
+  # withOpenASAR = true;
   withVencord = true;
   inherit nss;
 }

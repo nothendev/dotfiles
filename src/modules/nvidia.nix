@@ -13,6 +13,7 @@
       enable = false;
       wayland = true;
     };
+    displayManager.startx.enable = true;
     libinput = {
       enable = true;
       mouse.additionalOptions =

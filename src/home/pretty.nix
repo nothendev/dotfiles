@@ -2,14 +2,35 @@
 {
   programs.starship =
     let
-      flavour = "mocha"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
+      flavour = osConfig.pretty.catppuccin.flavour;
+      base69 = osConfig.pretty.base69;
     in
     {
       enable = true;
       settings = {
-        # Other config here
-        format = "$all"; # Remove this line to disable the default prompt format
         palette = "catppuccin_${flavour}";
+        format = ''$rust
+$directory$status '';
+        status = {
+          disabled = false;
+          success_symbol = "[>](fg:#${base69.green.hex})";
+          symbol = "[>](fg:#${base69.red.hex})";
+          not_executable_symbol = "[ -x>](fg:#${base69.maroon.hex})";
+          format = "$symbol";
+        };
+        directory = {
+          disabled = false;
+          truncate_to_repo = false;
+          read_only = "(ro) ";
+          format = "[$read_only]($read_only_style)[$path]($style)";
+          read_only_style = "italic fg:#${base69.peach.hex}";
+          style = "fg:#${base69.teal.hex}";
+        };
+        rust = {
+          disabled = false;
+          format = "[rs\\($version\\)]($style)";
+          style = "fg:#${base69.red.hex}";
+        };
       } // builtins.fromTOML (builtins.readFile
         (pkgs.fetchFromGitHub
           {

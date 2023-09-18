@@ -9,4 +9,7 @@
     enable = true;
     nssmdns = true;
   };
+  services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
+  environment.systemPackages = with pkgs; [ gcr ];
 }

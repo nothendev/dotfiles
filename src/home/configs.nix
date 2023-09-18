@@ -8,7 +8,5 @@ in
     # Doom Emacs
     makeCfg "doom" //
     # ElKowars wacky widgets (eww)
-    makeCfg "eww" //
-    # Hyprland
-    makeCfg "hypr";
+    makeCfg "eww" // makeCfg "hypr/hyprpaper.conf";
 }

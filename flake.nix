@@ -8,26 +8,34 @@
   inputs.zls.inputs.nixpkgs.follows = "nixpkgs";
   inputs.zls.inputs.zig-overlay.follows = "zig";
 
-  outputs = { self, nixpkgs, home-manager, ... }@attrs: {
-    packages.x86_64-linux = import ./pkgs { pkgs = nixpkgs.legacyPackages."x86_64-linux"; };
-    nixosConfigurations.ilynix = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = attrs;
-      modules = [
-        ./hardware-configuration.nix
-        ./modules
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.ilya = import ./home;
-        }
+  outputs = { self, nixpkgs, home-manager, ... }@attrs:
+    let
+      mkSystem = name: nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = attrs;
+        modules = [
+          ./src/systems/${name}
+          ./src/modules/upgrade-diff.nix
+          ./src/common/base69.nix
+          ./src/common/catppuccin
 
-        ({ config, pkgs, ... }: {
-          nixpkgs.overlays = [ (sf: super: import ./pkgs { pkgs = super; }) ];
-        })
-      ];
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.ilya = import ./src/home;
+          }
+
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = [ (thewhat: super: import ./src/pkgs { pkgs = super; }) ];
+          })
+        ];
+      }; in
+    {
+      packages.x86_64-linux = import ./src/pkgs {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      };
+      nixosConfigurations.ilynix = mkSystem "iy";
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
     };
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
-  };
 }

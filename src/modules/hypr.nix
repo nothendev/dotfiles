@@ -1,10 +1,5 @@
 { config, pkgs, ... }:
 {
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    enableNvidiaPatches = true;
-  };
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

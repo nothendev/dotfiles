@@ -8,7 +8,7 @@
   }) + "/themes";
   programs.fish.functions = {
     l = ''
-      exa -1amFhl --icons $argv
+      eza -1amFhl --icons $argv
     '';
   };
   programs.direnv.enable = true;

@@ -18,7 +18,7 @@ appimageTools.wrapType2 {
     mv $out/bin/${name} $out/bin/librewolf
     install -m 444 -D ${appimageContents}/${pname}.desktop $out/share/applications/${pname}.desktop
     substituteInPlace $out/share/applications/${pname}.desktop \
-      --replace 'Exec=AppRun' 'Exec="env MOZ_ENABLE_WAYLAND=1 librewolf"'
+      --replace 'Exec=AppRun' 'Exec=env GDK_BACKEND=wayland MOZ_ENABLE_WAYLAND=1 librewolf'
     cp -r ${appimageContents}/usr/share/icons $out/share
   '';
 
