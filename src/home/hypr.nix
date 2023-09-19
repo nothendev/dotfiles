@@ -7,12 +7,10 @@ let
   base69 = osConfig.pretty.base69;
 in
 {
-  wayland.windowManager.hyprland = {
+  imports = [ ./hyprlandy.nix ];
+  wayland.windowManager.hyprlandy = {
     enable = true;
-    enableNvidiaPatches = true;
     systemdIntegration = true;
-    xwayland.enable = true;
-    package = pkgs.hyprland;
     settings =
       with dsl // dsl.fn;
       let
@@ -53,7 +51,7 @@ in
           (bind mod "S" togglegroup)
           (bind mod "TAB" (changegroupactive dir.forward))
           (bindms "TAB" (changegroupactive dir.back))
-          (bind null "Print" (exec "grim -g '$(slurp)'"))
+          (bind null "Print" (exec "grim -g \"$(slurp)\""))
           (bind "CTRL" "code:49" (exec "hyprctl switchxkblayout microsoft-wired-keyboard-600 next"))
           (bindms "F" fullscreen)
           (bindms "G" moveoutofgroup)
@@ -146,5 +144,7 @@ in
   };
   services.mako = {
     enable = true;
+    font = "JetBrainsMono Nerd Font Mono";
+    backgroundColor = "#${base69.base.hex}ff";
   };
 }

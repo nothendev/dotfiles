@@ -3,6 +3,6 @@
   imports = [ nix-doom-emacs.hmModule ];
   programs.doom-emacs = {
     enable = true;
-    doomPrivateDir = ../configs;
+    doomPrivateDir = ../configs/doom;
   };
 }

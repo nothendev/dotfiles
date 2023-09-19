@@ -59,7 +59,6 @@
 (after! lsp-mode
   (setq lsp-semantic-tokens-enable t)
   (setq lsp-rust-analyzer-cargo-watch-enable nil)
-  (setq lsp-metals-semantic-tokens-enable t)
   (setq lsp-semantic-tokens-honor-refresh-requests t)
   (setq lsp-log-io t)
   (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
@@ -108,19 +107,3 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(use-package! lsp-metals
-  :config
-  ;; You might set metals server options via -J arguments. This might not always work, for instance when
-  ;; metals is installed using nix. In this case you can use JAVA_TOOL_OPTIONS environment variable.
-  (setq lsp-metals-server-args '(
-                                 ;; Metals claims to support range formatting by default but it supports range
-                                 ;; formatting of multiline strings only. You might want to disable it so that
-                                 ;; emacs can use indentation provided by scala-mode.
-                                 "-J-Dmetals.allow-multiline-string-formatting=off"
-                                 ;; Enable unicode icons. But be warned that emacs might not render unicode
-                                 ;; correctly in all cases.
-                                 "-J-Dmetals.icons=unicode"
-                                 ;; Emacs
-                                 "-J-Dmetals.client=emacs")))
-
-;; (load! "./sensitive.el")

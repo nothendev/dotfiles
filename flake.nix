@@ -25,6 +25,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = attrs;
             home-manager.users.ilya = import ./src/home;
           }
 
