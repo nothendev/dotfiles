@@ -2,6 +2,8 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+  inputs.nix-doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
   inputs.zig.url = "github:mitchellh/zig-overlay";
   inputs.zig.inputs.nixpkgs.follows = "nixpkgs";
   inputs.zls.url = "github:zigtools/zls";
