@@ -6,7 +6,7 @@
  "ff" #'projectile-find-file
  "ps" #'projectile-switch-project
  "fd" #'projectile-find-dir
- "pw" #'projectile-ripgrep
+ "fw" #'+default/search-project
  "pL" #'projectile-edit-dir-locals
  "pn" #'projectile-add-known-project
  "pt" #'treemacs-projectile

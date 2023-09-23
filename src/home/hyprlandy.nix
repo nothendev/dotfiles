@@ -7,26 +7,6 @@ in
 {
   meta.maintainers = [ lib.maintainers.fufexan ];
 
-  # A few option removals and renames to aid those migrating from the upstream
-  # module.
-  imports = [
-    (lib.mkRemovedOptionModule # \
-      [ "wayland" "windowManager" "hyprland" "disableAutoreload" ]
-      "Autoreloading now always happens")
-
-    (lib.mkRemovedOptionModule # \
-      [ "wayland" "windowManager" "hyprland" "recommendedEnvironment" ]
-      "Recommended environment variables are now always set")
-
-    (lib.mkRemovedOptionModule # \
-      [ "wayland" "windowManager" "hyprland" "xwayland" "hidpi" ]
-      "HiDPI patches are deprecated. Refer to https://wiki.hyprland.org/Configuring/XWayland")
-
-    (lib.mkRenamedOptionModule # \
-      [ "wayland" "windowManager" "hyprland" "nvidiaPatches" ] # \
-      [ "wayland" "windowManager" "hyprland" "enableNvidiaPatches" ])
-  ];
-
   options.wayland.windowManager.hyprlandy = {
     enable = lib.mkEnableOption "Hyprland wayland compositor";
 
@@ -53,6 +33,8 @@ in
         - `XDG_CURRENT_DESKTOP`
       '';
     };
+
+    finalPackage = lib.mkPackageOption pkgs "hyprland" { };
 
     settings = lib.mkOption {
       type = with lib.types;
@@ -125,7 +107,7 @@ in
 
   config = lib.mkIf cfg.enable {
     assertions = [
-      (lib.hm.assertions.assertPlatform "wayland.windowManager.hyprland" pkgs
+      (lib.hm.assertions.assertPlatform "wayland.windowManager.hyprlandy" pkgs
         lib.platforms.linux)
     ];
 
@@ -187,7 +169,7 @@ in
         '' + lib.optionalString (combinedSettings != { })
           (toHyprconf combinedSettings 0)
         + lib.optionalString (cfg.extraConfig != "") cfg.extraConfig;
-        onChange = lib.mkIf (cfg.package != null) ''
+        onChange = ''
           (  # execute in subshell so that `shopt` won't affect other scripts
             shopt -s nullglob  # so that nothing is done if /tmp/hypr/ does not exist or is empty
             for instance in /tmp/hypr/*; do

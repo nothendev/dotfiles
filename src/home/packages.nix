@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     eza
+    logseq
   ];
   programs.obs-studio = {
     enable = true;

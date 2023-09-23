@@ -11,6 +11,7 @@ in
   wayland.windowManager.hyprlandy = {
     enable = true;
     systemdIntegration = true;
+    finalPackage = osConfig.programs.hyprland.finalPackage;
     settings =
       with dsl // dsl.fn;
       let

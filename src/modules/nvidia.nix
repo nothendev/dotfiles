@@ -16,11 +16,11 @@
     displayManager.startx.enable = true;
     libinput = {
       enable = true;
-      mouse.additionalOptions =
-        ''
-          Option "ModelBouncingKeys" 1
-        ''
-      ;
+      # mouse.additionalOptions =
+      #   ''
+      #     Option "ModelBouncingKeys" 1
+      #   ''
+      # ;
     };
   };
   hardware.nvidia = {

@@ -44,8 +44,6 @@
       grim
       slurp
       wl-clipboard
-      rofi-wayland-unwrapped
-      (eww-wayland.override { withWayland = true; })
       hyprpicker
       hyprpaper
       watershot
@@ -106,4 +104,9 @@
       zig.packages.${pkgs.system}.master
       # zls.packages.${pkgs.system}.default
     ];
+
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
 }

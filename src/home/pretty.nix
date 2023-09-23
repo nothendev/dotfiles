@@ -83,4 +83,19 @@ $directory$status '';
       size = 10;
     };
   };
+
+  programs.rofi = {
+    enable = true;
+    package = pkgs.rofi-wayland-unwrapped;
+    location = "top";
+    terminal = "${config.programs.kitty.package}/bin/kitty";
+    font = config.programs.kitty.font.name;
+  };
+
+  programs.eww = {
+    enable = true;
+    package = with pkgs;
+      (eww-wayland.override { withWayland = true; });
+    configDir = ../configs/eww;
+  };
 }
