@@ -1,4 +1,5 @@
 { config, pkgs, ... }: {
+  imports = [ ../common/base69/themes/github-dark.nix ];
   fonts.packages = with pkgs; [
     jetbrains-mono
     monocraft
@@ -15,5 +16,4 @@
   #   enable = true;
   #   flavour = "oled";
   # };
-  pretty.base69.theme = "github-dark";
 }

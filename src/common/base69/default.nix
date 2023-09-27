@@ -34,13 +34,5 @@ let
     (name: mkColor name);
 in
 {
-  options.pretty.base69 = {
-    theme = lib.mkOption {
-      type = with lib.types; nullOr str;
-      description = lib.mdDoc "The theme you want to use";
-      default = null;
-    };
-  } // colors;
-
-  imports = lib.mkIf (cfg.theme != null) [ ./themes/${cfg.theme}.nix ];
+  options.pretty.base69 = colors;
 }

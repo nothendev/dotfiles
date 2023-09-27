@@ -13,9 +13,9 @@
 $directory$status '';
         status = {
           disabled = false;
-          success_symbol = "[>](fg:#${base69.green.hex})";
-          symbol = "[>](fg:#${base69.red.hex})";
-          not_executable_symbol = "[ -x>](fg:#${base69.maroon.hex})";
+          success_symbol = "[>](fg:#${base69.green})";
+          symbol = "[>](fg:#${base69.red})";
+          not_executable_symbol = "[ -x>](fg:#${base69.maroon})";
           format = "$symbol";
         };
         directory = {
@@ -23,13 +23,13 @@ $directory$status '';
           truncate_to_repo = false;
           read_only = "(ro) ";
           format = "[$read_only]($read_only_style)[$path]($style)";
-          read_only_style = "italic fg:#${base69.peach.hex}";
-          style = "fg:#${base69.teal.hex}";
+          read_only_style = "italic fg:#${base69.peach}";
+          style = "fg:#${base69.teal}";
         };
         rust = {
           disabled = false;
           format = "[rs\\($version\\)]($style)";
-          style = "fg:#${base69.red.hex}";
+          style = "fg:#${base69.red}";
         };
       } // builtins.fromTOML (builtins.readFile
         (pkgs.fetchFromGitHub

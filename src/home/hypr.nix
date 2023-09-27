@@ -97,10 +97,10 @@ in
           gaps_in = 5;
           gaps_out = 10;
           border_size = 2;
-          "col.active_border" = "0xff${sapphire.hex} 0xff${blue.hex} 45deg";
-          "col.inactive_border" = "0xaf${yellow.hex}";
-          "col.group_border" = "0xaf${yellow.hex}";
-          "col.group_border_active" = "0xff${blue.hex} 0xff${lavender.hex} 45deg";
+          "col.active_border" = "0xff${sapphire} 0xff${blue} 45deg";
+          "col.inactive_border" = "0xaf${yellow}";
+          "col.group_border" = "0xaf${yellow}";
+          "col.group_border_active" = "0xff${blue} 0xff${lavender} 45deg";
           cursor_inactive_timeout = 30;
           layout = "dwindle";
         };
@@ -110,7 +110,7 @@ in
           drop_shadow = true;
           shadow_range = 4;
           shadow_render_power = 3;
-          "col.shadow" = "0xff${base69.surface0.hex}";
+          "col.shadow" = "0xff${base69.surface0}";
 
           blur.enabled = true;
         };
@@ -146,6 +146,6 @@ in
   services.mako = {
     enable = true;
     font = "JetBrainsMono Nerd Font Mono";
-    backgroundColor = "#${base69.base.hex}ff";
+    backgroundColor = "#${base69.base}ff";
   };
 }

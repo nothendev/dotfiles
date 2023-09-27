@@ -5,12 +5,20 @@ let
 in
 {
   home.file =
-    # Doom Emacs
-    makeCfg "doom" //
     # Hyprpaper (Hyprland wallpaper utility)
-    makeCfg "hypr/hyprpaper.conf";
-
-  home.file.".config/doom/base69.el".text = with pkgs.lib; ''
-    (setq base69-colors '(${lib.concatStrings (attrsets.mapAttrsToList (name: value: "(${name} \"#${value}\")") (attrsets.filterAttrs (name: value: name != "theme") osConfig.base69))}))
-  '';
+    makeCfg "hypr/hyprpaper.conf" // {
+      # Doom Emacs
+      ".config/doom" = let base69el = pkgs.writeText "base69.el" (
+        with pkgs.lib; ''
+          (setq base69-colors '(${concatStrings (attrsets.mapAttrsToList (name: value: "(${name} . \"#${value}\")") osConfig.pretty.base69)}))
+        ''
+      ); in
+        {
+          source = pkgs.runCommand "build-doom" { } ''
+            mkdir $out
+            ln -s ${../configs/doom}/* $out/
+            ln -s ${base69el} $out/base69.el
+          '';
+        };
+    };
 }
