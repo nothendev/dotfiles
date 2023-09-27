@@ -11,8 +11,9 @@
   ];
   programs.fish.enable = true;
   hardware.opentabletdriver.enable = true;
-  pretty.catppuccin = {
-    enable = true;
-    flavour = "mocha";
-  };
+  # pretty.catppuccin = {
+  #   enable = true;
+  #   flavour = "oled";
+  # };
+  pretty.base69.theme = "github-dark";
 }

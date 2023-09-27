@@ -2,7 +2,7 @@
 {
   programs.starship =
     let
-      flavour = osConfig.pretty.catppuccin.flavour;
+      flavour = "mocha";
       base69 = osConfig.pretty.base69;
     in
     {

@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     eza
     logseq
+    pandoc
   ];
   programs.obs-studio = {
     enable = true;

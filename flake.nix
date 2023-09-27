@@ -18,8 +18,7 @@
         modules = [
           ./src/systems/${name}
           ./src/modules/upgrade-diff.nix
-          ./src/common/base69.nix
-          ./src/common/catppuccin
+          ./src/common/base69
 
           home-manager.nixosModules.home-manager
           {

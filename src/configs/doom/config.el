@@ -44,10 +44,13 @@
 (setq catppuccin-flavor 'mocha)
 (catppuccin-reload)
 (setq doom-theme 'catppuccin)
+(catppuccin-set-color 'base "#020202" 'mocha)
+(catppuccin-set-color 'mantle "#010101" 'mocha)
+(catppuccin-set-color 'crust "#000000" 'mocha)
 (custom-set-faces! `(font-lock-comment-face :foreground ,(catppuccin-get-color 'subtext0) :inherit italic))
 (set-frame-parameter nil 'alpha-background 80)
 (add-to-list 'default-frame-alist '(alpha-background . 80))
-; (setq doom-theme 'acid-green-fanta)
+                                        ; (setq doom-theme 'acid-green-fanta)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
@@ -107,3 +110,5 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(setq uniquify-separator "/")
+(setq uniquify-buffer-name-style 'forward)

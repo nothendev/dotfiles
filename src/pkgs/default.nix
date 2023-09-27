@@ -10,7 +10,6 @@ with pkgs; let
     {
       focalboard = callPackage ./focalboard.nix { };
       librewolf-appimage = callPackage ./librewolf.nix { };
-      waterfox = callPackage ./waterfox.nix { };
       discord-discorded = callPackage ./discord.nix { };
     };
 in
