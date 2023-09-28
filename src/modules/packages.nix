@@ -59,7 +59,6 @@
       ninja
       cmake
       go
-      cargo
       rustup
       libclang
       gdb

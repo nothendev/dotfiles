@@ -34,6 +34,9 @@
 ;; `load-theme' function. This is the default:
 ;;
 
+(setq doom-leader-key "SPC"
+      doom-localleader-key "SPC")
+
 (setq doom-font "JetBrainsMono Nerd Font Mono-13")
 (setq doom-big-font "JetBrainsMono Nerd Font Mono-24")
 (setq doom-unicode-font "JetBrainsMono Nerd Font Mono-13")
@@ -44,7 +47,7 @@
 (setq catppuccin-flavor 'mocha)
 (catppuccin-reload)
 (setq doom-theme 'catppuccin)
-(load "./base69.el")
+(load! "~/.config/doom/base69.el")
 (setq catppuccin-mocha-colors base69-colors)
 (custom-set-faces! `(font-lock-comment-face :foreground ,(catppuccin-get-color 'subtext0) :inherit italic))
 (set-frame-parameter nil 'alpha-background 80)
