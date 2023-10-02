@@ -8,8 +8,10 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
-  services.printing.enable = true;
-  services.printing.drivers = with pkgs; [ canon-cups-ufr2 ];
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [ canon-cups-updated ];
+  };
   services.avahi = {
     enable = true;
     nssmdns = true;
