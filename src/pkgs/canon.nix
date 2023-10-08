@@ -33,12 +33,12 @@ let
   libs = pkgs: lib.makeLibraryPath buildInputs;
 
   version = "5.70";
-  dl = "8/0100007658/33";
+  dl = "8/0100007658/35";
 
   versionNoDots = builtins.replaceStrings [ "." ] [ "" ] version;
   src_canon = fetchurl {
     url = "https://gdlp01.c-wss.com/gds/${dl}/linux-UFRII-drv-v${versionNoDots}-m17n-18.tar.gz";
-    hash = "sha256-d5VHlPpUPAr3RWVdQRdn42YLuVekOw1IaMFLVt1Iu7o=";
+    hash = "sha256-KeI4DiG9qMMfjAhDWiuknLphwTq/pHungIGpsOVd8zM=";
   };
 
   buildInputs = [ cups zlib jbigkit glib gtk3 libxml2 gdk-pixbuf pango cairo atk ];

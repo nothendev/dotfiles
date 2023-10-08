@@ -4,21 +4,19 @@ let
   makeCfg = path: { ".config/${path}".source = ../configs/${path}; };
 in
 {
-  home.file =
-    # Hyprpaper (Hyprland wallpaper utility)
-    makeCfg "hypr/hyprpaper.conf" // {
-      # Doom Emacs
-      ".config/doom" = let base69el = pkgs.writeText "base69.el" (
-        with pkgs.lib; ''
-          (setq base69-colors '(${concatStrings (attrsets.mapAttrsToList (name: value: "(${name} . \"#${value}\")") osConfig.pretty.base69)}))
-        ''
-      ); in
-        {
-          source = pkgs.runCommand "build-doom" { } ''
-            mkdir $out
-            ln -s ${../configs/doom}/* $out/
-            ln -s ${base69el} $out/base69.el
-          '';
-        };
-    };
+  home.file = {
+    # Doom Emacs
+    ".config/doom" = let base69el = pkgs.writeText "base69.el" (
+      with pkgs.lib; ''
+        (setq base69-colors '(${concatStrings (attrsets.mapAttrsToList (name: value: "(${name} . \"#${value}\")") osConfig.pretty.base69)}))
+      ''
+    ); in
+      {
+        source = pkgs.runCommand "build-doom" { } ''
+          mkdir $out
+          ln -s ${../configs/doom}/* $out/
+          ln -s ${base69el} $out/base69.el
+        '';
+      };
+  };
 }

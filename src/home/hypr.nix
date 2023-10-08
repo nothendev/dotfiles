@@ -5,6 +5,10 @@ let
     inherit (pkgs) lib;
   };
   base69 = osConfig.pretty.base69;
+  wallpapers = {
+    "HDMI-A-1" = ../assets/wallpapers/hyprland1-dark.png;
+    "DVI-D-1" = ../assets/wallpapers/sky-vaporwave-thing-sun.jpg;
+  };
 in
 {
   imports = [ ./hyprlandy.nix ];
@@ -116,7 +120,7 @@ in
         };
 
         animations = {
-          enabled = true;
+          enabled = false;
           bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
           animation = [
             "windows, 1, 7, myBezier"
@@ -147,5 +151,11 @@ in
     enable = true;
     font = "JetBrainsMono Nerd Font Mono";
     backgroundColor = "#${base69.base}ff";
+    borderColor = "#${base69.mantle}ff";
+    textColor = "#${base69.text}ff";
   };
+  xdg.configFile."hypr/hyprpaper.conf".text = ''
+    ${lib.strings.concatMapStrings (wp: "preload = ${toString wp}\n") (lib.attrsets.attrValues wallpapers)}
+    ${lib.strings.concatStringsSep "\n" (lib.attrsets.mapAttrsToList (monitor: wp: "wallpaper = ${monitor},${toString wp}") wallpapers)}
+  '';
 }
