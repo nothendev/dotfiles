@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | grep Volume | awk '{print $5}' | tr % " ")
+VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep Volume | awk '{print $5}' | tr % " ")
 
 function icon {
     if [[   $VOLUME -ge 66 ]]; then echo '󰕾'
@@ -10,17 +10,17 @@ function icon {
 }
 
 function level {
-    echo $(pactl get-sink-volume @DEFAULT_SINK@ | grep Volume | awk '{print $5}' | tr % " ")
+    echo $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep Volume | awk '{print $5}' | tr % " ")
 }
 
 
 function lower {
-    pactl set-sink-volume @DEFAULT_SINK@ -5%
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ -5%
     update
 }
 
 function raise {
-    pactl set-sink-volume @DEFAULT_SINK@ +5%
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ +5%
     update
 }
 
@@ -30,16 +30,16 @@ function update {
 }
 
 function type_icon {
-    SINK=$(pactl get-default-sink)
+    SINK=$(wpctl inspect @DEFAULT_AUDIO_SINK@)
     if [[ $SINK == *'bluez_output'* ]]; then echo "󰋋"
     else echo "󰓃"
     fi
 }
 
 function mute_state {
-    STATE=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
-    if [[ $STATE == 'no' ]]; then echo 'off'
-    else echo 'on'; fi
+    STATE=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print $3}')
+    if [[ $STATE == '[MUTED]' ]]; then echo 'on'
+    else echo 'off'; fi
 }
 
 function mute_icon {
@@ -49,12 +49,12 @@ function mute_icon {
 }
 
 function mute_toggle {
-    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
     eww update volume="$(get)"
 }
 
 function set {
-    pactl set-sink-volume @DEFAULT_SINK@ $1"%"
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ $1"%"
     eww update volume="$(get)"
 }
 

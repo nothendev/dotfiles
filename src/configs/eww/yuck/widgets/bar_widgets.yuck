@@ -129,14 +129,14 @@
         :icon {volume.mute.icon}
         :style ""
         :angle {orientation == "v" ? 90 : 0})
-    ;; (controls_slider
-    ;;     :orientation orientation
-    ;;     :transition {orientation == "v" ? "slideup" : "slideleft"}
-    ;;     :control "volume"
-    ;;     :reveal volume_reveal
-    ;;     :value {volume.level}
-    ;;     :onchange "${EWW_CONFIG_DIR}/scripts/volume set {}"
-    ;;     :icon {volume.icon})
+    (controls_slider
+        :orientation orientation
+        :transition {orientation == "v" ? "slideup" : "slideleft"}
+        :control "volume"
+        :reveal volume_reveal
+        :value {volume.level}
+        :onchange "${EWW_CONFIG_DIR}/scripts/volume set {}"
+        :icon {volume.icon})
     ;; (controls_slider
     ;;     :orientation orientation
     ;;     :transition {orientation == "v" ? "slideup" : "slideleft"}
@@ -151,7 +151,7 @@
         :control "network"
         :reveal network_reveal
         :visible true
-        :value {network.wifi.ssid}
+        :value {network.wifi.ssid ? network.wifi.ssid : "eth"}
         :icon {network[network.primary].icon}
         :style {network[network.primary].style}
         :angle {orientation == "v" ? 90 : 0}) 
@@ -165,16 +165,16 @@
         ;; :icon {battery.icon}
         ;; :style {battery.state}
         ;; :angle 0)
-    (controls_icon
-        :orientation orientation
-        :transition {orientation == "v" ? "slideup" : "slideleft"}
-        :control "notifications"
-        :reveal notifications_reveal
-        :visible true
-        :value {notifications.count}
-        :icon {notifications.icon}
-        :style {notifications.count > 0 ? "active" : ""}
-        :angle 0)
+    ;; (controls_icon
+    ;;     :orientation orientation
+    ;;     :transition {orientation == "v" ? "slideup" : "slideleft"}
+    ;;     :control "notifications"
+    ;;     :reveal notifications_reveal
+    ;;     :visible true
+    ;;     :value {notifications.count}
+    ;;     :icon {notifications.icon}
+    ;;     :style {notifications.count > 0 ? "active" : ""}
+    ;;     :angle 0)
 ))
 
 (defwidget panel_system_indicators [orientation] (box :class "button-bin"

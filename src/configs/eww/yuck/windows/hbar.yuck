@@ -31,12 +31,13 @@
         ;; (panel_launcher)
         ;; (panel_clock)
         ;; (panel_workspaces :orientation "h")
-        (eventbox :space-evenly false :orientation "h" :class "workspace-smol"
-             (label :class "label" :text "${workspaces.active}"))
-        (panel_window :angle 0)
+        ;; (eventbox :space-evenly false :orientation "h" :class "workspace-smol"
+        ;;     (label :class "label" :text "${workspaces.active}"))
+        (panel_system_indicators :orientation "h")
     )
     (box
         :class "centerBar"
+        ;; (panel_window :angle 0)
         (panel_media)
     )
     (box
@@ -44,7 +45,6 @@
         :space-evenly false
         :halign "end"
         ;; (panel_colorpicker)
-        ;; (panel_system_indicators :orientation "h")
         ;; (panel_powermenu)
         (panel_clock)
     )

@@ -67,7 +67,7 @@
         :valign "start"
         :orientation "v"
         (panel_launcher)
-        (panel_workspaces :orientation "v")
+        ;; (panel_workspaces :orientation "v")
     )
     (box
         :class "centerBar"

@@ -9,6 +9,7 @@
   inputs.zls.url = "github:zigtools/zls";
   inputs.zls.inputs.nixpkgs.follows = "nixpkgs";
   inputs.zls.inputs.zig-overlay.follows = "zig";
+  inputs.hyprportalpkgs.url = "github:NixOS/nixpkgs?rev=976fa3369d722e76f37c77493d99829540d43845";
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs:
     let

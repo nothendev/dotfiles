@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, hyprportalpkgs, ... }:
+let hyprpkgs = hyprportalpkgs.legacyPackages."x86_64-linux";
+in
 {
   security.rtkit.enable = true;
   services.pipewire = {
@@ -8,11 +10,19 @@
     pulse.enable = true;
   };
   programs.hyprland = {
-    enable = true;
     xwayland.enable = true;
     enableNvidiaPatches = true;
   };
   environment.systemPackages = [
-    (config.programs.hyprland.portalPackage.override { hyprland = config.programs.hyprland.finalPackage; })
+    hyprpkgs.xdg-desktop-portal-hyprland
+    config.programs.hyprland.finalPackage
   ];
+  programs.dconf.enable = true;
+  programs.xwayland.enable = true;
+  security.polkit.enable = true;
+  services.xserver.displayManager.sessionPackages = [ config.programs.hyprland.finalPackage ];
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ hyprpkgs.xdg-desktop-portal-hyprland ];
+  };
 }
