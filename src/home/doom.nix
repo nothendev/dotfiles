@@ -1,6 +1,7 @@
 { nix-doom-emacs, pkgs, ... }:
 {
   imports = [ nix-doom-emacs.hmModule ];
+
   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ../configs/doom;
@@ -15,4 +16,6 @@
       { name = "modules"; path = ../configs/doom/modules; }
     ];
   };
+
+  home.sessionVariables.EDITOR = "emacs";
 }

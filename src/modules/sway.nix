@@ -54,6 +54,7 @@ in
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     wdisplays # tool to configure displays
+    vulkan-validation-layers
   ];
 
   services.pipewire = {
@@ -92,4 +93,5 @@ in
       );
     };
   };
+
 }
