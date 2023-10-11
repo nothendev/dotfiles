@@ -96,7 +96,7 @@
       # inkscape
       gnome.nautilus
       # wineWowPackages.waylandFull
-      # glfw-minecraft
+      glfw-minecraft
       # blender
       # obsidian
     ] ++ (with libsForQt5; [ okular ark ]) ++ [

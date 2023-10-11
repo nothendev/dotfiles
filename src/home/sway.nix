@@ -52,7 +52,7 @@ in
             "${modifier}+Return" = "scratchpad show";
             "${modifier}+Shift+Return" = "exec kitty";
             "${modifier}+d" = "exec ${menu}";
-            "${modifier}+Print" = "exec flameshot gui";
+            "Print" = "exec flameshot gui";
             "${modifier}+Shift+q" = "kill";
             "${modifier}+Alt+q" = "kill -9";
             "${modifier}+a" = "layout tabbed";
@@ -76,6 +76,7 @@ in
             "${modifier}+Shift+right" = "move right";
             "XF86AudioPlay" = "exec playerctl play-pause";
             "${modifier}+Shift+a" = "exec ${kitty}";
+            "${modifier}+Shift+f" = "fullscreen toggle";
           } // lib.attrsets.mergeAttrsList (map
             (n: {
               "${modifier}+${toString n}" = "workspace number ${toString n}";
@@ -114,8 +115,6 @@ in
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_USE_XINPUT2 = "1";
     GBM_BACKEND = "nvidia-drm";
-    __GL_GSYNC_ALLOWED = "0";
-    __GL_VRR_ALLOWED = "0";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     XWAYLAND_NO_GLAMOR = "1";
   };
