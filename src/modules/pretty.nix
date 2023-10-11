@@ -10,6 +10,7 @@
     ubuntu_font_family
     corefonts
   ];
+  fonts.fontDir.enable = true;
   programs.fish.enable = true;
   hardware.opentabletdriver.enable = true;
   # pretty.catppuccin = {
