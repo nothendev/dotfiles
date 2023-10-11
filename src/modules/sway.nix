@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, waypkgs, ... }:
 
 let
   # bash script to let dbus know about important env variables and
@@ -80,5 +80,16 @@ in
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    package = pkgs.sway.override {
+      sway-unwrapped = waypkgs.sway-unwrapped.override (
+        { wlroots, ... }: {
+          wlroots = wlroots.overrideAttrs (
+            { patches ? [ ], ... }: {
+              patches = patches ++ [ ../assets/wlroots-nvidia.patch ];
+            }
+          );
+        }
+      );
+    };
   };
 }

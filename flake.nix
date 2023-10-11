@@ -10,12 +10,14 @@
   inputs.zls.inputs.nixpkgs.follows = "nixpkgs";
   inputs.zls.inputs.zig-overlay.follows = "zig";
   inputs.hyprportalpkgs.url = "github:NixOS/nixpkgs?rev=976fa3369d722e76f37c77493d99829540d43845";
+  inputs.nixwaypkgs.url = "github:nix-community/nixpkgs-wayland";
+  inputs.nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { self, nixpkgs, home-manager, ... }@attrs:
+  outputs = { self, nixpkgs, home-manager, nixwaypkgs, ... }@attrs:
     let
-      mkSystem = name: nixpkgs.lib.nixosSystem {
+      mkSystem = name: nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
-        specialArgs = attrs;
+        specialArgs = attrs // { waypkgs = nixwaypkgs.packages.${system}; };
         modules = [
           ./src/systems/${name}
           ./src/modules/upgrade-diff.nix
@@ -25,7 +27,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = attrs;
+            home-manager.extraSpecialArgs = specialArgs;
             home-manager.users.ilya = import ./src/home;
           }
 
