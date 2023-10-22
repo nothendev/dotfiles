@@ -5,7 +5,7 @@ in
 {
   home.packages = with pkgs; [ flameshot ];
   wayland.windowManager.sway =
-    let kitty = ''"kitty && swaymsg 'floating enable, border none, move absolute position 1185px 0px, resize set 960px 1920px, move scratchpad'"'';
+    let kitty = ''"kitty && swaymsg 'floating enable, border none, resize set 1920 1065, move scratchpad'"'';
     in
     {
       enable = true;
@@ -57,7 +57,10 @@ in
             "${modifier}+Alt+q" = "kill -9";
             "${modifier}+a" = "layout tabbed";
             "${modifier}+s" = "layout stacking";
+            "${modifier}+f" = "layout default";
             "${modifier}+Shift+space" = "floating toggle";
+            "${modifier}+Semicolon" = "layout splith";
+            "${modifier}+Apostrophe" = "layout splitv";
             "${modifier}+h" = "focus left";
             "${modifier}+Left" = "focus left";
             "${modifier}+j" = "focus down";
@@ -101,9 +104,12 @@ in
         ];
         gaps.smartBorders = "on";
         window.hideEdgeBorders = "both";
-        window.border = 1;
         input = { "*" = { xkb_layout = "us,ru"; }; "type:keyboard" = { xkb_numlock = "enabled"; }; };
       };
+      extraConfig = ''
+        default_border none
+        default_floating_border normal 6
+      '';
     };
 
   home.sessionVariables = {
@@ -114,8 +120,6 @@ in
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_USE_XINPUT2 = "1";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     XWAYLAND_NO_GLAMOR = "1";
   };
 }

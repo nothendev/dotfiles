@@ -93,7 +93,7 @@
       libreoffice-fresh
       gimp
       # krita
-      # inkscape
+      inkscape
       gnome.nautilus
       # wineWowPackages.waylandFull
       glfw-minecraft
