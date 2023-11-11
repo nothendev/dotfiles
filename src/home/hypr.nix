@@ -103,10 +103,19 @@ in
           border_size = 2;
           "col.active_border" = "0xff${sapphire} 0xff${blue} 45deg";
           "col.inactive_border" = "0xaf${yellow}";
-          "col.group_border" = "0xaf${yellow}";
-          "col.group_border_active" = "0xff${blue} 0xff${lavender} 45deg";
           cursor_inactive_timeout = 30;
           layout = "dwindle";
+        };
+
+        group = with base69; {
+          insert_after_current = false;
+          "col.border_inactive" = "0xaf${yellow}";
+          "col.border_active" = "0xff${blue} 0xff${lavender} 45deg";
+
+          groupbar = {
+            gradients = false;
+            render_titles = false;
+          };
         };
 
         decoration = {
@@ -142,8 +151,6 @@ in
 
         misc = {
           disable_autoreload = true;
-          groupbar_gradients = false;
-          group_insert_after_current = false;
         };
       };
   };

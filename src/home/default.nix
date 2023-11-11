@@ -10,6 +10,7 @@
       ./fish.nix
       ./hypr.nix
       ./doom.nix
+      ./nvim.nix
       # ./sway.nix
     ];
   home.username = "ilya";

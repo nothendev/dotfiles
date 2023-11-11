@@ -1,17 +1,23 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-  inputs.home-manager.url = "github:nix-community/home-manager";
-  inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
-  inputs.nix-doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.zig.url = "github:mitchellh/zig-overlay";
-  inputs.zig.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.zls.url = "github:zigtools/zls";
-  inputs.zls.inputs.nixpkgs.follows = "nixpkgs";
-  inputs.zls.inputs.zig-overlay.follows = "zig";
-  inputs.hyprportalpkgs.url = "github:NixOS/nixpkgs?rev=976fa3369d722e76f37c77493d99829540d43845";
-  inputs.nixwaypkgs.url = "github:nix-community/nixpkgs-wayland";
-  inputs.nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-doom-emacs.url = "github:nothendev/doomer";
+    nix-doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
+    ammonite-term-repl.url = "github:zwild/ammonite-term-repl";
+    ammonite-term-repl.flake = false;
+    zig.url = "github:mitchellh/zig-overlay";
+    zig.inputs.nixpkgs.follows = "nixpkgs";
+    zls.url = "github:zigtools/zls";
+    zls.inputs.nixpkgs.follows = "nixpkgs";
+    zls.inputs.zig-overlay.follows = "zig";
+    hyprportalpkgs.url = "github:NixOS/nixpkgs?rev=976fa3369d722e76f37c77493d99829540d43845";
+    nixwaypkgs.url = "github:nix-community/nixpkgs-wayland";
+    nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   outputs = { self, nixpkgs, home-manager, nixwaypkgs, ... }@attrs:
     let

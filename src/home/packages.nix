@@ -2,8 +2,10 @@
 {
   home.packages = with pkgs; [
     eza
-    logseq
     pandoc
+    session-desktop
+    fd
+    (jdt-language-server.override { jdk = pkgs.jdk17; })
   ];
   programs.obs-studio = {
     enable = true;

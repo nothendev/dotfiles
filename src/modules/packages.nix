@@ -3,6 +3,9 @@
   nix.registry.nixpkgs.flake = nixpkgs;
   nix.nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
   environment.etc."channels/nixpkgs".source = nixpkgs.outPath;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-24.8.6"
+  ];
   environment.etc."jvm/17".source = pkgs.jdk17;
   environment.etc."jvm/8".source = pkgs.jdk8;
   environment.systemPackages = with pkgs;
@@ -107,5 +110,11 @@
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark;
+  };
+
+  programs.gamemode = {
+    enable = true;
+    enableRenice = true;
+    settings.general.renice = 10;
   };
 }
