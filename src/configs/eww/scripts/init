@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 pkill eww
-pkill myshell
+# pkill myshell
 eww daemon
  
 # HDMI=$(hyprctl monitors -j | jq .[1].name)
@@ -11,10 +11,10 @@ eww daemon
 #     # open main monitror stuff
 # fi
 
-eww open bar
+# eww open bar
 # eww open dock
 eww open desktop
-eww open notifications_popup
+# eww open notifications_popup
 # eww inspector
 
-$HOME/.config/eww/scripts/myshell/./myshell --eww --file
+# $HOME/.config/eww/scripts/myshell/./myshell --eww --file

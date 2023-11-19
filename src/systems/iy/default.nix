@@ -5,7 +5,7 @@
       (file: ../../modules/${file}.nix)
       [
         "boot"
-        "hypr"
+        "sway"
         "magic"
         "network"
         "nvidia"

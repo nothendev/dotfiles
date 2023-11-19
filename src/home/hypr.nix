@@ -19,7 +19,7 @@ in
     settings =
       with dsl // dsl.fn;
       let
-        makeKitty = "[workspace special:kitty silent; float; noanim; move 12 68; size 1896 1000] kitty";
+        makeKitty = "[workspace special:kitty silent; float; noanim; size 1896 1056] kitty";
         mod = "SUPER";
         bindms = bind [ mod "SHIFT" ];
         bindmov = n: bind mod (toString n) (workspace n);
@@ -129,7 +129,7 @@ in
         };
 
         animations = {
-          enabled = false;
+          enabled = true;
           bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
           animation = [
             "windows, 1, 7, myBezier"

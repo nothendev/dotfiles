@@ -17,9 +17,11 @@
     nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    codeium-nvim.url = "github:Exafunction/codeium.nvim";
+    codeium-nvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixwaypkgs, ... }@attrs:
+  outputs = { self, nixpkgs, home-manager, nixwaypkgs, codeium-nvim, ... }@attrs:
     let
       mkSystem = name: nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
@@ -38,7 +40,7 @@
           }
 
           ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ (thewhat: super: import ./src/pkgs { pkgs = super; }) ];
+            nixpkgs.overlays = [ (thewhat: super: import ./src/pkgs { pkgs = super; }) codeium-nvim.overlays.${system}.default ];
           })
         ];
       }; in

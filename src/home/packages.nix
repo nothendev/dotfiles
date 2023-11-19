@@ -6,6 +6,7 @@
     session-desktop
     fd
     (jdt-language-server.override { jdk = pkgs.jdk17; })
+    mpv
   ];
   programs.obs-studio = {
     enable = true;

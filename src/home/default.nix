@@ -11,7 +11,7 @@
       ./hypr.nix
       ./doom.nix
       ./nvim.nix
-      # ./sway.nix
+      ./sway.nix
     ];
   home.username = "ilya";
   home.homeDirectory = "/home/ilya";

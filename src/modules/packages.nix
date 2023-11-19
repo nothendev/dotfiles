@@ -15,6 +15,7 @@
       neovim
       fish
       starship
+      glibc
 
       bat
       htop
@@ -102,6 +103,7 @@
       glfw-minecraft
       # blender
       # obsidian
+      mangohud
     ] ++ (with libsForQt5; [ okular ark ]) ++ [
       zig.packages.${pkgs.system}.master
       # zls.packages.${pkgs.system}.default
