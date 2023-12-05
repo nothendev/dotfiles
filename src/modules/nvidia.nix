@@ -10,7 +10,7 @@
     videoDrivers = [ "nvidia" ];
     enable = true;
     displayManager.gdm = {
-      enable = false;
+      enable = true;
       wayland = true;
     };
     displayManager.startx.enable = true;
@@ -25,7 +25,8 @@
   };
   hardware.nvidia = {
     modesetting.enable = true;
-    open = true;
+    open = false;
+    package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
     nvidiaSettings = true;
   };
 }

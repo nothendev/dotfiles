@@ -7,9 +7,11 @@
     fd
     (jdt-language-server.override { jdk = pkgs.jdk17; })
     mpv
+    anytype
   ];
   programs.obs-studio = {
-    enable = true;
+    enable = false;
+    package = (pkgs.obs-studio.override { ffmpeg_4 = pkgs.ffmpeg_4-full; }).overrideAttrs (a: { cmakeFlags = a.cmakeFlags ++ [ "-DENABLE_AJA=0" ]; });
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
       input-overlay

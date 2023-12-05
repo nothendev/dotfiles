@@ -1,5 +1,5 @@
-{ config, pkgs, hyprportalpkgs, ... }:
-let hyprpkgs = hyprportalpkgs.legacyPackages."x86_64-linux";
+{ config, pkgs, hyprland, ... }:
+let hyprpkgs = hyprland.packages."x86_64-linux";
 in
 {
   security.rtkit.enable = true;
@@ -11,18 +11,23 @@ in
   };
   programs.hyprland = {
     xwayland.enable = true;
-    enableNvidiaPatches = true;
+    package = hyprpkgs.hyprland;
   };
   environment.systemPackages = [
-    hyprpkgs.xdg-desktop-portal-hyprland
     config.programs.hyprland.finalPackage
   ];
   programs.dconf.enable = true;
   programs.xwayland.enable = true;
   security.polkit.enable = true;
-  services.xserver.displayManager.sessionPackages = [ config.programs.hyprland.finalPackage ];
+  services.xserver.displayManager.sessionPackages =
+    [ config.programs.hyprland.finalPackage ];
   xdg.portal = {
     enable = true;
-    extraPortals = [ hyprpkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = [
+      hyprpkgs.xdg-desktop-portal-hyprland
+      # pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config.common.default = "*";
   };
 }

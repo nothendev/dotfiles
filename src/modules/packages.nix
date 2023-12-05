@@ -12,7 +12,6 @@
     [
       kitty
       emacs
-      neovim
       fish
       starship
       glibc
@@ -100,7 +99,8 @@
       inkscape
       gnome.nautilus
       # wineWowPackages.waylandFull
-      glfw-minecraft
+      # glfw-minecraft
+      glfw
       # blender
       # obsidian
       mangohud

@@ -88,6 +88,10 @@ in
           (env "WLR_NO_HARDWARE_CURSORS" 1)
           (env "MOZ_ENABLE_WAYLAND" 1)
           (env "NIXOS_OZONE_WL" 1)
+          (env "LIBVA_DRIVER_NAME" "nvidia")
+          (env "XDG_SESSION_TYPE" "wayland")
+          (env "GBM_BACKEND" "nvidia-drm")
+          (env "__GLX_VENDOR_LIBRARY_NAME" "nvidia")
         ];
 
         input = {

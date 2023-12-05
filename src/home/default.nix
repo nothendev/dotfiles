@@ -9,7 +9,7 @@
       ./packages.nix
       ./fish.nix
       ./hypr.nix
-      ./doom.nix
+      # ./doom.nix
       ./nvim.nix
       ./sway.nix
     ];
