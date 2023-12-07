@@ -7,7 +7,7 @@ let
   base69 = osConfig.pretty.base69;
   wallpapers = {
     "HDMI-A-1" = ../assets/wallpapers/hyprland1-dark.png;
-    "DVI-D-1" = ../assets/wallpapers/sky-vaporwave-thing-sun.jpg;
+    "DVI-D-1" = ../assets/wallpapers/nix.png;
   };
 in
 {
