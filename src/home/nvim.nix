@@ -136,9 +136,9 @@
         };
       };
       project-nvim.enable = true;
-      treesitter.enable = true;
-      treesitter.ensureInstalled =
-        [ "vim" "lua" "regex" "bash" "markdown" "markdown_inline" ];
+      # treesitter.enable = true;
+      # treesitter.ensureInstalled =
+      #   [ "vim" "lua" "regex" "bash" "markdown" "markdown_inline" ];
       leap.enable = true;
       persistence.enable = true;
       nvim-colorizer.enable = true;
@@ -250,6 +250,7 @@
           lens.enable = true;
           procMacro.ignored = {
             "leptos_macro" = [ "component" "server" "island" ];
+            "speare_macro" = [ "handler" "on_exit" "on_init" "process" "subscriptions" ];
           };
         };
       };
