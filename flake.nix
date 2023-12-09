@@ -21,6 +21,8 @@
     codeium-nvim.inputs.nixpkgs.follows = "nixpkgs";
     nvim.url = "github:neovim/neovim?dir=contrib";
     nvim.inputs.nixpkgs.follows = "nixpkgs";
+    ff-cascade.url = "github:andreasgrafen/cascade";
+    ff-cascade.flake = false;
   };
 
   # nixConfig = {
@@ -52,7 +54,7 @@
             ({ config, pkgs, ... }: {
               nixpkgs.overlays = [
                 (thewhat: super: import ./src/pkgs { pkgs = super; })
-                codeium-nvim.overlays.${system}.default
+                #codeium-nvim.overlays.${system}.default
               ];
             })
           ];

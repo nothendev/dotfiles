@@ -84,11 +84,15 @@
         options.noremap = false;
       }
     ];
-    extraConfigLua = ''
-      local codeium = require'codeium'
-      codeium.setup{}
-    '';
-    extraPlugins = with pkgs.vimPlugins; [ direnv-vim codeium-nvim ];
+    # extraConfigLua = ''
+    #   local codeium = require'codeium'
+    #   codeium.setup{}
+    # '';
+    extraPlugins = with pkgs.vimPlugins;
+      [
+        direnv-vim
+        #codeium-nvim
+      ];
     plugins = {
       # nvim-wide things
       auto-save.enable = true;
@@ -138,7 +142,7 @@
       project-nvim.enable = true;
       treesitter.enable = true;
       treesitter.ensureInstalled =
-          [ "vim" "lua" "regex" "bash" "markdown" "markdown_inline" ];
+        [ "vim" "lua" "regex" "bash" "markdown" "markdown_inline" ];
       leap.enable = true;
       persistence.enable = true;
       nvim-colorizer.enable = true;
@@ -200,7 +204,7 @@
       };
       nvim-cmp.snippet.expand = "luasnip";
       nvim-cmp.sources = [
-        { name = "codeium"; }
+        # { name = "codeium"; }
         { name = "nvim_lsp"; }
         { name = "luasnip"; }
         { name = "buffer"; }
@@ -250,7 +254,8 @@
           lens.enable = true;
           procMacro.ignored = {
             "leptos_macro" = [ "component" "server" "island" ];
-            "speare_macro" = [ "handler" "on_exit" "on_init" "process" "subscriptions" ];
+            "speare_macro" =
+              [ "handler" "on_exit" "on_init" "process" "subscriptions" ];
           };
         };
       };

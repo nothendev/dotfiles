@@ -182,6 +182,22 @@
         "type": "github"
       }
     },
+    "ff-cascade": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1692816983,
+        "narHash": "sha256-HOOBQ1cNjsDTFSymB3KjiZ1jw3GL16LF/RQxdn0sxr0=",
+        "owner": "andreasgrafen",
+        "repo": "cascade",
+        "rev": "2f70e8619ce5c721fe9c0736b25c5a79938f1215",
+        "type": "github"
+      },
+      "original": {
+        "owner": "andreasgrafen",
+        "repo": "cascade",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -971,6 +987,7 @@
       "inputs": {
         "ammonite-term-repl": "ammonite-term-repl",
         "codeium-nvim": "codeium-nvim",
+        "ff-cascade": "ff-cascade",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nix-doom-emacs": "nix-doom-emacs",
