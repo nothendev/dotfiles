@@ -10,6 +10,7 @@
       ./fish.nix
       ./hypr.nix
       # ./doom.nix
+      ./hyperfox.nix
       ./nvim.nix
       ./sway.nix
     ];

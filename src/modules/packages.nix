@@ -53,6 +53,7 @@
       pavucontrol
       playerctl
       wev
+      # (discord.overrideAttrs (why: { desktopItem = why.desktopItem.override (guh: { exec = "${guh.exec} --enable-gpu-rasterization --enable-zero-copy --enable-gpu-compositing --enable-native-gpu-memory-buffers --enable-oop-rasterization --enable-features=UseSkiaRenderer,WaylandWindowDecorations --ozone-platform-hint=auto --use-vulkan"; }); }))
 
       # brave
       librewolf

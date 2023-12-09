@@ -49,11 +49,11 @@
         key = "<leader>fw";
         mode = "n";
       }
-      {
-        action = "<cmd>Telescope harpoon marks<CR>";
-        key = "<leader><leader>";
-        mode = "n";
-      }
+      #{
+      #  action = "<cmd>Telescope harpoon marks<CR>";
+      #  key = "<leader><leader>";
+      #  mode = "n";
+      #}
       {
         action = "<cmd>Telescope lsp_document_symbols<CR>";
         key = "gs";
@@ -107,7 +107,7 @@
       };
       telescope.enable = true;
       telescope.extensions.project-nvim.enable = true;
-      rainbow-delimiters.enable = true;
+      # rainbow-delimiters.enable = true;
       noice = {
         enable = true;
         extraOptions = { presets.command_palette = true; };
@@ -127,7 +127,7 @@
       gitsigns.enable = true;
       which-key.enable = true;
       harpoon = {
-        enable = true;
+        enable = false;
         enableTelescope = true;
         keymaps = {
           addFile = "<leader>ha";
@@ -136,9 +136,9 @@
         };
       };
       project-nvim.enable = true;
-      # treesitter.enable = true;
-      # treesitter.ensureInstalled =
-      #   [ "vim" "lua" "regex" "bash" "markdown" "markdown_inline" ];
+      treesitter.enable = true;
+      treesitter.ensureInstalled =
+          [ "vim" "lua" "regex" "bash" "markdown" "markdown_inline" ];
       leap.enable = true;
       persistence.enable = true;
       nvim-colorizer.enable = true;
