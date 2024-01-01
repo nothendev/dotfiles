@@ -14,7 +14,7 @@
   };
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
   };
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;

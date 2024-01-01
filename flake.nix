@@ -54,7 +54,7 @@
             ({ config, pkgs, ... }: {
               nixpkgs.overlays = [
                 (thewhat: super: import ./src/pkgs { pkgs = super; })
-                #codeium-nvim.overlays.${system}.default
+                codeium-nvim.overlays.${system}.default
               ];
             })
           ];

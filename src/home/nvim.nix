@@ -91,7 +91,7 @@
     extraPlugins = with pkgs.vimPlugins;
       [
         direnv-vim
-        #codeium-nvim
+        # codeium-nvim
       ];
     plugins = {
       # nvim-wide things
@@ -140,20 +140,14 @@
         };
       };
       project-nvim.enable = true;
+      project-nvim.detectionMethods = ["lsp" "pattern"];
+      project-nvim.patterns = [".git" "package.json" "Makefile" "rust-toolchain.toml" "Cargo.toml"];
       treesitter.enable = true;
       treesitter.ensureInstalled =
         [ "vim" "lua" "regex" "bash" "markdown" "markdown_inline" ];
       leap.enable = true;
       persistence.enable = true;
       nvim-colorizer.enable = true;
-      none-ls = {
-        enable = true;
-        sources.formatting = {
-          nixfmt.enable = true;
-          prettier_d_slim.enable = true;
-          rustfmt.enable = true;
-        };
-      };
       nvim-lightbulb.enable = true;
       ## completion
       lspkind = {
@@ -246,7 +240,7 @@
       lsp.servers.rust-analyzer = {
         enable = true;
         installLanguageServer = false;
-        cmd = [ "/run/current-system/sw/bin/rust-analyzer" ];
+        cmd = null;
         installCargo = false;
         installRustc = false;
         settings = {

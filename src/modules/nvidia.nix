@@ -13,7 +13,10 @@
       enable = true;
       wayland = true;
     };
-    displayManager.startx.enable = true;
+    displayManager.autoLogin = {
+      enable = true;
+      user = "ilya";
+    };
     libinput = {
       enable = true;
       # mouse.additionalOptions =

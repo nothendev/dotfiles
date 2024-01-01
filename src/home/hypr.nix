@@ -156,6 +156,8 @@ in
         misc = {
           disable_autoreload = true;
         };
+
+        debug.disable_logs = false;
       };
   };
   services.mako = {

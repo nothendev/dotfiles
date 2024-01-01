@@ -8,6 +8,8 @@
     (jdt-language-server.override { jdk = pkgs.jdk17; })
     mpv
     anytype
+    blender
+    firefox
   ];
   programs.obs-studio = {
     enable = false;
