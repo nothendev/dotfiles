@@ -4,7 +4,7 @@ let base69 = osConfig.pretty.base69;
 in
 {
   home.packages = with pkgs; [ flameshot ];
-  wayland.windowManager.sway =
+  xsession.windowManager.i3 =
     let kitty = ''"kitty && swaymsg 'floating enable, border none, resize set 1920 1065, move scratchpad'"'';
     in
     {
@@ -29,12 +29,12 @@ in
             unfocused = default;
             urgent = default // { background = base69.red; };
           };
-        output = {
-          DVI-D-1 = {
-            bg = "${../assets/wallpapers/sky-vaporwave-thing-sun.jpg} fill";
-          };
-          HDMI-A-1 = { bg = "${../assets/wallpapers/hyprland1-dark.png} fill"; };
-        };
+        # output = {
+        #   DVI-D-1 = {
+        #     bg = "${../assets/wallpapers/sky-vaporwave-thing-sun.jpg} fill";
+        #   };
+        #   HDMI-A-1 = { bg = "${../assets/wallpapers/hyprland1-dark.png} fill"; };
+        # };
         floating.modifier = modifier;
         focus = {
           followMouse = "yes";
