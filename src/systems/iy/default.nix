@@ -13,6 +13,7 @@
         "packages"
         "pretty"
         "users"
+        "i3"
       ]) ++ [ ./hardware-configuration.nix ];
   # services.openssh.enable = true;
   # services.openssh.settings.PermitRootLogin = "yes";
