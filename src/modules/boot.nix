@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = ["usbhid.mousepoll=4"];
   boot.loader.grub.enable = true;
   boot.loader.grub.efiSupport = true;

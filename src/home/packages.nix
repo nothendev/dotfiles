@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, fomt, system, ... }:
 {
   home.packages = with pkgs; [
     eza
@@ -10,6 +10,7 @@
     anytype
     blender
     firefox
+    fomt.packages.${system}.default
   ];
   programs.obs-studio = {
     enable = false;

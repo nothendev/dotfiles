@@ -5,8 +5,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-doom-emacs.url = "github:nothendev/doomer";
     nix-doom-emacs.inputs.nixpkgs.follows = "nixpkgs";
-    ammonite-term-repl.url = "github:zwild/ammonite-term-repl";
-    ammonite-term-repl.flake = false;
     zig.url = "github:mitchellh/zig-overlay";
     zig.inputs.nixpkgs.follows = "nixpkgs";
     zls.url = "github:zigtools/zls";
@@ -21,14 +19,13 @@
     codeium-nvim.inputs.nixpkgs.follows = "nixpkgs";
     nvim.url = "github:neovim/neovim?dir=contrib";
     nvim.inputs.nixpkgs.follows = "nixpkgs";
-    ff-cascade.url = "github:andreasgrafen/cascade";
-    ff-cascade.flake = false;
+    fomt.url = "git+https://codeberg.org/noth/forgmartelo";
   };
 
   # nixConfig = {
-    # substituters = [ "https://hyprland.cachix.org" ];
-    # trusted-public-keys =
-      # [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+  #   substituters = [ "https://hyprland.cachix.org" ];
+  #   trusted-public-keys =
+  #     [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   # };
 
   outputs =
