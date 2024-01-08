@@ -27,7 +27,7 @@ in
         workspacen = lib.lists.range 1 9;
       in
       {
-        monitor = ",preferred,auto,auto";
+        monitor = ["DVI-D-1,1920x1080@60,auto,auto" "HDMI-A-1,1920x1080@60,auto,auto"];
 
         exec = [
           "hyprpaper"

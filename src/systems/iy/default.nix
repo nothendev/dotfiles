@@ -6,6 +6,7 @@
       [
         "boot"
         "hypr"
+        "river"
         "magic"
         "network"
         "nvidia"

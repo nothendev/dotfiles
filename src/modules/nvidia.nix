@@ -10,11 +10,12 @@
     videoDrivers = [ "nvidia" ];
     enable = true;
     displayManager.gdm = {
-      enable = true;
+      enable = false;
       wayland = true;
     };
+    displayManager.lightdm.enable = false;
     displayManager.autoLogin = {
-      enable = true;
+      enable = false;
       user = "ilya";
     };
     libinput = {
@@ -29,7 +30,7 @@
   hardware.nvidia = {
     modesetting.enable = true;
     open = false;
-    package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+    # package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
     nvidiaSettings = true;
   };
 }

@@ -37,14 +37,14 @@ in
         # };
         floating.modifier = modifier;
         focus = {
-          followMouse = "yes";
+          followMouse = true;
           mouseWarping = true;
         };
         fonts = {
           names = [ "JetBrainsMono Nerd Font Mono" ];
           size = 11.0;
         };
-        bindkeysToCode = true;
+        # bindkeysToCode = true;
         keybindings =
           let workspacen = lib.lists.range 1 9;
           in
@@ -104,7 +104,7 @@ in
         ];
         gaps.smartBorders = "on";
         window.hideEdgeBorders = "both";
-        input = { "*" = { xkb_layout = "us,ru"; }; "type:keyboard" = { xkb_numlock = "enabled"; }; };
+        # input = { "*" = { xkb_layout = "us,ru"; }; "type:keyboard" = { xkb_numlock = "enabled"; }; };
       };
       extraConfig = ''
         default_border none

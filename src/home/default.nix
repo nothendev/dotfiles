@@ -12,7 +12,7 @@
       # ./doom.nix
       ./hyperfox.nix
       ./nvim.nix
-      ./sway.nix
+      # ./i3.nix
     ];
   home.username = "ilya";
   home.homeDirectory = "/home/ilya";

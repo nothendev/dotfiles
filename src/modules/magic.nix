@@ -12,10 +12,6 @@
     enable = true;
     drivers = with pkgs; [ canon-cups-updated ];
   };
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-  };
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
   programs.dconf.enable = true;
