@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  programs.river.enable = true;
+{ pkgs, lib, ... }: {
+  programs.river = { enable = true; extraPackages = []; };
 }

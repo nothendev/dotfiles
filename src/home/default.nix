@@ -9,6 +9,7 @@
       ./packages.nix
       ./fish.nix
       ./hypr.nix
+      ./river.nix
       # ./doom.nix
       ./hyperfox.nix
       ./nvim.nix
