@@ -9,7 +9,7 @@
     mpv
     anytype
     blender
-    firefox
+    # firefox
     fomt.packages.${system}.default
   ];
   programs.obs-studio = {

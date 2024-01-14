@@ -86,15 +86,15 @@
     ];
     extraConfigLua = ''
       ''
-    # + ''
-    #   local codeium = require'codeium'
-    #   codeium.setup{}
-    # ''
+    + ''
+      local codeium = require'codeium'
+      codeium.setup{}
+    ''
     ;
     extraPlugins = with pkgs.vimPlugins;
       [
         direnv-vim
-        # codeium-nvim
+        codeium-nvim
       ];
     plugins = {
       # nvim-wide things
@@ -201,7 +201,7 @@
       };
       nvim-cmp.snippet.expand = "luasnip";
       nvim-cmp.sources = [
-        # { name = "codeium"; }
+        { name = "codeium"; }
         { name = "nvim_lsp"; }
         { name = "luasnip"; }
         { name = "buffer"; }

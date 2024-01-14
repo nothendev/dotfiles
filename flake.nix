@@ -19,7 +19,8 @@
     codeium-nvim.inputs.nixpkgs.follows = "nixpkgs";
     nvim.url = "github:neovim/neovim?dir=contrib";
     nvim.inputs.nixpkgs.follows = "nixpkgs";
-    fomt.url = "git+https://codeberg.org/noth/forgmartelo";
+    fomt.url = "git+https://codeberg.org/noth/forgmartelo?ref=feat/repo_new";
+    fomt.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # nixConfig = {
