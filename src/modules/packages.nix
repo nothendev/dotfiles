@@ -100,6 +100,8 @@
       # blender
       # obsidian
       mangohud
+
+      nh
     ] ++ (with libsForQt5; [ okular ark ]) ++ [
       zig.packages.${pkgs.system}.master
       # zls.packages.${pkgs.system}.default
@@ -114,5 +116,11 @@
     enable = true;
     enableRenice = true;
     settings.general.renice = 10;
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "gnome3";
   };
 }

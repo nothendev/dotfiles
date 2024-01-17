@@ -2,7 +2,6 @@
   imports = [ ../common/base69/themes/github-dark.nix ];
   fonts.packages = with pkgs; [
     jetbrains-mono
-    monocraft
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     font-awesome
     rubik

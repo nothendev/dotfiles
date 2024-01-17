@@ -74,7 +74,7 @@
     "dream2nix": {
       "inputs": {
         "nixpkgs": [
-          "fomt",
+          "fjo",
           "nci",
           "nixpkgs"
         ],
@@ -207,6 +207,28 @@
         "type": "github"
       }
     },
+    "fjo": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nci": "nci",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1705334380,
+        "narHash": "sha256-SgOUSwfv16TBpwUzTC8o1gpWMBdTzsjcECF8YmlXf4w=",
+        "ref": "refs/heads/main",
+        "rev": "0382b1a34986ee2f48bca5fdb68f324445b7f318",
+        "revCount": 146,
+        "type": "git",
+        "url": "https://codeberg.org/VoiDD/forgmartelo"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/VoiDD/forgmartelo"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -273,16 +295,16 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
-          "fomt",
+          "fjo",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1704152458,
-        "narHash": "sha256-DS+dGw7SKygIWf9w4eNBUZsK+4Ug27NwEWmn2tnbycg=",
+        "lastModified": 1704982712,
+        "narHash": "sha256-2Ptt+9h8dczgle2Oo6z5ni5rt/uLMG47UFTR1ry/wgg=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "88a2cd8166694ba0b6cb374700799cec53aef527",
+        "rev": "07f6395285469419cf9d078f59b5b49993198c00",
         "type": "github"
       },
       "original": {
@@ -455,29 +477,6 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
-      }
-    },
-    "fomt": {
-      "inputs": {
-        "flake-parts": "flake-parts",
-        "nci": "nci",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1704907673,
-        "narHash": "sha256-CtMEg19WuYY48dkhMjBhXB9I9Qhr+r/kGEVYy+R0eO8=",
-        "ref": "feat/repo_new",
-        "rev": "d09830726384c0f816ffe2145ac4120c4795a0e5",
-        "revCount": 149,
-        "type": "git",
-        "url": "https://codeberg.org/noth/forgmartelo"
-      },
-      "original": {
-        "ref": "feat/repo_new",
-        "type": "git",
-        "url": "https://codeberg.org/noth/forgmartelo"
       }
     },
     "format-all": {
@@ -699,7 +698,7 @@
         "dream2nix": "dream2nix",
         "mk-naked-shell": "mk-naked-shell",
         "nixpkgs": [
-          "fomt",
+          "fjo",
           "nixpkgs"
         ],
         "parts": "parts",
@@ -717,6 +716,26 @@
       "original": {
         "owner": "yusdacra",
         "repo": "nix-cargo-integration",
+        "type": "github"
+      }
+    },
+    "nh": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1705251288,
+        "narHash": "sha256-TwCR7tZvrjsvz6SmgjWYOne7Qz7J2jn4Cr4Er0Yj+LA=",
+        "owner": "viperML",
+        "repo": "nh",
+        "rev": "36eba281576afe0f67e5aafb4e7a414f256dba31",
+        "type": "github"
+      },
+      "original": {
+        "owner": "viperML",
+        "repo": "nh",
         "type": "github"
       }
     },
@@ -1093,7 +1112,7 @@
     "parts": {
       "inputs": {
         "nixpkgs-lib": [
-          "fomt",
+          "fjo",
           "nci",
           "nixpkgs"
         ]
@@ -1159,7 +1178,7 @@
     "purescript-overlay": {
       "inputs": {
         "nixpkgs": [
-          "fomt",
+          "fjo",
           "nci",
           "dream2nix",
           "nixpkgs"
@@ -1216,9 +1235,10 @@
     "root": {
       "inputs": {
         "codeium-nvim": "codeium-nvim",
-        "fomt": "fomt",
+        "fjo": "fjo",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "nh": "nh",
         "nix-doom-emacs": "nix-doom-emacs",
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
@@ -1263,7 +1283,7 @@
     "slimlock": {
       "inputs": {
         "nixpkgs": [
-          "fomt",
+          "fjo",
           "nci",
           "dream2nix",
           "purescript-overlay",
@@ -1408,7 +1428,7 @@
     "treefmt": {
       "inputs": {
         "nixpkgs": [
-          "fomt",
+          "fjo",
           "nci",
           "nixpkgs"
         ]

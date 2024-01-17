@@ -11,7 +11,7 @@
       number = true;
       relativenumber = true;
       shiftwidth = 2;
-      guifont = "JetBrainsMono Nerd Font Mono:h14";
+      guifont = "Monocraft Nerd Font,JetBrainsMono Nerd Font Mono:h14";
     };
     globals.mapleader = " ";
     keymaps = [

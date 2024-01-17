@@ -162,7 +162,7 @@ in
   };
   services.mako = {
     enable = true;
-    font = "JetBrainsMono Nerd Font Mono";
+    font = "Monocraft Nerd Font";
     backgroundColor = "#${base69.base}ff";
     borderColor = "#${base69.mantle}ff";
     textColor = "#${base69.text}ff";

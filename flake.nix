@@ -19,8 +19,10 @@
     codeium-nvim.inputs.nixpkgs.follows = "nixpkgs";
     nvim.url = "github:neovim/neovim?dir=contrib";
     nvim.inputs.nixpkgs.follows = "nixpkgs";
-    fomt.url = "git+https://codeberg.org/noth/forgmartelo?ref=feat/repo_new";
-    fomt.inputs.nixpkgs.follows = "nixpkgs";
+    fjo.url = "git+https://codeberg.org/VoiDD/forgmartelo";
+    fjo.inputs.nixpkgs.follows = "nixpkgs";
+    nh.url = "github:viperML/nh";
+    nh.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # nixConfig = {
@@ -30,7 +32,7 @@
   # };
 
   outputs =
-    { self, nixpkgs, home-manager, nixwaypkgs, codeium-nvim, ... }@attrs:
+    { self, nixpkgs, home-manager, nixwaypkgs, codeium-nvim, nh, ... }@attrs:
     let
       mkSystem = name:
         nixpkgs.lib.nixosSystem rec {
@@ -54,6 +56,10 @@
                 (thewhat: super: import ./src/pkgs { pkgs = super; })
                 codeium-nvim.overlays.${system}.default
               ];
+
+              environment.systemPackages = [ nh.packages.${system}.default ];
+
+              environment.variables.FLAKE = "/home/ilya/dotfiles";
             })
           ];
         };

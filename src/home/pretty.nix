@@ -45,7 +45,7 @@ $directory$status '';
     enable = true;
     package = pkgs.kitty;
     font = {
-      name = "JetBrainsMono Nerd Font Mono Regular";
+      name = "Monocraft";
       size = 14;
     };
     shellIntegration.enableFishIntegration = true;
@@ -78,7 +78,7 @@ $directory$status '';
       };
     };
     font = {
-      name = "JetBrainsMono Nerd Font Mono";
+      name = "Monocraft";
       package = null;
       size = 10;
     };
