@@ -10,7 +10,6 @@
       ./fish.nix
       ./hypr.nix
       ./river.nix
-      ./hyperfox.nix
       ./nvim.nix
       # ./i3.nix
     ];
