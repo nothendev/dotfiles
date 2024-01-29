@@ -19,7 +19,7 @@
     codeium-nvim.inputs.nixpkgs.follows = "nixpkgs";
     nvim.url = "github:neovim/neovim?dir=contrib";
     nvim.inputs.nixpkgs.follows = "nixpkgs";
-    fjo.url = "git+https://codeberg.org/VoiDD/forgmartelo";
+    fjo.url = "git+https://codeberg.org/VoiDD/fjo?ref=forgejo-sdk";
     fjo.inputs.nixpkgs.follows = "nixpkgs";
     nh.url = "github:viperML/nh";
     nh.inputs.nixpkgs.follows = "nixpkgs";

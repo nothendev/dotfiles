@@ -10,7 +10,22 @@
     anytype
     blender
     # firefox
+    ## broken build
+    # kotatogram-desktop
     fjo.packages.${system}.default
+    evcxr
+    (webcord-vencord.overrideAttrs
+      (a: { desktopItems = map (d: d.override { exec = "env NIXOS_OZONE_WL=1 webcord --disable-gpu-compositing %u"; }) a.desktopItems; }))
+    (element-desktop.overrideAttrs
+      (e: rec {
+        # Add arguments to the .desktop entry
+        desktopItem = e.desktopItem.override (d: {
+          exec = "env NIXOS_OZONE_WL=1 element-desktop --disable-gpu-compositing %u";
+        });
+
+        # Update the install script to use the new .desktop entry
+        installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
+      }))
   ];
   programs.obs-studio = {
     enable = false;

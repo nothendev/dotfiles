@@ -28,17 +28,6 @@
       neofetch
       insomnia
       # telegram-desktop
-      kotatogram-desktop
-      (element-desktop.overrideAttrs
-        (e: rec {
-          # Add arguments to the .desktop entry
-          desktopItem = e.desktopItem.override (d: {
-            exec = "env NIXOS_OZONE_WL=1 element-desktop --disable-gpu-compositing %u";
-          });
-
-          # Update the install script to use the new .desktop entry
-          installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
-        }))
       xdg-utils
       grim
       slurp

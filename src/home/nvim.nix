@@ -28,7 +28,7 @@
         key = "<C-a>";
       }
       {
-        action = "vim.lsp.buf.format";
+        action = "function()vim.lsp.buf.format{async=true}end";
         lua = true;
         key = "<leader>fm";
         mode = "n";
@@ -47,6 +47,16 @@
       {
         action = "<cmd>Telescope live_grep<CR>";
         key = "<leader>fw";
+        mode = "n";
+      }
+      {
+        action = "<cmd>Telescope buffers<CR>";
+        key = "<leader>fb";
+        mode = "n";
+      }
+      {
+        action = "<cmd>Telescope git_status<CR>";
+        key = "<leader>g";
         mode = "n";
       }
       #{
@@ -83,6 +93,12 @@
         options.silent = true;
         options.noremap = false;
       }
+      {
+        action = "function()vim.diagnostic.open_float{border='rounded'}end";
+        key = "<leader>f";
+        mode = "n";
+        lua = true;
+      }
     ];
     extraConfigLua = ''
       ''
@@ -98,12 +114,14 @@
       ];
     plugins = {
       # nvim-wide things
+      indent-blankline.enable = true;
       auto-save.enable = true;
       bufferline.enable = true;
       chadtree.enable = true;
       lualine = {
         enable = true;
         iconsEnabled = true;
+        globalstatus = true;
       };
       luasnip.enable = true;
       luasnip.extraConfig.enable_autosnippets = true;
@@ -114,7 +132,8 @@
       };
       telescope.enable = true;
       telescope.extensions.project-nvim.enable = true;
-      # rainbow-delimiters.enable = true;
+      todo-comments.enable = true;
+      rainbow-delimiters.enable = true;
       noice = {
         enable = true;
         extraOptions = { presets.command_palette = true; };
@@ -129,9 +148,10 @@
       notify.enable = true;
       surround.enable = true;
       trouble.enable = true;
+      trouble.mode = "document_diagnostics";
       refactoring.enable = true;
       fugitive.enable = true;
-      gitsigns.enable = true;
+      gitgutter.enable = true;
       which-key.enable = true;
       harpoon = {
         enable = false;
@@ -143,13 +163,22 @@
         };
       };
       project-nvim.enable = true;
-      project-nvim.detectionMethods = ["lsp" "pattern"];
-      project-nvim.patterns = [".git" "package.json" "Makefile" "rust-toolchain.toml" "Cargo.toml"];
+      project-nvim.detectionMethods = [ "lsp" "pattern" ];
+      project-nvim.patterns = [ ".git" "rust-toolchain.toml" ];
+      presence-nvim = {
+        enable = true;
+        autoUpdate = true;
+        mainImage = "neovim";
+        showTime = true;
+        fileAssets.rs = [ "Rust" "https://www.rust-lang.org/logos/rust-logo-512x512.png" ];
+        neovimImageText = "NEOVIM GAMING";
+      };
       treesitter.enable = true;
       treesitter.ensureInstalled =
         [ "vim" "lua" "regex" "bash" "markdown" "markdown_inline" ];
       leap.enable = true;
       persistence.enable = true;
+      nvim-autopairs.enable = true;
       nvim-colorizer.enable = true;
       nvim-lightbulb.enable = true;
       ## completion
@@ -220,8 +249,8 @@
       };
       lsp.enable = true;
       lsp.keymaps.diagnostic = {
-        "<leader>j" = "goto_next";
-        "<leader>k" = "goto_prev";
+        "]]" = "goto_next";
+        "[[" = "goto_prev";
       };
       lsp.keymaps.lspBuf = {
         K = "hover";
@@ -265,5 +294,9 @@
         [ "${pkgs.jdt-language-server.override { jdk = pkgs.jdk17; }}" ];
     };
   };
-  home.packages = with pkgs; [ neovide nvim.packages.${system}.neovim ];
+  home.packages = with pkgs; [
+    neovide
+    # nvim.packages.${system}.neovim
+    # neovim
+  ];
 }
