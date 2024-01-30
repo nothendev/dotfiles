@@ -11,7 +11,7 @@
     blender
     # firefox
     ## broken build
-    # kotatogram-desktop
+    kotatogram-desktop
     fjo.packages.${system}.default
     evcxr
     (webcord-vencord.overrideAttrs
