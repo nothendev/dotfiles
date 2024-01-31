@@ -3,9 +3,30 @@
 As you may have already guessed, this is a dotfiles repository for my [PC's](./src/systems) and homeserver setup's configuration,
 specifically a NixOS setup and [colmena] [hive](./src/nodes) for my homeserver.
 
+## Programs
+
+- Window manager: Hyprland / River (not very configured but exists) with gdm as the display manager
+- Bar / ambient desktop thingy: [eww](https://github.com/elkowar/eww)
+- Terminal: [kitty](https://sw.kovidgoyal.net/kitty) with [Fish](https://fishshell.com) and [starship](https://starship.rs)
+- Editor: Neovim set up with [nixvim](https://github.com/nix-community/nixvim) and [neovide](https://neovide.dev) as the GUI with crazy cursor animations
+- Browser: [LibreWolf](https://librewolf.net) configured outside of Nix (Catppuccin Mocha theme + uBlockOrigin with all filters enabled)
+- Launcher: rofi with wayland patches
+- Nix helper: [nh](https://github.com/viperML/nh)
+
+### Fonts
+
+[Monocraft](https://github.com/idreesinc/monocraft) basically everywhere, with the Nerd Font variant applied in Neovim.
+
+## Hardware (main PC)
+
+CPU: AMD Ryzen 7 2700
+GPU: NVidia GeForce GTX 1650 (yikes I f...ing hate it especially with wayland)
+RAM: 1x8GB + 1x16GB random Kingstons
+Motherboard: MSI B450M-A PRO MAX (MS-7C52)
+
 ## Setup
 
-Clone the repo, then decide what you want to deploy.
+Clone the repo, then decide what you want to deploy/install.
 
 ### Main PC setup
 
