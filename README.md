@@ -19,10 +19,10 @@ specifically a NixOS setup and [colmena] [hive](./src/nodes) for my homeserver.
 
 ## Hardware (main PC)
 
-CPU: AMD Ryzen 7 2700
-GPU: NVidia GeForce GTX 1650 (yikes I f...ing hate it especially with wayland)
-RAM: 1x8GB + 1x16GB random Kingstons
-Motherboard: MSI B450M-A PRO MAX (MS-7C52)
+- CPU: AMD Ryzen 7 2700
+- GPU: NVidia GeForce GTX 1650 (yikes I f...ing hate it especially with wayland)
+- RAM: 1x8GB + 1x16GB random Kingstons
+- Motherboard: MSI B450M-A PRO MAX (MS-7C52)
 
 ## Setup
 
