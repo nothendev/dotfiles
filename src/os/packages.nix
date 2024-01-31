@@ -13,7 +13,12 @@
       glibc
 
       bat
-      htop
+      (btop.overrideAttrs (old: {
+        nativeBuildInputs = (old.nativeBuildInputs or []) ++ [addOpenGLRunpath];
+        postFixup = ''
+          addOpenGLRunpath $out/bin/btop
+        '';
+      }))
       nmon
       jq
       socat
@@ -27,23 +32,6 @@
       just
       neofetch
       insomnia
-      # telegram-desktop
-      xdg-utils
-      grim
-      slurp
-      wl-clipboard
-      hyprpicker
-      hyprpaper
-      watershot
-      pavucontrol
-      playerctl
-      wev
-      # (discord.overrideAttrs (why: { desktopItem = why.desktopItem.override (guh: { exec = "${guh.exec} --enable-gpu-rasterization --enable-zero-copy --enable-gpu-compositing --enable-native-gpu-memory-buffers --enable-oop-rasterization --enable-features=UseSkiaRenderer,WaylandWindowDecorations --ozone-platform-hint=auto --use-vulkan"; }); }))
-
-      # brave
-      librewolf
-
-      # distrobox
       meson
       ninja
       cmake
@@ -67,28 +55,6 @@
       xorg.libXcursor
       mold
       # nodejs_18
-
-      cachix
-      rnix-lsp
-      nixfmt
-
-      prismlauncher
-      qbittorrent
-      ranger
-      steam
-      canon-cups-ufr2
-
-      libreoffice-fresh
-      gimp
-      # krita
-      inkscape
-      gnome.nautilus
-      # wineWowPackages.waylandFull
-      # glfw-minecraft
-      glfw
-      # blender
-      # obsidian
-      mangohud
 
       nh
     ] ++ (with libsForQt5; [ okular ark ]) ++ [

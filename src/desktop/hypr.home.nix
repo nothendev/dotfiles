@@ -11,7 +11,7 @@ let
   };
 in
 {
-  imports = [ ./hyprlandy.nix ];
+  imports = [ ../home/hyprland.nix ];
   wayland.windowManager.hyprlandy = {
     enable = true;
     systemdIntegration = true;

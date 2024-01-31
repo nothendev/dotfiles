@@ -8,10 +8,14 @@
       ./configs.nix
       ./packages.nix
       ./fish.nix
-      ./hypr.nix
-      ./river.nix
       ./nvim.nix
-      # ./i3.nix
+
+      # Hyprland and River modules
+      ./hyprland.nix
+      ./river.nix # river (almost...)
+
+      ../desktop/hypr.home.nix
+      ../desktop/river.home.nix
     ];
   home.username = "ilya";
   home.homeDirectory = "/home/ilya";

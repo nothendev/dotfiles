@@ -21,6 +21,10 @@
     fjo.inputs.nixpkgs.follows = "nixpkgs";
     nh.url = "github:viperML/nh";
     nh.inputs.nixpkgs.follows = "nixpkgs";
+    mattermost-plugin-focalboard.url = "file+https://github.com/mattermost/focalboard/releases/download/v7.10.6/mattermost-plugin-focalboard.tar.gz";
+    mattermost-plugin-focalboard.flake = false;
+    mattermost-plugin-jitsi.url = "file+https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
+    mattermost-plugin-jitsi.flake = false;
   };
 
   # nixConfig = {
@@ -30,15 +34,16 @@
   # };
 
   outputs =
-    { self, nixpkgs, home-manager, nixwaypkgs, codeium-nvim, nh, ... }@attrs:
+    { self, nixpkgs, home-manager, nixwaypkgs, codeium-nvim, nh, ... }@inputs:
     let
       mkSystem = name:
         nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
-          specialArgs = attrs // { waypkgs = nixwaypkgs.packages.${system}; inherit system; };
+          specialArgs = inputs // { waypkgs = nixwaypkgs.packages.${system}; inherit system; };
           modules = [
-            ./src/systems/${name}
-            ./src/modules/upgrade-diff.nix
+            ./src/systems/${name}.nix
+            ./src/systems/${name}.hardware.nix
+            ./src/os/upgrade-diff.nix
             ./src/common/base69
 
             home-manager.nixosModules.home-manager
@@ -63,9 +68,8 @@
         };
     in
     {
-      packages.x86_64-linux =
-        import ./src/pkgs { pkgs = nixpkgs.legacyPackages."x86_64-linux"; };
-      nixosConfigurations.ilynix = mkSystem "iy";
+      nixosConfigurations.meh = mkSystem "meh";
+      colmena = import ./src/nodes { inherit nixpkgs inputs; };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
     };
 }

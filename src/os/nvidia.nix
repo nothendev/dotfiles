@@ -18,6 +18,7 @@
       enable = false;
       user = "ilya";
     };
+    desktopManager.gnome.enable = true;
     libinput = {
       enable = true;
       # mouse.additionalOptions =
@@ -27,6 +28,7 @@
       # ;
     };
   };
+  hardware.pulseaudio.enable = false;
   hardware.nvidia = {
     modesetting.enable = true;
     open = false;

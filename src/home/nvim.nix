@@ -235,13 +235,11 @@
         { name = "luasnip"; }
         { name = "buffer"; }
         { name = "path"; }
-        { name = "cmdline"; }
       ];
       cmp_luasnip.enable = true;
       cmp-nvim-lsp.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true;
-      cmp-cmdline.enable = true;
 
       # languages
       lspsaga = {
@@ -290,10 +288,6 @@
       ## zig
       zig.enable = true;
       lsp.servers.zls.enable = true;
-      ## java (AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-      nvim-jdtls.enable = true;
-      nvim-jdtls.cmd =
-        [ "${pkgs.jdt-language-server.override { jdk = pkgs.jdk17; }}" ];
     };
   };
   home.packages = with pkgs; [

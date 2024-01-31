@@ -5,7 +5,6 @@
     pandoc
     session-desktop
     fd
-    (jdt-language-server.override { jdk = pkgs.jdk17; })
     mpv
     anytype
     blender
@@ -14,6 +13,39 @@
     kotatogram-desktop
     fjo.packages.${system}.default
     evcxr
+    colmena
+    # telegram-desktop
+    xdg-utils
+    grim
+    slurp
+    wl-clipboard
+    hyprpicker
+    hyprpaper
+    watershot
+    pavucontrol
+    playerctl
+    wev
+    librewolf
+    cachix
+    rnix-lsp
+    nixfmt
+    prismlauncher
+    qbittorrent
+    ranger
+    steam
+    canon-cups-ufr2
+
+    libreoffice-fresh
+    gimp
+    # krita
+    inkscape
+    gnome.nautilus
+    # wineWowPackages.waylandFull
+    # glfw-minecraft
+    glfw
+    # blender
+    # obsidian
+    mangohud
     (webcord-vencord.overrideAttrs
       (a: { desktopItems = map (d: d.override { exec = "env NIXOS_OZONE_WL=1 webcord --disable-gpu-compositing %u"; }) a.desktopItems; }))
     (element-desktop.overrideAttrs
