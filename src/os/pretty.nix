@@ -8,6 +8,9 @@
     inter
     ubuntu_font_family
     corefonts
+    source-sans
+    source-code-pro
+    noto-fonts
   ];
   fonts.fontDir.enable = true;
   programs.fish.enable = true;

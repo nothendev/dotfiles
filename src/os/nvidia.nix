@@ -9,16 +9,16 @@
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     enable = true;
-    displayManager.gdm = {
+    displayManager.sddm = {
       enable = true;
-      wayland = true;
+      wayland.enable = true;
+      autoNumlock = true;
     };
     displayManager.lightdm.enable = false;
     displayManager.autoLogin = {
       enable = false;
       user = "ilya";
     };
-    desktopManager.gnome.enable = true;
     libinput = {
       enable = true;
       # mouse.additionalOptions =

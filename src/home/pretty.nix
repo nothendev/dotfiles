@@ -77,6 +77,10 @@ $directory$status '';
         variant = "mocha";
       };
     };
+    cursorTheme = {
+      name = "WhiteSur-cursors";
+      package = pkgs.whitesur-cursors;
+    };
     font = {
       name = "Monocraft";
       package = null;

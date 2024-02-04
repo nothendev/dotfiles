@@ -71,5 +71,10 @@
       nixosConfigurations.meh = mkSystem "meh";
       colmena = import ./src/nodes { inherit nixpkgs inputs; };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+      packages.x86_64-linux.wings = nixpkgs.legacyPackages.x86_64-linux.callPackage ./src/pkgs/wings.nix {};
+      apps.x86_64-linux.wings = {
+        type = "app";
+        program = "${self.packages.x86_64-linux.wings}/bin/wings";
+      };
     };
 }

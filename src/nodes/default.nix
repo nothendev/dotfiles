@@ -6,5 +6,6 @@
     specialArgs = inputs;
   };
 
+  binkus = ./binkus.nix;
   minky = ./minky.nix;
 }

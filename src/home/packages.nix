@@ -1,6 +1,7 @@
 { config, pkgs, fjo, system, ... }:
 {
   home.packages = with pkgs; [
+    qpwgraph
     eza
     pandoc
     session-desktop
@@ -46,8 +47,9 @@
     # blender
     # obsidian
     mangohud
-    (webcord-vencord.overrideAttrs
-      (a: { desktopItems = map (d: d.override { exec = "env NIXOS_OZONE_WL=1 webcord --disable-gpu-compositing %u"; }) a.desktopItems; }))
+    # I HATE NVIDIA I HATE NVIDIA I HATE NVIDIA
+    (vesktop.overrideAttrs
+      (a: { desktopItems = map (d: d.override { exec = "env NIXOS_OZONE_WL=1 GDK_BACKEND=wayland vesktop --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --disable-gpu-compositing %u"; }) a.desktopItems; }))
     (element-desktop.overrideAttrs
       (e: rec {
         # Add arguments to the .desktop entry
