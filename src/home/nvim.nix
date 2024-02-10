@@ -94,6 +94,11 @@
         options.noremap = false;
       }
       {
+        action = "<Esc>";
+        key = "<C-c>";
+        options.silent = true;
+      }
+      {
         action = "function()vim.diagnostic.open_float{border='rounded'}end";
         key = "<leader>f";
         mode = "n";
@@ -101,16 +106,10 @@
       }
     ];
     extraConfigLua = ''
-      ''
-    + ''
-      local codeium = require'codeium'
-      codeium.setup{}
-    ''
-    ;
+    '';
     extraPlugins = with pkgs.vimPlugins;
       [
         direnv-vim
-        codeium-nvim
       ];
     plugins = {
       # nvim-wide things
@@ -181,6 +180,9 @@
       nvim-autopairs.enable = true;
       nvim-colorizer.enable = true;
       nvim-lightbulb.enable = true;
+      codeium-nvim = {
+        enable = true;
+      };
       ## completion
       lspkind = {
         enable = true;

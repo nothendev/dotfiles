@@ -13,11 +13,9 @@
     nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    codeium-nvim.url = "github:Exafunction/codeium.nvim";
-    codeium-nvim.inputs.nixpkgs.follows = "nixpkgs";
     nvim.url = "github:neovim/neovim?dir=contrib";
     nvim.inputs.nixpkgs.follows = "nixpkgs";
-    fjo.url = "git+https://codeberg.org/VoiDD/fjo?ref=forgejo-sdk";
+    fjo.url = "git+https://codeberg.org/VoiDD/fjo";
     fjo.inputs.nixpkgs.follows = "nixpkgs";
     nh.url = "github:viperML/nh";
     nh.inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +32,7 @@
   # };
 
   outputs =
-    { self, nixpkgs, home-manager, nixwaypkgs, codeium-nvim, nh, ... }@inputs:
+    { self, nixpkgs, home-manager, nixwaypkgs, nh, ... }@inputs:
     let
       mkSystem = name:
         nixpkgs.lib.nixosSystem rec {
@@ -56,8 +54,7 @@
 
             ({ config, pkgs, ... }: {
               nixpkgs.overlays = [
-                (thewhat: super: import ./src/pkgs { pkgs = super; })
-                codeium-nvim.overlays.${system}.default
+                (_: super: import ./src/pkgs { pkgs = super; })
               ];
 
               environment.systemPackages = [ nh.packages.${system}.default ];
@@ -71,7 +68,7 @@
       nixosConfigurations.meh = mkSystem "meh";
       colmena = import ./src/nodes { inherit nixpkgs inputs; };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
-      packages.x86_64-linux.wings = nixpkgs.legacyPackages.x86_64-linux.callPackage ./src/pkgs/wings.nix {};
+      packages.x86_64-linux.wings = nixpkgs.legacyPackages.x86_64-linux.callPackage ./src/pkgs/wings.nix { };
       apps.x86_64-linux.wings = {
         type = "app";
         program = "${self.packages.x86_64-linux.wings}/bin/wings";

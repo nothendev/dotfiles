@@ -54,7 +54,7 @@
       xorg.libX11
       xorg.libXcursor
       mold
-      # nodejs_18
+      nodejs_18
 
       nh
     ] ++ (with libsForQt5; [ okular ark ]) ++ [
