@@ -7,7 +7,7 @@
 
   deployment = {
     tags = [ "matest" "mh-dedic" "masterhost" ];
-    targetHost = "83.222.2.171";
+    targetHost = "87.242.74.225";
     targetUser = "root";
   };
   security.acme = {
