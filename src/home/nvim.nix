@@ -1,4 +1,4 @@
-{ pkgs, nixvim, nvim, system, ... }: {
+{ pkgs, nixvim, nvim, zls, system, ... }: {
   imports = [ nixvim.homeManagerModules.nixvim ];
   programs.nixvim = {
     enable = true;
@@ -290,6 +290,7 @@
       ## zig
       zig.enable = true;
       lsp.servers.zls.enable = true;
+      lsp.servers.zls.package = zls.packages.${system}.zls;
     };
   };
   home.packages = with pkgs; [
