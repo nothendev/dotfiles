@@ -114,7 +114,6 @@
     plugins = {
       # nvim-wide things
       indent-blankline.enable = true;
-      auto-save.enable = true;
       bufferline.enable = true;
       chadtree.enable = true;
       lualine = {
@@ -288,7 +287,6 @@
       ## js/ts
       lsp.servers.tsserver.enable = true;
       ## zig
-      zig.enable = true;
       lsp.servers.zls.enable = true;
       lsp.servers.zls.package = zls.packages.${system}.zls;
     };

@@ -1,5 +1,7 @@
 # The nothfiles
 
+![THE NOTHRICE](./rice.png)
+
 As you may have already guessed, this is a dotfiles repository for my [PC's](./src/systems) and homeserver setup's configuration,
 specifically a NixOS setup and [colmena] [hive](./src/nodes) for my homeserver.
 
