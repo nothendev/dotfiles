@@ -15,17 +15,20 @@
     };
     globals.mapleader = " ";
     keymaps = [
+      # i catch myself doing that too often so disable it here xd
       {
-        action = ":";
-        key = "<M-x>";
-      }
-      {
-        action = "<cmd>w<CR>";
+        action = "function()print'stop doing ctrl-s you dumbass'end";
         key = "<D-s>";
+        lua = true;
       }
       {
         action = "^";
         key = "<C-a>";
+      }
+      {
+        action = "0";
+        key = "<C-Tab>";
+        mode = "n";
       }
       {
         action = "function()vim.lsp.buf.format{async=true}end";
@@ -134,7 +137,6 @@
       rainbow-delimiters.enable = true;
       noice = {
         enable = true;
-        extraOptions = { presets.command_palette = true; };
         lsp.override = {
           "vim.lsp.util.convert_input_to_markdown_lines" = true;
           "vim.lsp.util.stylize_markdown" = true;
@@ -241,6 +243,7 @@
       cmp-nvim-lsp.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true;
+      nix-develop.enable = true;
 
       # languages
       lspsaga = {
