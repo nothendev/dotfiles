@@ -9,13 +9,13 @@
       enable = true;
       settings = {
         palette = "catppuccin_${flavour}";
-        format = ''$rust
-$directory$status '';
+        format = ''$directory[\[$rust\]](fg:#${base69.mauve})
+$status '';
         status = {
           disabled = false;
           success_symbol = "[>](fg:#${base69.green})";
           symbol = "[>](fg:#${base69.red})";
-          not_executable_symbol = "[ -x>](fg:#${base69.maroon})";
+          not_executable_symbol = "[-x>](fg:#${base69.maroon})";
           format = "$symbol";
         };
         directory = {
@@ -28,7 +28,7 @@ $directory$status '';
         };
         rust = {
           disabled = false;
-          format = "[rs\\($version\\)]($style)";
+          format = "[$version]($style)";
           style = "fg:#${base69.red}";
         };
       } // builtins.fromTOML (builtins.readFile

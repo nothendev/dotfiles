@@ -285,6 +285,7 @@
           procMacro.ignored = {
             "leptos_macro" = [ "component" "server" "island" ];
           };
+          checkOnSave = false;
         };
       };
       ## js/ts

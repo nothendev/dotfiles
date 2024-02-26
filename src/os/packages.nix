@@ -47,13 +47,13 @@
       tokei
       python3
       pkg-config
-      gcc
+      gcc13
       alsa-lib
       udev
       wayland
       xorg.libX11
       xorg.libXcursor
-      mold
+      mold-wrapped
       nodejs_18
 
       nh
