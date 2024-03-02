@@ -13,7 +13,7 @@
     nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    nvim.url = "github:neovim/neovim?dir=contrib";
+    nvim.url = "github:neovim/neovim?dir=contrib&rev=4e59422e1d4950a3042bad41a7b81c8db4f8b648";
     nvim.inputs.nixpkgs.follows = "nixpkgs";
     fjo.url = "git+https://codeberg.org/VoiDD/fjo";
     fjo.inputs.nixpkgs.follows = "nixpkgs";

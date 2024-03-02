@@ -17,7 +17,7 @@ specifically a NixOS setup and [colmena] [hive](./src/nodes) for my homeserver.
 
 ### Fonts
 
-[Monocraft](https://github.com/idreesinc/monocraft) basically everywhere, with the Nerd Font variant applied in Neovim.
+[Miracode](https://github.com/idreesinc/miracode) basically everywhere, with the Nerd Font variant applied in Neovim.
 
 ## Hardware (main PC)
 

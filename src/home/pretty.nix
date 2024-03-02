@@ -41,25 +41,24 @@ $status '';
           } + /palettes/${flavour}.toml));
     };
 
-  programs.kitty = {
+  programs.alacritty = {
     enable = true;
-    package = pkgs.kitty;
-    font = {
-      name = "Monocraft";
-      size = 14;
+    settings = {
+      import = [
+        (pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "alacritty";
+          rev = "832787d6cc0796c9f0c2b03926f4a83ce4d4519b";
+          sha256 = "sha256-irU6ThA4uvHW146UOqlOHeDbvQyFX3f9R8f16MBEFxM=";
+        } + /catppuccin-mocha.toml)
+      ];
+      window.opacity = 0.5;
+      font.normal = {
+        family = "Miracode Nerd Font";
+        style = "Regular";
+      };
+      font.size = 12.25;
     };
-    shellIntegration.enableFishIntegration = true;
-    extraConfig = ''
-      include ~/.config/kitty/current-theme.conf
-      background_opacity 0.5
-      background_blur 1
-      disable_ligatures never
-      tab_bar_min_tabs            1
-      tab_bar_edge                bottom
-      tab_bar_style               powerline
-      tab_powerline_style         slanted
-      tab_title_template          {title}{\' :{}:\'.format(num_windows) if num_windows > 1 else \'\'}
-    '';
   };
 
   gtk = {
@@ -82,7 +81,7 @@ $status '';
       package = pkgs.whitesur-cursors;
     };
     font = {
-      name = "Monocraft";
+      name = "Miracode";
       package = null;
       size = 10;
     };
@@ -92,8 +91,8 @@ $status '';
     enable = true;
     package = pkgs.rofi-wayland-unwrapped;
     location = "top";
-    terminal = "${config.programs.kitty.package}/bin/kitty";
-    font = config.programs.kitty.font.name;
+    terminal = "${config.programs.alacritty.package}/bin/alacritty";
+    font = config.programs.alacritty.settings.font.normal.family;
   };
 
   programs.eww = {

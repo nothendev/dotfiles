@@ -1,6 +1,8 @@
 { config, pkgs, fjo, system, ... }:
 {
   home.packages = with pkgs; [
+    fzf
+    zoxide
     qpwgraph
     eza
     pandoc
@@ -60,14 +62,20 @@
         # Update the install script to use the new .desktop entry
         installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
       }))
+    zellij
   ];
   programs.obs-studio = {
-    enable = false;
-    package = (pkgs.obs-studio.override { ffmpeg_4 = pkgs.ffmpeg_4-full; }).overrideAttrs (a: { cmakeFlags = a.cmakeFlags ++ [ "-DENABLE_AJA=0" ]; });
+    enable = true;
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
-      input-overlay
       obs-pipewire-audio-capture
     ];
+  };
+  programs.zellij = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      theme = "catppuccin-mocha";
+    };
   };
 }

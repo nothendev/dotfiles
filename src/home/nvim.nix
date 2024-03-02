@@ -2,6 +2,7 @@
   imports = [ nixvim.homeManagerModules.nixvim ];
   programs.nixvim = {
     enable = true;
+    package = nvim.packages.${system}.default;
     colorschemes.catppuccin = {
       enable = true;
       flavour = "mocha";
@@ -11,7 +12,7 @@
       number = true;
       relativenumber = true;
       shiftwidth = 2;
-      guifont = "Monocraft Nerd Font,JetBrainsMono Nerd Font Mono:h14";
+      guifont = "Miracode Nerd Font,JetBrainsMono Nerd Font Mono:h14";
     };
     globals.mapleader = " ";
     keymaps = [
@@ -271,8 +272,9 @@
       lsp.servers.rnix-lsp.enable = true;
       ## rust
       crates-nvim.enable = true;
-      rust-tools.enable = true;
-      rust-tools.server.cargo.features = "all";
+      lsp.onAttach = ''
+        vim.lsp.inlay_hint.enable(bufnr, true)
+      '';
       lsp.servers.rust-analyzer = {
         enable = true;
         installLanguageServer = false;
@@ -295,6 +297,7 @@
       lsp.servers.zls.package = zls.packages.${system}.zls;
     };
   };
+  home.sessionVariables.EDITOR = "nvim";
   home.packages = with pkgs; [
     neovide
     # nvim.packages.${system}.neovim

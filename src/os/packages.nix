@@ -1,6 +1,10 @@
 { config, pkgs, nixpkgs, zls, zig, ... }: {
   imports = [ ../overlays ];
   nix.registry.nixpkgs.flake = nixpkgs;
+  nix.registry.nixpkgs.to = {
+    type = "path";
+    path = pkgs.path;
+  };
   nix.nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
   environment.etc."channels/nixpkgs".source = nixpkgs.outPath;
   environment.etc."jvm/17".source = pkgs.jdk17;

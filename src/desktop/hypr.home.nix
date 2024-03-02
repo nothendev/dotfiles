@@ -19,7 +19,7 @@ in
     settings =
       with dsl // dsl.fn;
       let
-        makeKitty = "[workspace special:kitty silent; float; noanim; size 1896 1056] kitty";
+        makeTerminal = "[workspace special:term silent; float; noanim; size 1896 1056] alacritty";
         mod = "SUPER";
         bindms = bind [ mod "SHIFT" ];
         bindmov = n: bind mod (toString n) (workspace n);
@@ -36,7 +36,7 @@ in
         exec-once = [
           "~/.config/eww/scripts/init"
           "mako"
-          makeKitty
+          makeTerminal
           "playerctld"
           "[workspace 2] librewolf"
         ];
@@ -69,7 +69,7 @@ in
           (bindms "up" (movewindow dir.up))
           (bindms "down" (movewindow dir.down))
           (bindms "A" (exec "~/.config/eww/scripts/init"))
-          (bindms "S" (exec makeKitty))
+          (bindms "S" (exec makeTerminal))
           (bind mod "left" (movefocus dir.left))
           (bind mod "right" (movefocus dir.right))
           (bind mod "up" (movefocus dir.up))
@@ -162,7 +162,7 @@ in
   };
   services.mako = {
     enable = true;
-    font = "Monocraft Nerd Font";
+    font = "Miracode Nerd Font";
     backgroundColor = "#${base69.base}ff";
     borderColor = "#${base69.mantle}ff";
     textColor = "#${base69.text}ff";
