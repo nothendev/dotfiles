@@ -54,10 +54,12 @@ $status '';
       ];
       window.opacity = 0.5;
       font.normal = {
-        family = "Miracode Nerd Font";
+        family = osConfig.pretty.font.family;
         style = "Regular";
       };
       font.size = 12.25;
+      cursor.style.shape = "Beam";
+      cursor.vi_mode_style.shape = "Block";
     };
   };
 
@@ -81,9 +83,9 @@ $status '';
       package = pkgs.whitesur-cursors;
     };
     font = {
-      name = "Miracode";
+      name = osConfig.pretty.font.family;
       package = null;
-      size = 10;
+      size = 11;
     };
   };
 
@@ -92,7 +94,7 @@ $status '';
     package = pkgs.rofi-wayland-unwrapped;
     location = "top";
     terminal = "${config.programs.alacritty.package}/bin/alacritty";
-    font = config.programs.alacritty.settings.font.normal.family;
+    font = osConfig.pretty.font.family;
   };
 
   programs.eww = {

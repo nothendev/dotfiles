@@ -1,4 +1,4 @@
-{ pkgs, nixvim, nvim, zls, system, ... }: {
+{ pkgs, nixvim, nvim, zls, system, osConfig, ... }: {
   imports = [ nixvim.homeManagerModules.nixvim ];
   programs.nixvim = {
     enable = true;
@@ -12,7 +12,7 @@
       number = true;
       relativenumber = true;
       shiftwidth = 2;
-      guifont = "Miracode Nerd Font,JetBrainsMono Nerd Font Mono:h14";
+      guifont = "${osConfig.pretty.font.family}:h${toString osConfig.pretty.font.defaultSize}";
     };
     globals.mapleader = " ";
     keymaps = [

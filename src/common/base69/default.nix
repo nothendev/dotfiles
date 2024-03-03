@@ -35,4 +35,8 @@ let
 in
 {
   options.pretty.base69 = colors;
+  options.pretty.font = {
+    family = lib.mkOption { type = lib.types.str; description = lib.mdDoc "The font used all around the system"; };
+    defaultSize = lib.mkOption { type = lib.types.int; description = lib.mdDoc "The default font size"; };
+  };
 }

@@ -47,7 +47,7 @@ in
           # Win-Shift-Enter: launch a new kitty
           (bindms "RETURN" (exec "kitty"))
 
-          (bind mod "RETURN" (togglespecialworkspace' "kitty"))
+          (bind mod "RETURN" (togglespecialworkspace' "term"))
           (bindms "Q" killactive)
           (bindms "SPACE" togglefloating)
           (bind mod "D" (exec "rofi -show drun"))
@@ -162,7 +162,7 @@ in
   };
   services.mako = {
     enable = true;
-    font = "Miracode Nerd Font";
+    font = osConfig.pretty.font.family;
     backgroundColor = "#${base69.base}ff";
     borderColor = "#${base69.mantle}ff";
     textColor = "#${base69.text}ff";

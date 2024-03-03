@@ -1,8 +1,8 @@
 { config, pkgs, ... }: {
-  imports = [ ../common/base69/themes/github-dark.nix ];
+  imports = [ ../common/base69/themes/catppuccin.nix ];
   fonts.packages = with pkgs; [
     jetbrains-mono
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "ComicShannsMono" ]; })
     font-awesome
     rubik
     inter
@@ -15,8 +15,12 @@
   fonts.fontDir.enable = true;
   programs.fish.enable = true;
   hardware.opentabletdriver.enable = true;
-  # pretty.catppuccin = {
-  #   enable = true;
-  #   flavour = "oled";
-  # };
+  pretty.catppuccin = {
+    enable = true;
+    flavour = "mocha";
+  };
+  pretty.font = {
+    family = "ComicShannsMono Nerd Font";
+    defaultSize = 13;
+  };
 }
