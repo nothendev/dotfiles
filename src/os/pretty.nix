@@ -2,7 +2,7 @@
   imports = [ ../common/base69/themes/catppuccin.nix ];
   fonts.packages = with pkgs; [
     jetbrains-mono
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "ComicShannsMono" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     font-awesome
     rubik
     inter
@@ -20,7 +20,7 @@
     flavour = "mocha";
   };
   pretty.font = {
-    family = "ComicShannsMono Nerd Font";
+    family = "JetBrainsMono Nerd Font";
     defaultSize = 13;
   };
 }

@@ -19,7 +19,7 @@ in
     settings =
       with dsl // dsl.fn;
       let
-        makeTerminal = "[workspace special:term silent; float; noanim; size 1896 1056] alacritty";
+        makeTerminal = "[workspace special:term silent; noanim] alacritty";
         mod = "SUPER";
         bindms = bind [ mod "SHIFT" ];
         bindmov = n: bind mod (toString n) (workspace n);
@@ -44,8 +44,8 @@ in
         bind = [
           (bind null "XF86AudioPlay" (exec "playerctl play-pause"))
 
-          # Win-Shift-Enter: launch a new kitty
-          (bindms "RETURN" (exec "kitty"))
+          # Win-Shift-Enter: launch a new term instance
+          (bindms "RETURN" (exec "alacritty"))
 
           (bind mod "RETURN" (togglespecialworkspace' "term"))
           (bindms "Q" killactive)

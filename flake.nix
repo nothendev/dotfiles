@@ -23,6 +23,7 @@
     mattermost-plugin-focalboard.flake = false;
     mattermost-plugin-jitsi.url = "file+https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
     mattermost-plugin-jitsi.flake = false;
+    zjstatus.url = "github:dj95/zjstatus";
   };
 
   # nixConfig = {

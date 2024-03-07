@@ -59,6 +59,7 @@
       xorg.libXcursor
       mold-wrapped
       nodejs_18
+      bun
 
       nh
     ] ++ (with libsForQt5; [ okular ark ]) ++ [
