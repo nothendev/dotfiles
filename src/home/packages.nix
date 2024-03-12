@@ -14,7 +14,7 @@
     # firefox
     ## broken btabld
     kotatogram-desktop
-    fjo.packages.${system}.default
+    # fjo.packages.${system}.default
     evcxr
     colmena
     # telegram-desktop
@@ -36,7 +36,7 @@
     qbittorrent
     ranger
     steam
-    canon-cups-ufr2
+    # canon-cups-ufr2
 
     libreoffice-fresh
     gimp
@@ -65,7 +65,7 @@
     zellij
   ];
   programs.obs-studio = {
-    enable = true;
+    enable = false;
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
       obs-pipewire-audio-capture

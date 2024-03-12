@@ -99,8 +99,7 @@ $status '';
 
   programs.eww = {
     enable = true;
-    package = with pkgs;
-      (eww-wayland.override { withWayland = true; });
+    package = pkgs.eww;
     configDir = ../configs/eww;
   };
 }

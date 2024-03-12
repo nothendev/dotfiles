@@ -10,9 +10,8 @@
       ./fish.nix
       ./nvim.nix
 
-      # Hyprland and River modules
+      # Hyprland module
       ./hyprland.nix
-      ./river.nix # river (almost...)
 
       ../desktop/hypr.home.nix
       ../desktop/river.home.nix
