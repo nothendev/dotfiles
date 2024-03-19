@@ -1,3 +1,1 @@
-{ pkgs, ... }: {
-  services.xserver.windowManager.i3.enable = true;
-}
+{ pkgs, ... }: { services.xserver.windowManager.i3.enable = true; }

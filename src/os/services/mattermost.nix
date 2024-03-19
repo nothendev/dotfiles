@@ -6,12 +6,7 @@
     mutableConfig = true;
     localDatabaseCreate = true;
     user = "mattermost";
-    plugins = [
-      mattermost-plugin-focalboard
-      mattermost-plugin-jitsi
-    ];
+    plugins = [ mattermost-plugin-focalboard mattermost-plugin-jitsi ];
   };
-  services.nginx = {
-    enable = true;
-  };
+  services.nginx = { enable = true; };
 }

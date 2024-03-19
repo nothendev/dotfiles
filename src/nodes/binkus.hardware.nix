@@ -1,26 +1,25 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
-  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "hpsa" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "uhci_hcd" "ehci_pci" "hpsa" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/318e0c17-62b8-4ad8-987c-5929afa40d75";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/318e0c17-62b8-4ad8-987c-5929afa40d75";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/e117e8ce-cf51-4330-9367-de5a3f491047";
-      fsType = "ext4";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/e117e8ce-cf51-4330-9367-de5a3f491047";
+    fsType = "ext4";
+  };
 
   swapDevices = [ ];
 
@@ -34,5 +33,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

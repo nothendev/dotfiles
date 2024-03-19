@@ -1,5 +1,4 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, ... }: {
   imports = [
     ../os/boot.nix
     ../os/magic.nix

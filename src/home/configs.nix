@@ -1,9 +1,7 @@
 { config, pkgs, osConfig, ... }:
 
-let
-  makeCfg = path: { ".config/${path}".source = ../configs/${path}; };
-in
-{
+let makeCfg = path: { ".config/${path}".source = ../configs/${path}; };
+in {
   home.file = {
     # ".gitconfig".text = ''
     #   [user]

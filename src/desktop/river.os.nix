@@ -1,5 +1,8 @@
 { pkgs, lib, ... }: {
-  programs.river = { enable = true; extraPackages = []; };
+  programs.river = {
+    enable = true;
+    extraPackages = [ ];
+  };
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     # WLR_RENDERER = "vulkan";

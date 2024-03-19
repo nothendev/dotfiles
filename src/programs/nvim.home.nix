@@ -12,7 +12,9 @@
       number = true;
       relativenumber = true;
       shiftwidth = 2;
-      guifont = "${osConfig.pretty.font.family}:h${toString osConfig.pretty.font.defaultSize}";
+      guifont = "${osConfig.pretty.font.family}:h${
+          toString osConfig.pretty.font.defaultSize
+        }";
     };
     globals.mapleader = " ";
     keymaps = [
@@ -109,12 +111,8 @@
         lua = true;
       }
     ];
-    extraConfigLua = ''
-    '';
-    extraPlugins = with pkgs.vimPlugins;
-      [
-        direnv-vim
-      ];
+    extraConfigLua = "";
+    extraPlugins = with pkgs.vimPlugins; [ direnv-vim ];
     plugins = {
       # nvim-wide things
       indent-blankline.enable = true;
@@ -171,7 +169,8 @@
         autoUpdate = true;
         mainImage = "neovim";
         showTime = true;
-        fileAssets.rs = [ "Rust" "https://www.rust-lang.org/logos/rust-logo-512x512.png" ];
+        fileAssets.rs =
+          [ "Rust" "https://www.rust-lang.org/logos/rust-logo-512x512.png" ];
         neovimImageText = "NEOVIM GAMING";
       };
       treesitter.enable = true;
@@ -182,9 +181,7 @@
       nvim-autopairs.enable = true;
       nvim-colorizer.enable = true;
       nvim-lightbulb.enable = true;
-      codeium-nvim = {
-        enable = true;
-      };
+      codeium-nvim = { enable = true; };
       ## completion
       lspkind = {
         enable = true;
@@ -199,37 +196,41 @@
         "<C-e>" = "cmp.mapping.close()";
         "<C-f>" = "cmp.mapping.scroll_docs(4)";
         "<CR>" = "cmp.mapping(cmp.mapping.confirm({ select = true }), {'i'})";
-        "<S-Tab>" = ''cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, {'i', 's'})'';
-        "<Tab>" = ''cmp.mapping(
-            function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              elseif require("luasnip").expand_or_jumpable() then
-                vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-              else
-                fallback()
-              end
-            end
-          , {'i', 's'})'';
+        "<S-Tab>" = ''
+          cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                  luasnip.jump(-1)
+                else
+                  fallback()
+                end
+              end, {'i', 's'})'';
+        "<Tab>" = ''
+          cmp.mapping(
+                      function(fallback)
+                        if cmp.visible() then
+                          cmp.select_next_item()
+                        elseif require("luasnip").expand_or_jumpable() then
+                          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+                        else
+                          fallback()
+                        end
+                      end
+                    , {'i', 's'})'';
       };
       cmp.settings.snippet.expand = ''
-      function(args)
-        require('luasnip').lsp_expand(args.body)
-      end
+        function(args)
+          require('luasnip').lsp_expand(args.body)
+        end
       '';
       cmp.settings.sources = [
         { name = "codeium"; }
         { name = "nvim_lsp"; }
         { name = "luasnip"; }
-        { name = "buffer"; }
+        {
+          name = "buffer";
+        }
         # { name = "path"; }
       ];
       cmp_luasnip.enable = true;
@@ -259,9 +260,11 @@
         "<leader>ra" = "rename";
       };
       cmp-nvim-lsp-signature-help.enable = true;
+      ## c/cpp
+      lsp.servers.ccls.enable = true;
       ## nix
       nix.enable = true;
-      lsp.servers.rnix-lsp.enable = true;
+      lsp.servers.nixd.enable = true;
       ## rust
       crates-nvim.enable = true;
       lsp.onAttach = ''
@@ -291,9 +294,10 @@
     };
   };
   home.sessionVariables.EDITOR = "nvim";
-  home.packages = with pkgs; [
-    neovide
-    # nvim.packages.${system}.neovim
-    # neovim
-  ];
+  home.packages = with pkgs;
+    [
+      neovide
+      # nvim.packages.${system}.neovim
+      # neovim
+    ];
 }

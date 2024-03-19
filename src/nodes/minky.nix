@@ -1,5 +1,9 @@
 { pkgs, ... }: {
-  imports = [ ./minky.hardware.nix ../os/services/mattermost.nix ../os/services/agh.nix ];
+  imports = [
+    ./minky.hardware.nix
+    ../os/services/mattermost.nix
+    ../os/services/agh.nix
+  ];
   deployment = {
     tags = [ "home" ];
     targetHost = "192.168.23.46";
@@ -26,7 +30,8 @@
   services.cloudflared = {
     enable = true;
     tunnels."b962a0e8-d103-4275-a301-4b40208de026" = {
-      credentialsFile = "/var/lib/cloudflared/b962a0e8-d103-4275-a301-4b40208de026.json";
+      credentialsFile =
+        "/var/lib/cloudflared/b962a0e8-d103-4275-a301-4b40208de026.json";
       ingress."mm.matestmc.ru".service = "http://localhost:8065";
       default = "http_status:404";
     };
@@ -42,7 +47,5 @@
   i18n.defaultLocale = "en_US.UTF-8";
   system.stateVersion = "24.05";
   services.openssh.enable = true;
-  services.openssh.settings = {
-    PermitRootLogin = "yes";
-  };
+  services.openssh.settings = { PermitRootLogin = "yes"; };
 }

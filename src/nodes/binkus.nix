@@ -65,7 +65,7 @@
   # wings
   services.wings = {
     enable = true;
-    package = pkgs.callPackage ../pkgs/wings.nix {};
+    package = pkgs.callPackage ../pkgs/wings.nix { };
   };
 
   virtualisation.oci-containers.backend = "docker";

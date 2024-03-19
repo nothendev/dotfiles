@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   users.users.ilya = {
     isNormalUser = true;
     extraGroups = [ "wheel" "sudo" "networkmanager" "wireshark" ];

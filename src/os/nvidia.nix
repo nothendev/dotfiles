@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, catppuccin-sddm, ... }: {
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -13,6 +12,7 @@
       enable = true;
       wayland.enable = true;
       autoNumlock = true;
+      theme = "catppuccin-mocha";
     };
     displayManager.lightdm.enable = false;
     displayManager.autoLogin = {
@@ -28,6 +28,12 @@
       # ;
     };
   };
+  environment.systemPackages = [
+    (pkgs.runCommand "sddm-catppuccin" {} ''
+      mkdir -p $out/share/sddm/themes
+      cp -r ${catppuccin-sddm}/src/catppuccin-mocha $out/share/sddm/themes/catppuccin-mocha
+    '')
+  ];
   hardware.pulseaudio.enable = false;
   hardware.nvidia = {
     modesetting.enable = true;

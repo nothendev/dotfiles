@@ -4,8 +4,7 @@ let
   cfg = config.pretty.catppuccin;
   flavour = cfg.flavour;
   flavours = import ./catppuccin/flavours.nix;
-in
-{
+in {
   options.pretty.catppuccin = {
     enable = mkEnableOption "Enable catppuccin for base69";
     flavour = mkOption {

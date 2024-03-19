@@ -1,8 +1,6 @@
 { nixpkgs, inputs }: {
   meta = {
-    nixpkgs = import nixpkgs {
-      system = "x86_64-linux";
-    };
+    nixpkgs = import nixpkgs { system = "x86_64-linux"; };
     specialArgs = inputs;
   };
 

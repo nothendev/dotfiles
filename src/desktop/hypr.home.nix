@@ -1,23 +1,19 @@
 { pkgs, osConfig, ... }:
 let
   lib = pkgs.lib;
-  dsl = import ../common/hyprdsl.nix {
-    inherit (pkgs) lib;
-  };
+  dsl = import ../common/hyprdsl.nix { inherit (pkgs) lib; };
   base69 = osConfig.pretty.base69;
   wallpapers = {
     "HDMI-A-1" = ../assets/wallpapers/hyprland1-dark.png;
     "DVI-D-1" = ../assets/wallpapers/nix.png;
   };
-in
-{
+in {
   imports = [ ../home/hyprland.nix ];
   wayland.windowManager.hyprlandy = {
     enable = true;
     systemdIntegration = true;
     finalPackage = osConfig.programs.hyprland.finalPackage;
-    settings =
-      with dsl // dsl.fn;
+    settings = with dsl // dsl.fn;
       let
         makeTerminal = "[workspace special:term silent; noanim] alacritty";
         mod = "SUPER";
@@ -25,13 +21,13 @@ in
         bindmov = n: bind mod (toString n) (workspace n);
         bindsmov = n: bindms (toString n) (movetoworkspace n);
         workspacen = lib.lists.range 1 9;
-      in
-      {
-        monitor = ["DVI-D-1,1920x1080@60,auto,auto" "HDMI-A-1,1920x1080@60,auto,auto"];
-
-        exec = [
-          "hyprpaper"
+      in {
+        monitor = [
+          "DVI-D-1,1920x1080@60,auto,auto"
+          "HDMI-A-1,1920x1080@60,auto,auto"
         ];
+
+        exec = [ "hyprpaper" ];
 
         exec-once = [
           "~/.config/eww/scripts/init"
@@ -56,8 +52,9 @@ in
           (bind mod "S" togglegroup)
           (bind mod "TAB" (changegroupactive dir.forward))
           (bindms "TAB" (changegroupactive dir.back))
-          (bind null "Print" (exec "grim -g \"$(slurp)\""))
-          (bind "CTRL" "code:49" (exec "hyprctl switchxkblayout microsoft-wired-keyboard-600 next"))
+          (bind null "Print" (exec ''grim -g "$(slurp)"''))
+          (bind "CTRL" "code:49"
+            (exec "hyprctl switchxkblayout microsoft-wired-keyboard-600 next"))
           (bindms "F" fullscreen)
           (bindms "G" moveoutofgroup)
           (bindms "H" (moveintogroup dir.left))
@@ -75,7 +72,7 @@ in
           (bind mod "up" (movefocus dir.up))
           (bind mod "down" (movefocus dir.down))
           (bind mod "mouse_down" (workspace (workspace'.relative-open 1)))
-          (bind mod "mouse_up" (workspace (workspace'.relative-open (- 1))))
+          (bind mod "mouse_up" (workspace (workspace'.relative-open (-1))))
         ] ++ map bindmov workspacen ++ map bindsmov workspacen;
 
         bindm = [
@@ -153,9 +150,7 @@ in
         master.new_is_master = true;
         gestures.workspace_swipe = false;
 
-        misc = {
-          disable_autoreload = true;
-        };
+        misc = { disable_autoreload = true; };
 
         debug.disable_logs = false;
       };
@@ -168,7 +163,10 @@ in
     textColor = "#${base69.text}ff";
   };
   xdg.configFile."hypr/hyprpaper.conf".text = ''
-    ${lib.strings.concatMapStrings (wp: "preload = ${toString wp}\n") (lib.attrsets.attrValues wallpapers)}
-    ${lib.strings.concatStringsSep "\n" (lib.attrsets.mapAttrsToList (monitor: wp: "wallpaper = ${monitor},${toString wp}") wallpapers)}
+    ${lib.strings.concatMapStrings (wp: ''
+      preload = ${toString wp}
+    '') (lib.attrsets.attrValues wallpapers)}
+    ${lib.strings.concatStringsSep "\n" (lib.attrsets.mapAttrsToList
+      (monitor: wp: "wallpaper = ${monitor},${toString wp}") wallpapers)}
   '';
 }

@@ -5,20 +5,20 @@
     type = "path";
     path = pkgs.path;
   };
+  programs.nix-ld.enable = true;
+  environment.variables = {
+    NIX_LD = pkgs.lib.mkForce pkgs.stdenv.cc.bintools.dynamicLinker;
+  };
   nix.nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
   environment.etc."channels/nixpkgs".source = nixpkgs.outPath;
   environment.etc."jvm/17".source = pkgs.jdk17;
   environment.etc."jvm/8".source = pkgs.jdk8;
   environment.systemPackages = with pkgs;
     [
-      kitty
-      fish
-      starship
       glibc
-
-      bat
       (btop.overrideAttrs (old: {
-        nativeBuildInputs = (old.nativeBuildInputs or []) ++ [addOpenGLRunpath];
+        nativeBuildInputs = (old.nativeBuildInputs or [ ])
+          ++ [ addOpenGLRunpath ];
         postFixup = ''
           addOpenGLRunpath $out/bin/btop
         '';
@@ -62,9 +62,6 @@
       bun
 
       nh
-    ] ++ (with libsForQt5; [ okular ark ]) ++ [
-      zig.packages.${pkgs.system}.master
-      # zls.packages.${pkgs.system}.default
     ];
 
   programs.wireshark = {
@@ -81,6 +78,6 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryFlavor = "gnome3";
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 }

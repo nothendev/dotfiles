@@ -3,8 +3,7 @@ let
 
   cfg = config.wayland.windowManager.hyprlandy;
 
-in
-{
+in {
   meta.maintainers = [ lib.maintainers.fufexan ];
 
   options.wayland.windowManager.hyprlandy = {
@@ -39,20 +38,18 @@ in
     settings = lib.mkOption {
       type = with lib.types;
         let
-          valueType = nullOr
-            (oneOf [
-              bool
-              int
-              float
-              str
-              path
-              (attrsOf valueType)
-              (listOf valueType)
-            ]) // {
+          valueType = nullOr (oneOf [
+            bool
+            int
+            float
+            str
+            path
+            (attrsOf valueType)
+            (listOf valueType)
+          ]) // {
             description = "Hyprland configuration value";
           };
-        in
-        valueType;
+        in valueType;
       default = { };
       description = ''
         Hyprland configuration written in Nix. Entries with the same key
@@ -111,74 +108,67 @@ in
         lib.platforms.linux)
     ];
 
-    warnings =
-      let
-        inconsistent = (cfg.systemdIntegration || cfg.plugins != [ ])
-          && cfg.extraConfig == "" && cfg.settings == { };
-        warning =
-          "You have enabled hyprland.systemdIntegration or listed plugins in hyprland.plugins but do not have any configuration in hyprland.settings or hyprland.extraConfig. This is almost certainly a mistake.";
-      in
-      lib.optional inconsistent warning;
+    warnings = let
+      inconsistent = (cfg.systemdIntegration || cfg.plugins != [ ])
+        && cfg.extraConfig == "" && cfg.settings == { };
+      warning =
+        "You have enabled hyprland.systemdIntegration or listed plugins in hyprland.plugins but do not have any configuration in hyprland.settings or hyprland.extraConfig. This is almost certainly a mistake.";
+    in lib.optional inconsistent warning;
 
-    xdg.configFile."hypr/hyprland.conf" =
-      let
-        combinedSettings = cfg.settings // {
-          plugin =
-            let
-              mkEntry = entry:
-                if lib.types.package.check entry then
-                  "${entry}/lib/lib${entry.pname}.so"
-                else
-                  entry;
-            in
-            map mkEntry cfg.plugins;
-        };
-
-        shouldGenerate = cfg.systemdIntegration || cfg.extraConfig != ""
-          || combinedSettings != { };
-
-        toHyprconf = with lib;
-          attrs: indentLevel:
-            let
-              indent = concatStrings (replicate indentLevel "  ");
-
-              mkSection = n: attrs: ''
-                ${indent}${n} {
-                ${toHyprconf attrs (indentLevel + 1)}${indent}}
-              '';
-              sections = filterAttrs (n: v: isAttrs v) attrs;
-
-              mkFields = generators.toKeyValue {
-                listsAsDuplicateKeys = true;
-                inherit indent;
-              };
-              allFields = filterAttrs (n: v: !(isAttrs v)) attrs;
-              importantFields =
-                filterAttrs (n: _: (hasPrefix "$" n) || (hasPrefix "bezier" n))
-                  allFields;
-              fields = builtins.removeAttrs allFields
-                (mapAttrsToList (n: _: n) importantFields);
-            in
-            mkFields importantFields
-            + concatStringsSep "\n" (mapAttrsToList mkSection sections)
-            + mkFields fields;
-      in
-      lib.mkIf shouldGenerate {
-        text = lib.optionalString cfg.systemdIntegration ''
-          exec-once = ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP && systemctl --user start hyprland-session.target
-        '' + lib.optionalString (combinedSettings != { })
-          (toHyprconf combinedSettings 0)
-        + lib.optionalString (cfg.extraConfig != "") cfg.extraConfig;
-        onChange = ''
-          (  # execute in subshell so that `shopt` won't affect other scripts
-            shopt -s nullglob  # so that nothing is done if /tmp/hypr/ does not exist or is empty
-            for instance in /tmp/hypr/*; do
-              HYPRLAND_INSTANCE_SIGNATURE=''${instance##*/} ${cfg.finalPackage}/bin/hyprctl reload config-only \
-                || true  # ignore dead instance(s)
-            done
-          )
-        '';
+    xdg.configFile."hypr/hyprland.conf" = let
+      combinedSettings = cfg.settings // {
+        plugin = let
+          mkEntry = entry:
+            if lib.types.package.check entry then
+              "${entry}/lib/lib${entry.pname}.so"
+            else
+              entry;
+        in map mkEntry cfg.plugins;
       };
+
+      shouldGenerate = cfg.systemdIntegration || cfg.extraConfig != ""
+        || combinedSettings != { };
+
+      toHyprconf = with lib;
+        attrs: indentLevel:
+        let
+          indent = concatStrings (replicate indentLevel "  ");
+
+          mkSection = n: attrs: ''
+            ${indent}${n} {
+            ${toHyprconf attrs (indentLevel + 1)}${indent}}
+          '';
+          sections = filterAttrs (n: v: isAttrs v) attrs;
+
+          mkFields = generators.toKeyValue {
+            listsAsDuplicateKeys = true;
+            inherit indent;
+          };
+          allFields = filterAttrs (n: v: !(isAttrs v)) attrs;
+          importantFields =
+            filterAttrs (n: _: (hasPrefix "$" n) || (hasPrefix "bezier" n))
+            allFields;
+          fields = builtins.removeAttrs allFields
+            (mapAttrsToList (n: _: n) importantFields);
+        in mkFields importantFields
+        + concatStringsSep "\n" (mapAttrsToList mkSection sections)
+        + mkFields fields;
+    in lib.mkIf shouldGenerate {
+      text = lib.optionalString cfg.systemdIntegration ''
+        exec-once = ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP && systemctl --user start hyprland-session.target
+      '' + lib.optionalString (combinedSettings != { })
+        (toHyprconf combinedSettings 0)
+        + lib.optionalString (cfg.extraConfig != "") cfg.extraConfig;
+      onChange = ''
+        (  # execute in subshell so that `shopt` won't affect other scripts
+          shopt -s nullglob  # so that nothing is done if /tmp/hypr/ does not exist or is empty
+          for instance in /tmp/hypr/*; do
+            HYPRLAND_INSTANCE_SIGNATURE=''${instance##*/} ${cfg.finalPackage}/bin/hyprctl reload config-only \
+              || true  # ignore dead instance(s)
+          done
+        )
+      '';
+    };
 
     systemd.user.targets.hyprland-session = lib.mkIf cfg.systemdIntegration {
       Unit = {
