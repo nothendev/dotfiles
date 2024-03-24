@@ -15,6 +15,8 @@
   fonts.fontDir.enable = true;
   programs.fish.enable = true;
   hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.daemon.enable = true;
+  systemd.user.services.opentabletdriver.enable = true;
   pretty.catppuccin = {
     enable = true;
     flavour = "mocha";

@@ -5,7 +5,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-
     ## Prog langs
     zig.url = "github:mitchellh/zig-overlay";
     zig.inputs.nixpkgs.follows = "nixpkgs";
@@ -13,12 +12,10 @@
     zls.inputs.nixpkgs.follows = "nixpkgs";
     zls.inputs.zig-overlay.follows = "zig";
 
-
     ## Wayland
     hyprland.url = "github:hyprwm/Hyprland";
     nixwaypkgs.url = "github:nix-community/nixpkgs-wayland";
     nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
-
 
     ## Nvim
     nixvim.url = "github:nix-community/nixvim";
@@ -27,14 +24,12 @@
       "github:neovim/neovim?dir=contrib&rev=4e59422e1d4950a3042bad41a7b81c8db4f8b648";
     nvim.inputs.nixpkgs.follows = "nixpkgs";
 
-
     ## Terminal
     fjo.url = "git+https://codeberg.org/VoiDD/fjo";
     fjo.inputs.nixpkgs.follows = "nixpkgs";
     nh.url = "github:viperML/nh";
     nh.inputs.nixpkgs.follows = "nixpkgs";
     zjstatus.url = "github:dj95/zjstatus";
-
 
     ## Mattermost
     mattermost-plugin-focalboard.url =
@@ -43,7 +38,6 @@
     mattermost-plugin-jitsi.url =
       "file+https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
     mattermost-plugin-jitsi.flake = false;
-
 
     ## Catppuccin
     catppuccin-alacritty.url = "github:catppuccin/alacritty";
@@ -90,24 +84,21 @@
 
             {
               nixpkgs.overlays =
-                [
-                  (_: super: import ./src/pkgs { pkgs = super; })
-                ];
+                [ (_: super: import ./src/pkgs { pkgs = super; }) ];
 
-                environment.systemPackages = [ nh.packages.${system}.default ];
+              environment.systemPackages = [ nh.packages.${system}.default ];
 
-                environment.variables.FLAKE = "/home/ilya/dotfiles";
-              }
+              environment.variables.FLAKE = "/home/ilya/dotfiles";
+            }
           ];
         };
-    in
-    {
+    in {
       nixosConfigurations.meh = mkSystem "meh";
       colmena = import ./src/nodes { inherit nixpkgs inputs; };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
       packages.x86_64-linux.wings =
         nixpkgs.legacyPackages.x86_64-linux.callPackage ./src/pkgs/wings.nix
-          { };
+        { };
       apps.x86_64-linux.wings = {
         type = "app";
         program = "${self.packages.x86_64-linux.wings}/bin/wings";

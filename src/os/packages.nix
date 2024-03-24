@@ -13,56 +13,55 @@
   environment.etc."channels/nixpkgs".source = nixpkgs.outPath;
   environment.etc."jvm/17".source = pkgs.jdk17;
   environment.etc."jvm/8".source = pkgs.jdk8;
-  environment.systemPackages = with pkgs;
-    [
-      glibc
-      (btop.overrideAttrs (old: {
-        nativeBuildInputs = (old.nativeBuildInputs or [ ])
-          ++ [ addOpenGLRunpath ];
-        postFixup = ''
-          addOpenGLRunpath $out/bin/btop
-        '';
-      }))
-      nmon
-      jq
-      socat
-      wget
-      curl
-      macchanger
-      ffmpeg
-      acpi
-      git
-      gh
-      just
-      neofetch
-      insomnia
-      meson
-      ninja
-      cmake
-      go
-      rustup
-      libclang
-      gdb
-      lldb
-      patchelf
-      zip
-      unzip
-      ripgrep
-      tokei
-      python3
-      pkg-config
-      gcc13
-      alsa-lib
-      udev
-      wayland
-      xorg.libX11
-      xorg.libXcursor
-      mold-wrapped
-      nodejs_18
-      bun
+  environment.systemPackages = with pkgs; [
+    glibc
+    (btop.overrideAttrs (old: {
+      nativeBuildInputs = (old.nativeBuildInputs or [ ])
+        ++ [ addOpenGLRunpath ];
+      postFixup = ''
+        addOpenGLRunpath $out/bin/btop
+      '';
+    }))
+    nmon
+    jq
+    socat
+    wget
+    curl
+    macchanger
+    ffmpeg
+    acpi
+    git
+    gh
+    just
+    neofetch
+    insomnia
+    meson
+    ninja
+    cmake
+    go
+    rustup
+    libclang
+    gdb
+    lldb
+    patchelf
+    zip
+    unzip
+    ripgrep
+    tokei
+    python3
+    pkg-config
+    gcc13
+    alsa-lib
+    udev
+    wayland
+    xorg.libX11
+    xorg.libXcursor
+    mold-wrapped
+    nodejs_18
+    bun
 
-      nh
-    ];
+    nh
+  ];
 
   programs.wireshark = {
     enable = true;

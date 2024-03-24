@@ -1,12 +1,6 @@
-{
-  config,
-  pkgs,
-  osConfig,
-  ## Catppuccin
-  catppuccin-alacritty,
-  catppuccin-starship,
-  ...
-}: {
+{ config, pkgs, osConfig,
+## Catppuccin
+catppuccin-alacritty, catppuccin-starship, ... }: {
   programs.starship = let
     flavour = "mocha";
     base69 = osConfig.pretty.base69;
@@ -37,13 +31,12 @@
         format = "[$version]($style)";
         style = "fg:#${base69.red}";
       };
-    } // builtins.fromTOML (builtins.readFile (catppuccin-starship + /palettes/${flavour}.toml));
+    } // builtins.fromTOML
+      (builtins.readFile (catppuccin-starship + /palettes/${flavour}.toml));
   };
 
   programs.alacritty.settings = {
-    import = [
-      (catppuccin-alacritty + /catppuccin-mocha.toml)
-    ];
+    import = [ (catppuccin-alacritty + /catppuccin-mocha.toml) ];
     window.opacity = 0.5;
     font.normal = {
       family = osConfig.pretty.font.family;

@@ -27,7 +27,6 @@ in {
       pkgs.xdg-desktop-portal-gtk
       config.programs.hyprland.portalPackage
     ];
-    configPackages = [ config.programs.hyprland.finalPackage ];
     wlr.enable = pkgs.lib.mkForce false;
   };
 }
