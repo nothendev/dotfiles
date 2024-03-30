@@ -11,9 +11,7 @@ in {
   programs.hyprland = {
     xwayland.enable = true;
     package = hyprpkgs.hyprland;
-    portalPackage = hyprpkgs.xdg-desktop-portal-hyprland.override {
-      hyprland = config.programs.hyprland.finalPackage;
-    };
+    portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
   };
   environment.systemPackages = [ config.programs.hyprland.finalPackage ];
   programs.dconf.enable = true;

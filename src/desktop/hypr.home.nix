@@ -23,8 +23,8 @@ in {
         workspacen = lib.lists.range 1 9;
       in {
         monitor = [
-          "DVI-D-1,1920x1080@60,auto,auto"
-          "HDMI-A-1,1920x1080@60,auto,auto"
+          "DVI-D-1,1920x1080@60,auto,auto, bitdepth, 8"
+          "HDMI-A-1,1920x1080@60,auto,auto, bitdepth, 8"
         ];
 
         exec = [ "hyprpaper" ];
@@ -33,12 +33,12 @@ in {
           "~/.config/eww/scripts/init"
           "mako"
           makeTerminal
-          "playerctld"
+          "${pkgs.playerctl}/bin/playerctld"
           "[workspace 2] librewolf"
         ];
 
         bind = [
-          (bind null "XF86AudioPlay" (exec "playerctl play-pause"))
+          (bind null "XF86AudioPlay" (exec "${pkgs.playerctl}/bin/playerctl play-pause"))
 
           # Win-Shift-Enter: launch a new term instance
           (bindms "RETURN" (exec "alacritty"))

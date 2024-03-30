@@ -172,6 +172,16 @@
         fileAssets.rs =
           [ "Rust" "https://www.rust-lang.org/logos/rust-logo-512x512.png" ];
         neovimImageText = "NEOVIM GAMING";
+        buttons = [
+          {
+            label = "Codeberg";
+            url = "https://codeberg.org/noth";
+          }
+          {
+            label = "Metro 2033 Minecraft";
+            url = "https://discord.gg/TtmaaGTetZ";
+          }
+        ];
       };
       treesitter.enable = true;
       treesitter.ensureInstalled =
