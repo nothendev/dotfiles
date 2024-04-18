@@ -14,6 +14,7 @@
     ../desktop/hypr.home.nix
     ../desktop/river.home.nix
 
+    ../programs/vcs.home.nix
     ../programs/terminal.home.nix
     ../programs/nvim.home.nix
   ];

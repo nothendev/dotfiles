@@ -13,7 +13,7 @@
     zls.inputs.zig-overlay.follows = "zig";
 
     ## Wayland
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland/v0.38.0";
     nixwaypkgs.url = "github:nix-community/nixpkgs-wayland";
     nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -27,8 +27,6 @@
     ## Terminal
     fjo.url = "git+https://codeberg.org/VoiDD/fjo";
     fjo.inputs.nixpkgs.follows = "nixpkgs";
-    nh.url = "github:viperML/nh";
-    nh.inputs.nixpkgs.follows = "nixpkgs";
     zjstatus.url = "github:dj95/zjstatus";
 
     ## Mattermost
@@ -59,7 +57,7 @@
   #     [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   # };
 
-  outputs = { self, nixpkgs, home-manager, nixwaypkgs, nh, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixwaypkgs, ... }@inputs:
     let
       mkSystem = name:
         nixpkgs.lib.nixosSystem rec {
@@ -86,9 +84,10 @@
               nixpkgs.overlays =
                 [ (_: super: import ./src/pkgs { pkgs = super; }) ];
 
-              environment.systemPackages = [ nh.packages.${system}.default ];
-
-              environment.variables.FLAKE = "/home/ilya/dotfiles";
+              programs.nh = {
+                enable = true;
+                flake = "/home/ilya/dotfiles";
+              };
             }
           ];
         };

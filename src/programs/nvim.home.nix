@@ -287,6 +287,7 @@
         installCargo = false;
         installRustc = false;
         settings = {
+          cargo.extraEnv.RUSTFLAGS = "-Clink-arg=-fuse-ld=mold";
           cargo.features = "all";
           lens.enable = true;
           procMacro.ignored = {

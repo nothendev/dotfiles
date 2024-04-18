@@ -67,6 +67,7 @@
       (name: (arg1: arg2: (func name [ arg1 arg2 ])));
   in {
     centerwindow1 = func "centerwindow" [ 1 ];
+    exec = what: "exec,${what}";
   }
 
   // named [
@@ -91,8 +92,6 @@
   ]
 
   // singlearg [
-    "exec"
-    "execr"
     "pass"
     "closewindow"
     "workspace"
@@ -124,8 +123,8 @@
       else if lib.isString mods then
         mods
       else
-        lib.concatStringsSep " " mods
-    }, ${
+        lib.concatStringsSep "_" mods
+    },${
       if lib.isString keys then keys else lib.concatStringsSep " " keys
-    }, ${action}";
+    },${action}";
 }

@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./minky.hardware.nix
-    ../os/services/mattermost.nix
+    # ../os/services/mattermost.nix
     ../os/services/agh.nix
   ];
   deployment = {
@@ -25,6 +25,7 @@
     git
     bat
     btop
+    mercurial
   ];
 
   services.cloudflared = {
@@ -32,7 +33,7 @@
     tunnels."b962a0e8-d103-4275-a301-4b40208de026" = {
       credentialsFile =
         "/var/lib/cloudflared/b962a0e8-d103-4275-a301-4b40208de026.json";
-      ingress."mm.matestmc.ru".service = "http://localhost:8065";
+      ingress."hg.matestmc.ru".service = "http://localhost:3080";
       default = "http_status:404";
     };
   };
@@ -48,4 +49,22 @@
   system.stateVersion = "24.05";
   services.openssh.enable = true;
   services.openssh.settings = { PermitRootLogin = "yes"; };
+  users.users.hg = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnAcAQiO4tTvlpIu4PN2uWjDKr4/vOKkgFjb8UN4K74BO9Goa1nSqiiPaTGMUF0QZkeXo7KRJLyfUHt8HV/8udeVCaFywlzdje56MDkud1RFAAPa7FNFnYs62IbO2eGpODxnm7c/wRZJ4BEhL/RwBG85Rsb6CmB7/eWbrjUCJfUlG6Qta8V7mvPplXvV91dyoqymH5H/PXxGAMD/xOWOm4RjZFcj+o1mI8K2ilo/cDDQ+ZTyk0/vjkFBXlbURJA4xLp+rL2Fteo4LwMV6prHTOGoihYUeRYcRVJsNMQoTslyOsE+Q22yEj0r9w3uCbdAuF9BP4JO9Vls2pG3RjD85x minkyhg"
+    ];
+    home = "/srv/conical/repo";
+  };
+  systemd.services.hg-serve = {
+    enable = true;
+    description = "A systemd service for hg-serve";
+    serviceConfig = {
+      ExecStart = "${pkgs.mercurial}/bin/hg serve --web-conf ${pkgs.writeText "" ''
+        [paths]
+        / = /srv/conical/repo/**
+      ''} --port 3080 --config web.allow-archive=zip";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
 }
