@@ -1,4 +1,5 @@
-{ lib }: rec {
+{ lib }:
+rec {
   dir = {
     left = "l";
     right = "r";
@@ -52,71 +53,84 @@
     all-pseudo = "allpseudo";
   };
 
-  fn = let
-    func = name: args:
-      "${lib.strings.removeSuffix "'" name}, ${
-        lib.concatStringsSep ", "
-        (map (toString) (if builtins.isList args then args else [ args ]))
-      }";
-    named = names:
-      lib.attrsets.genAttrs names (name: lib.strings.removeSuffix "'" name);
-    singlearg = names:
-      lib.attrsets.genAttrs names (name: (arg1: (func name [ arg1 ])));
-    doublearg = names:
-      lib.attrsets.genAttrs names
-      (name: (arg1: arg2: (func name [ arg1 arg2 ])));
-  in {
-    centerwindow1 = func "centerwindow" [ 1 ];
-    exec = what: "exec,${what}";
-  }
+  fn =
+    let
+      func =
+        name: args:
+        "${lib.strings.removeSuffix "'" name}, ${
+          lib.concatStringsSep ", " (map (toString) (if builtins.isList args then args else [ args ]))
+        }";
+      named = names: lib.attrsets.genAttrs names (name: lib.strings.removeSuffix "'" name);
+      singlearg = names: lib.attrsets.genAttrs names (name: (arg1: (func name [ arg1 ])));
+      doublearg =
+        names:
+        lib.attrsets.genAttrs names (
+          name:
+          (
+            arg1: arg2:
+            (func name [
+              arg1
+              arg2
+            ])
+          )
+        );
+    in
+    {
+      centerwindow1 = func "centerwindow" [ 1 ];
+      exec = what: "exec,${what}";
+    }
 
-  // named [
-    "togglespecialworkspace"
-    "killactive"
-    "togglefloating"
-    "fullscreen"
-    "fakefullscreen"
-    "pin"
-    "centerwindow"
-    "exit"
-    "forcerendererreload"
-    "bringactivetotop"
-    "focusurgentorlast"
-    "togglegroup"
-    "focuscurrentorlast"
-    "pseudo"
-    "togglesplit"
-    "moveoutofgroup"
-    "movewindow'"
-    "resizewindow'"
-  ]
+    // named [
+      "togglespecialworkspace"
+      "killactive"
+      "togglefloating"
+      "fullscreen"
+      "fakefullscreen"
+      "pin"
+      "centerwindow"
+      "exit"
+      "forcerendererreload"
+      "bringactivetotop"
+      "focusurgentorlast"
+      "togglegroup"
+      "focuscurrentorlast"
+      "pseudo"
+      "togglesplit"
+      "moveoutofgroup"
+      "movewindow'"
+      "resizewindow'"
+    ]
 
-  // singlearg [
-    "pass"
-    "closewindow"
-    "workspace"
-    "movetoworkspace"
-    "movetoworkspacesilent"
-    "togglefloating'"
-    "togglespecialworkspace'"
-    "fullscreen'"
-    "dpms"
-    "pin'"
-    "movefocus"
-    "movewindow"
-    "swapwindow"
-    "changegroupactive"
-    "lockgroups"
-    "lockactivegroup"
-    "moveintogroup"
-    "movewindoworgroup"
-    "movegroupwindow"
-  ]
+    // singlearg [
+      "pass"
+      "closewindow"
+      "workspace"
+      "movetoworkspace"
+      "movetoworkspacesilent"
+      "togglefloating'"
+      "togglespecialworkspace'"
+      "fullscreen'"
+      "dpms"
+      "pin'"
+      "movefocus"
+      "movewindow"
+      "swapwindow"
+      "changegroupactive"
+      "lockgroups"
+      "lockactivegroup"
+      "moveintogroup"
+      "movewindoworgroup"
+      "movegroupwindow"
+    ]
 
-  // doublearg [ "movetoworkspace'" "movetoworkspacesilent'" ];
+    // doublearg [
+      "movetoworkspace'"
+      "movetoworkspacesilent'"
+    ];
 
   env = var: value: "${var}, ${toString value}";
-  bind = mods: keys: action:
+  bind =
+    mods: keys: action:
     "${
       if mods == null then
         ""
@@ -124,7 +138,5 @@
         mods
       else
         lib.concatStringsSep "_" mods
-    },${
-      if lib.isString keys then keys else lib.concatStringsSep " " keys
-    },${action}";
+    },${if lib.isString keys then keys else lib.concatStringsSep " " keys},${action}";
 }

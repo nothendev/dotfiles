@@ -1,4 +1,12 @@
-{ config, pkgs, nixpkgs, zls, zig, ... }: {
+{
+  config,
+  pkgs,
+  nixpkgs,
+  zls,
+  zig,
+  ...
+}:
+{
   imports = [ ../overlays ];
   nix.registry.nixpkgs.flake = nixpkgs;
   nix.registry.nixpkgs.to = {
@@ -16,8 +24,7 @@
   environment.systemPackages = with pkgs; [
     glibc
     (btop.overrideAttrs (old: {
-      nativeBuildInputs = (old.nativeBuildInputs or [ ])
-        ++ [ addOpenGLRunpath ];
+      nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ addOpenGLRunpath ];
       postFixup = ''
         addOpenGLRunpath $out/bin/btop
       '';

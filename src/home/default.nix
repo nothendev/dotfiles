@@ -16,7 +16,7 @@
 
     ../programs/vcs.home.nix
     ../programs/terminal.home.nix
-    ../programs/nvim.home.nix
+    ../programs/nvim/default.nix
   ];
 
   home.username = "ilya";

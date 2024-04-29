@@ -1,7 +1,14 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 with lib;
-let cfg = config.services.wings;
-in {
+let
+  cfg = config.services.wings;
+in
+{
   options.services.wings = {
     enable = mkOption {
       type = types.bool;

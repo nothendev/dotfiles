@@ -1,4 +1,5 @@
-{ pkgs, osConfig, ... }: {
+{ pkgs, osConfig, ... }:
+{
   xdg.configFile."river/init" = {
     executable = true;
     text = with osConfig.pretty.base69; ''

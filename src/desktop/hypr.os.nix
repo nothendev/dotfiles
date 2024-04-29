@@ -1,6 +1,13 @@
-{ config, pkgs, hyprland, ... }:
-let hyprpkgs = hyprland.packages."x86_64-linux";
-in {
+{
+  config,
+  pkgs,
+  hyprland,
+  ...
+}:
+let
+  hyprpkgs = hyprland.packages."x86_64-linux";
+in
+{
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -17,13 +24,12 @@ in {
   programs.dconf.enable = true;
   programs.xwayland.enable = true;
   security.polkit.enable = true;
-  services.xserver.displayManager.sessionPackages =
-    [ config.programs.hyprland.finalPackage ];
+  services.xserver.displayManager.sessionPackages = [ config.programs.hyprland.finalPackage ];
   xdg.portal = {
     enable = true;
     extraPortals = pkgs.lib.mkForce [
-      pkgs.xdg-desktop-portal-gtk
       config.programs.hyprland.portalPackage
+      pkgs.xdg-desktop-portal-gtk
     ];
     wlr.enable = pkgs.lib.mkForce false;
   };

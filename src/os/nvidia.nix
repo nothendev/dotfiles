@@ -1,4 +1,10 @@
-{ config, pkgs, catppuccin-sddm, ... }: {
+{
+  config,
+  pkgs,
+  catppuccin-sddm,
+  ...
+}:
+{
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -30,15 +36,20 @@
     };
   };
   environment.systemPackages = [
-    (let flavor = "mocha"; in pkgs.runCommand "sddm-catppuccin" { } ''
-      them=$out/share/sddm/themes/catppuccin-${flavor}
-      mkdir -p $them
-      cp -r ${catppuccin-sddm}/src/* $them/
-      sed -i -e "s/%%THEME%%/mocha/g" $them/metadata.desktop
+    (
+      let
+        flavor = "mocha";
+      in
+      pkgs.runCommand "sddm-catppuccin" { } ''
+        them=$out/share/sddm/themes/catppuccin-${flavor}
+        mkdir -p $them
+        cp -r ${catppuccin-sddm}/src/* $them/
+        sed -i -e "s/%%THEME%%/mocha/g" $them/metadata.desktop
 
-      cp ${catppuccin-sddm}/pertheme/${flavor}.png $them/preview.png
-      cp ${catppuccin-sddm}/pertheme/${flavor}.conf $them/theme.conf
-    '')
+        cp ${catppuccin-sddm}/pertheme/${flavor}.png $them/preview.png
+        cp ${catppuccin-sddm}/pertheme/${flavor}.conf $them/theme.conf
+      ''
+    )
   ];
   hardware.pulseaudio.enable = false;
   hardware.nvidia = {

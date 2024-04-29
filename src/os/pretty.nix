@@ -1,8 +1,14 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   imports = [ ../common/base69/themes/catppuccin.nix ];
   fonts.packages = with pkgs; [
     jetbrains-mono
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "ComicShannsMono" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "ComicShannsMono"
+      ];
+    })
     font-awesome
     rubik
     inter

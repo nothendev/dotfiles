@@ -1,7 +1,13 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  mkColor = name:
+  mkColor =
+    name:
     lib.mkOption {
       type = with lib.types; str;
       description = lib.mdDoc "The ${name} color in hex.";
@@ -34,7 +40,8 @@ let
     "mantle"
     "crust"
   ]) (name: mkColor name);
-in {
+in
+{
   options.pretty.base69 = colors;
   options.pretty.font = {
     family = lib.mkOption {

@@ -1,14 +1,28 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 with lib;
 let
   cfg = config.services.pterodactyl;
-  pterodactlyPhp81 = (pkgs.php81.buildEnv {
-    extensions = { enabled, all, }: enabled ++ (with all; [ redis xdebug ]);
-    extraConfig = ''
-      xdebug.mode=debug
-    '';
-  });
-in {
+  pterodactlyPhp81 = (
+    pkgs.php81.buildEnv {
+      extensions =
+        { enabled, all }:
+        enabled
+        ++ (with all; [
+          redis
+          xdebug
+        ]);
+      extraConfig = ''
+        xdebug.mode=debug
+      '';
+    }
+  );
+in
+{
   options.services.pterodactyl = {
     enable = mkOption {
       type = types.bool;
@@ -78,7 +92,9 @@ in {
             fastcgi_read_timeout 300;
           '';
         };
-        "/" = { tryFiles = "$uri $uri/ /index.php?$query_string"; };
+        "/" = {
+          tryFiles = "$uri $uri/ /index.php?$query_string";
+        };
       };
     };
     services.phpfpm.pools.pterodactyl = {
@@ -112,13 +128,14 @@ in {
       enable = true;
       description = "Pterodactyl queue worker";
       after = [ "redis-${cfg.redisName}.service" ];
-      unitConfig = { StartLimitInterval = 180; };
+      unitConfig = {
+        StartLimitInterval = 180;
+      };
       serviceConfig = {
         User = cfg.user;
         Group = cfg.user;
         Restart = "always";
-        ExecStart =
-          "${pterodactlyPhp81}/bin/php ${cfg.dataDir}/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3";
+        ExecStart = "${pterodactlyPhp81}/bin/php ${cfg.dataDir}/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3";
         StartLimitBurst = 30;
         RestartSec = "5s";
       };

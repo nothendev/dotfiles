@@ -1,4 +1,10 @@
-{ pkgs, mattermost-plugin-focalboard, mattermost-plugin-jitsi, ... }: {
+{
+  pkgs,
+  mattermost-plugin-focalboard,
+  mattermost-plugin-jitsi,
+  ...
+}:
+{
   services.mattermost = {
     enable = true;
     siteUrl = "https://mm.passivity.trading";
@@ -6,7 +12,12 @@
     mutableConfig = true;
     localDatabaseCreate = true;
     user = "mattermost";
-    plugins = [ mattermost-plugin-focalboard mattermost-plugin-jitsi ];
+    plugins = [
+      mattermost-plugin-focalboard
+      mattermost-plugin-jitsi
+    ];
   };
-  services.nginx = { enable = true; };
+  services.nginx = {
+    enable = true;
+  };
 }

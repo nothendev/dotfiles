@@ -13,15 +13,14 @@
     zls.inputs.zig-overlay.follows = "zig";
 
     ## Wayland
-    hyprland.url = "github:hyprwm/Hyprland/v0.38.0";
+    hyprland.url = "github:hyprwm/Hyprland/v0.39.1";
     nixwaypkgs.url = "github:nix-community/nixpkgs-wayland";
     nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
 
     ## Nvim
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    nvim.url =
-      "github:neovim/neovim?dir=contrib&rev=4e59422e1d4950a3042bad41a7b81c8db4f8b648";
+    nvim.url = "github:neovim/neovim?dir=contrib&rev=4e59422e1d4950a3042bad41a7b81c8db4f8b648";
     nvim.inputs.nixpkgs.follows = "nixpkgs";
 
     ## Terminal
@@ -30,11 +29,9 @@
     zjstatus.url = "github:dj95/zjstatus";
 
     ## Mattermost
-    mattermost-plugin-focalboard.url =
-      "file+https://github.com/mattermost/focalboard/releases/download/v7.10.6/mattermost-plugin-focalboard.tar.gz";
+    mattermost-plugin-focalboard.url = "file+https://github.com/mattermost/focalboard/releases/download/v7.10.6/mattermost-plugin-focalboard.tar.gz";
     mattermost-plugin-focalboard.flake = false;
-    mattermost-plugin-jitsi.url =
-      "file+https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
+    mattermost-plugin-jitsi.url = "file+https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
     mattermost-plugin-jitsi.flake = false;
 
     ## Catppuccin
@@ -57,9 +54,17 @@
   #     [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   # };
 
-  outputs = { self, nixpkgs, home-manager, nixwaypkgs, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nixwaypkgs,
+      ...
+    }@inputs:
     let
-      mkSystem = name:
+      mkSystem =
+        name:
         nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = inputs // {
@@ -81,8 +86,7 @@
             }
 
             {
-              nixpkgs.overlays =
-                [ (_: super: import ./src/pkgs { pkgs = super; }) ];
+              nixpkgs.overlays = [ (_: super: import ./src/pkgs { pkgs = super; }) ];
 
               programs.nh = {
                 enable = true;
@@ -91,13 +95,14 @@
             }
           ];
         };
-    in {
+    in
+    {
       nixosConfigurations.meh = mkSystem "meh";
       colmena = import ./src/nodes { inherit nixpkgs inputs; };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
       packages.x86_64-linux.wings =
         nixpkgs.legacyPackages.x86_64-linux.callPackage ./src/pkgs/wings.nix
-        { };
+          { };
       apps.x86_64-linux.wings = {
         type = "app";
         program = "${self.packages.x86_64-linux.wings}/bin/wings";

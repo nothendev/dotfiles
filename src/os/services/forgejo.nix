@@ -1,1 +1,6 @@
-{ pkgs, ... }: { services.forgejo = { enable = true; }; }
+{ pkgs, ... }:
+{
+  services.forgejo = {
+    enable = true;
+  };
+}

@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   imports = [
     ./binkus.hardware.nix
     ../os/services/pterodactyl.nix
@@ -6,7 +7,11 @@
   ];
 
   deployment = {
-    tags = [ "matest" "mh-dedic" "masterhost" ];
+    tags = [
+      "matest"
+      "mh-dedic"
+      "masterhost"
+    ];
     targetHost = "87.242.74.225";
     targetUser = "root";
   };
@@ -17,21 +22,34 @@
 
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
-  environment.shells = with pkgs; [ bash fish ];
+  environment.shells = with pkgs; [
+    bash
+    fish
+  ];
 
-  environment.systemPackages = with pkgs; [ neovim wget curl fish git ];
+  environment.systemPackages = with pkgs; [
+    neovim
+    wget
+    curl
+    fish
+    git
+  ];
 
   services.nginx.virtualHosts."acme.matestmc.ru" = {
     serverAliases = [ "*.matestmc.ru" ];
     locations."/.well-known/acme-challenge" = {
       root = "/var/lib/acme/.challenges";
     };
-    locations."/" = { return = "301 https://$host$request_uri"; };
+    locations."/" = {
+      return = "301 https://$host$request_uri";
+    };
   };
 
   system.stateVersion = "24.05";
   services.openssh.enable = true;
-  services.openssh.settings = { PermitRootLogin = "yes"; };
+  services.openssh.settings = {
+    PermitRootLogin = "yes";
+  };
 
   services.mysql = {
     enable = true;
@@ -43,7 +61,10 @@
   networking = {
     hostName = "binkus";
     networkmanager.enable = true;
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
     firewall.enable = false;
   };
 

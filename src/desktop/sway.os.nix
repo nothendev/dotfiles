@@ -1,4 +1,10 @@
-{ config, pkgs, lib, waypkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  waypkgs,
+  ...
+}:
 
 let
   # bash script to let dbus know about important env variables and
@@ -29,17 +35,19 @@ let
     name = "configure-gtk";
     destination = "/bin/configure-gtk";
     executable = true;
-    text = let
-      schema = pkgs.gsettings-desktop-schemas;
-      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-    in ''
-      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-      gnome_schema=org.gnome.desktop.interface
-      gsettings set $gnome_schema gtk-theme 'Dracula'
-    '';
+    text =
+      let
+        schema = pkgs.gsettings-desktop-schemas;
+        datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+      in
+      ''
+        export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+        gnome_schema=org.gnome.desktop.interface
+        gsettings set $gnome_schema gtk-theme 'Dracula'
+      '';
   };
-
-in {
+in
+{
   environment.systemPackages = with pkgs; [
     dbus-sway-environment
     configure-gtk
@@ -78,11 +86,20 @@ in {
     enable = true;
     wrapperFeatures.gtk = true;
     package = pkgs.sway.override {
-      sway-unwrapped = waypkgs.sway-unwrapped.override ({ wlroots, ... }: {
-        wlroots = wlroots.overrideAttrs ({ patches ? [ ], ... }: {
-          patches = patches ++ [ ../assets/wlroots-nvidia.patch ];
-        });
-      });
+      sway-unwrapped = waypkgs.sway-unwrapped.override (
+        { wlroots, ... }:
+        {
+          wlroots = wlroots.overrideAttrs (
+            {
+              patches ? [ ],
+              ...
+            }:
+            {
+              patches = patches ++ [ ../assets/wlroots-nvidia.patch ];
+            }
+          );
+        }
+      );
     };
   };
 }

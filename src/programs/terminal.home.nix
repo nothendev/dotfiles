@@ -1,4 +1,12 @@
-{ pkgs, system, fjo, zjstatus, osConfig, ... }: {
+{
+  pkgs,
+  system,
+  fjo,
+  zjstatus,
+  osConfig,
+  ...
+}:
+{
   home.packages = with pkgs; [
     fish # superior shell
     starship # superior shell prompt
@@ -21,69 +29,36 @@
   programs.zellij = {
     enable = true;
     enableFishIntegration = true;
-    settings = { theme = "catppuccin-mocha"; };
+    settings = {
+      theme = "catppuccin-mocha";
+    };
   };
   xdg.configFile."zellij/layouts/default.kdl".text =
-    with pkgs.lib.mapAttrs (_: hex: "#${hex}") osConfig.pretty.base69;
-    let
-      basebg =
-        "0"; # alias for ease of readability, allows for background blur; ansi default bg color (magic value...)
-      # ribbon color: from bg to bgn
-      ribbon = text: main: bg: bgn:
-        "#[bg=${main},fg=${bg}] ${text} #[fg=${main},bg=${bgn}]";
-      ribbon' = text: main: bg: bgn: textAttr:
-        "#[bg=${main},fg=${bg},${textAttr}] ${text} #[fg=${main},bg=${bgn}]";
-      # ribbon color: from bgn to bg (reverse order because left)
-      lribbon = text: main: bg: bgn:
-        "#[fg=${main},bg=${bgn}]#[bg=${main},fg=${bg}] ${text} ";
-      lribbon' = text: main: bg: bgn: textAttr:
-        "#[fg=${main},bg=${bgn}]#[bg=${main},fg=${bg},${textAttr}] ${text} ";
-    in ''
+    with pkgs.lib.mapAttrs (_: hex: "#${hex}") osConfig.pretty.base69; ''
       layout {
           default_tab_template name="tab" {
               pane size=1 borderless=true {
-                  plugin location="file:${
-                    zjstatus.packages.${system}.default
-                  }/bin/zjstatus.wasm" {
-                      format_left   "#[fg=${base}]{mode}#[bg=${lavender},fg=${base},bold] {session} #[fg=${lavender},bg=${sapphire}]${
-                        ribbon "{swap_layout}" sapphire base basebg
-                      }"
+                  plugin location="file:${zjstatus.packages.${system}.default}/bin/zjstatus.wasm" {
+                      format_left   "{mode} {session} {swap_layout}"
                       format_center "{tabs}"
-                      format_right  "${
-                        lribbon "{command_git_branch}" blue base basebg
-                      }${lribbon' "{datetime}" teal base blue "bold"}"
+                      format_right  "{command_git_branch} {datetime}"
                       format_space  ""
 
                       border_enabled  "false"
-                      border_char     "─"
-                      border_format   "#[fg=${base}]{char}"
-                      border_position "top"
 
                       hide_frame_for_single_pane "true"
 
-                      mode_normal "${
-                        ribbon' "NORMAL" blue base lavender "bold"
-                      }"
-                      mode_locked "${ribbon' "LOCKED" red base lavender "bold"}"
-                      mode_pane   "${
-                        ribbon' "PANE" flamingo base lavender "bold"
-                      }"
-                      mode_tab    "${ribbon' "TAB" sky base lavender "bold"}"
-                      mode_scroll "${
-                        ribbon' "SCROLL" mauve base lavender "bold"
-                      }"
-                      mode_search "${
-                        ribbon' "SEARCH" maroon base lavender "bold"
-                      }"
-                      mode_session "${
-                        ribbon' "SESSION" sapphire base lavender "bold"
-                      }"
-                      mode_tmux   "${ribbon' "TMUX" peach base lavender "bold"}"
+                      mode_normal "" // Don't show normal mode, like my nvim would
+                      mode_locked "gLOCKED"
+                      mode_pane   "pPANE"
+                      mode_tab    "tTAB"
+                      mode_scroll "sSCROLL"
+                      mode_search "?SEARCH"
+                      mode_session "oSESSION"
+                      mode_tmux   "bTMUX"
 
                       tab_normal   " {name} "
-                      tab_active   " ${
-                        ribbon' "{name}" green base base "bold,italic"
-                      } "
+                      tab_active   " ={name}= "
 
                       command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
                       command_git_branch_format      "{stdout}"

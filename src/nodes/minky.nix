@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./minky.hardware.nix
     # ../os/services/mattermost.nix
@@ -10,7 +11,10 @@
     targetUser = "root";
   };
   programs.fish.enable = true;
-  environment.shells = with pkgs; [ bash fish ];
+  environment.shells = with pkgs; [
+    bash
+    fish
+  ];
   users.defaultUserShell = pkgs.fish;
   nix.extraOptions = ''
     keep-outputs = true
@@ -31,8 +35,7 @@
   services.cloudflared = {
     enable = true;
     tunnels."b962a0e8-d103-4275-a301-4b40208de026" = {
-      credentialsFile =
-        "/var/lib/cloudflared/b962a0e8-d103-4275-a301-4b40208de026.json";
+      credentialsFile = "/var/lib/cloudflared/b962a0e8-d103-4275-a301-4b40208de026.json";
       ingress."hg.matestmc.ru".service = "http://localhost:3080";
       default = "http_status:404";
     };
@@ -48,7 +51,9 @@
   i18n.defaultLocale = "en_US.UTF-8";
   system.stateVersion = "24.05";
   services.openssh.enable = true;
-  services.openssh.settings = { PermitRootLogin = "yes"; };
+  services.openssh.settings = {
+    PermitRootLogin = "yes";
+  };
   users.users.hg = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
