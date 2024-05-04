@@ -1,12 +1,13 @@
 {
   config,
   pkgs,
-  hyprland,
+  # hyprland,
   ...
 }:
-let
-  hyprpkgs = hyprland.packages."x86_64-linux";
-in
+# let
+#   hyprpkgs = hyprland.packages."x86_64-linux";
+#   hypr-nixpkgs = hyprland.inputs.nixpkgs.legacyPackages."x86_64-linux";
+# in
 {
   security.rtkit.enable = true;
   services.pipewire = {
@@ -15,10 +16,12 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  # hardware.opengl.package = hypr-nixpkgs.mesa.drivers;
   programs.hyprland = {
+    enable = true;
     xwayland.enable = true;
-    package = hyprpkgs.hyprland;
-    portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
+    # package = hyprpkgs.hyprland;
+    # portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
   };
   environment.systemPackages = [ config.programs.hyprland.finalPackage ];
   programs.dconf.enable = true;

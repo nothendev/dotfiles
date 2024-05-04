@@ -13,7 +13,7 @@
     zls.inputs.zig-overlay.follows = "zig";
 
     ## Wayland
-    hyprland.url = "github:hyprwm/Hyprland/v0.39.1";
+    hyprland.url = "github:hyprwm/Hyprland";
     nixwaypkgs.url = "github:nix-community/nixpkgs-wayland";
     nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -49,6 +49,7 @@
   };
 
   # nixConfig = {
+  #   builders-use-substitues = true;
   #   substituters = [ "https://hyprland.cachix.org" ];
   #   trusted-public-keys =
   #     [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
