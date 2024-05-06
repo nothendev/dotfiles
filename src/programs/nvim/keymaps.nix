@@ -42,14 +42,19 @@
         key = "<leader>g";
         mode = "n";
       }
-      #{
-      #  action = "<cmd>Telescope harpoon marks<CR>";
-      #  key = "<leader><leader>";
-      #  mode = "n";
-      #}
+      {
+        action = "<cmd>Telescope harpoon marks<CR>";
+        key = "<leader><leader>";
+        mode = "n";
+      }
       {
         action = "<cmd>Telescope lsp_document_symbols<CR>";
         key = "gs";
+        mode = "n";
+      }
+      {
+        action = "<cmd>Telescope lsp_workspace_symbols<CR>";
+        key = "gS";
         mode = "n";
       }
       {
@@ -67,6 +72,11 @@
       {
         action = "<cmd>bdelete<CR>";
         key = "<leader>x";
+        mode = "n";
+      }
+      {
+        action = "<cmd>bdelete!<CR>";
+        key = "<leader>X";
         mode = "n";
       }
       {

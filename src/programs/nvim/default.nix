@@ -72,7 +72,7 @@
       todo-comments.enable = true;
       rainbow-delimiters.enable = true;
       noice = {
-        enable = true;
+        enable = false;
         lsp.override = {
           "vim.lsp.util.convert_input_to_markdown_lines" = true;
           "vim.lsp.util.stylize_markdown" = true;
@@ -81,8 +81,10 @@
         messages.enabled = true;
         notify.enabled = true;
       };
-      notify.enable = true;
+      notify.enable = false;
       notify.backgroundColour = "#000000";
+      flash.enable = true;
+      twilight.enable = true;
       surround.enable = true;
       trouble.enable = true;
       trouble.mode = "document_diagnostics";
@@ -91,7 +93,7 @@
       gitgutter.enable = true;
       which-key.enable = true;
       harpoon = {
-        enable = false;
+        enable = true;
         enableTelescope = true;
         keymaps = {
           addFile = "<leader>ha";
@@ -106,6 +108,7 @@
       ];
       project-nvim.patterns = [
         ".git"
+        "flake.nix"
         "rust-toolchain.toml"
       ];
       presence-nvim = {
