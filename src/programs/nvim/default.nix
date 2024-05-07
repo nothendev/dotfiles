@@ -15,7 +15,7 @@
   ) [
     ./lsp.nix
     ./statusline.nix
-    ./keymaps.nix
+    ./motion.nix
     ./cmp.nix
     ./ui.nix
   ]);
@@ -35,32 +35,14 @@
       guifont = "${osConfig.pretty.font.family}:h${toString osConfig.pretty.font.defaultSize}";
     };
     globals.mapleader = " ";
-    # extraConfigLua = ''
-    # require'tree-sitter-rstml'.setup()
-    # require'nvim-ts-autotag'.setup()
-    # '';
     plugins = {
       # nvim-wide things
       direnv.enable = true;
       indent-blankline.enable = true;
       luasnip.enable = true;
       luasnip.extraConfig.enable_autosnippets = true;
-      comment-nvim.enable = true;
-      comment-nvim.toggler = {
-        line = "<leader>c";
-        block = "<leader>C";
-      };
       refactoring.enable = true;
       fugitive.enable = true;
-      harpoon = {
-        enable = true;
-        enableTelescope = true;
-        keymaps = {
-          addFile = "<leader>ha";
-          navNext = "<leader>hj";
-          navPrev = "<leader>hk";
-        };
-      };
       project-nvim.enable = true;
       project-nvim.detectionMethods = [
         "lsp"
@@ -101,22 +83,17 @@
         "markdown"
         "markdown_inline"
       ];
-      leap.enable = true;
       persistence.enable = true;
-      nvim-autopairs.enable = true;
       nvim-colorizer.enable = true;
       nvim-lightbulb.enable = true;
       codeium-nvim = {
         enable = true;
       };
-      ## completion
       nix-develop.enable = true;
     };
   };
   home.sessionVariables.EDITOR = "nvim";
   home.packages = with pkgs; [
     neovide
-    # nvim.packages.${system}.neovim
-    # neovim
   ];
 }

@@ -2,6 +2,7 @@
   keymap = rec {
     c = cmd: "<cmd>${cmd}<CR>";
     l = key: "${leader}${key}";
+    Cl = key: "<C-Space>${key}";
     leader = "<leader>";
     keymap = key: action: mode: { inherit key action mode; };
     keymapa = key: action: { inherit key action; };
