@@ -21,6 +21,10 @@
       endfunction
     '';
 
-    options.statusline = "%<%{StatuslineMode()}%f %h%m%r%=%-14.(%l,%c%V%) %P";
+    options = {
+      showmode = false;
+      ruler = false;
+      statusline = "%<%{StatuslineMode()}%f %h%m%r%=%-14.(%l,%c%V%) %P";
+    };
   };
 }
