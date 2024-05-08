@@ -17,8 +17,7 @@
   environment.variables = {
     NIX_LD = pkgs.lib.mkForce pkgs.stdenv.cc.bintools.dynamicLinker;
   };
-  nix.nixPath = [ "nixpkgs=/etc/channels/nixpkgs" ];
-  environment.etc."channels/nixpkgs".source = nixpkgs.outPath;
+  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
   environment.etc."jvm/17".source = pkgs.jdk17;
   environment.etc."jvm/8".source = pkgs.jdk8;
   environment.systemPackages = with pkgs; [

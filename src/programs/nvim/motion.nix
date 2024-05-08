@@ -2,20 +2,27 @@
 {
   programs.nixvim = {
     keymaps = with util.keymap; [
-      (noremap (keymapl "s" ''
-        function()
-          require"flash".jump()
-        end
-      '' "n"))
-      (keymapl (l"/") ''
+      (noremap (
+        keymapl "[flash] Start two-char jump" "s" ''
+          function()
+            require"flash".jump()
+          end
+        '' "n"
+      ))
+      (keymapl "[flash] Start treesitter search" (l "/") ''
         function()
           require"flash".treesitter_search()
         end
       '' "n")
-      (keymap "<C-a>" "^" ["n" "i"])
-      (keymap "<C-Tab>" "0" ["n" "i"])
-      (silent (noremap (keymap "<Esc>" "<cmd>noh<CR>" "n")))
-      (keymapa "<C-c>" "<Esc>")
+      (keymap "Go to first char" "<C-a>" "^" [
+        "n"
+        "i"
+      ])
+      (keymap "Go to line start" "<C-Tab>" "0" [
+        "n"
+        "i"
+      ])
+      (silent (noremap (keymap "Remove search hl with esc" "<Esc>" "<cmd>noh<CR>" "n")))
     ];
 
     plugins = {

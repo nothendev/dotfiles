@@ -3,11 +3,13 @@
 {
   programs.nixvim = {
     keymaps = with util.keymap; [
-      (silent (keymapl (l"fm") ''
-        function()
-          vim.lsp.buf.format{ async = true }
-        end
-      '' "n"))
+      (silent (
+        keymapl "[LSP] Format the buffer" (l "fm") ''
+          function()
+            vim.lsp.buf.format{ async = true }
+          end
+        '' "n"
+      ))
     ];
     plugins = {
       lspkind = {
@@ -15,11 +17,6 @@
         symbolMap = {
           Codeium = "󰚩";
         };
-      };
-      lspsaga = {
-        enable = true;
-        # nvim-lightbulb instead of this
-        lightbulb.enable = false;
       };
       lsp.enable = true;
       lsp.keymaps.diagnostic = {
@@ -36,13 +33,16 @@
         "<leader>ra" = "rename";
       };
       cmp-nvim-lsp-signature-help.enable = true;
+      ## text stuff
+      lsp.servers.marksman.enable = true;
+      lsp.servers.taplo.enable = true;
       ## c/cpp
-      lsp.servers.ccls.enable = true;
+      lsp.servers.clangd.enable = true;
       ## nix
       nix.enable = true;
       lsp.servers.nixd = {
         enable = true;
-        settings.formatting.command = "nixfmt";
+        settings.formatting.command = [ "nixfmt" ];
       };
       ## rust
       crates-nvim.enable = true;

@@ -3,25 +3,25 @@
 {
   programs.nixvim = {
     keymaps = with util.keymap; [
-      (keymapl "<leader>f" ''
+      (keymapl "Open diagnostic in float" "<leader>f" ''
         function ()
           vim.diagnostic.open_float{
             border = 'rounded'
           }
         end
       '' "n")
-              (keymap (l"ps")        (c"Telescope projects")              "n")
-              (keymap (l"ff")        (c"Telescope fd")                    "n")
-              (keymap (l"fw")        (c"Telescope live_grep")             "n")
-              (keymap (l"fb")        (c"Telescope buffers")               "n")
-              (keymap (l"g")         (c"Telescope git_status")            "n")
-              (keymap (Cl"")         (c"Telescope harpoon marks")         "n")
-              (keymap "gs"           (c"Telescope lsp_document_symbols")  "n")
-              (keymap "gS"           (c"Telescope lsp_workspace_symbols") "n")
-      (silent (keymap "<Tab>"        (c"BufferLineCycleNext")             "n"))
-      (silent (keymap "<S-Tab>"      (c"BufferLineCyclePrev")             "n"))
-              (keymap (l"x")         (c"bdelete")                         "n")
-              (keymap (l"X")         (c"bdelete!")                        "n")
+      (keymap "[telescope] Open projects" (l "ps") (c "Telescope projects") "n")
+      (keymap "[telescope] Search for files" (l "ff") (c "Telescope fd") "n")
+      (keymap "[telescope] Search in files (live grep)" (l "fw") (c "Telescope live_grep") "n")
+      (keymap "[telescope] List buffers" (l "fb") (c "Telescope buffers") "n")
+      (keymap "[telescope] Git status" (l "g") (c "Telescope git_status") "n")
+      (keymap "[telescope] Harpoon menu" (Cl "") (c "Telescope harpoon marks") "n")
+      (keymap "[telescope] Search document symbols" "gs" (c "Telescope lsp_document_symbols") "n")
+      (keymap "[telescope] Search workspace symbols" "gS" (c "Telescope lsp_workspace_symbols") "n")
+      (silent (keymap "[bufferline] Go to next tab" "<Tab>" (c "BufferLineCycleNext") "n"))
+      (silent (keymap "[bufferline] Go to prev tab" "<S-Tab>" (c "BufferLineCyclePrev") "n"))
+      (keymap "[bufferline] Close current tab" (l "x") (c "bdelete") "n")
+      (keymap "[bufferline] Force close current tab" (l "X") (c "bdelete!") "n")
     ];
     plugins = {
       dressing.enable = true;

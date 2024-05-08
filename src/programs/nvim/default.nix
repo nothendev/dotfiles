@@ -7,18 +7,28 @@
   ...
 }:
 {
-  imports = [
-    nixvim.homeManagerModules.nixvim
-  ] ++ (let util = import ./util.nix; in map (mod: let m = import mod; in
-    if builtins.typeOf m == "set" then m
-    else (m { inherit util; })
-  ) [
-    ./lsp.nix
-    ./statusline.nix
-    ./motion.nix
-    ./cmp.nix
-    ./ui.nix
-  ]);
+  imports =
+    [ nixvim.homeManagerModules.nixvim ]
+    ++ (
+      let
+        util = import ./util.nix;
+      in
+      map
+        (
+          mod:
+          let
+            m = import mod;
+          in
+          if builtins.typeOf m == "set" then m else (m { inherit util; })
+        )
+        [
+          ./lsp.nix
+          ./statusline.nix
+          ./motion.nix
+          ./cmp.nix
+          ./ui.nix
+        ]
+    );
   programs.nixvim = {
     enable = true;
     package = nvim.packages.${system}.default;
@@ -53,20 +63,20 @@
         "flake.nix"
         "rust-toolchain.toml"
       ];
-      presence-nvim = {
-        enable = true;
-        autoUpdate = true;
-        mainImage = "neovim";
-        showTime = true;
-        fileAssets.rs = [
+      neocord.enable = true;
+      neocord.settings = {
+        auto_update = true;
+        main_image = "language";
+        show_time = true;
+        file_assets.rs = [
           "Rust"
           "https://www.rust-lang.org/logos/rust-logo-512x512.png"
         ];
-        neovimImageText = "NEOVIM GAMING";
+        neovim_image_text = "coding!11!!!!!111!";
         buttons = [
           {
-            label = "Codeberg";
-            url = "https://codeberg.org/noth";
+            label = "My dotfiles (NixOS)";
+            url = "https://codeberg.org/noth/dotfiles";
           }
           {
             label = "Minky Studios";
@@ -85,7 +95,6 @@
       ];
       persistence.enable = true;
       nvim-colorizer.enable = true;
-      nvim-lightbulb.enable = true;
       codeium-nvim = {
         enable = true;
       };
@@ -93,7 +102,5 @@
     };
   };
   home.sessionVariables.EDITOR = "nvim";
-  home.packages = with pkgs; [
-    neovide
-  ];
+  home.packages = with pkgs; [ neovide ];
 }
