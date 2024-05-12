@@ -30,8 +30,11 @@
   services.xserver.displayManager.sessionPackages = [ config.programs.hyprland.finalPackage ];
   xdg.portal = {
     enable = true;
-    extraPortals = pkgs.lib.mkForce [
-      config.programs.hyprland.portalPackage
+    config.preferred = {
+      default = [ "*" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+    };
+    extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
     wlr.enable = pkgs.lib.mkForce false;

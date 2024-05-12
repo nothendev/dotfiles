@@ -23,6 +23,7 @@
         "i"
       ])
       (silent (noremap (keymap "Remove search hl with esc" "<Esc>" "<cmd>noh<CR>" "n")))
+      (keymap "[telescope] Harpoon menu" (l leader) (c "Telescope harpoon marks") "n")
     ];
 
     plugins = {
@@ -38,9 +39,9 @@
         enable = true;
         enableTelescope = true;
         keymaps = with util.keymap; {
-          addFile = Cl "a";
-          navNext = Cl "j";
-          navPrev = Cl "k";
+          addFile = l "a";
+          navNext = "<Tab>";
+          navPrev = "<S-Tab>";
         };
       };
     };

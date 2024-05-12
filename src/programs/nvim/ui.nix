@@ -15,17 +15,16 @@
       (keymap "[telescope] Search in files (live grep)" (l "fw") (c "Telescope live_grep") "n")
       (keymap "[telescope] List buffers" (l "fb") (c "Telescope buffers") "n")
       (keymap "[telescope] Git status" (l "g") (c "Telescope git_status") "n")
-      (keymap "[telescope] Harpoon menu" (Cl "") (c "Telescope harpoon marks") "n")
       (keymap "[telescope] Search document symbols" "gs" (c "Telescope lsp_document_symbols") "n")
       (keymap "[telescope] Search workspace symbols" "gS" (c "Telescope lsp_workspace_symbols") "n")
-      (silent (keymap "[bufferline] Go to next tab" "<Tab>" (c "BufferLineCycleNext") "n"))
-      (silent (keymap "[bufferline] Go to prev tab" "<S-Tab>" (c "BufferLineCyclePrev") "n"))
-      (keymap "[bufferline] Close current tab" (l "x") (c "bdelete") "n")
-      (keymap "[bufferline] Force close current tab" (l "X") (c "bdelete!") "n")
+      # (silent (keymap "[bufferline] Go to next tab" "<Tab>" (c "BufferLineCycleNext") "n"))
+      # (silent (keymap "[bufferline] Go to prev tab" "<S-Tab>" (c "BufferLineCyclePrev") "n"))
+      # (keymap "[bufferline] Close current tab" (l "x") (c "bdelete") "n")
+      # (keymap "[bufferline] Force close current tab" (l "X") (c "bdelete!") "n")
     ];
     plugins = {
       dressing.enable = true;
-      bufferline.enable = true;
+      bufferline.enable = false;
       telescope.enable = true;
       telescope.extensions.project-nvim.enable = true;
       todo-comments.enable = true;
