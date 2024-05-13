@@ -55,7 +55,6 @@
       fugitive.enable = true;
       project-nvim.enable = true;
       project-nvim.detectionMethods = [
-        "lsp"
         "pattern"
       ];
       project-nvim.patterns = [
