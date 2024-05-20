@@ -1,22 +1,34 @@
 { util }:
-{ zls, system, ... }:
-{
+{ zls, system, pkgs, ... }: {
   programs.nixvim = {
-    keymaps = with util.keymap; [
-      (silent (
-        keymapl "[LSP] Format the buffer" (l "fm") ''
+    keymaps = with util.keymap;
+      [
+        (silent (keymapl "[LSP] Format the buffer" (l "fm") ''
           function()
             vim.lsp.buf.format{ async = true }
           end
-        '' "n"
-      ))
+        '' "n"))
+      ];
+    extraPlugins = [
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "supermaven-nvim";
+        src = pkgs.fetchFromGitHub {
+          owner = "supermaven-inc";
+          repo = "supermaven-nvim";
+          rev = "264768c6b2a2e0480868e9dae443112e33b1484a";
+          hash = "sha256-apbSGeqDJH2JHyf9ETDW0sn3pHecOkz7iZ9maBQ6zy4=";
+        };
+      })
     ];
+    extraConfigLua = ''
+      require'supermaven-nvim'.setup{
+        disable_keymaps = true
+      }
+    '';
     plugins = {
       lspkind = {
         enable = true;
-        symbolMap = {
-          Codeium = "󰚩";
-        };
+        symbolMap = { Supermaven = "󰚩"; };
       };
       lsp.enable = true;
       lsp.keymaps.diagnostic = {
@@ -61,15 +73,8 @@
           cargo.targetDir = true;
           lens.enable = true;
           procMacro.ignored = {
-            "leptos_macro" = [
-              "component"
-              "server"
-              "island"
-            ];
-            "lemonic_macro" = [
-              "component"
-              "island"
-            ];
+            "leptos_macro" = [ "component" "server" "island" ];
+            "lemonic_macro" = [ "component" "island" ];
           };
           checkOnSave = false;
         };

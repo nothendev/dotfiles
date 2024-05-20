@@ -24,6 +24,7 @@
       playerctl
       wev
       librewolf
+      brave
       qbittorrent
 
       ## Gaming

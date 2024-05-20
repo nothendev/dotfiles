@@ -95,7 +95,7 @@
       persistence.enable = true;
       nvim-colorizer.enable = true;
       codeium-nvim = {
-        enable = true;
+        enable = false;
       };
       nix-develop.enable = true;
     };

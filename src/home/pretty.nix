@@ -78,7 +78,7 @@
       package = pkgs.whitesur-cursors;
     };
     font = {
-      name = osConfig.pretty.font.family;
+      name = "JetBrainsMono Nerd Font Propo";
       package = null;
       size = 11;
     };

@@ -38,6 +38,7 @@
     cmp.settings.snippet.expand = "luasnip";
     cmp.settings.sources = [
       # { name = "codeium"; }
+      { name = "supermaven"; }
       { name = "nvim_lsp"; }
       { name = "luasnip"; }
       { name = "buffer"; }
