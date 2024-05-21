@@ -1,16 +1,27 @@
 {
   programs.nixvim.plugins = {
     cmp.enable = true;
-    cmp.settings.experimental = {
-      ghost_text.hlgroup = "Comment";
-    };
+    cmp.settings.experimental = { ghost_text.hlgroup = "Comment"; };
     cmp.settings.completion.completeopt = "menu,menuone,noselect,preview";
     cmp.settings.mapping = {
       "<C-Space>" = "cmp.mapping.complete()";
       "<C-d>" = "cmp.mapping.scroll_docs(-4)";
       "<C-e>" = "cmp.mapping.close()";
       "<C-f>" = "cmp.mapping.scroll_docs(4)";
-      "<CR>" = "cmp.mapping(cmp.mapping.confirm({ select = true }), {'i'})";
+      "<CR>" = ''
+        cmp.mapping(function(fallback)
+          local luasnip = require'luasnip'
+          if cmp.visible() then
+            if luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              cmp.confirm({ select = false })
+            end
+          else
+            fallback()
+          end
+        end)
+      '';
       "<S-Tab>" = ''
         cmp.mapping(function(fallback)
           if cmp.visible() then
@@ -41,7 +52,9 @@
       { name = "supermaven"; }
       { name = "nvim_lsp"; }
       { name = "luasnip"; }
-      { name = "buffer"; }
+      {
+        name = "buffer";
+      }
       # { name = "path"; }
     ];
     cmp_luasnip.enable = true;
