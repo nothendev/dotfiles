@@ -2,6 +2,6 @@
 {
   services.adguardhome = {
     enable = true;
-    settings.bind_port = 9837;
+    port = 9837;
   };
 }
