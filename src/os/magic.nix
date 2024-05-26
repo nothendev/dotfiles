@@ -28,4 +28,7 @@
   programs.seahorse.enable = true;
   programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [ gcr ];
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 }

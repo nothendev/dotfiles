@@ -40,7 +40,7 @@ in
           "mako"
           makeTerminal
           "${pkgs.playerctl}/bin/playerctld"
-          "[workspace 2] librewolf"
+          "[workspace 2] brave"
         ];
 
         bind = [
@@ -109,7 +109,6 @@ in
           border_size = 2;
           "col.active_border" = "0xff${sapphire} 0xff${blue} 45deg";
           "col.inactive_border" = "0xaf${yellow}";
-          cursor_inactive_timeout = 30;
           layout = "dwindle";
         };
 

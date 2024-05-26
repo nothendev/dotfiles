@@ -85,4 +85,6 @@
     enableSSHSupport = true;
     pinentryPackage = pkgs.pinentry-gnome3;
   };
+
+  environment.variables.NIXOS_OZONE_WL = "1";
 }

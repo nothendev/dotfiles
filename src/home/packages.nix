@@ -24,7 +24,12 @@
       playerctl
       wev
       librewolf
-      brave
+      (brave.overrideAttrs (old: {
+        postInstall = ''
+          substituteInPlace $out/share/applications/brave-browser.desktop \
+            --replace "$out/bin/brave" "env NIXOS_OZONE_WL=1 GDK_BACKEND=wayland $out/bin/brave --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --disable-gpu-compositing"
+        '';
+      }))
       qbittorrent
 
       ## Gaming
@@ -75,4 +80,5 @@
       obs-pipewire-audio-capture
     ];
   };
+  home.sessionVariables.NIXOS_OZONE_WL = "1";
 }
