@@ -1,4 +1,4 @@
-{ pkgs, osConfig, ... }:
+{ pkgs, hyprland-plugins, osConfig, system, ... }:
 let
   lib = pkgs.lib;
   dsl = import ../common/hyprdsl.nix { inherit (pkgs) lib; };
@@ -14,6 +14,7 @@ in
     enable = true;
     systemdIntegration = true;
     finalPackage = osConfig.programs.hyprland.finalPackage;
+    #plugins = [ hyprland-plugins.packages.${system}.csgo-vulkan-fix ];
     settings =
       with dsl // dsl.fn;
       let
