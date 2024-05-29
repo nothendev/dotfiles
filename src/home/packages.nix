@@ -8,6 +8,7 @@
   ...
 }:
 {
+  services.syncthing.enable = true;
   home.packages =
     (with pkgs; [
       ## Graphical utilities
@@ -32,9 +33,20 @@
       }))
       qbittorrent
 
+      ## Note taking and organization
+      (obsidian.overrideAttrs (e: rec {
+        # Add arguments to the .desktop entry
+        desktopItem = e.desktopItem.override (d: {
+          exec = "env NIXOS_OZONE_WL=1 obsidian --disable-gpu-compositing %u";
+        });
+
+        # Update the install script to use the new .desktop entry
+        installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
+      }))
+
       ## Gaming
-      (prismlauncher.override { withWaylandGLFW = true; })
-      glfw
+      (prismlauncher.override { withWaylandGLFW = false; })
+      glfw-wayland
       mangohud
       steam
 
