@@ -8,11 +8,10 @@
 
   deployment = {
     tags = [
-      "matest"
-      "mh-dedic"
-      "masterhost"
+      "minkyst"
+      "ehost"
     ];
-    targetHost = "87.242.74.225";
+    targetHost = "dungeon";
     targetUser = "root";
   };
   security.acme = {
@@ -52,14 +51,14 @@
   };
 
   services.mysql = {
-    enable = true;
+    enable = false;
     package = pkgs.mariadb;
   };
   services.nginx.enable = true;
   services.nginx.user = "pterodactyl";
 
   networking = {
-    hostName = "binkus";
+    hostName = "dungeon";
     networkmanager.enable = true;
     nameservers = [
       "1.1.1.1"
@@ -76,7 +75,7 @@
 
   # pterodactyl
   services.pterodactyl = {
-    enable = true;
+    enable = false;
     nginxVhost = "mgr.matestmc.ru";
     user = "pterodactyl";
     dataDir = "/srv/pterodactyl";
