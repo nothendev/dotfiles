@@ -13,13 +13,13 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/D6B2-92D7";
+    device = "/dev/disk/by-label/NIXBOOT";
     fsType = "vfat";
     options = [ "fmask=0022" "dmask=0022" ];
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/25acdc13-c167-4ab1-8d96-34b45762a768";
+    device = "/dev/disk/by-label/dungeon";
     fsType = "ext4";
   };
 
