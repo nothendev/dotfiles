@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   imports = [
     ./binkus.hardware.nix
+    ../os/services/mattermost.nix
     ../os/services/pterodactyl.nix
     ../os/services/wings.nix
   ];
@@ -28,12 +29,21 @@
     locations."/" = { return = "301 https://$host$request_uri"; };
   };
 
+  services.nginx.virtualHosts."binkus.matestmc.ru" = {
+    locations."/" = { proxyPass = "http://localhost:8080"; };
+  };
+
+  services.nginx.virtualHosts."mm.matestmc.ru" = {
+    # proxy_pass to localhost:8065
+    locations."/" = { proxyPass = "http://localhost:8065"; };
+  };
+
   system.stateVersion = "24.05";
   services.openssh.enable = true;
-  services.openssh.settings = { PermitRootLogin = "yes"; };
+  services.openssh.settings = { PermitRootLogin = "without-password"; };
 
   services.mysql = {
-    enable = false;
+    enable = true;
     package = pkgs.mariadb;
   };
   services.nginx.enable = true;
@@ -57,7 +67,7 @@
 
   # pterodactyl
   services.pterodactyl = {
-    enable = false;
+    enable = true;
     nginxVhost = "mgr.matestmc.ru";
     user = "pterodactyl";
     dataDir = "/srv/pterodactyl";
