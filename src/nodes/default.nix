@@ -7,4 +7,5 @@
 
   binkus = ./binkus.nix;
   minky = ./minky.nix;
+  omema = ./omema.nix;
 }

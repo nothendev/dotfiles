@@ -49,6 +49,7 @@
       glfw-wayland
       mangohud
       steam
+      r2modman
 
       ## Creativity
       libreoffice-fresh

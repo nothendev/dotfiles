@@ -14,6 +14,9 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "god@matestmc.ru";
+    certs."binkus.matestmc.ru" = {
+      webroot = "/var/www/binkus";
+    };
   };
 
   users.defaultUserShell = pkgs.fish;
@@ -21,21 +24,23 @@
   environment.shells = with pkgs; [ bash fish ];
   environment.systemPackages = with pkgs; [ neovim wget curl fish git btop ];
 
-  services.nginx.virtualHosts."acme.matestmc.ru" = {
-    serverAliases = [ "*.matestmc.ru" ];
-    locations."/.well-known/acme-challenge" = {
-      root = "/var/lib/acme/.challenges";
+  services.nginx = {
+    enable = true;
+    user = "pterodactyl";
+    virtualHosts = {
+      "acme.matestmc.ru" = {
+        serverAliases = [ "*.matestmc.ru" ];
+        locations."/.well-known/acme-challenge" = {
+          root = "/var/lib/acme/.challenges";
+        };
+        locations."/" = { return = "301 https://$host$request_uri"; };
+      };
+
+      "mm.matestmc.ru" = {
+        # proxy_pass to localhost:8065
+        locations."/" = { proxyPass = "http://localhost:8065"; };
+      };
     };
-    locations."/" = { return = "301 https://$host$request_uri"; };
-  };
-
-  services.nginx.virtualHosts."binkus.matestmc.ru" = {
-    locations."/" = { proxyPass = "http://localhost:8080"; };
-  };
-
-  services.nginx.virtualHosts."mm.matestmc.ru" = {
-    # proxy_pass to localhost:8065
-    locations."/" = { proxyPass = "http://localhost:8065"; };
   };
 
   system.stateVersion = "24.05";
@@ -46,8 +51,6 @@
     enable = true;
     package = pkgs.mariadb;
   };
-  services.nginx.enable = true;
-  services.nginx.user = "pterodactyl";
 
   networking = {
     hostName = "dungeon";

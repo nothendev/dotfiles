@@ -13,7 +13,7 @@ in
   wayland.windowManager.hyprlandy = {
     enable = true;
     systemdIntegration = true;
-    finalPackage = osConfig.programs.hyprland.finalPackage;
+    finalPackage = osConfig.programs.hyprland.package;
     #plugins = [ hyprland-plugins.packages.${system}.csgo-vulkan-fix ];
     settings =
       with dsl // dsl.fn;
