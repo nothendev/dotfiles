@@ -26,6 +26,10 @@
       }
     '';
     plugins = {
+      none-ls = {
+        enable = true;
+        sources.formatting.prettier.enable = true;
+      };
       lspkind = {
         enable = true;
         symbolMap = { Supermaven = "󰚩"; };
@@ -89,6 +93,11 @@
 
       ## js/ts
       lsp.servers.tsserver.enable = true;
+      lsp.servers.tsserver.onAttach.function = ''
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+      '';
+
       ## zig
       lsp.servers.zls.enable = false;
       lsp.servers.zls.package = zls.packages.${system}.zls;

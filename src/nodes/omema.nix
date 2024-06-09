@@ -1,7 +1,5 @@
 { pkgs, ... }: {
-  imports = [
-    ./omema.hardware.nix
-  ];
+  imports = [ ./omema.hardware.nix ];
 
   ##colmena
   deployment = {
@@ -30,6 +28,12 @@
     database.createLocally = true;
   };
 
+  systemd.services.lemmy-ui = {
+    # i hate rebuilds so do this
+    serviceConfig.ExecStart =
+      "${pkgs.nodejs}/bin/node /srv/lemmy-ui/dist/js/server.js";
+  };
+
   ## net
   networking = {
     hostName = "omema";
@@ -44,6 +48,7 @@
   users.users.root.initialHashedPassword = "";
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCh42YtU3Zh7HeR3kQIqqkI9jBCMz5fD9mJSFury+K154lXqOW7g1CtKG9BVwuM88i+91dpHkbmoPPPfnhyfSD5VK/lsog8x++68uwpxE7p3hsAg4kgNaDTLnr2QbWLtTFiW8m3+d91O3zsJ/HY6BVwPBcA/uSBakJXUZlKjYDOK98H1lfNAkKt0FoydFZj455/n+DRiHtHOHnCuQqid5Hg9GK2MNMA4LDhNW5Kzndc7kewSjgnuxW+tKcTJkQlKxwUy8BP1Y559dfXC0jNGEK34ohlJWV8ZkrlYCXk6/7JCemjX4Zi8kaOWuyzPZybnbZtCSL/ApO3wfNd6a2R6gvzV8uGJm8jw5y9uE7Qk2U5yN2pUKuPgRqcKo+pHNbpfh2wqAo54pvlOXHESckhRlf93k4t7FmKBAkAUdsFk1SNYUtp+MmdgbETQxq5qQJO8RNCSMKlChs/+M8NKtYkWsyvCMizTDU6IZmyVms7dlIMb1ACKSd4wB43DN4kSl2EDF0bju5+MEqQICzidZhZ/Rvr2pdjWuIw1x4XhmmVDGxf7mN2oZYUkP4aYfTaMNaND8eJUhDHnxWdWsbs87NVERWde/BBRylKtTaMaVqUMI9YrsOLpWHVaRpWX7S/ITCaV0yyW/p1bUvhVl2mzPzrfkLcU37/hv7DhrXY9c93xe8o1Q== Gloryx key"
+    # "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDE+vQqHvX0gKg/DTP+70eynbkOhPXhWi2QXD9Q7RUb2ZWyMQOv4gdGzPPJIlBcOOdfl+bYZgU6CgG9yO4rsGCw7ONoMMm28wgrDf9gnwzYFdBOuLc7QtR4/9BAEhNnXu30c8/kwm/ORVoA4dH+uPoeqewORr+L9bic1gtTdyudkiUThZOgwFWVGLT3heh6a/2QjCrD9Gbcr9lTLiHS7VuZEiB0iUlKo0LEe3AQI54nnBA28YIlE8LFZkLnkBROB+el8Bv2TFKPoKVtz0RWF9TrCojjIHESX1CFW87pVXZP++N4mggtXbCQl27UL+hE2D2TAcer0JAa1epNUImG/XnH pinksheetsmarket"
   ];
 
   system.stateVersion = "24.05";
