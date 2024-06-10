@@ -47,6 +47,9 @@
     virtualHosts."git.matestmc.ru" = {
       addSSL = true;
       enableACME = true;
+      extraConfig = ''
+        client_max_body_size 512M;
+      '';
       locations."/".proxyPass = "http://localhost:3080";
     };
   };

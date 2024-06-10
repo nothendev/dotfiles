@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   imports = [ ./omema.hardware.nix ];
 
   ##colmena
@@ -21,6 +21,7 @@
   services.lemmy = {
     enable = true;
     nginx.enable = true;
+    server.package = pkgs.lemmy-server-unstable;
     settings = {
       hostname = "rozovyrynok.ru";
       captcha.enabled = false;
@@ -29,8 +30,9 @@
   };
 
   systemd.services.lemmy-ui = {
+    enable = false;
     # i hate rebuilds so do this
-    serviceConfig.ExecStart =
+    serviceConfig.ExecStart = lib.mkForce
       "${pkgs.nodejs}/bin/node /srv/lemmy-ui/dist/js/server.js";
   };
 
