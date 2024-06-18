@@ -97,6 +97,45 @@
         };
     in {
       nixosConfigurations.meh = mkSystem "meh";
+      homeConfigurations."ilya@sanevim" =
+        let pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        in inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./src/programs/nvim
+            ./src/home/pretty.nix
+            {
+              programs.home-manager.enable = true;
+              home.username = "ilya";
+              home.homeDirectory = "/home/ilya";
+              home.packages = with pkgs; [ nh bun pnpm nodejs ];
+              home.stateVersion = "24.05";
+              home.sessionVariables.FLAKE = "/home/ilya/dotfiles";
+            }
+            ./src/programs/terminal.home.nix
+            ./src/home/fish.nix
+          ];
+          extraSpecialArgs = inputs // {
+            system = "x86_64-linux";
+            osConfig = (pkgs.lib.evalModules {
+              specialArgs = inputs // { inherit pkgs; };
+              modules = [
+                ./src/common/base69
+                ./src/common/base69/themes/catppuccin.nix
+                {
+                  pretty.catppuccin = {
+                    enable = true;
+                    flavour = "mocha";
+                  };
+                  pretty.font = {
+                    family = "JetBrainsMono Nerd Font";
+                    defaultSize = 13;
+                  };
+                }
+              ];
+            }).config;
+          };
+        };
       colmena = import ./src/nodes { inherit nixpkgs inputs; };
       formatter.x86_64-linux =
         nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;

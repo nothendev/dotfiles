@@ -68,7 +68,7 @@ in
       port = 6379;
     };
     services.nginx.virtualHosts."${cfg.nginxVhost}" = {
-      forceSSL = true;
+      addSSL = true;
       enableACME = true;
       root = "${cfg.dataDir}/public";
       extraConfig = ''

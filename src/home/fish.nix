@@ -20,5 +20,8 @@
     cp = "rsync -P";
     zcp = "rsync --info=progress2 -auvz";
   };
+  programs.fish.shellInit = ''
+  . $HOME/.nix-profile/etc/profile.d/nix.fish
+  '';
   programs.direnv.enable = true;
 }

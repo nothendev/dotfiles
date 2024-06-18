@@ -56,7 +56,7 @@
   };
 
   gtk = {
-    enable = true;
+    enable = false;
     iconTheme = {
       name = "WhiteSur-Dark";
       package = pkgs.whitesur-icon-theme.override { themeVariants = [ "purple" ]; };
@@ -85,7 +85,7 @@
   };
 
   programs.rofi = {
-    enable = true;
+    enable = false;
     package = pkgs.rofi-wayland-unwrapped;
     location = "top";
     terminal = "${config.programs.alacritty.package}/bin/alacritty";
@@ -93,7 +93,7 @@
   };
 
   programs.eww = {
-    enable = true;
+    enable = false;
     package = pkgs.eww;
     configDir = ../configs/eww;
   };

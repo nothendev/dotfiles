@@ -3,7 +3,7 @@
   nixvim,
   nvim,
   system,
-  osConfig,
+  #osConfig,
   ...
 }:
 {
@@ -42,7 +42,7 @@
       number = true;
       relativenumber = true;
       shiftwidth = 2;
-      guifont = "${osConfig.pretty.font.family}:h${toString osConfig.pretty.font.defaultSize}";
+      #guifont = "${osConfig.pretty.font.family}:h${toString osConfig.pretty.font.defaultSize}";
     };
     globals.mapleader = " ";
     plugins = {
