@@ -98,6 +98,8 @@
         client.server_capabilities.documentRangeFormattingProvider = false
       '';
 
+      lsp.servers.svelte.enable = true;
+
       ## zig
       lsp.servers.zls.enable = false;
       lsp.servers.zls.package = zls.packages.${system}.zls;

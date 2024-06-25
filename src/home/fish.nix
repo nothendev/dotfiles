@@ -20,5 +20,8 @@
     cp = "rsync -P";
     zcp = "rsync --info=progress2 -auvz";
   };
+  programs.fish.shellInit = ''
+    set -gx PATH $HOME/.bun/bin $PATH
+  '';
   programs.direnv.enable = true;
 }
