@@ -12,6 +12,7 @@
   home.packages =
     (with pkgs; [
       ## Graphical utilities
+      jay
       wlr-randr
       qpwgraph
       mpv
