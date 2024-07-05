@@ -1,7 +1,7 @@
 {
   pkgs,
+  neovim-nightly-overlay,
   nixvim,
-  nvim,
   system,
   osConfig,
   ...
@@ -31,7 +31,7 @@
     );
   programs.nixvim = {
     enable = true;
-    package = nvim.packages.${system}.default;
+    package = neovim-nightly-overlay.packages.${system}.default;
     colorschemes.catppuccin = {
       enable = true;
       flavour = "mocha";

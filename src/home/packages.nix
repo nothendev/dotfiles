@@ -12,6 +12,7 @@
   home.packages =
     (with pkgs; [
       ## Graphical utilities
+      wlr-randr
       qpwgraph
       mpv
       anytype

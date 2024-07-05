@@ -1,7 +1,7 @@
 { config, pkgs, catppuccin-sddm, ... }: {
   hardware.opengl = {
     enable = true;
-    driSupport = true;
+    #driSupport = true;
     driSupport32Bit = true;
   };
   nixpkgs.config.allowUnfree = true;
@@ -69,8 +69,8 @@
     #
     #   patches = [ rcu_patch ];
     # };
-    #package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+    #package = config.boot.kernelPackages.nvidiaPackages.latest;
     nvidiaSettings = true;
   };
 }

@@ -1,8 +1,8 @@
 {
   inputs = {
     ## Nixpkgs and Home-manager
-    nixpkgs.follows = "nixvim/nixpkgs";
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs.follows = "nixvim/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -15,18 +15,16 @@
 
     ## Wayland
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland.follows = "hyprland-plugins/hyprland";
+    #hyprland.follows = "hyprland-plugins/hyprland";
     nixwaypkgs.url = "github:nix-community/nixpkgs-wayland";
     nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    #hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     #hyprland-plugins.inputs.hyprland.follows = "hyprland";
 
     ## Nvim
-    nixvim.url = "github:nothendev/nixvim/patch-1";
+    nixvim.url = "github:nix-community/nixvim";
     # nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    nvim.url =
-      "github:neovim/neovim?dir=contrib&rev=4e59422e1d4950a3042bad41a7b81c8db4f8b648";
-    # nvim.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     ## Terminal
     fjo.url = "git+https://codeberg.org/VoiDD/fjo";
