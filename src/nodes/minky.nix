@@ -5,7 +5,6 @@
     ../os/services/agh.nix
   ];
   deployment = {
-    tags = [ "home" ];
     targetHost = "192.168.23.46";
     targetUser = "root";
   };
@@ -87,12 +86,11 @@
       DESCRIPTION = "The Minky git server running Forgejo";
     };
     settings.server = {
-      ROOT_URL = "https://git.matestmc.ru";
-      DOMAIN = "git.matestmc.ru";
+      ROOT_URL = "https://git.minkystudios.ru";
+      DOMAIN = "git.minkystudios.ru";
       HTTP_ADDR = "0.0.0.0";
       HTTP_PORT = 3080;
-      # this is not forwarded through cloudflare, so only i can access it because it's on my lan
-      SSH_PORT = 22;
+      SSH_PORT = 20101;
     };
     settings.service = { DISABLE_REGISTRATION = true; };
   };

@@ -1,12 +1,23 @@
-{ nixpkgs, inputs }:
-{
-  meta = {
-    nixpkgs = import nixpkgs { system = "x86_64-linux"; };
-    specialArgs = inputs;
-  };
+{ self, inputs, lib, ... }:
+let
+  systems = lib.genAttrs [ "minky" "pinos" "dungeon" "omema" ] (name:
+    inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = inputs;
+      modules = [ ./_deployment.nix ./${name}.nix ];
+    });
+in {
+  flake = {
+    nixosConfigurations = systems;
+    deploy.nodes = lib.mapAttrs (key: system: {
+      sshUser = "root";
+      hostname = system.config.deployment.targetHost or key;
+      profiles.system = {
+        user = system.config.deployment.targetUser;
+        path = inputs.deploy.lib.x86_64-linux.activate.nixos system;
+      };
+    }) systems;
 
-  binkus = ./binkus.nix;
-  minky = ./minky.nix;
-  omema = ./omema.nix;
-  pinos = ./pinos.nix;
+    checks = builtins.mapAttrs (_: deployLib: deployLib.deployChecks self.deploy) inputs.deploy.lib;
+  };
 }

@@ -29,8 +29,8 @@
     plugins = {
       flash.enable = true;
       surround.enable = true;
-      comment-nvim.enable = true;
-      comment-nvim.toggler = {
+      comment.enable = true;
+      comment.settings.toggler = {
         line = "<leader>c";
         block = "<leader>C";
       };

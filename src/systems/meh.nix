@@ -1,11 +1,6 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
   imports = [
+    ./meh.hardware.nix
     ../os/boot.nix
     ../os/magic.nix
     ../os/pretty.nix

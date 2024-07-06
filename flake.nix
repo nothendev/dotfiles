@@ -6,6 +6,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    ## LE FLAKE PARTS (I LOVE FLAKE PARTS I LOVE FLAKE PARTS I LOVE FLAKE PARTS I LOVE FLAKE PARTS)
+    fp.url = "github:hercules-ci/flake-parts";
+    deploy.url = "github:serokell/deploy-rs";
+
     ## Prog langs
     zig.url = "github:mitchellh/zig-overlay";
     zig.inputs.nixpkgs.follows = "nixpkgs";
@@ -53,58 +57,17 @@
     catppuccin-sddm.flake = false;
   };
 
-  # nixConfig = {
-  #   builders-use-substitues = true;
-  #   substituters = [ "https://hyprland.cachix.org" ];
-  #   trusted-public-keys =
-  #     [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-  # };
-
-  outputs = { self, nixpkgs, home-manager, nixwaypkgs, ... }@inputs:
-    let
-      mkSystem = name:
-        nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          specialArgs = inputs // {
-            waypkgs = nixwaypkgs.packages.${system};
-            inherit system;
-          };
-          modules = [
-            ./src/systems/${name}.nix
-            ./src/systems/${name}.hardware.nix
-            ./src/os/upgrade-diff.nix
-            ./src/common/base69
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = specialArgs;
-              home-manager.users.ilya = import ./src/home;
-            }
-
-            {
-              nixpkgs.overlays =
-                [ (_: super: import ./src/pkgs { pkgs = super; }) ];
-
-              programs.nh = {
-                enable = true;
-                flake = "/home/ilya/dotfiles";
-              };
-            }
-          ];
+  outputs = { fp, ... }@inputs:
+    fp.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [ ./src/systems ./src/nodes ];
+      perSystem = { self', pkgs, ... }: {
+        packages.wings = pkgs.callPackage ./src/pkgs/wings.nix {};
+        formatter = pkgs.nixfmt-rfc-style;
+        apps.wings = {
+          type = "app";
+          program = "${self'.packages.wings}/bin/wings";
         };
-    in {
-      nixosConfigurations.meh = mkSystem "meh";
-      colmena = import ./src/nodes { inherit nixpkgs inputs; };
-      formatter.x86_64-linux =
-        nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-      packages.x86_64-linux.wings =
-        nixpkgs.legacyPackages.x86_64-linux.callPackage ./src/pkgs/wings.nix
-        { };
-      apps.x86_64-linux.wings = {
-        type = "app";
-        program = "${self.packages.x86_64-linux.wings}/bin/wings";
       };
     };
 }

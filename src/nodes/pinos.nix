@@ -3,7 +3,6 @@
 
   ##colmena
   deployment = {
-    tags = [ "mh" "noth" ];
     targetHost = "pinos";
     targetUser = "root";
   };
@@ -30,8 +29,8 @@
       DESCRIPTION = "The Minky git server running Forgejo";
     };
     settings.server = {
-      ROOT_URL = "https://git.matestmc.ru";
-      DOMAIN = "git.matestmc.ru";
+      ROOT_URL = "https://git.minkystudios.ru";
+      DOMAIN = "git.minkystudios.ru";
       HTTP_ADDR = "0.0.0.0";
       HTTP_PORT = 3080;
     };
@@ -44,7 +43,7 @@
   services.nginx = {
     enable = true;
 
-    virtualHosts."git.matestmc.ru" = {
+    virtualHosts."git.minkystudios.ru" = {
       addSSL = true;
       enableACME = true;
       extraConfig = ''

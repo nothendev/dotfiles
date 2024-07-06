@@ -1,20 +1,19 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [
-    ./binkus.hardware.nix
+    ./dungeon.hardware.nix
     ../os/services/mattermost.nix
     ../os/services/pterodactyl.nix
     ../os/services/wings.nix
   ];
 
   deployment = {
-    tags = [ "minkyst" "ehost" ];
     targetHost = "dungeon";
     targetUser = "root";
   };
   security.acme = {
     acceptTerms = true;
-    defaults.email = "god@matestmc.ru";
-    certs."binkus.matestmc.ru" = {
+    defaults.email = "kwilnikow@gmail.com";
+    certs."binkus.minkystudios.ru" = {
       webroot = "/var/www/binkus";
     };
   };
@@ -28,15 +27,15 @@
     enable = true;
     user = "pterodactyl";
     virtualHosts = {
-      "acme.matestmc.ru" = {
-        serverAliases = [ "*.matestmc.ru" ];
+      "acme.minkystudios.ru" = {
+        serverAliases = [ "*.minkystudios.ru" ];
         locations."/.well-known/acme-challenge" = {
           root = "/var/lib/acme/.challenges";
         };
         locations."/" = { return = "301 https://$host$request_uri"; };
       };
 
-      "mm.matestmc.ru" = {
+      "mm.minkystudios.ru" = {
         # proxy_pass to localhost:8065
         locations."/" = { proxyPass = "http://localhost:8065"; };
       };
@@ -71,7 +70,7 @@
   # pterodactyl
   services.pterodactyl = {
     enable = true;
-    nginxVhost = "mgr.matestmc.ru";
+    nginxVhost = "mgr.minkystudios.ru";
     user = "pterodactyl";
     dataDir = "/srv/pterodactyl";
     redisName = "pterodactis";

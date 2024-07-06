@@ -3,7 +3,6 @@
 
   ##colmena
   deployment = {
-    tags = [ "timeweb" "pink" ];
     targetHost = "omema";
     targetUser = "root";
   };

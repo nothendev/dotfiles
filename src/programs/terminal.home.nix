@@ -20,7 +20,7 @@
     bat # pager blazing fast
     pandoc # document convertator
     cachix
-    nixfmt
+    nixfmt-rfc-style
     # fjo.packages.${system}.default # THE forgejo tool
     xdg-utils # ???
   ];

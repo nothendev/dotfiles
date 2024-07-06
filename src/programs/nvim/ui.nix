@@ -26,12 +26,12 @@
       dressing.enable = true;
       bufferline.enable = false;
       telescope.enable = true;
-      telescope.extensions.project-nvim.enable = true;
+      project-nvim.enableTelescope = true;
       todo-comments.enable = true;
       rainbow-delimiters.enable = true;
       twilight.enable = true;
       trouble.enable = true;
-      trouble.mode = "document_diagnostics";
+      trouble.settings.mode = "document_diagnostics";
       gitgutter.enable = true;
       which-key.enable = true;
     };

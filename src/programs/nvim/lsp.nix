@@ -24,11 +24,15 @@
       require'supermaven-nvim'.setup{
         disable_keymaps = true
       }
+      vim.lsp.inlay_hint.enable(true)
     '';
     plugins = {
       none-ls = {
         enable = true;
-        sources.formatting.prettier.enable = true;
+        sources.formatting.prettier = {
+          enable = true;
+          disableTsServerFormatter = true;
+        };
       };
       lspkind = {
         enable = true;
@@ -62,9 +66,6 @@
       };
       ## rust
       crates-nvim.enable = true;
-      lsp.onAttach = ''
-        vim.lsp.inlay_hint.enable(bufnr, true)
-      '';
       lsp.servers.rust-analyzer = {
         enable = true;
         package = null;
