@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./dungeon.hardware.nix
     ../os/services/mattermost.nix
@@ -13,15 +14,26 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "kwilnikow@gmail.com";
-    certs."binkus.minkystudios.ru" = {
-      webroot = "/var/www/binkus";
-    };
   };
 
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
-  environment.shells = with pkgs; [ bash fish ];
-  environment.systemPackages = with pkgs; [ neovim wget curl fish git btop ];
+  environment.shells = with pkgs; [
+    bash
+    fish
+  ];
+  environment.systemPackages = with pkgs; [
+    neovim
+    wget
+    curl
+    fish
+    git
+    btop
+
+    kubectl
+    kubernetes
+    kubernetes-helm
+  ];
 
   services.nginx = {
     enable = true;
@@ -32,19 +44,37 @@
         locations."/.well-known/acme-challenge" = {
           root = "/var/lib/acme/.challenges";
         };
-        locations."/" = { return = "301 https://$host$request_uri"; };
+        locations."/" = {
+          return = "301 https://$host$request_uri";
+        };
       };
 
-      "mm.minkystudios.ru" = {
-        # proxy_pass to localhost:8065
-        locations."/" = { proxyPass = "http://localhost:8065"; };
+      "binkus.minkystudios.ru" = {
+        enableACME = true;
       };
+
+      "kys.minkystudios.ru" = {
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "https://localhost:6443";
+        };
+      };
+
+      #"mm.minkystudios.ru" = {
+      #  enableACME = true;
+      #  # proxy_pass to localhost:8065
+      #  locations."/" = {
+      #    proxyPass = "http://localhost:8065";
+      #  };
+      #};
     };
   };
 
   system.stateVersion = "24.05";
   services.openssh.enable = true;
-  services.openssh.settings = { PermitRootLogin = "without-password"; };
+  services.openssh.settings = {
+    PermitRootLogin = "without-password";
+  };
 
   services.mysql = {
     enable = true;
@@ -54,7 +84,10 @@
   networking = {
     hostName = "dungeon";
     networkmanager.enable = true;
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
     firewall.enable = false;
   };
 
@@ -80,6 +113,19 @@
   services.wings = {
     enable = true;
     package = pkgs.callPackage ../pkgs/wings.nix { };
+  };
+
+  systemd.services.wings = {
+    after = [ "acme-binkus.minkystudios.ru.service" ];
+    requires = [ "acme-binkus.minkystudios.ru.service" ];
+  };
+
+  #kys
+  services.k3s = {
+    enable = true;
+    role = "server";
+    extraFlags =
+      "--disable traefik --service-node-port-range 25565-32767";
   };
 
   virtualisation.oci-containers.backend = "docker";
