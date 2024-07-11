@@ -36,7 +36,7 @@
   ];
 
   services.nginx = {
-    enable = true;
+    enable = false;
     user = "pterodactyl";
     virtualHosts = {
       "acme.minkystudios.ru" = {
@@ -121,11 +121,41 @@
   };
 
   #kys
+  services.traefik = {
+    enable = true;
+    staticConfigOptions = {
+      entryPoints = {
+        web.address = ":80";
+        websecure.address = ":443";
+        minecraft.address = ":25565";
+        traefik.address = ":6942";
+      };
+      api.dashboard = true;
+      providers.kubernetesCRD.endpoint = "https://localhost:6443";
+      providers.kubernetesCRD.token = "\${TRFK_TOKEN}";
+      providers.kubernetesCRD.certAuthFilePath = "/var/lib/trfk/ca.crt";
+      providers.kubernetesIngress.endpoint = "https://localhost:6443";
+      providers.kubernetesIngress.token = "\${TRFK_TOKEN}";
+      providers.kubernetesIngress.certAuthFilePath = "/var/lib/trfk/ca.crt";
+      certificatesResolvers.letsenc.acme = {
+        storage = "/var/lib/traefik/acme.json";
+        dnsChallenge.provider = "cloudflare";
+        dnsChallenge.resolvers = [
+          "1.1.1.1"
+          "1.0.0.1"
+        ];
+      };
+      log.level = "DEBUG";
+    };
+    environmentFiles = [ "/var/lib/trfk/env" ];
+    dynamicConfigFile = "/var/lib/trfk/dynamic.yaml";
+  };
   services.k3s = {
-    enable = false;
+    enable = true;
     role = "server";
     extraFlags = "--disable traefik --service-node-port-range 25565-32767";
   };
+  systemd.services.traefik.unitConfig.EnvironmentFile = "/var/lib/trfk/env";
 
   virtualisation.oci-containers.backend = "docker";
 }
