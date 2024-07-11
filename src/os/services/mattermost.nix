@@ -1,5 +1,5 @@
 {
-  pkgs,
+  lib,
   mattermost-plugin-focalboard,
   mattermost-plugin-jitsi,
   ...
@@ -18,6 +18,6 @@
     ];
   };
   services.nginx = {
-    enable = true;
+    enable = lib.mkDefault true;
   };
 }

@@ -53,12 +53,12 @@
         enableACME = true;
       };
 
-      "kys.minkystudios.ru" = {
-        enableACME = true;
-        locations."/" = {
-          proxyPass = "https://localhost:6443";
-        };
-      };
+      #"kys.minkystudios.ru" = {
+      #  enableACME = true;
+      #  locations."/" = {
+      #    proxyPass = "https://localhost:6443";
+      #  };
+      #};
 
       #"mm.minkystudios.ru" = {
       #  enableACME = true;
@@ -122,10 +122,9 @@
 
   #kys
   services.k3s = {
-    enable = true;
+    enable = false;
     role = "server";
-    extraFlags =
-      "--disable traefik --service-node-port-range 25565-32767";
+    extraFlags = "--disable traefik --service-node-port-range 25565-32767";
   };
 
   virtualisation.oci-containers.backend = "docker";
