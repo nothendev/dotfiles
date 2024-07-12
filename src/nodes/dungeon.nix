@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, self, system, ... }:
 {
   imports = [
     ./dungeon.hardware.nix
@@ -11,9 +11,17 @@
     targetHost = "dungeon";
     targetUser = "root";
   };
+
+  nix.settings.sandbox = false;
+
   security.acme = {
     acceptTerms = true;
     defaults.email = "kwilnikow@gmail.com";
+    certs."binkus.minkystudios.ru" = {
+      dnsProvider = "cloudflare";
+      environmentFile = "/var/lib/trfk/env";
+    };
+    defaults.group = "pterodactyl";
   };
 
   users.defaultUserShell = pkgs.fish;
@@ -53,12 +61,12 @@
         enableACME = true;
       };
 
-      #"kys.minkystudios.ru" = {
-      #  enableACME = true;
-      #  locations."/" = {
-      #    proxyPass = "https://localhost:6443";
-      #  };
-      #};
+      "kys.minkystudios.ru" = {
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "https://localhost:6443";
+        };
+      };
 
       #"mm.minkystudios.ru" = {
       #  enableACME = true;
@@ -68,6 +76,44 @@
       #  };
       #};
     };
+  };
+
+  services.caddy = {
+    enable = true;
+    package = self.packages.${system}.customCaddyBuiltWithFuckingGatewayAndShit;
+    email = "kwilnikow@gmail.com";
+    user = "pterodactyl";
+    group = "pterodactyl";
+    enableReload = true;
+    globalConfig = ''
+      admin localhost:2019
+      acme_dns cloudflare {env.CF_API_TOKEN}
+    '';
+    virtualHosts = {
+      "kys.minkystudios.ru" = {
+        extraConfig = ''
+          reverse_proxy https://localhost:6443
+        '';
+      };
+      "mgr.minkystudios.ru".extraConfig = ''
+        tls {
+          dns cloudflare {env.CF_API_TOKEN}
+        }
+      '';
+      "mm.minkystudios.ru" = {
+        extraConfig = ''
+          reverse_proxy http://localhost:8065
+        '';
+      };
+    };
+  };
+  systemd.services.caddy.serviceConfig = {
+    EnvironmentFile = "/var/lib/trfk/env";
+    AmbientCapabilities = ["CAP_NET_BIND_SERVICE" "CAP_NET_RAW" "CAP_NET_ADMIN" "CAP_SYS_RESOURCE"];
+    CapabilityBoundingSet = ["CAP_NET_BIND_SERVICE" "CAP_NET_RAW" "CAP_NET_ADMIN" "CAP_SYS_RESOURCE"];
+    PrivateTmp = true;
+    ProtectSystem = "full";
+    TimeoutStopSec = "5s";
   };
 
   system.stateVersion = "24.05";
@@ -103,7 +149,7 @@
   # pterodactyl
   services.pterodactyl = {
     enable = true;
-    nginxVhost = "mgr.minkystudios.ru";
+    hostName = "mgr.minkystudios.ru";
     user = "pterodactyl";
     dataDir = "/srv/pterodactyl";
     redisName = "pterodactis";
@@ -122,7 +168,7 @@
 
   #kys
   services.traefik = {
-    enable = true;
+    enable = false;
     staticConfigOptions = {
       entryPoints = {
         web.address = ":80";
@@ -155,7 +201,6 @@
     role = "server";
     extraFlags = "--disable traefik --service-node-port-range 25565-32767";
   };
-  systemd.services.traefik.unitConfig.EnvironmentFile = "/var/lib/trfk/env";
 
   virtualisation.oci-containers.backend = "docker";
 }

@@ -36,11 +36,9 @@
     zjstatus.url = "github:dj95/zjstatus";
 
     ## Mattermost
-    mattermost-plugin-focalboard.url =
-      "file+https://github.com/mattermost/focalboard/releases/download/v7.10.6/mattermost-plugin-focalboard.tar.gz";
+    mattermost-plugin-focalboard.url = "file+https://github.com/mattermost/focalboard/releases/download/v7.10.6/mattermost-plugin-focalboard.tar.gz";
     mattermost-plugin-focalboard.flake = false;
-    mattermost-plugin-jitsi.url =
-      "file+https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
+    mattermost-plugin-jitsi.url = "file+https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
     mattermost-plugin-jitsi.flake = false;
 
     ## Catppuccin
@@ -57,17 +55,26 @@
     catppuccin-sddm.flake = false;
   };
 
-  outputs = { fp, ... }@inputs:
+  outputs =
+    { fp, ... }@inputs:
     fp.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
-      imports = [ ./src/systems ./src/nodes ];
-      perSystem = { self', pkgs, ... }: {
-        packages.wings = pkgs.callPackage ./src/pkgs/wings.nix {};
-        formatter = pkgs.nixfmt-rfc-style;
-        apps.wings = {
-          type = "app";
-          program = "${self'.packages.wings}/bin/wings";
+      imports = [
+        ./src/systems
+        ./src/nodes
+      ];
+      perSystem =
+        { self', pkgs, ... }:
+        {
+          packages.customCaddyBuiltWithFuckingGatewayAndShit =
+            pkgs.callPackage ./src/pkgs/fucking-caddy.nix
+              { };
+          packages.wings = pkgs.callPackage ./src/pkgs/wings.nix { };
+          formatter = pkgs.nixfmt-rfc-style;
+          apps.wings = {
+            type = "app";
+            program = "${self'.packages.wings}/bin/wings";
+          };
         };
-      };
     };
 }

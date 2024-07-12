@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-with lib;
 let
   cfg = config.services.pterodactyl;
   pterodactlyPhp81 = (
@@ -23,15 +22,15 @@ let
   );
 in
 {
-  options.services.pterodactyl = {
+  options.services.pterodactyl = with lib; {
     enable = mkOption {
       type = types.bool;
       default = false;
     };
-    nginxVhost = mkOption {
+    hostName = mkOption {
       type = types.str;
       description = mdDoc ''
-        The Nginx virtual host on which the panel will run.
+        The hostname on which the panel will run.
       '';
       default = "localhost";
       example = literalExpression "mgr.matestmc.net";
@@ -62,12 +61,12 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.redis.servers.${cfg.redisName} = {
       enable = true;
       port = 6379;
     };
-    services.nginx.virtualHosts."${cfg.nginxVhost}" = {
+    services.nginx.virtualHosts."${cfg.hostName}" = {
       addSSL = true;
       #forceSSL = true;
       enableACME = true;
@@ -115,6 +114,53 @@ in
         "php_admin_value[error_log]" = "stderr";
         "php_admin_flag[daemonize]" = "false";
       };
+    };
+    services.caddy.globalConfig = ''
+    servers :443 {
+      timeouts {
+        read_body 120s
+      }
+    }
+    '';
+    services.caddy.virtualHosts.${cfg.hostName} = {
+      extraConfig = ''
+        root * ${cfg.dataDir}/public
+        file_server
+        php_fastcgi unix/${config.services.phpfpm.pools.pterodactyl.socket} {
+          root ${cfg.dataDir}/public
+          index index.php
+          env PHP_VALUE "upload_max_filesize = 100M
+          post_max_size=100M"
+          env HTTP_PROXY ""
+          env HTTPS "on"
+
+          read_timeout 300s
+          dial_timeout 300s
+          write_timeout 300s
+        }
+
+        header Strict-Transport-Security "max-age=16768000; preload;"
+        header X-Content-Type-Options "nosniff"
+        header X-XSS-Protection "1; mode=block;"
+        header X-Robots-Tag "none"
+        header Content-Security-Policy "frame-ancestors 'self'"
+        header X-Frame-Options "DENY"
+        header Referrer-Policy "same-origin"
+
+        request_body {
+            max_size 100m
+        }
+
+        respond /.ht* 403
+
+        log {
+            output file /var/log/caddy/pterodactyl.log {
+                roll_size 100MiB
+                roll_keep_for 7d
+            }
+            level INFO
+        }
+      '';
     };
     users.users.${cfg.user} = {
       isSystemUser = true;

@@ -8,4 +8,5 @@
       default = "root";
     };
   };
+  config.nix.settings.sandbox = false;
 }
