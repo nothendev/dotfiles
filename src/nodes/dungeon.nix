@@ -43,41 +43,6 @@
     kubernetes-helm
   ];
 
-  services.nginx = {
-    enable = false;
-    user = "pterodactyl";
-    virtualHosts = {
-      "acme.minkystudios.ru" = {
-        serverAliases = [ "*.minkystudios.ru" ];
-        locations."/.well-known/acme-challenge" = {
-          root = "/var/lib/acme/.challenges";
-        };
-        locations."/" = {
-          return = "301 https://$host$request_uri";
-        };
-      };
-
-      "binkus.minkystudios.ru" = {
-        enableACME = true;
-      };
-
-      "kys.minkystudios.ru" = {
-        enableACME = true;
-        locations."/" = {
-          proxyPass = "https://localhost:6443";
-        };
-      };
-
-      #"mm.minkystudios.ru" = {
-      #  enableACME = true;
-      #  # proxy_pass to localhost:8065
-      #  locations."/" = {
-      #    proxyPass = "http://localhost:8065";
-      #  };
-      #};
-    };
-  };
-
   services.caddy = {
     enable = true;
     package = self.packages.${system}.customCaddyBuiltWithFuckingGatewayAndShit;

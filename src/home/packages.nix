@@ -61,6 +61,7 @@
       blender
 
       ## Communication (messengers)
+      signal-desktop
       session-desktop
       kotatogram-desktop
       (vesktop.overrideAttrs (a: {

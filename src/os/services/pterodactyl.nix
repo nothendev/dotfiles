@@ -66,37 +66,6 @@ in
       enable = true;
       port = 6379;
     };
-    services.nginx.virtualHosts."${cfg.hostName}" = {
-      addSSL = true;
-      #forceSSL = true;
-      enableACME = true;
-      root = "${cfg.dataDir}/public";
-      extraConfig = ''
-        index index.html index.htm index.php;
-      '';
-      locations = {
-        "~ \\.php$" = {
-          extraConfig = ''
-            fastcgi_split_path_info ^(.+\.php)(/.+)$;
-            fastcgi_pass unix:${config.services.phpfpm.pools.pterodactyl.socket};
-            include ${pkgs.nginx}/conf/fastcgi_params;
-            fastcgi_index index.php;
-            fastcgi_param PHP_VALUE "upload_max_filesize = 100M \n post_max_size=100M";
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            fastcgi_param HTTP_PROXY "";
-            fastcgi_intercept_errors off;
-            fastcgi_buffer_size 16k;
-            fastcgi_buffers 4 16k;
-            fastcgi_connect_timeout 300;
-            fastcgi_send_timeout 300;
-            fastcgi_read_timeout 300;
-          '';
-        };
-        "/" = {
-          tryFiles = "$uri $uri/ /index.php?$query_string";
-        };
-      };
-    };
     services.phpfpm.pools.pterodactyl = {
       user = cfg.user;
       settings = {
