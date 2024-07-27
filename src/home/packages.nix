@@ -17,7 +17,7 @@
       wlr-randr
       qpwgraph
       mpv
-      anytype
+      #anytype #they fucked something up :) vendoring goes brrrrrrrrr
       grim
       slurp
       wl-clipboard
