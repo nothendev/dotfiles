@@ -26,8 +26,8 @@
         cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
+          elseif luasnip.jumpable(0) then
+            luasnip.jump(0)
           else
             fallback()
           end

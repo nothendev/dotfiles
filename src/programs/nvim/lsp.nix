@@ -97,6 +97,16 @@
       lsp.servers.tsserver.onAttach.function = ''
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
+
+        -- oh typescript.
+        local ts_sem_remap = {
+          typescriptExport = "@keyword.export",
+          typescriptImport = "@keyword.import",
+        }
+
+        for k, v in pairs(ts_sem_remap) do
+          vim.api.nvim_set_hl(0, k, { link = v })
+        end
       '';
 
       lsp.servers.svelte.enable = true;

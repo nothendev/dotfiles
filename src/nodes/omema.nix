@@ -28,6 +28,33 @@
     database.createLocally = true;
   };
 
+  services.caddy = {
+    enable = false;
+    email = "pinksheetsmarket@gmail.com";
+    virtualHosts = {
+      "kenos.minkystudios.ru" = {
+       extraConfig = ''
+	 reverse_proxy http://localhost:8746
+       '';
+      };
+    };
+  };
+
+  systemd.services.kenos-ui = {
+    enable = false;
+    description = "kenos-ui";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    serviceConfig = {
+      Type = "simple";
+      Restart = "always";
+      RestartSec = 3;
+      WorkingDirectory = "/srv/kenos-ui";
+      ExecStart = "${pkgs.nodejs}/bin/node dist/ui/server/server.mjs";
+      Environment = "PORT=8746";
+    };
+  };
+
   # systemd.services.lemmy-ui = {
   #   enable = false;
   #   # i hate rebuilds so do this

@@ -11,8 +11,10 @@
   services.syncthing.enable = true;
   home.packages =
     (with pkgs; [
+      ## JAVA !! yeee
+      zulu17
       ## Graphical utilities
-      #jay
+      jay
       deploy-rs
       wlr-randr
       qpwgraph
