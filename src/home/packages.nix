@@ -14,7 +14,7 @@
       ## JAVA !! yeee
       zulu17
       ## Graphical utilities
-      jay
+      thunderbird-128
       deploy-rs
       wlr-randr
       qpwgraph
