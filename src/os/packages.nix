@@ -22,12 +22,13 @@
   environment.etc."jvm/8".source = pkgs.jdk8;
   environment.systemPackages = with pkgs; [
     glibc
-    (btop.overrideAttrs (old: {
-      nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ addOpenGLRunpath ];
-      postFixup = ''
-        addOpenGLRunpath $out/bin/btop
-      '';
-    }))
+    #(btop.overrideAttrs (old: {
+    #  nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ addOpenGLRunpath ];
+    #  postFixup = ''
+    #    addOpenGLRunpath $out/bin/btop
+    #  '';
+    #}))
+    btop
     nmon
     jq
     socat
