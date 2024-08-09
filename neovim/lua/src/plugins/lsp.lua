@@ -22,7 +22,7 @@ return {
     end,
     keys = {
       { "<leader>fm", "<cmd>lua vim.lsp.buf.format{async=true}<CR>", desc = "Format buffer" },
-    }
+    },
   },
   {
     "onsails/lspkind.nvim",
@@ -96,6 +96,26 @@ return {
           end
         end,
       })
+      lc.gopls.setup({
+        capabilities = cmp_caps,
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+            gofumpt = true,
+	    hints = {
+	      assignVariableTypes = true,
+	      compositeLiteralFields = true,
+	      constantValues = true,
+	      functionTypeParameters = true,
+	      parameterNames = true,
+	      rangeVariableTypes = true,
+	    }
+          },
+        },
+      })
       lc.svelte.setup({
         capabilities = cmp_caps,
       })
@@ -123,6 +143,7 @@ return {
       "markdown_inline",
       "c",
       "cpp",
+      "go",
       "nix",
       "typescript",
       "javascript",
@@ -130,6 +151,6 @@ return {
       "zig",
       "lua",
       "rust",
-    }
+    },
   },
 }

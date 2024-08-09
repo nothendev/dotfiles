@@ -9,7 +9,7 @@ return {
     "folke/trouble.nvim",
     opts = {
       mode = "document_diagnostics",
-    }
+    },
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -20,10 +20,10 @@ return {
     },
     opts = {
       pickers = {
-	find_files = {
-	  find_command = { "fd", "--type", "f", "--follow", "--strip-cwd-prefix" }
-	}
-      }
+        find_files = {
+          find_command = { "fd", "--type", "f", "--follow", "--strip-cwd-prefix" },
+        },
+      },
     },
     cmd = { "Telescope" },
     keys = {
@@ -33,7 +33,7 @@ return {
       { "<leader>g", "<cmd>Telescope git_status<CR>", desc = "[telescope] Git status" },
       { "gs", "<cmd>Telescope lsp_document_symbols<CR>", desc = "[telescope] Search document symbols" },
       { "gS", "<cmd>Telescope lsp_workspace_symbols<CR>", desc = "[telescope] Search workspace symbols" },
-    }
+    },
   },
   {
     "ahmedkhalf/project.nvim",
@@ -49,11 +49,11 @@ return {
     },
     config = function(opts)
       require("project_nvim").setup(opts)
-      require'telescope'.load_extension('projects')
+      require("telescope").load_extension("projects")
     end,
   },
   {
     "stevearc/dressing.nvim",
-    event = "VeryLazy"
-  }
+    event = "VeryLazy",
+  },
 }

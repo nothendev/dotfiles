@@ -115,5 +115,7 @@
     #lua
     luajit
     luarocks
+    gopls
+    gofumpt
   ]);
 }
