@@ -21,7 +21,7 @@
     zcp = "rsync --info=progress2 -auvz";
   };
   programs.fish.shellInit = ''
-    set -gx PATH $HOME/.bun/bin $PATH
+    set -gx PATH $HOME/.bun/bin $HOME/go/bin $PATH
   '';
   programs.direnv.enable = true;
 }
