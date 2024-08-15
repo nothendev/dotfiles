@@ -42,6 +42,10 @@ return {
     },
   },
   {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+  },
+  {
     "theprimeagen/harpoon",
     config = function()
       require("harpoon").setup()

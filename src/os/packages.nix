@@ -29,6 +29,7 @@
     #  '';
     #}))
     btop
+    nmap
     nmon
     jq
     socat
@@ -45,7 +46,7 @@
     meson
     ninja
     cmake
-    go
+    go_1_23
     rustup
     libclang
     gdb

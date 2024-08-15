@@ -2,7 +2,7 @@
   inputs = {
     ## Nixpkgs and Home-manager
     #nixpkgs.follows = "nixvim/nixpkgs";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/staging-next";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
