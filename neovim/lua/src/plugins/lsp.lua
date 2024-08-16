@@ -15,6 +15,7 @@ return {
       local ls = require("null-ls")
       ls.setup({
         sources = {
+	  ls.builtins.formatting.biome,
           ls.builtins.formatting.prettier,
           ls.builtins.formatting.stylua,
         },
