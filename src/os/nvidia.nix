@@ -70,7 +70,7 @@
     #   patches = [ rcu_patch ];
     # };
     package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
-    #package = config.boot.kernelPackages.nvidiaPackages.stable;
+    #package = config.boot.kernelPackages.nvidiaPackages.latest;
     nvidiaSettings = true;
   };
 }

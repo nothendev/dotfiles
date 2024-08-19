@@ -19,7 +19,7 @@
   # services.openssh.enable = true;
   # services.openssh.settings.PermitRootLogin = "yes";
   # services.openssh.settings.PasswordAuthentication = true;
-  virtualisation.docker.enable = true;
-  virtualisation.oci-containers.backend = "docker";
+  #virtualisation.docker.enable = true;
+  #virtualisation.oci-containers.backend = "docker";
   system.stateVersion = "23.11";
 }
