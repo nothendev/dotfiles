@@ -56,7 +56,7 @@
     virtualHosts = {
       "kys.minkystudios.ru" = {
         extraConfig = ''
-          reverse_proxy https://localhost:6443
+          reverse_proxy https://127.0.0.1:6443
         '';
       };
       "mgr.minkystudios.ru".extraConfig = ''
@@ -163,7 +163,7 @@
   services.k3s = {
     enable = true;
     role = "server";
-    extraFlags = "--disable traefik --service-node-port-range 25565-32767";
+    extraFlags = "--disable traefik --service-node-port-range 25565-32767 --tls-san 95.165.149.100";
   };
 
   virtualisation.oci-containers.backend = "docker";
