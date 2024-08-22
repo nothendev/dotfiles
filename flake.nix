@@ -35,12 +35,6 @@
     fjo.inputs.nixpkgs.follows = "nixpkgs";
     zjstatus.url = "github:dj95/zjstatus";
 
-    ## Mattermost
-    mattermost-plugin-focalboard.url = "file+https://github.com/mattermost/focalboard/releases/download/v7.10.6/mattermost-plugin-focalboard.tar.gz";
-    mattermost-plugin-focalboard.flake = false;
-    mattermost-plugin-jitsi.url = "file+https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz";
-    mattermost-plugin-jitsi.flake = false;
-
     ## Catppuccin
     catppuccin-alacritty.url = "github:catppuccin/alacritty";
     catppuccin-alacritty.flake = false;

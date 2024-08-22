@@ -10,7 +10,6 @@ let
       callPackage = newScope self;
     in
     {
-      focalboard = callPackage ./focalboard.nix { };
       librewolf-appimage = callPackage ./librewolf.nix { };
       discord-discorded = callPackage ./discord.nix { };
       canon-cups-updated = callPackage ./canon.nix { };

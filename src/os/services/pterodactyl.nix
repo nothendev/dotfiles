@@ -6,14 +6,15 @@
 }:
 let
   cfg = config.services.pterodactyl;
-  pterodactlyPhp81 = (
-    pkgs.php81.buildEnv {
+  pterodactlyPhp82 = (
+    pkgs.php82.buildEnv {
       extensions =
         { enabled, all }:
         enabled
         ++ (with all; [
           redis
           xdebug
+          xml
         ]);
       extraConfig = ''
         xdebug.mode=debug
@@ -69,7 +70,7 @@ in
     services.phpfpm.pools.pterodactyl = {
       user = cfg.user;
       settings = {
-        "listen.owner" = config.services.nginx.user;
+        "listen.owner" = config.services.caddy.user;
         "pm" = "dynamic";
         "pm.start_servers" = 4;
         "pm.min_spare_servers" = 4;
@@ -85,11 +86,11 @@ in
       };
     };
     services.caddy.globalConfig = ''
-    servers :443 {
-      timeouts {
-        read_body 120s
+      servers :443 {
+        timeouts {
+          read_body 120s
+        }
       }
-    }
     '';
     services.caddy.virtualHosts.${cfg.hostName} = {
       extraConfig = ''
@@ -151,7 +152,7 @@ in
         User = cfg.user;
         Group = cfg.user;
         Restart = "always";
-        ExecStart = "${pterodactlyPhp81}/bin/php ${cfg.dataDir}/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3";
+        ExecStart = "${pterodactlyPhp82}/bin/php ${cfg.dataDir}/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3";
         StartLimitBurst = 30;
         RestartSec = "5s";
       };
@@ -160,9 +161,8 @@ in
 
     environment.systemPackages = [
       # php 8.1 with the needed exts
-      pterodactlyPhp81
-      # composer
-      (pkgs.php81Packages.composer.override { php = pterodactlyPhp81; })
+      pterodactlyPhp82
+      pkgs.php82Packages.composer
     ];
   };
 }

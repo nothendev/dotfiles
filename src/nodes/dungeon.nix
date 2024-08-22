@@ -2,7 +2,6 @@
 {
   imports = [
     ./dungeon.hardware.nix
-    ../os/services/mattermost.nix
     ../os/services/pterodactyl.nix
     ../os/services/wings.nix
   ];

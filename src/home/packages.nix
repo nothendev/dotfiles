@@ -15,7 +15,6 @@
       zulu17
       ## Graphical utilities
       thunderbird-128
-      deploy-rs
       wlr-randr
       qpwgraph
       mpv

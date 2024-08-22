@@ -61,7 +61,7 @@ This will build the nodes' NixOSes and deploy them accordingly.
 - `./src/home` - my Home Manager modules
 - `./src/nodes` - my [colmena] hive, currently only my homeserver setup.
 - `./src/os` - my NixOS modules
-  - `./src/os/services` - my services' configurations, currently Mattermost, AdGuard Home (pihole but with NixOS support) and Forgejo
+  - `./src/os/services` - my services' configurations, currently AdGuard Home (pihole but with NixOS support) and Forgejo
 - `./src/overlays` - some of my (unused) overlays
 - `./src/pkgs` - my (unused) self-made Nix packages
 - `./src/systems` - my NixOS systems, currently only my main PC

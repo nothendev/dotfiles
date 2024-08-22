@@ -1,9 +1,7 @@
 {
   pkgs,
   system,
-  fjo,
   zjstatus,
-  osConfig,
   ...
 }:
 {
@@ -11,18 +9,17 @@
     fish # superior shell
     starship # superior shell prompt
     evcxr # rust repl
-    colmena # le deploy
+    deploy-rs # le deploy
     fd # find find find find
     fzf # fuzzy finder
-    zoxide # z
+    zoxide # j
     eza # ls blazing fast
     ranger # explorer but command line
     bat # pager blazing fast
     pandoc # document convertator
     cachix
     nixfmt-rfc-style
-    # fjo.packages.${system}.default # THE forgejo tool
-    xdg-utils # ???
+    xdg-utils
   ];
   home.sessionVariables.PAGER = "bat";
   programs.alacritty.enable = true;
@@ -34,7 +31,7 @@
     };
   };
   xdg.configFile."zellij/layouts/default.kdl".text =
-    with pkgs.lib.mapAttrs (_: hex: "#${hex}") osConfig.pretty.base69; ''
+    ''
       layout {
           default_tab_template name="tab" {
               pane size=1 borderless=true {

@@ -887,30 +887,6 @@
         "type": "github"
       }
     },
-    "mattermost-plugin-focalboard": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-euIkCD214Dr0xbzTm2d5taKWwiUiYXvMNqHrdMviSi0=",
-        "type": "file",
-        "url": "https://github.com/mattermost/focalboard/releases/download/v7.10.6/mattermost-plugin-focalboard.tar.gz"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/mattermost/focalboard/releases/download/v7.10.6/mattermost-plugin-focalboard.tar.gz"
-      }
-    },
-    "mattermost-plugin-jitsi": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-b84OoKQk7OQJIIwhKwfYJhwil/Xc93aH3HWIy/Q8n5Q=",
-        "type": "file",
-        "url": "https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/mattermost/mattermost-plugin-jitsi/releases/download/v2.0.1/jitsi-2.0.1.tar.gz"
-      }
-    },
     "mk-naked-shell": {
       "flake": false,
       "locked": {
@@ -1362,8 +1338,6 @@
         "fp": "fp",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "mattermost-plugin-focalboard": "mattermost-plugin-focalboard",
-        "mattermost-plugin-jitsi": "mattermost-plugin-jitsi",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",

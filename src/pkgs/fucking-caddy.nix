@@ -1,8 +1,8 @@
 { pkgs, lib, stdenv, git, go, xcaddy }:
 stdenv.mkDerivation rec {
-  pname = "caddy";
+  pname = "ultracaddy";
   # https://github.com/NixOS/nixpkgs/issues/113520
-  version = "latest";
+  version = "2.8.4-with-gateway";
   dontUnpack = true;
 
   nativeBuildInputs = [ git go xcaddy ];

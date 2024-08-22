@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   imports = [
     ./minky.hardware.nix
-    # ../os/services/mattermost.nix
     ../os/services/agh.nix
   ];
   deployment = {
