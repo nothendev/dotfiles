@@ -37,12 +37,18 @@
     settings.service = { DISABLE_REGISTRATION = true; };
   };
 
+  services.nextcloud = {
+    enable = true;
+    hostName = "nc.minkystudios.ru";
+    config.adminpassFile = "/var/lib/nc-adminpass";
+    https = true;
+  };
+
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "kwilnikow@gmail.com";
 
   services.nginx = {
     enable = true;
-
     virtualHosts."git.minkystudios.ru" = {
       addSSL = true;
       enableACME = true;
@@ -50,6 +56,10 @@
         client_max_body_size 512M;
       '';
       locations."/".proxyPass = "http://localhost:3080";
+    };
+    virtualHosts."nc.minkystudios.ru" = {
+      addSSL = true;
+      enableACME = true;
     };
   };
 

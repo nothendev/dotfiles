@@ -10,21 +10,6 @@ return {
     },
   },
   {
-    "nvimtools/none-ls.nvim",
-    config = function()
-      local ls = require("null-ls")
-      ls.setup({
-        sources = {
-	  ls.builtins.formatting.biome,
-          ls.builtins.formatting.stylua,
-        },
-      })
-    end,
-    keys = {
-      { "<leader>fm", "<cmd>lua vim.lsp.buf.format{async=true}<CR>", desc = "Format buffer" },
-    },
-  },
-  {
     "onsails/lspkind.nvim",
     opts = {
       symbolMap = { Supermaven = "󰚩" },
@@ -84,6 +69,7 @@ return {
         on_attach = function(client, bufnr)
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
+          client.server_capabilities.semanticTokensProvider = nil
 
           -- oh typescript.
           local ts_sem_remap = {
@@ -105,16 +91,33 @@ return {
             },
             staticcheck = true,
             gofumpt = true,
-	    hints = {
-	      assignVariableTypes = true,
-	      compositeLiteralFields = true,
-	      constantValues = true,
-	      functionTypeParameters = true,
-	      parameterNames = true,
-	      rangeVariableTypes = true,
-	    }
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
           },
         },
+      })
+      local ngserver_cmd = {
+        "ngserver",
+        "--stdio",
+        "--tsProbeLocations",
+        "/mnt/k/minky/ultrarepo",
+        "--ngProbeLocations",
+        "/mnt/k/minky/ultrarepo",
+      }
+      lc.angularls.setup({
+        capabilities = cmp_caps,
+        cmd = ngserver_cmd,
+        root_dir = lc.util.root_pattern("nx.json", "angular.json", ".git"),
+        on_new_config = function(new_config, new_root_dir)
+          new_config.cmd =
+            { "ngserver", "--stdio", "--tsProbeLocations", new_root_dir, "--ngProbeLocations", new_root_dir }
+        end,
       })
       lc.svelte.setup({
         capabilities = cmp_caps,
@@ -145,8 +148,12 @@ return {
       "cpp",
       "go",
       "nix",
+      "html",
       "typescript",
       "javascript",
+      "typescriptreact",
+      "typescript.tsx",
+      "htmlangular",
       "svelte",
       "zig",
       "lua",

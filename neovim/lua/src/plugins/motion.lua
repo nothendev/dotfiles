@@ -14,6 +14,14 @@ return {
         desc = "[flash] jmp",
       },
       {
+        "?",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
         "S",
         mode = { "n", "x", "o" },
         function()
@@ -30,7 +38,14 @@ return {
         end,
         desc = "Remote Flash",
       },
-      --{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
       {
         "<leader>s",
         mode = { "c" },
