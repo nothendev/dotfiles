@@ -7,7 +7,11 @@ return {
       -- Customize or remove this keymap to your liking
       "<leader>fm",
       function()
-        require("conform").format({ async = true, lsp_format = "fallback" })
+        require("conform").format({ async = true, lsp_format = "fallback" }, function()
+          require("fidget").notify("formatted", vim.log.levels.INFO, {
+            group = "conform",
+          })
+        end)
       end,
       desc = "[conform] format",
     },
@@ -21,13 +25,15 @@ return {
       nix = { "nixfmt" },
       lua = { "stylua" },
       javascript = { "biome", "prettier", stop_after_first = true },
+      javascriptreact = { "biome", "prettier", stop_after_first = true },
+      typescript = { "biome", "prettier", stop_after_first = true },
+      typescriptreact = { "biome", "prettier", stop_after_first = true },
+      json = { "biome", "prettier", stop_after_first = true },
     },
     -- Set default options
     default_format_opts = {
       lsp_format = "fallback",
     },
-    -- Set up format-on-save
-    format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
     -- Customize formatters
     formatters = {
       shfmt = {
