@@ -1,12 +1,34 @@
-{ self, inputs, lib, ... }:
+{
+  self,
+  inputs,
+  lib,
+  ...
+}:
 let
-  systems = lib.genAttrs [ "minky" "pinos" "dungeon" "omema" ] (name:
-    inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = inputs // { inherit self; system = "x86_64-linux"; };
-      modules = [ ./_deployment.nix ./${name}.nix ];
-    });
-in {
+  systems =
+    lib.genAttrs
+      [
+        "minky"
+        "pinos"
+        "dungeon"
+        "omema"
+      ]
+      (
+        name:
+        inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = inputs // {
+            inherit self;
+            system = "x86_64-linux";
+          };
+          modules = [
+            ./_deployment.nix
+            ./${name}.nix
+          ];
+        }
+      );
+in
+{
   flake = {
     nixosConfigurations = systems;
     deploy.nodes = lib.mapAttrs (key: system: {

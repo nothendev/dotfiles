@@ -1,10 +1,7 @@
 {
-  config,
   zig,
   pkgs,
-  fjo,
   system,
-  osConfig,
   ...
 }:
 {

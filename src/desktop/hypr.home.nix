@@ -1,4 +1,10 @@
-{ pkgs, hyprland-plugins, osConfig, system, ... }:
+{
+  pkgs,
+  hyprland-plugins,
+  osConfig,
+  system,
+  ...
+}:
 let
   lib = pkgs.lib;
   dsl = import ../common/hyprdsl.nix { inherit (pkgs) lib; };

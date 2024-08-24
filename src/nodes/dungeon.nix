@@ -1,4 +1,9 @@
-{ pkgs, self, system, ... }:
+{
+  pkgs,
+  self,
+  system,
+  ...
+}:
 {
   imports = [
     ./dungeon.hardware.nix
@@ -73,8 +78,18 @@
   };
   systemd.services.caddy.serviceConfig = {
     EnvironmentFile = "/var/lib/trfk/env";
-    AmbientCapabilities = ["CAP_NET_BIND_SERVICE" "CAP_NET_RAW" "CAP_NET_ADMIN" "CAP_SYS_RESOURCE"];
-    CapabilityBoundingSet = ["CAP_NET_BIND_SERVICE" "CAP_NET_RAW" "CAP_NET_ADMIN" "CAP_SYS_RESOURCE"];
+    AmbientCapabilities = [
+      "CAP_NET_BIND_SERVICE"
+      "CAP_NET_RAW"
+      "CAP_NET_ADMIN"
+      "CAP_SYS_RESOURCE"
+    ];
+    CapabilityBoundingSet = [
+      "CAP_NET_BIND_SERVICE"
+      "CAP_NET_RAW"
+      "CAP_NET_ADMIN"
+      "CAP_SYS_RESOURCE"
+    ];
     PrivateTmp = true;
     ProtectSystem = "full";
     TimeoutStopSec = "5s";

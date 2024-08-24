@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   imports = [ ./omema.hardware.nix ];
 
   ##colmena
@@ -13,8 +14,18 @@
   ## env
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
-  environment.shells = with pkgs; [ bash fish ];
-  environment.systemPackages = with pkgs; [ neovim wget curl fish git btop ];
+  environment.shells = with pkgs; [
+    bash
+    fish
+  ];
+  environment.systemPackages = with pkgs; [
+    neovim
+    wget
+    curl
+    fish
+    git
+    btop
+  ];
 
   ## services
   services.lemmy = {
@@ -33,9 +44,9 @@
     email = "pinksheetsmarket@gmail.com";
     virtualHosts = {
       "kenos.minkystudios.ru" = {
-       extraConfig = ''
-	 reverse_proxy http://localhost:8746
-       '';
+        extraConfig = ''
+          reverse_proxy http://localhost:8746
+        '';
       };
     };
   };
@@ -66,7 +77,10 @@
   networking = {
     hostName = "omema";
     networkmanager.enable = true;
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
     firewall.enable = false;
   };
 

@@ -1,6 +1,9 @@
-{ config, pkgs,
-hyprland,
-... }:
+{
+  config,
+  pkgs,
+  hyprland,
+  ...
+}:
 let
   hyprpkgs = hyprland.packages."x86_64-linux";
   hypr-nixpkgs = hyprland.inputs.nixpkgs.legacyPackages."x86_64-linux";
@@ -24,8 +27,7 @@ in
   programs.dconf.enable = true;
   programs.xwayland.enable = true;
   security.polkit.enable = true;
-  services.xserver.displayManager.sessionPackages =
-    [ config.programs.hyprland.package ];
+  services.xserver.displayManager.sessionPackages = [ config.programs.hyprland.package ];
 
   xdg.portal = {
     enable = true;
@@ -35,8 +37,10 @@ in
       "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
     };
 
-    extraPortals =
-      [ pkgs.xdg-desktop-portal-gtk config.programs.hyprland.portalPackage ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      config.programs.hyprland.portalPackage
+    ];
     configPackages = [ config.programs.hyprland.package ];
     wlr.enable = pkgs.lib.mkForce false;
   };

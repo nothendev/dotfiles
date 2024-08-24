@@ -1,4 +1,10 @@
-{ pkgs, osConfig, ... }:
+{
+  pkgs,
+  osConfig,
+  neovim-nightly-overlay,
+  system,
+  ...
+}:
 
 {
   imports = [
