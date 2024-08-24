@@ -82,6 +82,7 @@
       minikube
       kubectl
       kubernetes-helm
+      linkerd_edge
     ])
     ++ (with pkgs.libsForQt5; [
       okular

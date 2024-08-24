@@ -45,6 +45,7 @@
     kubectl
     kubernetes
     kubernetes-helm
+    linkerd_edge
   ];
 
   services.caddy = {
