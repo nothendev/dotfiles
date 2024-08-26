@@ -11,6 +11,8 @@ opts.o = {
   shiftwidth = 2,
   guifont = "JetBrainsMono Nerd Font:h13.5",
   clipboard = "unnamedplus",
+  tabstop = 2,
+  expandtab = true,
 }
 
 for namespace, options in pairs(opts) do

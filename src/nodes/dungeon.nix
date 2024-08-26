@@ -49,7 +49,7 @@
   ];
 
   services.caddy = {
-    enable = true;
+    enable = false;
     package = self.packages.${system}.customCaddyBuiltWithFuckingGatewayAndShit;
     email = "kwilnikow@gmail.com";
     user = "pterodactyl";
@@ -60,11 +60,6 @@
       acme_dns cloudflare {env.CF_API_TOKEN}
     '';
     virtualHosts = {
-      "kys.minkystudios.ru" = {
-        extraConfig = ''
-          reverse_proxy https://127.0.0.1:6443
-        '';
-      };
       "mgr.minkystudios.ru".extraConfig = ''
         tls {
           dns cloudflare {env.CF_API_TOKEN}
@@ -146,40 +141,45 @@
     requires = [ "acme-binkus.minkystudios.ru.service" ];
   };
 
-  #kys
-  services.traefik = {
-    enable = false;
-    staticConfigOptions = {
-      entryPoints = {
-        web.address = ":80";
-        websecure.address = ":443";
-        minecraft.address = ":25565";
-        traefik.address = ":6942";
-      };
-      api.dashboard = true;
-      providers.kubernetesCRD.endpoint = "https://localhost:6443";
-      providers.kubernetesCRD.token = "\${TRFK_TOKEN}";
-      providers.kubernetesCRD.certAuthFilePath = "/var/lib/trfk/ca.crt";
-      providers.kubernetesIngress.endpoint = "https://localhost:6443";
-      providers.kubernetesIngress.token = "\${TRFK_TOKEN}";
-      providers.kubernetesIngress.certAuthFilePath = "/var/lib/trfk/ca.crt";
-      certificatesResolvers.letsenc.acme = {
-        storage = "/var/lib/traefik/acme.json";
-        dnsChallenge.provider = "cloudflare";
-        dnsChallenge.resolvers = [
-          "1.1.1.1"
-          "1.0.0.1"
-        ];
-      };
-      log.level = "DEBUG";
-    };
-    environmentFiles = [ "/var/lib/trfk/env" ];
-    dynamicConfigFile = "/var/lib/trfk/dynamic.yaml";
+  services.haproxy = {
+    enable = true;
+    config = ''
+      global
+        log stderr format iso local7
+      defaults
+        log global
+      frontend http
+      	bind :80
+      	option tcplog
+      	mode tcp
+      	default_backend emissary-http
+      frontend https
+      	bind :443
+      	option tcplog
+      	mode tcp
+      	default_backend emissary-https
+      frontend minecraft
+      	bind :25565
+      	option tcplog
+      	mode tcp
+      	default_backend emissary-minecraft
+
+      backend emissary-http
+      	mode tcp
+      	server self 127.0.0.1:8080
+      backend emissary-https
+      	mode tcp
+      	server self 127.0.0.1:8443
+      backend emissary-minecraft
+        mode tcp
+      	server self 127.0.0.1:8665
+    '';
   };
+
   services.k3s = {
     enable = true;
     role = "server";
-    extraFlags = "--disable traefik --service-node-port-range 25565-32767 --tls-san 95.165.149.100";
+    extraFlags = "--disable traefik --tls-san 95.165.149.100";
   };
 
   virtualisation.oci-containers.backend = "docker";
