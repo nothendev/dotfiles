@@ -7,8 +7,8 @@
 {
   imports = [
     ./dungeon.hardware.nix
-    ../os/services/pterodactyl.nix
-    ../os/services/wings.nix
+    #../os/services/pterodactyl.nix
+    #../os/services/wings.nix
   ];
 
   deployment = {
@@ -21,11 +21,11 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "kwilnikow@gmail.com";
-    certs."binkus.minkystudios.ru" = {
-      dnsProvider = "cloudflare";
-      environmentFile = "/var/lib/trfk/env";
-    };
-    defaults.group = "pterodactyl";
+    #certs."binkus.minkystudios.ru" = {
+    #  dnsProvider = "cloudflare";
+    #  environmentFile = "/var/lib/trfk/env";
+    #};
+    #defaults.group = "pterodactyl";
   };
 
   users.defaultUserShell = pkgs.fish;
@@ -97,11 +97,6 @@
     PermitRootLogin = "without-password";
   };
 
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
-  };
-
   networking = {
     hostName = "dungeon";
     networkmanager.enable = true;
@@ -122,27 +117,27 @@
   ];
 
   # pterodactyl
-  services.pterodactyl = {
-    enable = true;
-    hostName = "mgr.minkystudios.ru";
-    user = "pterodactyl";
-    dataDir = "/srv/pterodactyl";
-    redisName = "pterodactis";
-  };
+  #services.pterodactyl = {
+  #  enable = true;
+  #  hostName = "mgr.minkystudios.ru";
+  #  user = "pterodactyl";
+  #  dataDir = "/srv/pterodactyl";
+  #  redisName = "pterodactis";
+  #};
 
   # wings
-  services.wings = {
-    enable = true;
-    package = pkgs.callPackage ../pkgs/wings.nix { };
-  };
+  #services.wings = {
+  #  enable = true;
+  #  package = pkgs.callPackage ../pkgs/wings.nix { };
+  #};
 
-  systemd.services.wings = {
-    after = [ "acme-binkus.minkystudios.ru.service" ];
-    requires = [ "acme-binkus.minkystudios.ru.service" ];
-  };
+  #systemd.services.wings = {
+  #  after = [ "acme-binkus.minkystudios.ru.service" ];
+  #  requires = [ "acme-binkus.minkystudios.ru.service" ];
+  #};
 
   services.haproxy = {
-    enable = true;
+    enable = false;
     config = ''
       global
         log stderr format iso local7

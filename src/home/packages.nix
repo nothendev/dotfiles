@@ -47,7 +47,7 @@
 
       ## Gaming
       (prismlauncher.override { withWaylandGLFW = false; })
-      glfw-wayland
+      glfw-wayland-minecraft
       mangohud
       steam
       r2modman
@@ -83,6 +83,7 @@
       kubectl
       kubernetes-helm
       linkerd_edge
+      istioctl
     ])
     ++ (with pkgs.libsForQt5; [
       okular
