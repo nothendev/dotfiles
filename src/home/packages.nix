@@ -84,6 +84,7 @@
       kubernetes-helm
       linkerd_edge
       istioctl
+      fluxcd
     ])
     ++ (with pkgs.libsForQt5; [
       okular
