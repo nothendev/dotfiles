@@ -2,12 +2,14 @@
   zig,
   pkgs,
   system,
+  self,
   ...
 }:
 {
   services.syncthing.enable = true;
   home.packages =
     (with pkgs; [
+      self.packages.${system}.winbox
       ## JAVA !! yeee
       zulu17
       ## Graphical utilities

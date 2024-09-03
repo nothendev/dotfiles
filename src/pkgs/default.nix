@@ -13,6 +13,7 @@ let
       librewolf-appimage = callPackage ./librewolf.nix { };
       discord-discorded = callPackage ./discord.nix { };
       canon-cups-updated = callPackage ./canon.nix { };
+      winbox-real = callPackage ./winbox.nix { };
     };
 in
 lib.fix (lib.extends overrides packages)

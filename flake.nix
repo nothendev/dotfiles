@@ -58,11 +58,16 @@
         ./src/nodes
       ];
       perSystem =
-        { self', pkgs, ... }:
+        { self', pkgs, system, ... }:
         {
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            allowUnfree = true;
+          };
           packages.customCaddyBuiltWithFuckingGatewayAndShit =
             pkgs.callPackage ./src/pkgs/fucking-caddy.nix
               { };
+          packages.winbox = pkgs.callPackage ./src/pkgs/winbox.nix { };
           packages.wings = pkgs.callPackage ./src/pkgs/wings.nix { };
           formatter = pkgs.nixfmt-rfc-style;
           apps.wings = {
