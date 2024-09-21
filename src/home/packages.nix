@@ -86,6 +86,7 @@
       kubernetes-helm
       istioctl
       fluxcd
+      docker-compose
     ])
     ++ (with pkgs.libsForQt5; [
       okular
