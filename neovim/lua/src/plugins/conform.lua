@@ -22,6 +22,7 @@ return {
   opts = {
     -- Define your formatters
     formatters_by_ft = {
+      rust = { "rustfmt" },
       nix = { "nixfmt" },
       lua = { "stylua" },
       javascript = { "biome", "prettier", stop_after_first = true },

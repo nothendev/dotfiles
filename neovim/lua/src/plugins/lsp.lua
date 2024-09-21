@@ -64,7 +64,7 @@ return {
           },
         },
       })
-      lc.tsserver.setup({
+      lc.ts_ls.setup({
         capabilities = cmp_caps,
         on_attach = function(client, bufnr)
           client.server_capabilities.documentFormattingProvider = false

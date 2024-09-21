@@ -84,7 +84,6 @@
       minikube
       kubectl
       kubernetes-helm
-      linkerd_edge
       istioctl
       fluxcd
     ])

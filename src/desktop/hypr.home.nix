@@ -111,9 +111,9 @@ in
         };
 
         general = with base69; {
-          gaps_in = 5;
-          gaps_out = 10;
-          border_size = 2;
+          gaps_in = 0;
+          gaps_out = 1;
+          border_size = 1;
           "col.active_border" = "0xff${sapphire} 0xff${blue} 45deg";
           "col.inactive_border" = "0xaf${yellow}";
           layout = "dwindle";
@@ -131,7 +131,7 @@ in
         };
 
         decoration = {
-          rounding = 10;
+          rounding = 0;
           drop_shadow = true;
           shadow_range = 4;
           shadow_render_power = 3;
