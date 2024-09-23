@@ -48,8 +48,7 @@
       }))
 
       ## Gaming
-      (prismlauncher.override { withWaylandGLFW = false; })
-      glfw-wayland-minecraft
+      prismlauncher
       mangohud
       steam
       r2modman
@@ -81,7 +80,6 @@
         # Update the install script to use the new .desktop entry
         installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
       }))
-      minikube
       kubectl
       kubernetes-helm
       istioctl

@@ -42,7 +42,6 @@
     gh
     just
     neofetch
-    insomnia
     meson
     ninja
     cmake

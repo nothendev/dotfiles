@@ -58,9 +58,15 @@ require("lazy").setup({
       lazy = false,
       priority = 1000,
       config = function()
+        local transparent = true
+        -- make bg catppuccin base (set bg to transparent in term because term already has catppuccin base as bg)
+        if vim.g.neovide then
+          transparent = false
+        end
+
         require("catppuccin").setup({
           flavour = "mocha",
-          transparent_background = true,
+          transparent_background = transparent,
         })
 
         vim.cmd.colorscheme("catppuccin")

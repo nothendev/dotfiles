@@ -3,6 +3,7 @@ local opts = {}
 opts.g = {
   mapleader = " ",
   maplocalleader = "\\",
+  neovide_transparency = 0.8,
 }
 
 opts.o = {

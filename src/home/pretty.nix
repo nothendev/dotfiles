@@ -40,7 +40,7 @@
           format = "[$version]($style)";
           style = "fg:#${base69.red}";
         };
-      } // builtins.fromTOML (builtins.readFile (catppuccin-starship + /palettes/${flavour}.toml));
+      } // builtins.fromTOML (builtins.readFile (catppuccin-starship + /themes/${flavour}.toml));
     };
 
   programs.alacritty.settings = {
