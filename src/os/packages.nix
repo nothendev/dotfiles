@@ -20,6 +20,7 @@
   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
   environment.etc."jvm/17".source = pkgs.jdk17;
   environment.etc."jvm/8".source = pkgs.jdk8;
+  environment.etc."jvm/21".source = pkgs.jdk21;
   environment.systemPackages = with pkgs; [
     glibc
     #(btop.overrideAttrs (old: {
