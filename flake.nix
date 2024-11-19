@@ -9,6 +9,7 @@
     ## LE FLAKE PARTS (I LOVE FLAKE PARTS I LOVE FLAKE PARTS I LOVE FLAKE PARTS I LOVE FLAKE PARTS)
     fp.url = "github:hercules-ci/flake-parts";
     deploy.url = "github:serokell/deploy-rs";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
 
     ## Prog langs
     zig.url = "github:mitchellh/zig-overlay";
@@ -50,8 +51,16 @@
   };
 
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" "https://hyprland.cachix.org" "https://cache.nixos.org" ];
-    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://hyprland.cachix.org"
+      "https://cache.nixos.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    ];
   };
 
   outputs =
@@ -61,9 +70,16 @@
       imports = [
         ./src/systems
         ./src/nodes
+        inputs.treefmt-nix.flakeModule
       ];
       perSystem =
-        { self', pkgs, system, ... }:
+        {
+          config,
+          self',
+          pkgs,
+          system,
+          ...
+        }:
         {
           _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
@@ -77,10 +93,19 @@
               { };
           packages.winbox = pkgs.callPackage ./src/pkgs/winbox.nix { };
           packages.wings = pkgs.callPackage ./src/pkgs/wings.nix { };
-          formatter = pkgs.nixfmt-rfc-style;
+          formatter = pkgs.nixfmt;
           apps.wings = {
             type = "app";
             program = "${self'.packages.wings}/bin/wings";
+          };
+          treefmt.projectRootFile = "flake.nix";
+          treefmt.programs = {
+            nixfmt.enable = true;
+            stylua.enable = true;
+          };
+          apps.my-treefmt = {
+            type = "app";
+            program = "${config.treefmt.build.wrapper}/bin/treefmt";
           };
         };
     };

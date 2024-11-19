@@ -7,7 +7,9 @@
   ...
 }:
 {
-  imports = [ ../overlays ./java.nix ];
+  imports = [
+    ./java.nix
+  ];
   nix.registry.nixpkgs.flake = nixpkgs;
   nix.registry.nixpkgs.to = {
     type = "path";

@@ -22,7 +22,9 @@ let
 
         {
           nix.settings.sandbox = false;
-          nixpkgs.overlays = [ (_: super: import ../pkgs { pkgs = super; }) ];
+          nixpkgs.overlays = [
+            (final: prev: { graalvmPackages = final.callPackage ../pkgs/graalvm { }; })
+          ];
 
           programs.nh = {
             enable = true;

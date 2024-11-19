@@ -1,9 +1,0 @@
-*
-
-!*.nix
-!*.patch
-!.SRCINFO
-!PKGBUILD
-
-!.gitignore
-!README.md

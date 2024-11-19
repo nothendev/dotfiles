@@ -23,7 +23,7 @@
   ];
   home.sessionVariables.PAGER = "bat";
   programs.alacritty.enable = true;
-  
+
   ## tmux
   programs.tmux = {
     enable = false;
