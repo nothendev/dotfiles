@@ -1,10 +1,10 @@
 { lib, stdenv, fetchzip, makeDesktopItem, autoPatchelfHook, libGL, libz, freetype, fontconfig, libxkbcommon, libxcb, xcbutilwm, xcbutilimage, xcbutilrenderutil }:
 stdenv.mkDerivation rec {
   pname = "winbox";
-  version = "4.0beta3";
+  version = "4.0beta8";
   src = fetchzip {
     url = "https://download.mikrotik.com/routeros/${pname}/${version}/WinBox_Linux.zip";
-    hash = "sha256-IVQGImEtwpBepj4ualjAZBRM3qexdVnyhKYDGqbghOo=";
+    hash = "sha256-NpkKnU7kW8jMKq66FqwiuD2N5zm25uKCZBhHvHnfQVI=";
     stripRoot = false;
   };
   nativeBuildInputs = [ autoPatchelfHook ];

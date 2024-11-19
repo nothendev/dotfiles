@@ -10,8 +10,17 @@
   home.packages =
     (with pkgs; [
       self.packages.${system}.winbox
-      ## JAVA !! yeee
-      zulu17
+      vcmi
+      ## CAS - not compare and swap, but CONTAINERS AND SHIT ! :)
+      docker-compose
+      kompose
+      kustomize
+      kubectl
+      kubernetes-helm
+      fluxcd
+      kind
+      istioctl
+
       ## Graphical utilities
       thunderbird-128
       wlr-randr
@@ -62,7 +71,6 @@
       ## Communication (messengers)
       signal-desktop
       session-desktop
-      kotatogram-desktop
       (vesktop.overrideAttrs (a: {
         desktopItems = map (
           d:
@@ -80,11 +88,7 @@
         # Update the install script to use the new .desktop entry
         installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
       }))
-      kubectl
-      kubernetes-helm
-      istioctl
-      fluxcd
-      docker-compose
+      jdt-language-server
     ])
     ++ (with pkgs.libsForQt5; [
       okular

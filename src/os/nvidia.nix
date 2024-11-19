@@ -54,7 +54,7 @@
   hardware.pulseaudio.enable = false;
   hardware.nvidia = {
     modesetting.enable = true;
-    open = false;
+    open = true;
     # package = let
     #   rcu_patch = pkgs.fetchpatch {
     #     url =
@@ -79,8 +79,8 @@
     #
     #   patches = [ rcu_patch ];
     # };
-    package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
-    #package = config.boot.kernelPackages.nvidiaPackages.latest;
+    #package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
     nvidiaSettings = true;
   };
 }

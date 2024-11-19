@@ -14,7 +14,7 @@ my dotfiles. not intended to be used anywhere else.
 
 ### Fonts
 
-jetbrains mono nerd font patched
+Monocraft Nerd Font
 
 ## pc specs
 

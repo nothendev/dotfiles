@@ -10,10 +10,7 @@ let
       callPackage = newScope self;
     in
     {
-      librewolf-appimage = callPackage ./librewolf.nix { };
-      discord-discorded = callPackage ./discord.nix { };
-      canon-cups-updated = callPackage ./canon.nix { };
-      winbox-real = callPackage ./winbox.nix { };
+      graalvmPackages = callPackage ./graalvm { };
     };
 in
 lib.fix (lib.extends overrides packages)

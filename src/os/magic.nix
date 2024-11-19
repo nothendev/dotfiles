@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   nix.settings = {
     experimental-features = [
@@ -25,9 +25,10 @@
     drivers = with pkgs; [ canon-cups-updated ];
   };
   services.gnome.gnome-keyring.enable = true;
+  # pam_gnome_keyring for some reason FUCKING breaks the entire sddm login process...
+  security.pam.services.login.enableGnomeKeyring = lib.mkForce false;
   programs.seahorse.enable = true;
   programs.dconf.enable = true;
-  environment.systemPackages = with pkgs; [ gcr ];
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;

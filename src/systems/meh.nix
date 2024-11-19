@@ -7,6 +7,7 @@
     ../os/nvidia.nix
     ../os/packages.nix
     ../os/users.nix
+    ../os/services/zapret.nix
 
     ../desktop/hypr.os.nix
     ../desktop/river.os.nix
@@ -20,6 +21,10 @@
   # services.openssh.settings.PermitRootLogin = "yes";
   # services.openssh.settings.PasswordAuthentication = true;
   virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
   virtualisation.oci-containers.backend = "docker";
   system.stateVersion = "23.11";
 }

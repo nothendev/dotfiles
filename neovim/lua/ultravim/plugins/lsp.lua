@@ -2,21 +2,131 @@ vim.lsp.inlay_hint.enable(true)
 vim.api.nvim_set_keymap("n", "<C-a>", "^", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-a>", "^", { noremap = true, silent = true })
 
+pcall(vim.keymap.del, "n", "grn")
+pcall(vim.keymap.del, { "n", "x" }, "gra")
+pcall(vim.keymap.del, "n", "grr")
+
 return {
   {
+    "mfussenegger/nvim-dap",
+    name = "dap",
+    lazy = true,
+    keys = {
+      {
+        "<leader>db",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Toggle breakpoint",
+      },
+      {
+        "<leader>dc",
+        function()
+          require("dap").continue()
+        end,
+        desc = "Continue",
+      },
+      {
+        "<leader>ds",
+        function()
+          require("dap").step_over()
+        end,
+        desc = "Step over",
+      },
+      {
+        "<leader>dS",
+        function()
+          require("dap").step_into()
+        end,
+        desc = "Step into",
+      },
+      {
+        "<leader>do",
+        function()
+          require("dap").step_out()
+        end,
+        desc = "Step out",
+      },
+      {
+        "<leader>dr",
+        function()
+          require("dap").repl.open()
+        end,
+        desc = "Open REPL",
+      },
+    },
+    config = function()
+      local dap = require("dap")
+      dap.configurations.java = {
+        {
+          type = "java",
+          name = "Attach to pick process",
+          request = "attach",
+          pid = require("dap.utils").pick_process,
+          args = {},
+        },
+        {
+          type = "java",
+          name = "Attach to :5005",
+          request = "attach",
+          hostName = "localhost",
+          port = 5005,
+        },
+      }
+    end,
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+    dependencies = {
+      "dap",
+    },
+    ft = { "java" },
+  },
+  {
     "supermaven-inc/supermaven-nvim",
+    name = "supermaven",
     opts = {
       disable_keymaps = true,
     },
+    lazy = true,
   },
   {
     "onsails/lspkind.nvim",
+    name = "lspkind",
     opts = {
       symbolMap = { Supermaven = "󰚩" },
     },
+    lazy = true,
+  },
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    ft = { "scala", "sbt" },
+    opts = function()
+      local metals_config = require("metals").bare_config()
+      --metals_config.on_attach = function(client, bufnr)
+      -- your on_attach function
+      --end
+      metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      return metals_config
+    end,
+    config = function(self, metals_config)
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = self.ft,
+        callback = function()
+          require("metals").initialize_or_attach(metals_config)
+        end,
+        group = nvim_metals_group,
+      })
+    end,
   },
   {
     "neovim/nvim-lspconfig",
+    lazy = true,
     config = function()
       local lc = require("lspconfig")
       local cmp_caps = require("cmp_nvim_lsp").default_capabilities()

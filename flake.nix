@@ -18,7 +18,7 @@
     zls.inputs.zig-overlay.follows = "zig";
 
     ## Wayland
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=4520b30d498daca8079365bdb909a8dea38e8d55";
     #hyprland.follows = "hyprland-plugins/hyprland";
     nixwaypkgs.url = "github:nix-community/nixpkgs-wayland";
     nixwaypkgs.inputs.nixpkgs.follows = "nixpkgs";
@@ -68,6 +68,9 @@
           _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
             allowUnfree = true;
+            overlays = [
+              (final: prev: { graalvmPackages = final.callPackage import ./src/pkgs/graalvm; })
+            ];
           };
           packages.customCaddyBuiltWithFuckingGatewayAndShit =
             pkgs.callPackage ./src/pkgs/fucking-caddy.nix

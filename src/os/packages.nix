@@ -7,7 +7,7 @@
   ...
 }:
 {
-  imports = [ ../overlays ];
+  imports = [ ../overlays ./java.nix ];
   nix.registry.nixpkgs.flake = nixpkgs;
   nix.registry.nixpkgs.to = {
     type = "path";
@@ -18,9 +18,6 @@
     NIX_LD = pkgs.lib.mkForce pkgs.stdenv.cc.bintools.dynamicLinker;
   };
   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-  environment.etc."jvm/17".source = pkgs.jdk17;
-  environment.etc."jvm/8".source = pkgs.jdk8;
-  environment.etc."jvm/21".source = pkgs.jdk21;
   environment.systemPackages = with pkgs; [
     glibc
     #(btop.overrideAttrs (old: {

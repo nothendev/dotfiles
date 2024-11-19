@@ -15,7 +15,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("src.opts")
+require("ultravim.opts")
 
 local lazyFile_events = { "BufReadPost", "BufNewFile", "BufWritePre" }
 -- This autocmd will only trigger when a file was loaded from the cmdline.
@@ -51,7 +51,7 @@ Event.mappings["User LazyFile"] = Event.mappings.LazyFile
 
 require("lazy").setup({
   spec = {
-    { import = "src.plugins" },
+    { import = "ultravim.plugins" },
     {
       "catppuccin/nvim",
       name = "catppuccin",

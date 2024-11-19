@@ -1,18 +1,12 @@
 {
   pkgs,
-  hyprland-plugins,
   osConfig,
-  system,
   ...
 }:
 let
   lib = pkgs.lib;
   dsl = import ../common/hyprdsl.nix { inherit (pkgs) lib; };
   base69 = osConfig.pretty.base69;
-  wallpapers = {
-    "HDMI-A-1" = ../assets/wallpapers/hyprland1-dark.png;
-    "DVI-D-1" = ../assets/wallpapers/nix.png;
-  };
 in
 {
   imports = [ ../home/hyprland.nix ];
@@ -20,7 +14,6 @@ in
     enable = true;
     systemdIntegration = true;
     finalPackage = osConfig.programs.hyprland.package;
-    #plugins = [ hyprland-plugins.packages.${system}.csgo-vulkan-fix ];
     settings =
       with dsl // dsl.fn;
       let
@@ -36,9 +29,13 @@ in
       in
       {
         monitor = [
+          "Unknown-1, disable"
           "DVI-D-1,1920x1080@60,auto,auto, bitdepth, 8"
           "HDMI-A-1,1920x1080@60,auto,auto, bitdepth, 8"
         ];
+        cursor = {
+          no_hardware_cursors = true;
+        };
 
         exec = [ "hyprpaper" ];
 
@@ -105,6 +102,7 @@ in
 
         input = {
           kb_layout = "us,ru";
+          kb_options = "ctrl:nocaps";
           numlock_by_default = true;
           follow_mouse = 1;
           sensitivity = 0;
@@ -163,9 +161,10 @@ in
 
         misc = {
           disable_autoreload = true;
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+          font_family = osConfig.pretty.font.family;
         };
-
-        debug.disable_logs = false;
       };
   };
   services.mako = {
@@ -175,12 +174,4 @@ in
     borderColor = "#${base69.mantle}ff";
     textColor = "#${base69.text}ff";
   };
-  xdg.configFile."hypr/hyprpaper.conf".text = ''
-    ${lib.strings.concatMapStrings (wp: ''
-      preload = ${toString wp}
-    '') (lib.attrsets.attrValues wallpapers)}
-    ${lib.strings.concatStringsSep "\n" (
-      lib.attrsets.mapAttrsToList (monitor: wp: "wallpaper = ${monitor},${toString wp}") wallpapers
-    )}
-  '';
 }

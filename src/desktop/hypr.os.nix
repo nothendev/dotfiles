@@ -34,15 +34,15 @@ in
 
     config.preferred = {
       default = [ "*" ];
-      #"org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
     };
 
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      #config.programs.hyprland.portalPackage
+      config.programs.hyprland.portalPackage
     ];
-    #configPackages = [ config.programs.hyprland.package ];
-    #wlr.enable = pkgs.lib.mkForce false;
-    wlr.enable = true;
+    configPackages = [ config.programs.hyprland.package ];
+    wlr.enable = pkgs.lib.mkForce false;
+    #wlr.enable = true;
   };
 }

@@ -23,6 +23,30 @@
   ];
   home.sessionVariables.PAGER = "bat";
   programs.alacritty.enable = true;
+  
+  ## tmux
+  programs.tmux = {
+    enable = false;
+    clock24 = true;
+    historyLimit = 10000;
+    newSession = true;
+    plugins = with pkgs.tmuxPlugins; [
+      continuum
+      resurrect
+      copycat
+      fpp
+      fingers
+      open
+      yank
+      jump
+      tilish
+    ];
+    extraConfig = ''
+      source ~/.tmux.local.conf
+    '';
+  };
+
+  ## Zellij
   programs.zellij = {
     enable = true;
     enableFishIntegration = true;

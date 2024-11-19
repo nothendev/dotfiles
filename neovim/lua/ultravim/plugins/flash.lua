@@ -16,7 +16,7 @@ return {
       function()
         require("flash").jump()
       end,
-      desc = "[flash] jmp",
+      desc = "[flash] jump",
     },
     {
       "?",
@@ -32,9 +32,8 @@ return {
       function()
         require("flash").jump({ search = { forward = false, wrap = false, multi_window = false } })
       end,
-      desc = "[flash] -jmp",
+      desc = "[flash] jump back",
     },
-    --{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
     {
       "r",
       mode = "o",
@@ -49,10 +48,10 @@ return {
       function()
         require("flash").treesitter_search()
       end,
-      desc = "Treesitter Search",
+      desc = "[flash] treesitter search",
     },
     {
-      "<leader>s",
+      "<C-u>",
       mode = { "c" },
       function()
         require("flash").toggle()

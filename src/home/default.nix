@@ -25,6 +25,7 @@
   ];
 
   home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables.XDG_DATA_HOME = "/home/ilya/.local/share";
   home.packages =
     [
       neovim-nightly-overlay.packages.${system}.default
@@ -44,6 +45,7 @@
       luarocks
       gopls
       gofumpt
+      metals
     ]);
 
   home.username = "ilya";

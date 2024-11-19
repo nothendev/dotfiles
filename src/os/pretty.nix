@@ -10,6 +10,8 @@
       ];
     })
     font-awesome
+    monocraft
+    miracode
     rubik
     inter
     ubuntu_font_family
@@ -28,7 +30,7 @@
     flavour = "mocha";
   };
   pretty.font = {
-    family = "JetBrainsMono Nerd Font";
+    family = "Monocraft Nerd Font";
     defaultSize = 13;
   };
 }

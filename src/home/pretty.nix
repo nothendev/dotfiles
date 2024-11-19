@@ -78,7 +78,7 @@
       package = pkgs.whitesur-cursors;
     };
     font = {
-      name = "JetBrainsMono Nerd Font Propo";
+      name = "Monocraft Nerd Font";
       package = null;
       size = 11;
     };
