@@ -30,6 +30,7 @@
   ## services
   services.forgejo = {
     enable = true;
+    package = pkgs.forgejo;
     settings.DEFAULT = {
       APP_NAME = "Minky Forgejo";
     };
@@ -52,7 +53,7 @@
   };
 
   services.nextcloud = {
-    enable = true;
+    enable = false;
     hostName = "nc.minkystudios.ru";
     config.adminpassFile = "/var/lib/nc-adminpass";
     https = true;
