@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   catppuccin-fish,
   ...
@@ -12,13 +11,13 @@
   '';
   programs.fish.functions = {
     stfd = "sudo shutdown --no-wall 0";
-    tarcp = "tar cf - $0 | (cd $1 && tar xf -)";
   };
   programs.fish.shellAliases = {
     l = "eza -l --icons";
     ls = "eza --icons";
     cp = "rsync -P";
     zcp = "rsync --info=progress2 -auvz";
+    k = "kubectl";
   };
   programs.fish.shellInit = ''
     set -gx PATH $HOME/.bun/bin $HOME/go/bin $PATH
