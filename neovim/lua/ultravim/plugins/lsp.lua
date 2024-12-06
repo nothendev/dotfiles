@@ -168,6 +168,7 @@ return {
               ignored = {
                 ["leptos_macro"] = { "component", "server", "island" },
                 ["lemonic_macro"] = { "component", "island" },
+                ["vespid_macros"] = { "component" }
               },
             },
             checkOnSave = false,

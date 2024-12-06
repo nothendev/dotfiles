@@ -1,4 +1,5 @@
 return {
+  { "tpope/vim-fugitive", event = "VeryLazy", cmd = { "Git", "G" } },
   { "folke/which-key.nvim", event = "VeryLazy" },
 
   -- Finds and lists all of the TODO, HACK, BUG, etc comment
