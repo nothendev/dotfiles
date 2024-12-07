@@ -44,7 +44,7 @@
     };
 
   programs.alacritty.settings = {
-    import = [ (catppuccin-alacritty + /catppuccin-mocha.toml) ];
+    general.import = [ (catppuccin-alacritty + /catppuccin-mocha.toml) ];
     window.opacity = 0.5;
     font.normal = {
       family = osConfig.pretty.font.family;

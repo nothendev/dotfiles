@@ -3,12 +3,8 @@
   imports = [ ../common/base69/themes/catppuccin.nix ];
   fonts.packages = with pkgs; [
     jetbrains-mono
-    (nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-        "ComicShannsMono"
-      ];
-    })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.comic-shanns-mono
     font-awesome
     monocraft
     miracode

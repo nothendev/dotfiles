@@ -15,8 +15,9 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
-  hardware.opengl.package = hypr-nixpkgs.mesa.drivers;
+  hardware.graphics.package = hypr-nixpkgs.mesa.drivers;
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -28,21 +29,24 @@ in
   programs.xwayland.enable = true;
   security.polkit.enable = true;
   services.xserver.displayManager.sessionPackages = [ config.programs.hyprland.package ];
+  services.dbus.enable = true;
 
   xdg.portal = {
     enable = true;
-
-    config.preferred = {
+    config.common = {
       default = [ "*" ];
-      "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
     };
-
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       config.programs.hyprland.portalPackage
     ];
     configPackages = [ config.programs.hyprland.package ];
     wlr.enable = pkgs.lib.mkForce false;
-    #wlr.enable = true;
+  };
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    MOZ_ENABLE_WAYLAND = "1";
   };
 }

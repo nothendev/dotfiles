@@ -158,6 +158,7 @@ return {
               --extraEnv = {
               --  RUSTFLAGS = "-Clink-arg=-fuse-ld=mold",
               --},
+              buildScripts = { enable = true },
               features = "all",
               targetDir = true,
             },
@@ -168,7 +169,7 @@ return {
               ignored = {
                 ["leptos_macro"] = { "component", "server", "island" },
                 ["lemonic_macro"] = { "component", "island" },
-                ["vespid_macros"] = { "component" }
+                ["vespid_macros"] = { "component" },
               },
             },
             checkOnSave = false,

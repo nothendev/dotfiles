@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   osConfig,
   ...
 }:
@@ -9,11 +10,15 @@ let
   base69 = osConfig.pretty.base69;
 in
 {
-  imports = [ ../home/hyprland.nix ];
-  wayland.windowManager.hyprlandy = {
+  #imports = [ ../home/hyprland.nix ];
+  systemd.user.startServices = true;
+  wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
-    finalPackage = osConfig.programs.hyprland.package;
+    package = osConfig.programs.hyprland.package;
+    systemd = {
+      enable = true;
+      variables = [ "--all" ];
+    };
     settings =
       with dsl // dsl.fn;
       let
@@ -47,42 +52,45 @@ in
           "[workspace 2] librewolf"
         ];
 
-        bind = [
-          (bind null "XF86AudioPlay" (exec "${pkgs.playerctl}/bin/playerctl play-pause"))
+        bind =
+          [
+            (bind null "XF86AudioPlay" (exec "${pkgs.playerctl}/bin/playerctl play-pause"))
 
-          # Win-Shift-Enter: launch a new term instance
-          (bindms "RETURN" (exec "alacritty"))
+            # Win-Shift-Enter: launch a new term instance
+            (bindms "RETURN" (exec "alacritty"))
 
-          (bind mod "RETURN" (togglespecialworkspace' "term"))
-          (bindms "Q" killactive)
-          (bindms "SPACE" togglefloating)
-          (bind mod "D" (exec "rofi -show drun"))
-          (bind mod "P" pseudo)
-          (bind mod "J" togglesplit)
-          (bind mod "S" togglegroup)
-          (bind mod "TAB" (changegroupactive dir.forward))
-          (bindms "TAB" (changegroupactive dir.back))
-          (bind null "Print" (exec ''grim -g "$(slurp)"''))
-          (bind "CTRL" "code:49" (exec "hyprctl switchxkblayout microsoft-wired-keyboard-600 next"))
-          (bindms "F" fullscreen)
-          (bindms "G" moveoutofgroup)
-          (bindms "H" (moveintogroup dir.left))
-          (bindms "J" (moveintogroup dir.down))
-          (bindms "K" (moveintogroup dir.up))
-          (bindms "L" (moveintogroup dir.right))
-          (bindms "left" (movewindow dir.left))
-          (bindms "right" (movewindow dir.right))
-          (bindms "up" (movewindow dir.up))
-          (bindms "down" (movewindow dir.down))
-          (bindms "A" (exec "~/.config/eww/scripts/init"))
-          (bindms "S" (exec makeTerminal))
-          (bind mod "left" (movefocus dir.left))
-          (bind mod "right" (movefocus dir.right))
-          (bind mod "up" (movefocus dir.up))
-          (bind mod "down" (movefocus dir.down))
-          (bind mod "mouse_down" (workspace (workspace'.relative-open 1)))
-          (bind mod "mouse_up" (workspace (workspace'.relative-open (-1))))
-        ] ++ map bindmov workspacen ++ map bindsmov workspacen;
+            (bind mod "RETURN" (togglespecialworkspace' "term"))
+            (bindms "Q" killactive)
+            (bindms "SPACE" togglefloating)
+            (bind mod "D" (exec "rofi -show drun"))
+            (bind mod "P" pseudo)
+            (bind mod "J" togglesplit)
+            (bind mod "S" togglegroup)
+            (bind mod "TAB" (changegroupactive dir.forward))
+            (bindms "TAB" (changegroupactive dir.back))
+            (bind null "Print" (exec ''grim -g "$(slurp)"''))
+            (bind "CTRL" "code:49" (exec "hyprctl switchxkblayout microsoft-wired-keyboard-600 next"))
+            (bindms "F" fullscreen)
+            (bindms "G" moveoutofgroup)
+            (bindms "H" (moveintogroup dir.left))
+            (bindms "J" (moveintogroup dir.down))
+            (bindms "K" (moveintogroup dir.up))
+            (bindms "L" (moveintogroup dir.right))
+            (bindms "left" (movewindow dir.left))
+            (bindms "right" (movewindow dir.right))
+            (bindms "up" (movewindow dir.up))
+            (bindms "down" (movewindow dir.down))
+            (bindms "A" (exec "~/.config/eww/scripts/init"))
+            (bindms "S" (exec makeTerminal))
+            (bind mod "left" (movefocus dir.left))
+            (bind mod "right" (movefocus dir.right))
+            (bind mod "up" (movefocus dir.up))
+            (bind mod "down" (movefocus dir.down))
+            (bind mod "mouse_down" (workspace (workspace'.relative-open 1)))
+            (bind mod "mouse_up" (workspace (workspace'.relative-open (-1))))
+          ]
+          ++ map bindmov workspacen
+          ++ map bindsmov workspacen;
 
         bindm = [
           (bind mod "mouse:272" movewindow')
@@ -173,5 +181,17 @@ in
     backgroundColor = "#${base69.base}ff";
     borderColor = "#${base69.mantle}ff";
     textColor = "#${base69.text}ff";
+  };
+
+  xdg.portal = {
+    enable = true;
+    config.common = {
+      default = [ "*" ];
+    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      osConfig.programs.hyprland.portalPackage
+    ];
+    configPackages = [ config.wayland.windowManager.hyprland.finalPackage ];
   };
 }

@@ -10,7 +10,7 @@
   home.packages =
     (with pkgs; [
       self.packages.${system}.winbox
-      vcmi
+
       ## CAS - not compare and swap, but CONTAINERS AND SHIT ! :)
       docker-compose
       kompose
@@ -76,6 +76,14 @@
           d:
           d.override {
             exec = "env NIXOS_OZONE_WL=1 GDK_BACKEND=wayland vesktop --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --disable-gpu-compositing %u";
+          }
+        ) a.desktopItems;
+      }))
+      (legcord.overrideAttrs (a: {
+        desktopItems = map (
+          d:
+          d.override {
+            exec = "env NIXOS_OZONE_WL=1 GDK_BACKEND=wayland legcord --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --disable-gpu-compositing %u";
           }
         ) a.desktopItems;
       }))
