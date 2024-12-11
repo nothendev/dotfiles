@@ -8,8 +8,8 @@ return {
       "<leader>fm",
       function()
         require("conform").format({ async = true, lsp_format = "fallback" }, function()
-          require("fidget").notify("formatted", vim.log.levels.INFO, {
-            group = "conform",
+          require("snacks").notify.info("formatted", {
+            title = "conform",
           })
         end)
       end,

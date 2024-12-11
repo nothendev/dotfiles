@@ -162,6 +162,9 @@ return {
               features = "all",
               targetDir = true,
             },
+            diagnostics = {
+              disabled = { "proc-macro-disabled", "proc-macros-disabled" },
+            },
             lens = {
               enable = true,
             },

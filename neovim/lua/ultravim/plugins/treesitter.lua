@@ -79,16 +79,16 @@ return {
     ---@param opts TSConfig
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
-      require("tree-sitter-rstml").init()
+      -- require("tree-sitter-rstml").init()
     end,
   },
-  {
-    "rayliwell/tree-sitter-rstml",
-    dependencies = { "nvim-treesitter" },
-    event = { "VeryLazy", "LazyFile" },
-    build = ":TSUpdate",
-    config = function()
-      require("tree-sitter-rstml").setup()
-    end,
-  },
+  -- {
+  --   "rayliwell/tree-sitter-rstml",
+  --   dependencies = { "nvim-treesitter" },
+  --   event = { "VeryLazy", "LazyFile" },
+  --   build = ":TSUpdate",
+  --   config = function()
+  --     require("tree-sitter-rstml").setup()
+  --   end,
+  -- },
 }
