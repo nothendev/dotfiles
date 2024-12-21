@@ -15,9 +15,6 @@ local config = {
       },
     },
   },
-  on_attach = function(client, bufnr)
-    jdtls.setup.add_commands()
-  end,
   handlers = { ["language/status"] = function() end },
   init_options = {
     bundles = {

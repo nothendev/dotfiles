@@ -176,19 +176,6 @@ in
       };
   };
 
-  xdg.portal = {
-    enable = true;
-    config.common = {
-      default = [ "gtk" "hyprland" ];
-      "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
-    };
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      osConfig.programs.hyprland.portalPackage
-    ];
-    configPackages = [ osConfig.programs.hyprland.package ];
-  };
-
   services.mako = {
     enable = true;
     font = osConfig.pretty.font.family;
