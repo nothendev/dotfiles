@@ -30,6 +30,7 @@ local B = {
           auto_show_delay_ms = 500,
         },
         menu = {
+          max_height = 20,
           draw = {
             components = {
               kind_icon = {
@@ -57,7 +58,7 @@ local B = {
       },
       keymap = {
         preset = "none",
-        ["<C-Space>"] = { "show", "fallback" },
+        ["<C-Space>"] = { "show", "show_documentation", "hide_documentation", "fallback" },
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ["<CR>"] = {
