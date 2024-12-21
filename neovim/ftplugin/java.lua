@@ -18,11 +18,12 @@ local config = {
   on_attach = function(client, bufnr)
     jdtls.setup.add_commands()
   end,
+  handlers = { ["language/status"] = function() end },
   init_options = {
     bundles = {
       vim.fn.glob("/dwl/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1),
     },
-  }
+  },
 }
 
 vim.api.nvim_set_keymap("n", "<leader>dd", "<cmd>JdtUpdateHotcode<CR>", { noremap = true, silent = true })
