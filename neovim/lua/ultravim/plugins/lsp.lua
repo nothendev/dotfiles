@@ -87,6 +87,7 @@ return {
     name = "supermaven",
     opts = {
       disable_keymaps = true,
+      disable_inline_completion = true,
     },
     lazy = true,
   },
@@ -129,7 +130,7 @@ return {
     lazy = true,
     config = function()
       local lc = require("lspconfig")
-      local cmp_caps = require("cmp_nvim_lsp").default_capabilities()
+      local cmp_caps = require"blink.cmp".get_lsp_capabilities({})
 
       lc.marksman.setup({
         capabilities = cmp_caps,

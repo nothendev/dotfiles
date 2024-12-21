@@ -1,8 +1,33 @@
 return {
   {
-    "j-hui/fidget.nvim",
+    "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim"
+    },
     event = "VeryLazy",
-    opts = {},
+    opts = function(_, opts)
+      opts.cmdline = { format = { conceal = false } }
+      opts.debug = false
+      opts.routes = opts.routes or {}
+      table.insert(opts.routes, {
+        filter = {
+          event = "notify",
+          find = "No information available",
+        },
+        opts = { skip = true },
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function(event)
+          vim.schedule(function()
+            require("noice.text.markdown").keys(event.buf)
+          end)
+        end,
+      })
+
+      return opts
+    end,
   },
   {
     "stevearc/dressing.nvim",
