@@ -6,6 +6,7 @@
   systemd.services.zapret = {
     description = "zapret daemon";
     path = with pkgs; [
+      libnetfilter_queue
       nftables
       curl
       iptables

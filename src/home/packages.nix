@@ -22,6 +22,10 @@
       istioctl
 
       ## Graphical utilities
+      ghidra
+      jetbrains.idea-community
+      imhex
+      unixtools.xxd
       thunderbird-128
       wlr-randr
       qpwgraph
@@ -96,15 +100,17 @@
         # Update the install script to use the new .desktop entry
         installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
       }))
-      jdt-language-server
+
+      ##
+      freecad
     ])
     ++ (with pkgs.libsForQt5; [
       okular
       ark
+      dolphin
     ])
     ++ [
       zig.packages.${system}.master
-      # zls.packages.${system}.default
     ];
   programs.obs-studio = {
     enable = false;

@@ -24,25 +24,14 @@ in
     package = hyprpkgs.hyprland;
     portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
   };
+  # for home-manager xdg-desktop
+  environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
   environment.systemPackages = [ config.programs.hyprland.package ];
   programs.dconf.enable = true;
   programs.xwayland.enable = true;
   security.polkit.enable = true;
-  services.xserver.displayManager.sessionPackages = [ config.programs.hyprland.package ];
+  services.displayManager.sessionPackages = [ config.programs.hyprland.package ];
   services.dbus.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    config.common = {
-      default = [ "*" ];
-    };
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      config.programs.hyprland.portalPackage
-    ];
-    configPackages = [ config.programs.hyprland.package ];
-    wlr.enable = pkgs.lib.mkForce false;
-  };
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";

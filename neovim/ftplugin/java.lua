@@ -1,7 +1,7 @@
 local jdtls = require("jdtls")
 local root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1])
 local config = {
-  cmd = { "jdtls", "-data", root_dir .. ".jdt" },
+  cmd = { "jdtls", "-data", root_dir .. "/.jdt" },
   root_dir = root_dir,
   settings = {
     java = {
@@ -18,13 +18,11 @@ local config = {
   on_attach = function(client, bufnr)
     jdtls.setup.add_commands()
   end,
-  handlers = { ["language/status"] = function() end },
-}
-
-config["init_options"] = {
-  bundles = {
-    vim.fn.glob("/dwl/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1),
-  },
+  init_options = {
+    bundles = {
+      vim.fn.glob("/dwl/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1),
+    },
+  }
 }
 
 vim.api.nvim_set_keymap("n", "<leader>dd", "<cmd>JdtUpdateHotcode<CR>", { noremap = true, silent = true })

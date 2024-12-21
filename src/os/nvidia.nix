@@ -11,29 +11,30 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
-    enable = true;
-    displayManager.sddm = {
+  services.displayManager = {
+    sddm = {
       enable = true;
       package = pkgs.kdePackages.sddm;
       wayland.enable = true;
       autoNumlock = true;
       theme = "catppuccin-mocha";
     };
-    displayManager.lightdm.enable = false;
-    displayManager.autoLogin = {
+    autoLogin = {
       enable = false;
       user = "ilya";
     };
-    libinput = {
-      enable = true;
-      # mouse.additionalOptions =
-      #   ''
-      #     Option "ModelBouncingKeys" 1
-      #   ''
-      # ;
-    };
+  };
+  services.libinput = {
+    enable = true;
+    # mouse.additionalOptions =
+    #   ''
+    #     Option "ModelBouncingKeys" 1
+    #   ''
+    # ;
+  };
+  services.xserver = {
+    videoDrivers = [ "nvidia" ];
+    enable = true;
   };
   environment.systemPackages = [
     (

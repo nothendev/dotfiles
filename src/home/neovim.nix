@@ -1,0 +1,30 @@
+{
+  pkgs,
+  neovim-nightly-overlay,
+  system,
+  ...
+}:
+{
+  home.packages =
+    [
+      neovim-nightly-overlay.packages.${system}.default
+      #zls.packages.${system}.zls
+    ]
+    ++ (with pkgs; [
+      neovide
+      stylua
+      lua-language-server
+      svelte-language-server
+      typescript-language-server
+      nixd
+      taplo-lsp
+      marksman
+      #lua
+      luajit
+      luarocks
+      gopls
+      gofumpt
+      metals
+      jdt-language-server
+    ]);
+}

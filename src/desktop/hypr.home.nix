@@ -175,23 +175,25 @@ in
         };
       };
   };
+
+  xdg.portal = {
+    enable = true;
+    config.common = {
+      default = [ "gtk" "hyprland" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      osConfig.programs.hyprland.portalPackage
+    ];
+    configPackages = [ osConfig.programs.hyprland.package ];
+  };
+
   services.mako = {
     enable = true;
     font = osConfig.pretty.font.family;
     backgroundColor = "#${base69.base}ff";
     borderColor = "#${base69.mantle}ff";
     textColor = "#${base69.text}ff";
-  };
-
-  xdg.portal = {
-    enable = true;
-    config.common = {
-      default = [ "*" ];
-    };
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      osConfig.programs.hyprland.portalPackage
-    ];
-    configPackages = [ config.wayland.windowManager.hyprland.finalPackage ];
   };
 }
