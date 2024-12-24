@@ -62,16 +62,8 @@
       package = pkgs.whitesur-icon-theme.override { themeVariants = [ "purple" ]; };
     };
     theme = {
-      name = "Catppuccin-Mocha-Compact-Sapphire-dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "sapphire" ];
-        size = "compact";
-        tweaks = [
-          "rimless"
-          "black"
-        ];
-        variant = "mocha";
-      };
+      name = "Tokyonight-Dark";
+      package = pkgs.tokyonight-gtk-theme;
     };
     cursorTheme = {
       name = "WhiteSur-cursors";
@@ -82,6 +74,12 @@
       package = null;
       size = 11;
     };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "adwaita";
+    style.name = "adwaita-dark";
   };
 
   programs.rofi = {

@@ -22,6 +22,8 @@
       istioctl
 
       ## Graphical utilities
+      kdenlive
+      tenacity
       ghidra
       jetbrains.idea-community
       imhex

@@ -6,7 +6,8 @@ return {
     },
     event = "VeryLazy",
     opts = function(_, opts)
-      opts.cmdline = { format = { conceal = false } }
+      opts.cmdline = { enabled = false }
+      opts.messages = { enabled = false }
       opts.debug = false
       opts.routes = opts.routes or {}
       table.insert(opts.routes, {

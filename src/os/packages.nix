@@ -66,6 +66,7 @@
     mold-wrapped
     nodejs_18
     nh
+    gnumake
   ];
 
   programs.wireshark = {

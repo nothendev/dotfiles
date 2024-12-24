@@ -1,10 +1,4 @@
 vim.lsp.inlay_hint.enable(true)
-vim.api.nvim_set_keymap("n", "<C-a>", "^", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-a>", "^", { noremap = true, silent = true })
-
-pcall(vim.keymap.del, "n", "grn")
-pcall(vim.keymap.del, { "n", "x" }, "gra")
-pcall(vim.keymap.del, "n", "grr")
 
 return {
   {
