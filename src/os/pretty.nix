@@ -26,7 +26,7 @@
     flavour = "mocha";
   };
   pretty.font = {
-    family = "Monocraft Nerd Font";
+    family = "JetBrainsMono Nerd Font";
     defaultSize = 13;
   };
 }

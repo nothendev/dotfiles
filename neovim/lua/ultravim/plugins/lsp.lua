@@ -63,7 +63,7 @@ return {
           type = "java",
           name = "Attach to :5005",
           request = "attach",
-          hostName = "localhost",
+          hostName = "127.0.0.1",
           port = 5005,
         },
       }
