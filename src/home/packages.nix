@@ -105,6 +105,7 @@
 
       ##
       freecad
+      service-wrapper
     ])
     ++ (with pkgs.libsForQt5; [
       okular
