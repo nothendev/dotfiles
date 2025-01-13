@@ -6,4 +6,7 @@
   environment.etc."jvm/23".source = pkgs.temurin-bin-23;
   environment.etc."jvm/jbr21".source = pkgs.jetbrains.jdk;
   environment.etc."jvm/gr22".source = pkgs.graalvmPackages.graalvm-oracle_22;
+  environment.systemPackages = [
+    pkgs.graalvmPackages.graalvm-oracle_22
+  ];
 }

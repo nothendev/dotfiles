@@ -104,7 +104,7 @@ return {
       --metals_config.on_attach = function(client, bufnr)
       -- your on_attach function
       --end
-      metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+      metals_config.capabilities = require("blink.cmp").get_lsp_capabilities({})
 
       return metals_config
     end,
@@ -124,7 +124,7 @@ return {
     lazy = true,
     config = function()
       local lc = require("lspconfig")
-      local cmp_caps = require"blink.cmp".get_lsp_capabilities({})
+      local cmp_caps = require("blink.cmp").get_lsp_capabilities({})
 
       lc.marksman.setup({
         capabilities = cmp_caps,

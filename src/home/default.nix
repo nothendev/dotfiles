@@ -24,6 +24,7 @@
 
   home.sessionVariables.EDITOR = "nvim";
   home.sessionVariables.XDG_DATA_HOME = "/home/ilya/.local/share";
+  home.sessionVariables.JAVA_HOME = "/etc/jvm/gr22";
 
   home.username = "ilya";
   home.homeDirectory = "/home/ilya";
