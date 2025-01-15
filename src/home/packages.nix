@@ -106,6 +106,7 @@
       ##
       freecad
       service-wrapper
+      imagemagick
     ])
     ++ (with pkgs.libsForQt5; [
       okular

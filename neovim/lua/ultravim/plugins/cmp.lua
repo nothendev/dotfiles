@@ -18,6 +18,9 @@ local B = {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
+      fuzzy = {
+        use_frecency = false
+      },
       completion = {
         list = {
           selection = { preselect = false, auto_insert = true },

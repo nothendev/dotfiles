@@ -61,6 +61,7 @@ in
 
             (bind mod "RETURN" (togglespecialworkspace' "term"))
             (bindms "Q" killactive)
+            #(bind [ mod "CTRL" "SHIFT" ] "Q" forcekillactive)
             (bindms "SPACE" togglefloating)
             (bind mod "D" (exec "rofi -show drun"))
             (bind mod "P" pseudo)
@@ -86,6 +87,10 @@ in
             (bind mod "right" (movefocus dir.right))
             (bind mod "up" (movefocus dir.up))
             (bind mod "down" (movefocus dir.down))
+            (bind mod "H" (movefocus dir.left))
+            (bind mod "J" (movefocus dir.down))
+            (bind mod "K" (movefocus dir.up))
+            (bind mod "L" (movefocus dir.right))
             (bind mod "mouse_down" (workspace (workspace'.relative-open 1)))
             (bind mod "mouse_up" (workspace (workspace'.relative-open (-1))))
           ]

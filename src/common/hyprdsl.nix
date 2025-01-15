@@ -83,6 +83,7 @@ rec {
     // named [
       "togglespecialworkspace"
       "killactive"
+      "forcekillactive"
       "togglefloating"
       "fullscreen"
       "fakefullscreen"
