@@ -10,6 +10,7 @@
   home.packages =
     (with pkgs; [
       self.packages.${system}.winbox
+      self.packages.${system}.redot
 
       ## CAS - not compare and swap, but CONTAINERS AND SHIT ! :)
       docker-compose
