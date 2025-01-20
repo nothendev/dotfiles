@@ -12,6 +12,13 @@
       self.packages.${system}.winbox
       self.packages.${system}.redot
 
+      ## Just the one fucking time I had to install Windows 10 from uupdump.
+      aria2
+      cabextract
+      wimlib
+      chntpw
+      cdrkit
+
       ## CAS - not compare and swap, but CONTAINERS AND SHIT ! :)
       docker-compose
       kompose

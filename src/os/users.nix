@@ -1,8 +1,17 @@
 { config, pkgs, ... }:
 {
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [ "ilya" ];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "ilya" ];
+
   users.users.ilya = {
     isNormalUser = true;
     extraGroups = [
+      "vboxusers"
+      "libvirtd"
       "wheel"
       "sudo"
       "networkmanager"
