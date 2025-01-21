@@ -21,11 +21,12 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "kwilnikow@gmail.com";
-    #certs."binkus.minkystudios.ru" = {
+    #certs."minkystudios.ru" = {
     #  dnsProvider = "cloudflare";
     #  environmentFile = "/var/lib/trfk/env";
+    #  domain = "*.minkystudios.ru";
     #};
-    #defaults.group = "pterodactyl";
+    #defaults.group = "caddy";
   };
 
   users.defaultUserShell = pkgs.fish;
@@ -42,32 +43,33 @@
     git
     btop
 
-    kubectl
-    kubernetes
-    kubernetes-helm
-    linkerd_edge
+    #kubectl
+    #kubernetes
+    #kubernetes-helm
   ];
 
   services.caddy = {
-    enable = false;
-    package = self.packages.${system}.customCaddyBuiltWithFuckingGatewayAndShit;
+    enable = true;
     email = "kwilnikow@gmail.com";
-    user = "pterodactyl";
-    group = "pterodactyl";
+    package = pkgs.caddy.withPlugins {
+      plugins = [
+        "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e"
+      ];
+    };
     enableReload = true;
-    globalConfig = ''
-      admin localhost:2019
-      acme_dns cloudflare {env.CF_API_TOKEN}
-    '';
     virtualHosts = {
-      "mgr.minkystudios.ru".extraConfig = ''
-        tls {
-          dns cloudflare {env.CF_API_TOKEN}
-        }
-      '';
-      "mm.minkystudios.ru" = {
+      "*.minkystudios.ru" = {
         extraConfig = ''
-          reverse_proxy http://localhost:8065
+          tls {
+            dns cloudflare {env.CF_API_TOKEN}
+          }
+        '';
+      };
+      "project.minkystudios.ru" = {
+        extraConfig = ''
+          root * /srv/project
+          encode zstd gzip br
+          file_server
         '';
       };
     };
@@ -172,7 +174,7 @@
   };
 
   services.k3s = {
-    enable = true;
+    enable = false;
     role = "server";
     extraFlags = "--disable traefik --tls-san 95.165.149.100";
   };
