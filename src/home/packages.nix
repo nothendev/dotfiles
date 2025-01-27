@@ -10,7 +10,7 @@
   home.packages =
     (with pkgs; [
       self.packages.${system}.winbox
-      self.packages.${system}.redot
+      #self.packages.${system}.redot
 
       ## Just the one fucking time I had to install Windows 10 from uupdump.
       aria2
@@ -32,7 +32,7 @@
       ## Graphical utilities
       kdenlive
       tenacity
-      ghidra
+      #ghidra
       jetbrains.idea-community
       imhex
       unixtools.xxd
@@ -115,6 +115,8 @@
       freecad
       service-wrapper
       imagemagick
+      cutter
+      cutterPlugins.rz-ghidra
     ])
     ++ (with pkgs.libsForQt5; [
       okular
