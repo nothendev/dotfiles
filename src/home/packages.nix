@@ -115,8 +115,7 @@
       freecad
       service-wrapper
       imagemagick
-      cutter
-      cutterPlugins.rz-ghidra
+      (cutter.withPlugins (ps: with ps; [ rz-ghidra jsdec sigdb ]))
     ])
     ++ (with pkgs.libsForQt5; [
       okular
