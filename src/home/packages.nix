@@ -35,6 +35,7 @@
       tenacity
       #ghidra
       jetbrains.idea-community
+      code-cursor
       imhex
       unixtools.xxd
       thunderbird-128
