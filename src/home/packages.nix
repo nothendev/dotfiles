@@ -10,6 +10,7 @@
   home.packages =
     (with pkgs; [
       self.packages.${system}.winbox
+      self.packages.${system}.bxt-launcher
       #self.packages.${system}.redot
 
       ## Just the one fucking time I had to install Windows 10 from uupdump.
