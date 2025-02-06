@@ -26,5 +26,6 @@
       gofumpt
       metals
       jdt-language-server
+      kotlin-language-server
     ]);
 }

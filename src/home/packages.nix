@@ -42,6 +42,7 @@
       wlr-randr
       qpwgraph
       mpv
+      blockbench
       #anytype #they fucked something up :) vendoring goes brrrrrrrrr
       grim
       slurp
@@ -60,6 +61,7 @@
         '';
       }))
       qbittorrent
+      unrar
 
       ## Note taking and organization
       (obsidian.overrideAttrs (e: rec {

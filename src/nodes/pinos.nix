@@ -64,6 +64,9 @@
 
   services.nginx = {
     enable = true;
+    appendHttpConfig = ''
+      charset utf-8;
+    '';
     virtualHosts."git.minkystudios.ru" = {
       addSSL = true;
       enableACME = true;
@@ -72,10 +75,21 @@
       '';
       locations."/".proxyPass = "http://localhost:3080";
     };
-    virtualHosts."nc.minkystudios.ru" = {
+    virtualHosts."irina.minkystudios.ru" = {
       addSSL = true;
       enableACME = true;
+      extraConfig = ''
+        location / {
+          root /var/www/irina;
+          index index.html;
+          try_files $uri $uri/ /index.html;
+        }
+      '';
     };
+    #virtualHosts."nc.minkystudios.ru" = {
+    #  addSSL = true;
+    #  enableACME = true;
+    #};
   };
 
   ## net
