@@ -95,6 +95,7 @@
           packages.wings = pkgs.callPackage ./src/pkgs/wings.nix { };
           packages.redot = pkgs.callPackage ./src/pkgs/redot.nix { };
           packages.bxt-launcher = pkgs.callPackage ./src/pkgs/bxt-launcher.nix { };
+          packages.kotlin-language-server = pkgs.callPackage ./src/pkgs/kotlin-language-server.nix { };
           formatter = pkgs.nixfmt;
           apps.wings = {
             type = "app";

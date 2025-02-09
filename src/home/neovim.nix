@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   neovim-nightly-overlay,
   system,
@@ -26,6 +27,6 @@
       gofumpt
       metals
       jdt-language-server
-      kotlin-language-server
+      self.packages.${system}.kotlin-language-server
     ]);
 }
