@@ -83,6 +83,7 @@
       ## Creativity
       libreoffice-fresh
       gimp
+      krita
       inkscape
       blender
 
