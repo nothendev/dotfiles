@@ -1,0 +1,5 @@
+[tasks.switch]
+run = "nh os switch --verbose -- --accept-flake-config --show-trace"
+
+[tasks.boot]
+run = "nh os boot --verbose -- --accept-flake-config --show-trace"

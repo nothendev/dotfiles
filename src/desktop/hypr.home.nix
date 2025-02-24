@@ -22,7 +22,7 @@ in
     settings =
       with dsl // dsl.fn;
       let
-        makeTerminal = "[workspace special:term silent; noanim] alacritty";
+        makeTerminal = "[workspace special:term silent; noanim] ghostty";
         mod = "SUPER";
         bindms = bind [
           mod

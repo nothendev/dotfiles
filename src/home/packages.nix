@@ -36,6 +36,7 @@
       #ghidra
       jetbrains.idea-community
       code-cursor
+      ghostty
       imhex
       unixtools.xxd
       thunderbird-128
