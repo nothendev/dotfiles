@@ -64,7 +64,6 @@ in
             #(bind [ mod "CTRL" "SHIFT" ] "Q" forcekillactive)
             (bindms "SPACE" togglefloating)
             (bind mod "D" (exec "rofi -show drun"))
-            (bind mod "P" pseudo)
             (bind mod "J" togglesplit)
             (bind mod "S" togglegroup)
             (bind mod "TAB" (changegroupactive dir.forward))
@@ -93,6 +92,7 @@ in
             (bind mod "L" (movefocus dir.right))
             (bind mod "mouse_down" (workspace (workspace'.relative-open 1)))
             (bind mod "mouse_up" (workspace (workspace'.relative-open (-1))))
+            (bind mod "P" (exec "wpctl set-mute 61 toggle"))
           ]
           ++ map bindmov workspacen
           ++ map bindsmov workspacen;

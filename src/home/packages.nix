@@ -132,10 +132,11 @@
       zig.packages.${system}.master
     ];
   programs.obs-studio = {
-    enable = false;
+    enable = true;
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
       obs-pipewire-audio-capture
+      obs-freeze-filter
     ];
   };
   home.sessionVariables.NIXOS_OZONE_WL = "1";

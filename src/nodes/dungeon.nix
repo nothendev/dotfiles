@@ -2,13 +2,14 @@
   pkgs,
   self,
   system,
+  config,
   ...
 }:
 {
   imports = [
     ./dungeon.hardware.nix
-    #../os/services/pterodactyl.nix
-    #../os/services/wings.nix
+    ../os/services/pterodactyl.nix
+    ../os/services/wings.nix
   ];
 
   deployment = {
@@ -20,13 +21,12 @@
 
   security.acme = {
     acceptTerms = true;
+    certs."binkus.minkystudios.ru" = {
+      dnsProvider = "cloudflare";
+      environmentFile = "/var/lib/trfk/acmeenv";
+    };
     defaults.email = "kwilnikow@gmail.com";
-    #certs."minkystudios.ru" = {
-    #  dnsProvider = "cloudflare";
-    #  environmentFile = "/var/lib/trfk/env";
-    #  domain = "*.minkystudios.ru";
-    #};
-    #defaults.group = "caddy";
+    defaults.group = "pterodactyl";
   };
 
   users.defaultUserShell = pkgs.fish;
@@ -35,6 +35,7 @@
     bash
     fish
   ];
+
   environment.systemPackages = with pkgs; [
     neovim
     wget
@@ -42,6 +43,7 @@
     fish
     git
     btop
+    (config.services.caddy.package)
 
     #kubectl
     #kubernetes
@@ -57,9 +59,18 @@
       ];
       hash = "sha256-JoujVXRXjKUam1Ej3/zKVvF0nX97dUizmISjy3M3Kr8=";
     };
+    user = "pterodactyl";
+    group = "pterodactyl";
     enableReload = true;
     virtualHosts = {
       "*.minkystudios.ru" = {
+        extraConfig = ''
+          tls {
+            dns cloudflare {env.CF_API_TOKEN}
+          }
+        '';
+      };
+      "mgr.minkystudios.ru" = {
         extraConfig = ''
           tls {
             dns cloudflare {env.CF_API_TOKEN}
@@ -75,6 +86,7 @@
       };
     };
   };
+
   systemd.services.caddy.serviceConfig = {
     EnvironmentFile = "/var/lib/trfk/env";
     AmbientCapabilities = [
@@ -119,25 +131,31 @@
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCh42YtU3Zh7HeR3kQIqqkI9jBCMz5fD9mJSFury+K154lXqOW7g1CtKG9BVwuM88i+91dpHkbmoPPPfnhyfSD5VK/lsog8x++68uwpxE7p3hsAg4kgNaDTLnr2QbWLtTFiW8m3+d91O3zsJ/HY6BVwPBcA/uSBakJXUZlKjYDOK98H1lfNAkKt0FoydFZj455/n+DRiHtHOHnCuQqid5Hg9GK2MNMA4LDhNW5Kzndc7kewSjgnuxW+tKcTJkQlKxwUy8BP1Y559dfXC0jNGEK34ohlJWV8ZkrlYCXk6/7JCemjX4Zi8kaOWuyzPZybnbZtCSL/ApO3wfNd6a2R6gvzV8uGJm8jw5y9uE7Qk2U5yN2pUKuPgRqcKo+pHNbpfh2wqAo54pvlOXHESckhRlf93k4t7FmKBAkAUdsFk1SNYUtp+MmdgbETQxq5qQJO8RNCSMKlChs/+M8NKtYkWsyvCMizTDU6IZmyVms7dlIMb1ACKSd4wB43DN4kSl2EDF0bju5+MEqQICzidZhZ/Rvr2pdjWuIw1x4XhmmVDGxf7mN2oZYUkP4aYfTaMNaND8eJUhDHnxWdWsbs87NVERWde/BBRylKtTaMaVqUMI9YrsOLpWHVaRpWX7S/ITCaV0yyW/p1bUvhVl2mzPzrfkLcU37/hv7DhrXY9c93xe8o1Q== Gloryx key"
   ];
 
+  # mysql for pterodactyl
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
+
   # pterodactyl
-  #services.pterodactyl = {
-  #  enable = true;
-  #  hostName = "mgr.minkystudios.ru";
-  #  user = "pterodactyl";
-  #  dataDir = "/srv/pterodactyl";
-  #  redisName = "pterodactis";
-  #};
+  services.pterodactyl = {
+    enable = true;
+    hostName = "mgr.minkystudios.ru";
+    user = "pterodactyl";
+    dataDir = "/srv/pterodactyl";
+    redisName = "pterodactis";
+  };
 
   # wings
-  #services.wings = {
-  #  enable = true;
-  #  package = pkgs.callPackage ../pkgs/wings.nix { };
-  #};
+  services.wings = {
+    enable = true;
+    package = pkgs.callPackage ../pkgs/wings.nix { };
+  };
 
-  #systemd.services.wings = {
-  #  after = [ "acme-binkus.minkystudios.ru.service" ];
-  #  requires = [ "acme-binkus.minkystudios.ru.service" ];
-  #};
+  systemd.services.wings = {
+    after = [ "acme-binkus.minkystudios.ru.service" ];
+    requires = [ "acme-binkus.minkystudios.ru.service" ];
+  };
 
   services.haproxy = {
     enable = false;

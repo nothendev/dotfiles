@@ -3,3 +3,14 @@ run = "nh os switch --verbose -- --accept-flake-config --show-trace"
 
 [tasks.boot]
 run = "nh os boot --verbose -- --accept-flake-config --show-trace"
+
+# Deploy without rollback
+# use like this: `m=MACHINE xp deploynr`
+[tasks.deploynr]
+shell = "sh -c"
+run = "deploy -s ~/dotfiles#$m --auto-rollback false -- --option sandbox false"
+
+# use like this: `m=MACHINE xp deploy`
+[tasks.deploy]
+shell = "sh -c"
+run = "deploy -s ~/dotfiles#$m -- --option sandbox false"
