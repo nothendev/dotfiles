@@ -14,7 +14,7 @@
       base69 = osConfig.pretty.base69;
     in
     {
-      enable = true;
+      enable = false;
       settings = {
         palette = "catppuccin_${flavour}";
         format = ''
@@ -70,7 +70,7 @@
       package = pkgs.whitesur-cursors;
     };
     font = {
-      name = "Monocraft Nerd Font";
+      name = "JetBrainsMono Nerd Font Mono";
       package = null;
       size = 11;
     };

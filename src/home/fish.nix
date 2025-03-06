@@ -5,8 +5,9 @@
 }:
 {
   programs.fish.enable = true;
-  home.file.".config/fish/themes".source = catppuccin-fish + "/themes";
   programs.fish.interactiveShellInit = ''
+    fish_default_key_bindings
+    fish_config theme choose fish\ default
     ${pkgs.zoxide}/bin/zoxide init fish --cmd j | source
   '';
   programs.fish.functions = {
@@ -20,6 +21,11 @@
     k = "kubectl";
   };
   programs.fish.shellInit = ''
+    function fish_mode_prompt
+    end
+    function fish_prompt
+        printf '%s%s%s> %s' (set_color blue) (prompt_pwd) (set_color green) (set_color normal)
+    end
     set -gx PATH $HOME/.bun/bin $HOME/go/bin $PATH
   '';
   programs.direnv.enable = true;
