@@ -49,7 +49,7 @@ in
           "mako"
           makeTerminal
           "${pkgs.playerctl}/bin/playerctld"
-          "[workspace 2] librewolf"
+          "[workspace 2] brave"
         ];
 
         bind =

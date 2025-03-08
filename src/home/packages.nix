@@ -32,7 +32,7 @@
       istioctl
 
       ## Graphical utilities
-      kdenlive
+      kdePackages.kdenlive
       tenacity
       #ghidra
       jetbrains.idea-community
