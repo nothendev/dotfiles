@@ -123,6 +123,7 @@
       service-wrapper
       imagemagick
       (cutter.withPlugins (ps: with ps; [ rz-ghidra jsdec sigdb ]))
+      hyperfine
     ])
     ++ (with pkgs.libsForQt5; [
       okular
