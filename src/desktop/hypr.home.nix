@@ -8,6 +8,7 @@ let
   lib = pkgs.lib;
   dsl = import ../common/hyprdsl.nix { inherit (pkgs) lib; };
   base69 = osConfig.pretty.base69;
+  fpp = osConfig.programs.hyprland.portalPackage.override { hyprland = osConfig.programs.hyprland.package; };
 in
 {
   #imports = [ ../home/hyprland.nix ];
@@ -49,7 +50,7 @@ in
           "mako"
           makeTerminal
           "${pkgs.playerctl}/bin/playerctld"
-          "[workspace 2] brave"
+          "[workspace 2] env NIXOS_OZONE_WL=1 GDK_BACKEND=wayland brave --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --disable-gpu-compositing"
         ];
 
         bind =
@@ -179,6 +180,26 @@ in
           font_family = osConfig.pretty.font.family;
         };
       };
+  };
+
+  xdg.portal = {
+    enable = true;
+    config.common = {
+      default = "*";
+    };
+    config.hyprland = {
+      default = "*";
+    };
+    xdgOpenUsePortal = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      fpp
+    ];
+    configPackages = [ osConfig.programs.hyprland.package ];
+  };
+
+  systemd.user.sessionVariables = {
+    NIX_XDG_DESKTOP_PORTAL_DIR = pkgs.lib.mkForce "/run/current-system/sw/share/xdg-desktop-portal/portals";
   };
 
   services.mako = {

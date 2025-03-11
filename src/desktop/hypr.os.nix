@@ -7,6 +7,7 @@
 let
   hyprpkgs = hyprland.packages."x86_64-linux";
   hypr-nixpkgs = hyprland.inputs.nixpkgs.legacyPackages."x86_64-linux";
+  fpp = config.programs.hyprland.portalPackage.override { hyprland = config.programs.hyprland.package; };
 in
 {
   security.rtkit.enable = true;
@@ -23,23 +24,26 @@ in
     xwayland.enable = true;
     package = hyprpkgs.hyprland;
     portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
+    withUWSM = true;
   };
   environment.systemPackages = [ config.programs.hyprland.package ];
   programs.dconf.enable = true;
   programs.xwayland.enable = true;
   security.polkit.enable = true;
-  services.displayManager.sessionPackages = [ config.programs.hyprland.package ];
   services.dbus.enable = true;
 
   xdg.portal = {
     enable = true;
     config.common = {
-      default = [ "gtk" "hyprland" ];
-      "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+      default = "*";
     };
+    config.hyprland = {
+      default = "*";
+    };
+    xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      config.programs.hyprland.portalPackage
+      fpp
     ];
     configPackages = [ config.programs.hyprland.package ];
     wlr.enable = pkgs.lib.mkForce false;

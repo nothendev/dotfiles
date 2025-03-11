@@ -34,6 +34,7 @@
   security.pam.services.login.enableGnomeKeyring = lib.mkForce false;
   programs.seahorse.enable = true;
   programs.dconf.enable = true;
+  environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;

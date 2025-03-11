@@ -26,11 +26,9 @@
   };
   services.libinput = {
     enable = true;
-    # mouse.additionalOptions =
-    #   ''
-    #     Option "ModelBouncingKeys" 1
-    #   ''
-    # ;
+    mouse.additionalOptions = ''
+      Option "ModelBouncingKeys" 1
+    '';
   };
   services.xserver = {
     videoDrivers = [ "nvidia" ];

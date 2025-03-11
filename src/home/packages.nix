@@ -124,6 +124,9 @@
       imagemagick
       (cutter.withPlugins (ps: with ps; [ rz-ghidra jsdec sigdb ]))
       hyperfine
+      anydesk
+      d-spy
+      file
     ])
     ++ (with pkgs.libsForQt5; [
       okular
