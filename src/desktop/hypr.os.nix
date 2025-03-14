@@ -40,11 +40,11 @@ in
     config.hyprland = {
       default = "*";
     };
-    xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       fpp
     ];
+    xdgOpenUsePortal = false;
     configPackages = [ config.programs.hyprland.package ];
     wlr.enable = pkgs.lib.mkForce false;
   };

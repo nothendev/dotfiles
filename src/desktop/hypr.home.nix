@@ -190,11 +190,11 @@ in
     config.hyprland = {
       default = "*";
     };
-    xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       fpp
     ];
+    xdgOpenUsePortal = false;
     configPackages = [ osConfig.programs.hyprland.package ];
   };
   

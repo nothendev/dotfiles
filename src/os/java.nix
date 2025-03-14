@@ -9,4 +9,5 @@
   environment.systemPackages = [
     pkgs.graalvmPackages.graalvm-oracle_22
   ];
+  environment.etc."jvm/cef".source = pkgs.libcef;
 }

@@ -97,6 +97,39 @@
           packages.bxt-launcher = pkgs.callPackage ./src/pkgs/bxt-launcher.nix { };
           packages.zen-browser = pkgs.callPackage ./src/pkgs/zen-browser.nix { };
           formatter = pkgs.nixfmt;
+          packages.print-liquidbounce-rpath = pkgs.writeShellScriptBin "print-liquidbounce-rpath" ''
+            echo ${
+              pkgs.lib.makeLibraryPath (
+                with pkgs;
+                [
+                  glib
+                  nss
+                  nspr
+                  atk
+                  at-spi2-atk
+                  libdrm
+                  expat
+                  xorg.libxcb
+                  libxkbcommon
+                  xorg.libX11
+                  xorg.libXcomposite
+                  xorg.libXdamage
+                  xorg.libXext
+                  xorg.libXfixes
+                  xorg.libXrandr
+                  libgbm
+                  gtk3
+                  pango
+                  cairo
+                  alsa-lib
+                  dbus
+                  at-spi2-core
+                  cups
+                  xorg.libxshmfence
+                ]
+              )
+            }
+          '';
           apps.wings = {
             type = "app";
             program = "${self'.packages.wings}/bin/wings";
