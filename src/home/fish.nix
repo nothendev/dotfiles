@@ -26,7 +26,7 @@
     function fish_prompt
         printf '%s%s%s> %s' (set_color blue) (prompt_pwd) (set_color green) (set_color normal)
     end
-    set -gx PATH $HOME/.bun/bin $HOME/go/bin $PATH
+    set -gx PATH $HOME/.cache/.bun/bin $HOME/go/bin $PATH
   '';
   programs.direnv.enable = true;
 }

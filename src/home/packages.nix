@@ -11,7 +11,7 @@
     (with pkgs; [
       self.packages.${system}.winbox
       self.packages.${system}.bxt-launcher
-      self.packages.${system}.zen-browser
+      #self.packages.${system}.zen-browser
       #self.packages.${system}.redot
 
       ## Just the one fucking time I had to install Windows 10 from uupdump.
@@ -36,6 +36,7 @@
       tenacity
       jetbrains.idea-community-src
       code-cursor
+      vscodium-fhs
       ghostty
       imhex
       unixtools.xxd
@@ -130,6 +131,7 @@
       (bottles.override { removeWarningPopup = true; })
       ida-free
       ghidra-bin
+      bun
     ])
     ++ (with pkgs.libsForQt5; [
       okular

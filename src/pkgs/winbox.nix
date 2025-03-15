@@ -16,10 +16,10 @@
 }:
 stdenv.mkDerivation rec {
   pname = "winbox";
-  version = "4.0beta9";
+  version = "4.0beta18";
   src = fetchzip {
     url = "https://download.mikrotik.com/routeros/${pname}/${version}/WinBox_Linux.zip";
-    hash = "sha256-NpkKnU7kW8jMKq66FqwiuD2N5zm25uKCZBhHvHnfQVI=";
+    hash = "sha256-8Z2AJLUwrfOtBV+ZxlKlWoT1w/FK4KJSWwY4+PcT2Xk=";
     stripRoot = false;
   };
   nativeBuildInputs = [ autoPatchelfHook ];
@@ -37,10 +37,11 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
     install -m755 -D WinBox $out/bin/winbox
-    mkdir -p $out/share/pixmaps
-    ln -s $out/assets/winbox/winbox.png $out/share/pixmaps/winbox.png
+    #mkdir -p $out/share/pixmaps
+    #ln -s $out/assets/img/winbox.png $out/share/pixmaps/winbox.png
     runHook postInstall
   '';
+
   desktopItems = [
     (makeDesktopItem {
       name = "WinBox";

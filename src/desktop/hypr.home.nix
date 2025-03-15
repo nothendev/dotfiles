@@ -16,6 +16,7 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     package = osConfig.programs.hyprland.package;
+    portalPackage = null;
     systemd = {
       enable = true;
       variables = [ "--all" ];
@@ -183,7 +184,7 @@ in
   };
 
   xdg.portal = {
-    enable = true;
+    enable = false;
     config.common = {
       default = "*";
     };
