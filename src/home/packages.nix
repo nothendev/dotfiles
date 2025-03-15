@@ -34,8 +34,7 @@
       ## Graphical utilities
       kdePackages.kdenlive
       tenacity
-      #ghidra
-      jetbrains.idea-community
+      jetbrains.idea-community-src
       code-cursor
       ghostty
       imhex
@@ -127,6 +126,10 @@
       anydesk
       d-spy
       file
+      lutris
+      (bottles.override { removeWarningPopup = true; })
+      ida-free
+      ghidra-bin
     ])
     ++ (with pkgs.libsForQt5; [
       okular

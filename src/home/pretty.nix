@@ -79,7 +79,7 @@
   qt = {
     enable = true;
     platformTheme = "adwaita";
-    style.name = "adwaita-dark";
+    style.name = "Adwaita-Dark";
   };
 
   programs.rofi = {
