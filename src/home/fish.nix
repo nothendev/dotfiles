@@ -5,11 +5,12 @@
 }:
 {
   programs.fish.enable = true;
-  programs.fish.interactiveShellInit = ''
+  programs.fish.interactiveShellInit = (pkgs.lib.mkOrder 100 ''
     fish_default_key_bindings
     fish_config theme choose fish\ default
     ${pkgs.zoxide}/bin/zoxide init fish --cmd j | source
-  '';
+    set ZELLIJ_AUTO_ATTACH true
+  '');
   programs.fish.functions = {
     stfd = "sudo shutdown --no-wall 0";
   };
@@ -26,7 +27,7 @@
     function fish_prompt
         printf '%s%s%s> %s' (set_color blue) (prompt_pwd) (set_color green) (set_color normal)
     end
-    set -gx PATH $HOME/.cache/.bun/bin $HOME/go/bin $PATH
+    set -gx PATH $HOME/.cache/.bun/bin $HOME/go/bin $HOME/.cargo/bin $PATH
   '';
   programs.direnv.enable = true;
 }

@@ -87,6 +87,9 @@
             overlays = [
               (final: prev: { graalvmPackages = final.callPackage import ./src/pkgs/graalvm; })
             ];
+            config.permittedInsecurePackages = [
+              "SDL_ttf-2.0.11"
+            ];
           };
           packages.customCaddyBuiltWithFuckingGatewayAndShit =
             pkgs.callPackage ./src/pkgs/fucking-caddy.nix

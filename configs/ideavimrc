@@ -1,0 +1,13 @@
+set nu
+set relativenumber
+let mapleader = "\<Space>"
+set clipboard+=unnamed
+set clipboard+=unnamedplus
+
+nnoremap <C-a> ^
+nnoremap <leader>fm :action ReformatCode<cr>
+nnoremap <leader>ff :action GotoFile<cr>
+nnoremap <leader>fw :action TextSearchAction<cr>
+nnoremap gS :action GotoSymbol<cr>
+nnoremap <leader><leader> :action SearchEverywhere<cr>
+nnoremap <leader>ra :action RenameElement<cr>
