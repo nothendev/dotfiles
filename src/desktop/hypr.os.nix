@@ -10,14 +10,6 @@ let
   fpp = config.programs.hyprland.portalPackage.override { hyprland = config.programs.hyprland.package; };
 in
 {
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
   hardware.graphics.package = hypr-nixpkgs.mesa.drivers;
   programs.hyprland = {
     enable = true;
@@ -27,10 +19,6 @@ in
     withUWSM = true;
   };
   environment.systemPackages = [ config.programs.hyprland.package ];
-  programs.dconf.enable = true;
-  programs.xwayland.enable = true;
-  security.polkit.enable = true;
-  services.dbus.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -47,11 +35,5 @@ in
     xdgOpenUsePortal = false;
     configPackages = [ config.programs.hyprland.package ];
     wlr.enable = pkgs.lib.mkForce false;
-  };
-
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    MOZ_ENABLE_WAYLAND = "1";
   };
 }

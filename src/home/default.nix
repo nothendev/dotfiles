@@ -13,9 +13,9 @@
     ./fish.nix
 
     # Hyprland module
-    ./hyprland.nix
+    #./hyprland.nix
 
-    ../desktop/hypr.home.nix
+    #../desktop/hypr.home.nix
     ../desktop/river.home.nix
 
     ../programs/vcs.home.nix

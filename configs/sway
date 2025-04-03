@@ -1,0 +1,95 @@
+set $mod super
+set $left h
+set $down j
+set $up k
+set $right l
+set $term ghostty
+set $menu rofi -show drun
+font pango:Shantell Sans SemiBold 10
+
+exec mako
+exec dbus-sway-environment
+
+input type:keyboard {
+  xkb_layout us,ru
+  xkb_options caps:ctrl_modifier
+  xkb_numlock enabled
+}
+
+output DVI-D-1 mode 1920x1080@60Hz position 0 0
+output HDMI-A-1 mode 1920x1080@60Hz position 1920 0
+
+bindcode Control+49 exec swaymsg input "type:keyboard" xkb_switch_layout next
+bindsym $mod+Shift+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec $menu
+floating_modifier $mod normal
+bindsym $mod+shift+c reload
+bindsym $mod+shift+e exec swaymsg exit
+
+bindsym XF86AudioPlay exec playerctl play-pause
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Tab focus next
+bindsym $mod+Shift+Tab focus prev
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+bindsym $mod+s layout tabbed
+bindsym $mod+w layout stacking
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+f fullscreen
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Return scratchpad show
+
+bindsym Print exec grim -g "$(slurp)"
+bindsym Shift+Print exec grim
+
+default_border pixel
+default_floating_border pixel
+hide_edge_borders smart
+
+bar {
+  position top
+  status_command i3status
+}

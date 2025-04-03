@@ -59,7 +59,7 @@ in
             (bind null "XF86AudioPlay" (exec "${pkgs.playerctl}/bin/playerctl play-pause"))
 
             # Win-Shift-Enter: launch a new term instance
-            (bindms "RETURN" (exec "alacritty"))
+            (bindms "RETURN" (exec "ghostty"))
 
             (bind mod "RETURN" (togglespecialworkspace' "term"))
             (bindms "Q" killactive)

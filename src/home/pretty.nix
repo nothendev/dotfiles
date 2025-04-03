@@ -56,7 +56,7 @@
   };
 
   gtk = {
-    enable = true;
+    enable = false;
     iconTheme = {
       name = "WhiteSur-Dark";
       package = pkgs.whitesur-icon-theme.override { themeVariants = [ "purple" ]; };
@@ -78,7 +78,7 @@
 
   qt = {
     enable = true;
-    platformTheme = "adwaita";
+    platformTheme.name = "adwaita";
     style.name = "Adwaita-Dark";
   };
 

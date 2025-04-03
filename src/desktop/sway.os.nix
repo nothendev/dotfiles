@@ -59,6 +59,7 @@ in
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     wdisplays # tool to configure displays
     vulkan-validation-layers
+    i3status
   ];
 
   services.pipewire = {
@@ -85,21 +86,21 @@ in
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    package = pkgs.sway.override {
-      sway-unwrapped = waypkgs.sway-unwrapped.override (
-        { wlroots, ... }:
-        {
-          wlroots = wlroots.overrideAttrs (
-            {
-              patches ? [ ],
-              ...
-            }:
-            {
-              patches = patches ++ [ ../assets/wlroots-nvidia.patch ];
-            }
-          );
-        }
-      );
-    };
+    #package = pkgs.sway.override {
+    #  sway-unwrapped = waypkgs.sway-unwrapped.override (
+    #    { wlroots, ... }:
+    #    {
+    #      wlroots = wlroots.overrideAttrs (
+    #        {
+    #          patches ? [ ],
+    #          ...
+    #        }:
+    #        {
+    #          patches = patches ++ [ ../assets/wlroots-nvidia.patch ];
+    #        }
+    #      );
+    #    }
+    #  );
+    #};
   };
 }

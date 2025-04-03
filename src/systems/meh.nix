@@ -8,8 +8,11 @@
     ../os/packages.nix
     ../os/users.nix
     ../os/services/zapret.nix
+    ../os/desktop.nix
 
-    ../desktop/hypr.os.nix
+    #../desktop/hypr.os.nix
+    #../desktop/plasma.os.nix
+    ../desktop/sway.os.nix
     ../desktop/river.os.nix
   ];
   networking.hostName = "meh"; # Define your hostname.
