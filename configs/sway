@@ -92,4 +92,6 @@ hide_edge_borders smart
 bar {
   position top
   status_command i3status
+  separator_symbol " =*= "
+  font pango:JetBrainsMono Nerd Font Bold 10
 }
