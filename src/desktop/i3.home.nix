@@ -103,7 +103,8 @@ in
             }) workspacen
           );
         keycodebindings = {
-          "control+49" = ''exec swaymsg "input type:keyboard xkb_switch_layout $(swaymsg -t get_inputs | jq 'if .[0].xkb_active_layout_index == 0 then 1 else 0 end')"'';
+          "control+49" =
+            ''exec swaymsg "input type:keyboard xkb_switch_layout $(swaymsg -t get_inputs | jq 'if .[0].xkb_active_layout_index == 0 then 1 else 0 end')"'';
         };
         menu = "rofi -show drun";
         startup = [

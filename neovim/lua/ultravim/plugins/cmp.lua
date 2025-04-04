@@ -19,7 +19,7 @@ local B = {
     ---@type blink.cmp.Config
     opts = {
       fuzzy = {
-        use_frecency = false
+        use_frecency = false,
       },
       completion = {
         list = {

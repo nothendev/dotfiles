@@ -2,7 +2,7 @@ return {
   {
     "folke/noice.nvim",
     dependencies = {
-      "MunifTanjim/nui.nvim"
+      "MunifTanjim/nui.nvim",
     },
     event = "VeryLazy",
     opts = function(_, opts)

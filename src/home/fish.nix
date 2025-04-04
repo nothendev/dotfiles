@@ -5,12 +5,14 @@
 }:
 {
   programs.fish.enable = true;
-  programs.fish.interactiveShellInit = (pkgs.lib.mkOrder 100 ''
-    fish_default_key_bindings
-    fish_config theme choose fish\ default
-    ${pkgs.zoxide}/bin/zoxide init fish --cmd j | source
-    set ZELLIJ_AUTO_ATTACH true
-  '');
+  programs.fish.interactiveShellInit = (
+    pkgs.lib.mkOrder 100 ''
+      fish_default_key_bindings
+      fish_config theme choose fish\ default
+      ${pkgs.zoxide}/bin/zoxide init fish --cmd j | source
+      set ZELLIJ_AUTO_ATTACH true
+    ''
+  );
   programs.fish.functions = {
     stfd = "sudo shutdown --no-wall 0";
   };

@@ -7,7 +7,9 @@
 let
   hyprpkgs = hyprland.packages."x86_64-linux";
   hypr-nixpkgs = hyprland.inputs.nixpkgs.legacyPackages."x86_64-linux";
-  fpp = config.programs.hyprland.portalPackage.override { hyprland = config.programs.hyprland.package; };
+  fpp = config.programs.hyprland.portalPackage.override {
+    hyprland = config.programs.hyprland.package;
+  };
 in
 {
   hardware.graphics.package = hypr-nixpkgs.mesa.drivers;

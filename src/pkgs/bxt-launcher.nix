@@ -5,7 +5,7 @@
   wrapGAppsHook3,
   glib,
   libgtop,
-  autoPatchelfHook
+  autoPatchelfHook,
 }:
 stdenv.mkDerivation {
   pname = "bxt-launcher";

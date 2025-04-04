@@ -122,7 +122,13 @@
       freecad
       service-wrapper
       imagemagick
-      (cutter.withPlugins (ps: with ps; [ rz-ghidra jsdec sigdb ]))
+      (cutter.withPlugins (
+        ps: with ps; [
+          rz-ghidra
+          jsdec
+          sigdb
+        ]
+      ))
       hyperfine
       anydesk
       d-spy

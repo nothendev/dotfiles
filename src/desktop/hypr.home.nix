@@ -8,7 +8,9 @@ let
   lib = pkgs.lib;
   dsl = import ../common/hyprdsl.nix { inherit (pkgs) lib; };
   base69 = osConfig.pretty.base69;
-  fpp = osConfig.programs.hyprland.portalPackage.override { hyprland = osConfig.programs.hyprland.package; };
+  fpp = osConfig.programs.hyprland.portalPackage.override {
+    hyprland = osConfig.programs.hyprland.package;
+  };
 in
 {
   #imports = [ ../home/hyprland.nix ];
@@ -198,7 +200,7 @@ in
     xdgOpenUsePortal = false;
     configPackages = [ osConfig.programs.hyprland.package ];
   };
-  
+
   home.sessionVariables = {
     NIX_XDG_DESKTOP_PORTAL_DIR = pkgs.lib.mkForce "/run/current-system/sw/share/xdg-desktop-portal/portals";
   };
