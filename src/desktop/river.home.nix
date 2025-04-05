@@ -73,7 +73,7 @@
 
       riverctl default-layout rivertile
       rivertile -view-padding 6 -outer-padding 6 &
-      eww open desktop &
+      #eww open desktop &
       mako &
 
       riverctl focus-output next

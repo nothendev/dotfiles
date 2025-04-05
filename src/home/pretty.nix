@@ -90,9 +90,9 @@
     font = osConfig.pretty.font.family;
   };
 
-  programs.eww = {
-    enable = true;
-    package = pkgs.eww;
-    configDir = ../configs/eww;
-  };
+  # programs.eww = {
+  #   enable = true;
+  #   package = pkgs.eww;
+  #   configDir = ../configs/eww;
+  # };
 }

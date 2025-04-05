@@ -110,10 +110,10 @@ in
         startup = [
           { command = "dbus-sway-environment"; }
           { command = "configure-gtk"; }
-          {
-            command = "~/.config/eww/scripts/init";
-            always = true;
-          }
+          # {
+          #   command = "~/.config/eww/scripts/init";
+          #   always = true;
+          # }
           {
             command = "playerctld daemon";
             always = true;

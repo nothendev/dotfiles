@@ -34,6 +34,10 @@
   security.pam.services.login.enableGnomeKeyring = lib.mkForce false;
   programs.seahorse.enable = true;
   programs.dconf.enable = true;
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
   environment.pathsToLink = [
     "/share/xdg-desktop-portal"
     "/share/applications"

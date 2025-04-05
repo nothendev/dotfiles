@@ -49,7 +49,7 @@ in
         exec = [ "hyprpaper" ];
 
         exec-once = [
-          "~/.config/eww/scripts/init"
+          #"~/.config/eww/scripts/init"
           "mako"
           makeTerminal
           "${pkgs.playerctl}/bin/playerctld"
@@ -84,7 +84,7 @@ in
             (bindms "right" (movewindow dir.right))
             (bindms "up" (movewindow dir.up))
             (bindms "down" (movewindow dir.down))
-            (bindms "A" (exec "~/.config/eww/scripts/init"))
+            #(bindms "A" (exec "~/.config/eww/scripts/init"))
             (bindms "S" (exec makeTerminal))
             (bind mod "left" (movefocus dir.left))
             (bind mod "right" (movefocus dir.right))

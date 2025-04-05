@@ -4,11 +4,12 @@ set $down j
 set $up k
 set $right l
 set $term ghostty
+#set $menu env BEMENU_OPTS="-l 12 --fn JetBrainsMono Nerd Font Mono 10 -i -W 0.3 --single-instance" j4-dmenu-desktop --term ghostty --no-generic -x
 set $menu rofi -show drun
 font pango:Shantell Sans SemiBold 10
 
-exec mako
 exec dbus-sway-environment
+exec mako
 
 input type:keyboard {
   xkb_layout us,ru
@@ -95,3 +96,5 @@ bar {
   separator_symbol " =*= "
   font pango:JetBrainsMono Nerd Font Bold 10
 }
+
+include /etc/sway/config.d/*

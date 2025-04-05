@@ -11,4 +11,8 @@
     pkgs.graalvmPackages.graalvm-oracle_22
   ];
   environment.etc."jvm/cef".source = pkgs.libcef;
+  environment.etc."jvm/mcglfw".source = pkgs.glfw3-minecraft;
+  environment.sessionVariables = {
+    GLFW_MINECRAFT = "${pkgs.glfw3-minecraft}/lib/libglfw.so";
+  };
 }

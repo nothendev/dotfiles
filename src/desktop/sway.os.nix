@@ -59,7 +59,6 @@ in
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     wdisplays # tool to configure displays
     vulkan-validation-layers
-    i3status
   ];
 
   services.pipewire = {
@@ -78,29 +77,36 @@ in
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    wlr.settings = {
+      screencast = {
+        output_name = "DVI-D-1";
+        max_fps = 30;
+        chooser_type = "simple";
+        chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+      };
+    };
     # gtk portal needed to make gtk apps happy
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  # enable sway window manager
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    #package = pkgs.sway.override {
-    #  sway-unwrapped = waypkgs.sway-unwrapped.override (
-    #    { wlroots, ... }:
-    #    {
-    #      wlroots = wlroots.overrideAttrs (
-    #        {
-    #          patches ? [ ],
-    #          ...
-    #        }:
-    #        {
-    #          patches = patches ++ [ ../assets/wlroots-nvidia.patch ];
-    #        }
-    #      );
-    #    }
-    #  );
-    #};
+    extraOptions = [
+      "--unsupported-gpu"
+      "--verbose"
+      "--debug"
+    ];
+    extraPackages = with pkgs; [
+      brightnessctl
+      grim
+      swayidle
+      swaylock
+      i3status
+      bemenu
+      (j4-dmenu-desktop.override {
+        dmenu = bemenu;
+      })
+    ];
   };
 }
