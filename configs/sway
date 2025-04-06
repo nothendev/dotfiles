@@ -4,8 +4,8 @@ set $down j
 set $up k
 set $right l
 set $term ghostty
-#set $menu env BEMENU_OPTS="-l 12 --fn JetBrainsMono Nerd Font Mono 10 -i -W 0.3 --single-instance" j4-dmenu-desktop --term ghostty --no-generic -x
-set $menu rofi -show drun
+set $menu env BEMENU_OPTS="-l 12 --fn ShantellSans Bold 10 -i -W 0.3 --single-instance" j4-dmenu-desktop --term ghostty --no-generic -x
+set $rofi rofi -show drun
 font pango:Shantell Sans SemiBold 10
 
 exec dbus-sway-environment
@@ -24,6 +24,7 @@ bindcode Control+49 exec swaymsg input "type:keyboard" xkb_switch_layout next
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
+bindsym $mod+r exec $rofi
 floating_modifier $mod normal
 bindsym $mod+shift+c reload
 bindsym $mod+shift+e exec swaymsg exit
