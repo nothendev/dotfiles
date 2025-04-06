@@ -208,6 +208,9 @@ in
   systemd.user.sessionVariables = {
     NIX_XDG_DESKTOP_PORTAL_DIR = pkgs.lib.mkForce "/run/current-system/sw/share/xdg-desktop-portal/portals";
   };
+  home.packages = with pkgs; [
+    hyprpaper
+  ];
 
   services.mako = {
     enable = true;

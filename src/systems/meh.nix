@@ -9,9 +9,9 @@
     ../os/users.nix
     ../os/services/zapret.nix
     ../os/desktop.nix
+    ../os/podman.nix
 
     #../desktop/hypr.os.nix
-    #../desktop/plasma.os.nix
     ../desktop/sway.os.nix
     ../desktop/river.os.nix
   ];
@@ -23,11 +23,5 @@
   # services.openssh.enable = true;
   # services.openssh.settings.PermitRootLogin = "yes";
   # services.openssh.settings.PasswordAuthentication = true;
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
-  virtualisation.oci-containers.backend = "docker";
   system.stateVersion = "23.11";
 }

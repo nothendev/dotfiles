@@ -6,7 +6,7 @@ let
       system = "x86_64-linux";
       specialArgs = inputs // {
         waypkgs = inputs.nixwaypkgs.packages.${system};
-        inherit system;
+        inherit inputs system;
       };
       modules = [
         ./${name}.nix

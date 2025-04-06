@@ -10,11 +10,6 @@
   imports = [
     ./java.nix
   ];
-  nix.registry.nixpkgs.flake = nixpkgs;
-  nix.registry.nixpkgs.to = {
-    type = "path";
-    path = pkgs.path;
-  };
   nixpkgs.config.permittedInsecurePackages = [
     "SDL_ttf-2.0.11"
   ];

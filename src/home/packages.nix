@@ -14,6 +14,18 @@
       #self.packages.${system}.zen-browser
       #self.packages.${system}.redot
 
+      ## Console utilities
+      service-wrapper # `service SOMETHING start/stop/*`
+      imagemagick
+      hyperfine
+      file
+      bun
+      unixtools.xxd
+      unrar
+      grim # Screenshot
+      slurp # Select area for screenshot
+      wl-clipboard # wl-copy/wl-paste
+
       ## Just the one fucking time I had to install Windows 10 from uupdump.
       aria2
       cabextract
@@ -21,8 +33,7 @@
       chntpw
       cdrkit
 
-      ## CAS - not compare and swap, but CONTAINERS AND SHIT ! :)
-      docker-compose
+      ## CAS - CONTAINERS AND SHIT
       kompose
       kustomize
       kubectl
@@ -31,27 +42,19 @@
       kind
       istioctl
 
-      ## Graphical utilities
-      kdePackages.kdenlive
-      tenacity
+      ## Graphical
+      ghidra-bin
+      freecad
       jetbrains.idea-community-src
       code-cursor
-      vscodium-fhs
       ghostty
       imhex
-      unixtools.xxd
       thunderbird-128
       wlr-randr
       qpwgraph
       mpv
       blockbench
-      #anytype #they fucked something up :) vendoring goes brrrrrrrrr
-      grim
-      slurp
-      wl-clipboard
       hyprpicker
-      hyprpaper
-      watershot
       pavucontrol
       playerctl
       wev
@@ -63,18 +66,18 @@
         '';
       }))
       qbittorrent
-      unrar
-
-      ## Note taking and organization
-      (obsidian.overrideAttrs (e: rec {
-        # Add arguments to the .desktop entry
-        desktopItem = e.desktopItem.override (d: {
-          exec = "env NIXOS_OZONE_WL=1 obsidian --disable-gpu-compositing %u";
-        });
-
-        # Update the install script to use the new .desktop entry
-        installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
-      }))
+      lutris
+      (bottles.override { removeWarningPopup = true; })
+      ida-free
+      anydesk
+      d-spy
+      (cutter.withPlugins (
+        ps: with ps; [
+          rz-ghidra
+          jsdec
+          sigdb
+        ]
+      ))
 
       ## Gaming
       prismlauncher
@@ -82,24 +85,16 @@
       steam
       r2modman
 
-      ## Creativity
-      libreoffice-fresh
-      gimp
+      ## Art
+      tenacity
+      libreoffice-fresh # the dreaded
+      gimp # my beloved
       krita
       inkscape
       blender
+      kdePackages.kdenlive
 
       ## Communication (messengers)
-      signal-desktop
-      session-desktop
-      (vesktop.overrideAttrs (a: {
-        desktopItems = map (
-          d:
-          d.override {
-            exec = "env NIXOS_OZONE_WL=1 GDK_BACKEND=wayland vesktop --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --disable-gpu-compositing %u";
-          }
-        ) a.desktopItems;
-      }))
       (legcord.overrideAttrs (a: {
         desktopItems = map (
           d:
@@ -117,27 +112,6 @@
         # Update the install script to use the new .desktop entry
         installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
       }))
-
-      ##
-      freecad
-      service-wrapper
-      imagemagick
-      (cutter.withPlugins (
-        ps: with ps; [
-          rz-ghidra
-          jsdec
-          sigdb
-        ]
-      ))
-      hyperfine
-      anydesk
-      d-spy
-      file
-      lutris
-      (bottles.override { removeWarningPopup = true; })
-      ida-free
-      ghidra-bin
-      bun
     ])
     ++ (with pkgs.libsForQt5; [
       okular
