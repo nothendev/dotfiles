@@ -84,6 +84,7 @@
       mangohud
       steam
       r2modman
+      logmein-hamachi
 
       ## Art
       tenacity
