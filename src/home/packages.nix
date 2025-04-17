@@ -113,6 +113,7 @@
         # Update the install script to use the new .desktop entry
         installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
       }))
+      telegram-desktop
     ])
     ++ (with pkgs.libsForQt5; [
       okular

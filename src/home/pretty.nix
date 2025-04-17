@@ -56,7 +56,7 @@
   };
 
   gtk = {
-    enable = false;
+    enable = true;
     iconTheme = {
       name = "WhiteSur-Dark";
       package = pkgs.whitesur-icon-theme.override { themeVariants = [ "purple" ]; };
@@ -70,7 +70,7 @@
       package = pkgs.whitesur-cursors;
     };
     font = {
-      name = "JetBrainsMono Nerd Font Mono";
+      name = "Shantell Sans SemiBold";
       package = null;
       size = 11;
     };
