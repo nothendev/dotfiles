@@ -16,10 +16,10 @@
 }:
 stdenv.mkDerivation rec {
   pname = "winbox";
-  version = "4.0beta18";
+  version = "4.0beta20";
   src = fetchzip {
     url = "https://download.mikrotik.com/routeros/${pname}/${version}/WinBox_Linux.zip";
-    hash = "sha256-8Z2AJLUwrfOtBV+ZxlKlWoT1w/FK4KJSWwY4+PcT2Xk=";
+    hash = "sha256-OkeY+wUzzFpprdI5T4kvgkN7YKEV2SWepk6rN1h5M4E=";
     stripRoot = false;
   };
   nativeBuildInputs = [ autoPatchelfHook ];

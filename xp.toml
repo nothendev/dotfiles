@@ -1,7 +1,9 @@
 [tasks.switch]
+alias = "s"
 run = "nh os switch --verbose -- --accept-flake-config --show-trace"
 
 [tasks.boot]
+alias = "b"
 run = "nh os boot --verbose -- --accept-flake-config --show-trace"
 
 # Deploy without rollback
