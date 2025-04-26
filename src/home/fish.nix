@@ -1,6 +1,5 @@
 {
   pkgs,
-  catppuccin-fish,
   ...
 }:
 {
@@ -27,7 +26,7 @@
     function fish_mode_prompt
     end
     function fish_prompt
-        printf '%s%s%s> %s' (set_color blue) (prompt_pwd) (set_color green) (set_color normal)
+        printf '%s%s%s> %s' (set_color facc15) (prompt_pwd) (set_color brred -o) (set_color normal)
     end
     set -gx PATH $HOME/.cache/.bun/bin $HOME/go/bin $HOME/.cargo/bin $PATH
   '';

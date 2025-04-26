@@ -1,0 +1,32 @@
+{
+  "layer": "bottom",
+  "height": 30,
+  "spacing": 8,
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["network", "cpu", "memory", "sway/language", "clock", "tray"],
+  "cpu": {
+    "interval": 5,
+    "format": "{usage}%CPU"
+  },
+  "network": {
+    "format": "{ifname}: {ipaddr}"
+  },
+  "load": {
+    "interval": 5,
+    "format": "{load1}ld1"
+  },
+  "memory": {
+    "interval": 5,
+    "format": "({percentage}%) {used}GB / {total}GB"
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%H:%M:%S}",
+    "timezone": "Europe/Moscow"
+  },
+  "sway/language": {
+    "format": "{long}",
+    "on-click": "swaymsg input 'type:keyboard' xkb_switch_layout next"
+  }
+}

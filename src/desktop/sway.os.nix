@@ -91,6 +91,7 @@ in
 
   programs.sway = {
     enable = true;
+    package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
     extraOptions = [
       "--unsupported-gpu"
@@ -104,6 +105,7 @@ in
       swaylock
       i3status
       bemenu
+      waybar
       (j4-dmenu-desktop.override {
         dmenu = bemenu;
       })

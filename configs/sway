@@ -1,15 +1,38 @@
+# codeberg.org/noth/dotfiles :: sway
+
+# nixos moment
+include /etc/sway/config.d/*
+
+# Binds
 set $mod super
 set $left h
 set $down j
 set $up k
 set $right l
+# Programs
 set $term ghostty
 set $menu env BEMENU_OPTS="-l 12 --fn ShantellSans Bold 10 -i -W 0.3 --single-instance" j4-dmenu-desktop --term ghostty --no-generic -x
 set $rofi rofi -show drun
+# Colors
+set $purple #7c3aed
+set $yellow #facc15
+set $bg #030712
+set $fg #f9fafb
+set $destructive #7f1d1d
+set $secondary #1f2937
+
+## Theming
+# Property Name             Border     BG         Text    Indicator Child-border
+client.focused              $bg        #7c3aeda0  $fg     $purple   $secondary
+client.focused_inactive     $bg        $secondary $fg     $purple   $bg
+client.unfocused            $secondary $bg        $fg     $purple   $bg
+client.urgent               $secondary $yellow    $fg     $purple   $bg
+client.placeholder          $secondary $bg        $fg     $purple   $bg
 font pango:Shantell Sans SemiBold 10
 
-exec dbus-sway-environment
-exec mako
+## Execs
+exec dbus-sway-environment # add envs
+exec mako # notification daemon
 
 input type:keyboard {
   xkb_layout us,ru
@@ -17,10 +40,12 @@ input type:keyboard {
   xkb_numlock enabled
 }
 
-output DVI-D-1 mode 1920x1080@60Hz position 0 0
+output DVI-D-1 mode 1920x1080@60Hz position 0 0 bg ~/n.jpg fill
 output HDMI-A-1 mode 1920x1080@60Hz position 1920 0
 
+## Binds
 bindcode Control+49 exec swaymsg input "type:keyboard" xkb_switch_layout next
+bindcode $mod+22 exec swaylock -c 000000 -i ~/guns.jpg -s center --font 'Shantell Sans SemiBold' --font-size 24
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
@@ -28,9 +53,9 @@ bindsym $mod+r exec $rofi
 floating_modifier $mod normal
 bindsym $mod+shift+c reload
 bindsym $mod+shift+e exec swaymsg exit
-
 bindsym XF86AudioPlay exec playerctl play-pause
 
+# Navigation binds
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -87,15 +112,28 @@ bindsym $mod+Return scratchpad show
 bindsym Print exec grim -g "$(slurp)"
 bindsym Shift+Print exec grim
 
+# Borders
 default_border pixel
 default_floating_border pixel
 hide_edge_borders smart
 
 bar {
-  position top
-  status_command i3status
-  separator_symbol " =*= "
-  font pango:JetBrainsMono Nerd Font Bold 10
+  swaybar_command waybar
 }
 
-include /etc/sway/config.d/*
+## swayfx, my beloved
+
+shadows enable
+corner_radius 5
+
+# make N visible through the terminal (background opacity is handled in ghostty config)
+blur enable
+blur_radius 3
+blur_passes 2
+
+layer_effects "waybar" {
+  blur enable;
+  blur_xray enable;
+  blur_ignore_transparent enable;
+  shadows enable;
+}

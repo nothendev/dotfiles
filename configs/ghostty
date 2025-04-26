@@ -1,0 +1,4 @@
+window-decoration = false
+theme = MaterialOcean
+# make sure N is visible (blur is handled by swayfx)
+background-opacity = 0.5
