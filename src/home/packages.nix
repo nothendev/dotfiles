@@ -41,6 +41,7 @@
       fluxcd
       kind
       istioctl
+      docker-compose
 
       ## Graphical
       ghidra-bin
