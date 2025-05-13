@@ -43,15 +43,15 @@
     fsType = "ext4";
   };
 
-  # fileSystems."/mnt/k" = {
-  #   device = "/dev/disk/by-label/coding";
-  #   fsType = "ext4";
-  # };
-  #
-  # fileSystems."/mnt/s" = {
-  #   device = "/dev/disk/by-uuid/12318b76-64e0-4b98-aa6d-6617346c70ca";
-  #   fsType = "ext4";
-  # };
+  fileSystems."/mnt/k" = {
+    device = "/dev/disk/by-label/coding";
+    fsType = "ext4";
+  };
+
+  fileSystems."/mnt/s" = {
+    device = "/dev/disk/by-uuid/12318b76-64e0-4b98-aa6d-6617346c70ca";
+    fsType = "ext4";
+  };
 
   fileSystems."/void" = {
     device = "/dev/disk/by-uuid/90ed624a-cb5f-4849-a2b4-f1111761ad0d";
