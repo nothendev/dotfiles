@@ -54,7 +54,7 @@
   };
 
   fileSystems."/void" = {
-    device = "/dev/disk/by-uuid/90ed624a-cb5f-4849-a2b4-f1111761ad0d";
+    device = "/dev/disk/by-label/void";
     fsType = "ext4";
   };
 

@@ -11,7 +11,7 @@ set $up k
 set $right l
 # Programs
 set $term ghostty
-set $menu env BEMENU_OPTS="-l 12 --fn ShantellSans Bold 10 -i -W 0.3 --single-instance" j4-dmenu-desktop --term ghostty --no-generic -x
+set $menu env BEMENU_OPTS="-l 12 --fn ShantellSans Bold 10 -i -W 0.3 --single-instance" j4-dmenu-desktop --term ghostty --no-generic -x --dmenu bemenu
 set $rofi rofi -show drun
 # Colors
 set $purple #7c3aed
