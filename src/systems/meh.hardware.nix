@@ -53,10 +53,10 @@
     fsType = "ext4";
   };
 
-  fileSystems."/void" = {
-    device = "/dev/disk/by-label/void";
-    fsType = "ext4";
-  };
+  # fileSystems."/void" = {
+  #   device = "/dev/disk/by-label/void";
+  #   fsType = "ext4";
+  # };
 
   swapDevices = [ ];
 

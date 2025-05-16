@@ -115,6 +115,7 @@
         installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
       }))
       telegram-desktop
+      wf-recorder
     ])
     ++ (with pkgs.libsForQt5; [
       okular
@@ -124,6 +125,7 @@
     ++ [
       zig.packages.${system}.master
     ];
+
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
