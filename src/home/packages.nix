@@ -116,6 +116,7 @@
       }))
       telegram-desktop
       wf-recorder
+      emacs-pgtk
     ])
     ++ (with pkgs.libsForQt5; [
       okular

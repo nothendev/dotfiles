@@ -11,6 +11,7 @@
     ./configs.nix
     ./packages.nix
     ./fish.nix
+    ./fun.nix
 
     # Hyprland module
     #./hyprland.nix

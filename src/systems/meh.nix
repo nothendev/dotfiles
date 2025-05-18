@@ -9,6 +9,7 @@
     ../os/users.nix
     ../os/services/zapret.nix
     ../os/desktop.nix
+    ../os/fun.nix
     #../os/docker.nix
 
     #../desktop/hypr.os.nix
