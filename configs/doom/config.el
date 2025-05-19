@@ -38,9 +38,9 @@
 
 ;; Font
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
-      doom-variable-pitch-font (font-spec :family "Shantell Sans SemiBold")
+      doom-variable-pitch-font (font-spec :family "Shantell Sans" :weight 'semi-bold)
       doom-symbol-font (font-spec :family "JetBrainsMono Nerd Font" :size 16)
-      doom-serif-font (font-spec :family "Shantell Sans SemiBold")
+      doom-serif-font (font-spec :family "Shantell Sans" :weight 'semi-bold)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 23))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
