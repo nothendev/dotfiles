@@ -190,7 +190,7 @@
     xorg.libX11
     xorg.libXcursor
     mold-wrapped
-    nodejs_18
+    nodejs
     nh
     gnumake
   ];

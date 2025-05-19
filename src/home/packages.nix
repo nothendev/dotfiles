@@ -68,7 +68,7 @@
       }))
       qbittorrent
       lutris
-      (bottles.override { removeWarningPopup = true; })
+      # (bottles.override { removeWarningPopup = true; })
       ida-free
       anydesk
       d-spy
