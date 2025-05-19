@@ -78,8 +78,9 @@
 (after! corfu
   (require 'corfu-popupinfo)
   (setq completion-styles '(basic flex)
+        corfu-preselect 'first
         corfu-auto t
-        corfu-auto-delay 0))
+        corfu-auto-delay 0.3))
 
 (after! kind-icon
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))

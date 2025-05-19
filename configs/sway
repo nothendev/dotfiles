@@ -54,6 +54,7 @@ floating_modifier $mod normal
 bindsym $mod+shift+c reload
 bindsym $mod+shift+e exec swaymsg exit
 bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioMute exec mpc toggle
 
 # Navigation binds
 bindsym $mod+Left focus left

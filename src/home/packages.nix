@@ -6,11 +6,10 @@
   ...
 }:
 {
-  services.syncthing.enable = true;
   home.packages =
     (with pkgs; [
       self.packages.${system}.winbox
-      self.packages.${system}.bxt-launcher
+      self.packages.${system}.simplex
       #self.packages.${system}.zen-browser
       #self.packages.${system}.redot
 
