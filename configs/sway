@@ -55,6 +55,8 @@ bindsym $mod+shift+c reload
 bindsym $mod+shift+e exec swaymsg exit
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioMute exec mpc toggle
+bindsym XF86AudioRaiseVolume exec mpc next
+bindsym XF86AudioLowerVolume exec mpc prev
 
 # Navigation binds
 bindsym $mod+Left focus left
