@@ -50,4 +50,7 @@
 (package! kind-icon)
 (package! autothemer)
 (package! emacs-material-ocean
-  :recipe (:host github :repo "Patrick-Poitras/emacs-material-ocean" :files ("*.el")))
+  :recipe (:host github :repo "Patrick-Poitras/emacs-material-ocean"))
+(package! supermaven
+  :recipe (:host github :repo "crazywolf132/supermaven.el"))
+(package! company)

@@ -85,11 +85,12 @@
 (after! kind-icon
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
-(setq org-superstar-headline-bullets-list
-      '(
-        ?◉
-        ?○
-        ?✸
-        ?✿))
+(after! org-superstar
+  (setq org-superstar-headline-bullets-list
+        '(
+          ?◉
+          ?○
+          ?✸
+          ?✿)))
 
 (load! "./bindings.el")
