@@ -14,7 +14,7 @@ local B = {
   {
     "saghen/blink.cmp",
     dependencies = { "rafamadriz/friendly-snippets", "supermaven" },
-    build = "nix run .#build-plugin",
+    build = "cargo build --release",
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {

@@ -1,0 +1,78 @@
+#codeberg.org/noth/dotfiles :: tmux
+#
+#~/dotfiles> paru -S tmux
+
+#passthrough
+set -g allow-passthrough on
+set -ga update-environment TERM
+set -ga update-environment TERM_PROGRAM
+
+#remap prefix from 'C-b' to 'C-e'
+unbind C-b
+set-option -g prefix C-e
+bind-key C-e send-prefix
+
+#quit using 'C-e q'
+unbind q
+bind-key q kill-session
+
+#split panes using | and -
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+#reload config using C-a r
+bind r source-file ~/.tmux.conf
+
+#switch windows using Alt-leftright w/o prefix
+bind -n M-Left prev
+bind -n M-Right next
+
+#enable mouse
+set -g mouse on
+
+#no autorename
+set-option -g allow-rename off
+
+# DESIGN TWEAKS
+
+# don't do anything when a 'bell' rings
+set -g visual-activity off
+set -g visual-bell off
+set -g visual-silence off
+setw -g monitor-activity off
+set -g bell-action none
+
+# clock mode
+setw -g clock-mode-colour blue
+
+# copy mode
+setw -g mode-style 'fg=black bg=red bold'
+
+# panes
+set -g pane-border-style 'fg=red'
+set -g pane-active-border-style 'fg=yellow'
+
+# statusbar
+set -g status-position bottom
+set -g status-justify left
+set -g status-style 'fg=red'
+
+set -g status-left ''
+set -g status-left-length 10
+
+set -g status-right-style 'fg=black bg=yellow'
+set -g status-right ' %Y-%m-%d %H:%M '
+set -g status-right-length 50
+
+setw -g window-status-current-style 'fg=white bg=red'
+setw -g window-status-current-format ' #I #W #F '
+
+setw -g window-status-style 'fg=red bg=black'
+setw -g window-status-format ' #I #[fg=white]#W #[fg=yellow]#F '
+
+setw -g window-status-bell-style 'fg=yellow bg=red bold'
+
+# messages
+set -g message-style 'fg=yellow bg=red bold'
