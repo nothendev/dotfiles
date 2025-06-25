@@ -13,7 +13,7 @@ set $right l
 set $term ghostty
 # set $menu env BEMENU_OPTS="-l 12 --fn ShantellSans Bold 10 -i -W 0.3 --single-instance" j4-dmenu-desktop --term ghostty --no-generic -x --dmenu bemenu -I
 set $menu tofi-drun | xargs swaymsg exec --
-set $rofi rofi -show drun
+set $menu-run tofi-run | xargs swaymsg exec --
 # Colors
 set $purple #7c3aed
 set $yellow #facc15
@@ -50,7 +50,7 @@ bindcode $mod+22 exec swaylock -c 000000 -i ~/guns.jpg -s center --font 'Shantel
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
-bindsym $mod+r exec $rofi
+bindsym $mod+r exec $menu-run
 floating_modifier $mod normal
 bindsym $mod+shift+c reload
 bindsym $mod+shift+e exec swaymsg exit
