@@ -11,7 +11,6 @@ set $up k
 set $right l
 # Programs
 set $term ghostty
-# set $menu env BEMENU_OPTS="-l 12 --fn ShantellSans Bold 10 -i -W 0.3 --single-instance" j4-dmenu-desktop --term ghostty --no-generic -x --dmenu bemenu -I
 set $menu tofi-drun | xargs swaymsg exec --
 set $menu-run tofi-run | xargs swaymsg exec --
 # Colors
@@ -41,7 +40,7 @@ input type:keyboard {
   xkb_numlock enabled
 }
 
-output DVI-D-1 mode 1920x1080@60Hz position 0 0 bg ~/n.jpg fill
+output DVI-D-1 mode 1920x1080@60Hz position 0 0
 output HDMI-A-1 mode 1920x1080@60Hz position 1920 0
 
 ## Binds
@@ -130,7 +129,7 @@ bar {
 shadows enable
 corner_radius 5
 
-# make N visible through the terminal (background opacity is handled in ghostty config)
+# some blur action
 blur enable
 blur_radius 3
 blur_passes 2
