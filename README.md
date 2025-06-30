@@ -6,16 +6,25 @@ My dotfiles.
 
 ## Stuff used
 
-- Window manager: Sway. It's just awesome.
-- Terminal: Ghostty (material ocean theme, it's hella nice check it out) + Zellij + Fish
-- Editor: Intellij IDEA for actual coding and nvim for configs
-- Browser: Brave
-- Launcher: rofi with wayland patches
+- OS: Arch Linux. Keeping the NixOS config just in case :D
+- Window manager: sway
+- Bar: Waybar
+- Terminal: ghostty (Nocturnal Winter theme) + tmux + fish
+- Browser: LibreWolf (it got vertical tabs hell yeah), Brave on mobile
+- App launcher: tofi with catppuccin colors
+- Pinentry: bemenu (with miserable and unreadable colors because I don't know how to config it)
 
-## Fonts
+### Editor
+
+- Cursor for Vue/Svelte (I'm not actually using any AI, it's just the config on it that I can't migrate to anywhere else)
+- IntelliJ IDEA Community for Java/Kotlin/whatever JVM-related
+- nvim for configs or quick edits where I'm too lazy to launch a full editor
+- Zed for everything else
+
+### Fonts
 
 - Code: JetBrainsMono Nerd Font
-- UI: ShantellSans SemiBold
+- UI: ShantellSans Medium/SemiBold
 
 ## PC specs
 
@@ -23,11 +32,3 @@ My dotfiles.
 - GPU: NVidia GeForce GTX 1650
 - RAM: 1x8GB (non-functional in one slot) + 1x16GB random Kingstons
 - Motherboard: MSI B450M-A PRO MAX (MS-7C52)
-
-## Maintaining
-
-Format (treefmt configured through [flake.nix](./flake.nix)):
-
-```sh
-nix run .#my-treefmt
-```
