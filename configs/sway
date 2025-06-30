@@ -45,7 +45,7 @@ output HDMI-A-1 mode 1920x1080@60Hz position 1920 0
 
 ## Binds
 bindcode Control+49 exec swaymsg input "type:keyboard" xkb_switch_layout next
-bindcode $mod+22 exec swaylock -c 000000 -i ~/guns.jpg -s center --font 'Shantell Sans SemiBold' --font-size 24
+bindcode $mod+22 exec swaylock -c 000000 -i ~/blackhole.png -s center --font 'Shantell Sans SemiBold' --font-size 24
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
