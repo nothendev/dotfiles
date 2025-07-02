@@ -36,7 +36,7 @@ exec mako # notification daemon
 
 input type:keyboard {
   xkb_layout us,ru
-  xkb_options caps:ctrl_modifier
+  xkb_options compose:caps
   xkb_numlock enabled
 }
 
