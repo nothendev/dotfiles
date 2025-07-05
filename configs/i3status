@@ -8,7 +8,7 @@
 
 general {
         colors = true
-        interval = 1
+        interval = 4
 }
 
 order += "ethernet _first_"
@@ -18,8 +18,8 @@ order += "memory"
 order += "tztime local"
 
 ethernet _first_ {
-        format_up = "%ip (%speed)"
-        format_down = "E: down"
+        format_up = "{eth} %speed"
+        format_down = "{eth} down"
 }
 
 disk "/" {
@@ -37,5 +37,5 @@ memory {
 }
 
 tztime local {
-        format = "{time} %Y-%m-%d / %H:%M:%S"
+        format = "{time} %Y-%m-%d / %H:%M"
 }
