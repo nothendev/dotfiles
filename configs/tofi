@@ -242,7 +242,7 @@
 	text-cursor = false
 
 	# Sort results by number of usages in run and drun modes.
-	history = true
+	history = false
 
 	# Specify an alternate file to read and store history information
 	# from / to. This shouldn't normally be needed, and is intended to
