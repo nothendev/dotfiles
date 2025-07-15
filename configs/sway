@@ -40,8 +40,8 @@ input type:keyboard {
   xkb_numlock enabled
 }
 
-output DVI-D-1 mode 1920x1080@60Hz position 0 0
-output HDMI-A-1 mode 1920x1080@60Hz position 1920 0
+output HDMI-A-1 mode 1920x1080@60Hz position 0 0 bg ~/nanakusa.jpg fit
+output DVI-D-1 mode 1920x1080@60Hz position 1920 0
 
 ## Binds
 bindcode Control+49 exec swaymsg input "type:keyboard" xkb_switch_layout next
