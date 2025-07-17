@@ -1,4 +1,6 @@
 window-decoration = false
 theme = Nocturnal Winter
-# make sure N is visible (blur is handled by swayfx)
 background-opacity = 0.5
+custom-shader = ~/.config/ghostty/shaders/smear.glsl
+alpha-blending = linear-corrected
+cursor-style = bar
