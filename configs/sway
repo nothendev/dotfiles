@@ -110,9 +110,6 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+f fullscreen
 bindsym $mod+Shift+space floating toggle
 
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+Return scratchpad show
-
 bindsym Print exec grim -g "$(slurp)"
 bindsym Shift+Print exec grim
 
