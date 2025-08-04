@@ -117,6 +117,7 @@ require "blink.cmp".setup {
 vim.keymap.set("n", "<leader>ff", ":Pick files tool='fd'<CR>")
 vim.keymap.set("n", "<leader>fw", ":Pick grep_live tool='rg'<CR>")
 vim.keymap.set("n", "<leader>fh", ":Pick help<CR>")
+vim.keymap.set("n", "<leader>O", ":Oil<CR>")
 vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 
 vim.lsp.enable({

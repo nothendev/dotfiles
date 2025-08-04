@@ -47,6 +47,7 @@ output DVI-D-1 mode 1920x1080@60Hz position 1920 0
 bindcode Control+49 exec swaymsg input "type:keyboard" xkb_switch_layout next
 bindcode $mod+22 exec swaylock -c 000000 -i ~/blackhole.png -s center --font 'Shantell Sans SemiBold' --font-size 24
 bindsym $mod+Shift+Return exec $term
+bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 bindsym $mod+r exec $menu-run
