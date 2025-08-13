@@ -25,6 +25,8 @@
     fish
     git
     btop
+    ripgrep
+    nh
   ];
 
   ## services
@@ -72,24 +74,12 @@
       enableACME = true;
       extraConfig = ''
         client_max_body_size 512M;
+        location /robots.txt {
+          return 200 "User-agent: *\nDisallow: /\n";
+        }
       '';
       locations."/".proxyPass = "http://localhost:3080";
     };
-    virtualHosts."irina.minkystudios.ru" = {
-      addSSL = true;
-      enableACME = true;
-      extraConfig = ''
-        location / {
-          root /var/www/irina;
-          index index.html;
-          try_files $uri $uri/ /index.html;
-        }
-      '';
-    };
-    #virtualHosts."nc.minkystudios.ru" = {
-    #  addSSL = true;
-    #  enableACME = true;
-    #};
   };
 
   ## net

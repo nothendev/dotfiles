@@ -49,6 +49,7 @@ bindcode $mod+22 exec swaylock -c 000000 -i ~/blackhole.png -s center --font 'Sh
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 bindsym $mod+d exec $menu
 bindsym $mod+r exec $menu-run
 floating_modifier $mod normal

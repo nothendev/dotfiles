@@ -10,9 +10,9 @@ run = "nh os boot --verbose -- --accept-flake-config --show-trace"
 # use like this: `m=MACHINE xp deploynr`
 [tasks.deploynr]
 shell = "sh -c"
-run = "deploy -s ~/dotfiles#$m --auto-rollback false -- --option sandbox false"
+run = "sudo nix run nixpkgs#deploy-rs --extra-experimental-features 'nix-command flakes' -- --ssh-opts '-F /home/ilya/.ssh/config' -s /home/ilya/dotfiles#$m --auto-rollback false -- --option sandbox false"
 
 # use like this: `m=MACHINE xp deploy`
 [tasks.deploy]
 shell = "sh -c"
-run = "deploy -s ~/dotfiles#$m -- --option sandbox false"
+run = "sudo nix run nixpkgs#deploy-rs --extra-experimental-features 'nix-command flakes' -- --ssh-opts '-F /home/ilya/.ssh/config' -s /home/ilya/dotfiles#$m -- --option sandbox false"
