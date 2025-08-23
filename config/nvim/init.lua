@@ -25,7 +25,7 @@ for namespace, options in pairs(opts) do
 end
 
 vim.keymap.set("n", "<leader>o", ":update<CR>:source<CR>")
--- vim.keymap.set({ "n", "i", "v", "x" }, "<C-a>", "0", { noremap = true })
+vim.keymap.set({ "n", "i", "v", "x" }, "<C-a>", "0", { noremap = true })
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-c>", "<Esc>", { noremap = true })
 
 vim.pack.add({
@@ -39,6 +39,7 @@ vim.pack.add({
   "https://github.com/supermaven-inc/supermaven-nvim",
   "https://github.com/Saecki/crates.nvim",
   "https://github.com/saghen/blink.compat",
+  "https://github.com/kylechui/nvim-surround",
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
     version = "main"
@@ -49,6 +50,7 @@ vim.pack.add({
   }
 })
 
+require "nvim-surround".setup{}
 require "crates".setup()
 require "mini.pick".setup()
 require "oil".setup()
@@ -109,7 +111,7 @@ require "blink.cmp".setup {
 --   end,
 -- })
 
-vim.keymap.set("n", "<leader>ff", ":Pick files tool='fd'<CR>")
+vim.keymap.set("n", "<leader>ff", ":Pick files tool='rg'<CR>")
 vim.keymap.set("n", "<leader>fw", ":Pick grep_live tool='rg'<CR>")
 vim.keymap.set("n", "<leader>fh", ":Pick help<CR>")
 vim.keymap.set("n", "<leader>O", ":Oil<CR>")
@@ -118,6 +120,7 @@ vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename)
 
 vim.lsp.enable({
   "lua_ls",

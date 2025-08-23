@@ -31,7 +31,6 @@ client.placeholder          $secondary $bg        $fg     $purple   $bg
 font pango:Shantell Sans SemiBold 10
 
 ## Execs
-exec dbus-sway-environment # add envs
 exec mako # notification daemon
 
 input type:keyboard {

@@ -1,6 +1,6 @@
 window-decoration = false
 theme = Nocturnal Winter
-background-opacity = 0.5
+background-opacity = 1.0
 custom-shader = ~/.config/ghostty/shaders/smear.glsl
 alpha-blending = linear-corrected
 cursor-style = bar

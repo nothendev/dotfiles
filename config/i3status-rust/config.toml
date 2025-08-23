@@ -1,6 +1,11 @@
 [theme]
 theme = "ctp-mocha"
 
+# [theme.overrides]
+# separator = "native"
+# alternating_tint_bg = "none"
+# alternating_tint_fg = "none"
+
 [icons]
 icons = "material-nf"
 
