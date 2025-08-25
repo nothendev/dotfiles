@@ -29,7 +29,7 @@ vim.keymap.set({ "n", "i", "v", "x" }, "<C-a>", "0", { noremap = true })
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-c>", "<Esc>", { noremap = true })
 
 vim.pack.add({
-  -- "https://github.com/glacambre/firenvim",
+  "https://github.com/glacambre/firenvim",
   "https://github.com/stevearc/oil.nvim",
   "https://github.com/echasnovski/mini.pick",
   "https://github.com/echasnovski/mini.icons",
@@ -40,6 +40,8 @@ vim.pack.add({
   "https://github.com/Saecki/crates.nvim",
   "https://github.com/saghen/blink.compat",
   "https://github.com/kylechui/nvim-surround",
+  "https://github.com/folke/tokyonight.nvim",
+  "https://github.com/chrisgrieser/nvim-origami",
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
     version = "main"
@@ -50,13 +52,17 @@ vim.pack.add({
   }
 })
 
-require "nvim-surround".setup{}
+require "nvim-surround".setup {}
 require "crates".setup()
 require "mini.pick".setup()
 require "oil".setup()
-require "vague".setup {
-  transparent = true
-}
+-- require "vague".setup {
+--   transparent = true
+-- }
+-- require "origami".setup {
+--   autoFold = { enabled = false },
+-- }
+
 require "supermaven-nvim".setup {
   disable_keymaps = true,
   disable_inline_completion = true,
@@ -67,7 +73,7 @@ require "blink.cmp".setup {
   },
   completion = {
     list = {
-      selection = { preselect = false, auto_insert = true },
+      selection = { preselect = true, auto_insert = true },
     },
     ghost_text = {
       enabled = true,
@@ -121,6 +127,9 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename)
+vim.keymap.set("n", "<CR>", "za", { noremap = true })
+vim.keymap.set("n", "<Left>", function() require("origami").h() end)
+vim.keymap.set("n", "<Right>", function() require("origami").l() end)
 
 vim.lsp.enable({
   "lua_ls",
@@ -155,6 +164,12 @@ vim.lsp.config("rust_analyzer", {
   }
 })
 
-vim.cmd("colorscheme vague")
-vim.cmd("hi statusline guibg=bg")
+-- vim.cmd("colorscheme vague")
+-- vim.cmd("hi statusline guibg=bg")
 -- vim.cmd("call firenvim#install(0)")
+
+vim.cmd [[
+  colorscheme tokyonight-night
+  hi statusline guibg=bg
+  "call firenvim#install(0)
+]]

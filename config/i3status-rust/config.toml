@@ -1,10 +1,14 @@
 [theme]
 theme = "ctp-mocha"
 
-# [theme.overrides]
-# separator = "native"
-# alternating_tint_bg = "none"
-# alternating_tint_fg = "none"
+[theme.overrides]
+good_bg = "#00af00"
+warning_bg = "#afaf00"
+critical_bg = "#af0a00"
+critical_fg = "#ffffff"
+separator = "native"
+alternating_tint_bg = "none"
+alternating_tint_fg = "none"
 
 [icons]
 icons = "material-nf"

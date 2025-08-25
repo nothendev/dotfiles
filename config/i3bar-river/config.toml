@@ -16,3 +16,4 @@ tags_r = 6
 blocks_r = 6
 separator_width = 0
 height = 24
+position = "bottom"
