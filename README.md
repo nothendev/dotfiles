@@ -7,9 +7,9 @@ My dotfiles.
 ## Stuff used
 
 - OS: Arch Linux. Keeping the NixOS config just in case :D
-- Window manager: sway
-- Bar: Waybar
-- Terminal: ghostty (Nocturnal Winter theme) + tmux + fish
+- Window manager: Hyprland
+- Bar: [i3bar-river](https://github.com/MaxVerevkin/i3bar-river)
+- Terminal: ghostty (TokyoNight theme) + tmux + fish
 - Browser: LibreWolf (it got vertical tabs hell yeah), Brave on mobile
 - App launcher: tofi with catppuccin colors
 - Pinentry: bemenu (with miserable and unreadable colors because I don't know how to config it)
@@ -18,8 +18,7 @@ My dotfiles.
 
 - Cursor for Vue/Svelte (I'm not actually using any AI, it's just the config on it that I can't migrate to anywhere else)
 - IntelliJ IDEA Community for Java/Kotlin/whatever JVM-related
-- nvim for configs or quick edits where I'm too lazy to launch a full editor
-- Zed for everything else
+- nvim with neovide for anything else
 
 ### Fonts
 
