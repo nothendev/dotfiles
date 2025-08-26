@@ -168,6 +168,11 @@ vim.lsp.config("rust_analyzer", {
 -- vim.cmd("hi statusline guibg=bg")
 -- vim.cmd("call firenvim#install(0)")
 
+require"tokyonight".setup{
+  style = "night",
+  transparent = true
+}
+
 vim.cmd [[
   colorscheme tokyonight-night
   hi statusline guibg=bg

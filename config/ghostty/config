@@ -1,6 +1,6 @@
 window-decoration = false
 theme = tokyonight_night
-background-opacity = 1.0
+background-opacity = 0.8
 custom-shader = ~/.config/ghostty/shaders/smear.glsl
 alpha-blending = linear-corrected
 cursor-style = bar
