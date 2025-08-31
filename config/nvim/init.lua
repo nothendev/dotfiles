@@ -42,6 +42,8 @@ vim.pack.add({
   "https://github.com/kylechui/nvim-surround",
   "https://github.com/folke/tokyonight.nvim",
   "https://github.com/chrisgrieser/nvim-origami",
+  "https://github.com/nvim-tree/nvim-web-devicons",
+  "https://github.com/tjdevries/present.nvim",
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
     version = "main"
@@ -55,7 +57,19 @@ vim.pack.add({
 require "nvim-surround".setup {}
 require "crates".setup()
 require "mini.pick".setup()
-require "oil".setup()
+require "oil".setup{
+  columns = { "icon" },
+  view_options = {
+    show_hidden = true
+  }
+}
+
+require"present".setup{
+  syntax = {
+    stop = "---"
+  }
+}
+
 -- require "vague".setup {
 --   transparent = true
 -- }
@@ -120,7 +134,9 @@ require "blink.cmp".setup {
 vim.keymap.set("n", "<leader>ff", ":Pick files tool='rg'<CR>")
 vim.keymap.set("n", "<leader>fw", ":Pick grep_live tool='rg'<CR>")
 vim.keymap.set("n", "<leader>fh", ":Pick help<CR>")
-vim.keymap.set("n", "<leader>O", ":Oil<CR>")
+vim.keymap.set("n", "-", ":Oil<CR>")
+vim.keymap.set("n", "<leader>-", require"oil".toggle_float)
+vim.keymap.set("n", "<leader>O", require"oil".toggle_float)
 vim.keymap.set("n", "<leader>C", "1z=")
 vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
