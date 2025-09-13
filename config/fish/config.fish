@@ -3,7 +3,10 @@ end
 function fish_prompt
     printf '%s%s%s> %s' (set_color facc15) (prompt_pwd) (set_color brred -o) (set_color normal)
 end
-set -gx PATH $HOME/.cache/.bun/bin $HOME/.bun/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.config/emacs/bin $HOME/.local/bin $PATH
+
+set -gx CUDA_PATH /opt/cuda
+set -gx NVCC_CCBIN /usr/bin/g++-14
+set -gx PATH $HOME/.cache/.bun/bin $HOME/.bun/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.config/emacs/bin $HOME/.local/bin /opt/cuda/bin /opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin $PATH
 
 status is-login; and begin
 end

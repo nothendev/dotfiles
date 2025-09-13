@@ -1,9 +1,11 @@
---codeberg.org/noth/dotfiles - nvim config (v0.12+!!!)
+--codeberg.org/noth/dotfiles - nvim config (v0.12+ required for vim.pack)
+
 local opts = {}
 
 opts.g = {
   mapleader = " ",
   maplocalleader = "\\",
+  neovide_opacity = 0.8
 }
 
 opts.o = {
@@ -15,7 +17,8 @@ opts.o = {
   expandtab = true,
   signcolumn = "yes",
   winborder = "rounded",
-  swapfile = false
+  swapfile = false,
+  guifont = "JetBrainsMono Nerd Font Mono:h13"
 }
 
 for namespace, options in pairs(opts) do
@@ -31,8 +34,9 @@ vim.keymap.set({ "n", "i", "v", "x" }, "<C-c>", "<Esc>", { noremap = true })
 vim.pack.add({
   "https://github.com/glacambre/firenvim",
   "https://github.com/stevearc/oil.nvim",
-  "https://github.com/echasnovski/mini.pick",
-  "https://github.com/echasnovski/mini.icons",
+  "https://github.com/nvim-mini/mini.pick",
+  "https://github.com/nvim-mini/mini.icons",
+  "https://github.com/nvim-mini/mini.extra",
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/vague2k/vague.nvim",
   "https://github.com/rafamadriz/friendly-snippets",
@@ -57,6 +61,8 @@ vim.pack.add({
 require "nvim-surround".setup {}
 require "crates".setup()
 require "mini.pick".setup()
+require "mini.icons".setup()
+require "mini.extra".setup()
 require "oil".setup{
   columns = { "icon" },
   view_options = {
@@ -69,13 +75,6 @@ require"present".setup{
     stop = "---"
   }
 }
-
--- require "vague".setup {
---   transparent = true
--- }
--- require "origami".setup {
---   autoFold = { enabled = false },
--- }
 
 require "supermaven-nvim".setup {
   disable_keymaps = true,
@@ -180,10 +179,6 @@ vim.lsp.config("rust_analyzer", {
   }
 })
 
--- vim.cmd("colorscheme vague")
--- vim.cmd("hi statusline guibg=bg")
--- vim.cmd("call firenvim#install(0)")
-
 require"tokyonight".setup{
   style = "night",
   transparent = true
@@ -191,6 +186,8 @@ require"tokyonight".setup{
 
 vim.cmd [[
   colorscheme tokyonight-night
-  hi statusline guibg=bg
+  hi statusline guibg=none
+  hi WinSeparator guibg=none
+  hi VertSplit guibg=none
   "call firenvim#install(0)
 ]]
