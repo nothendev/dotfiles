@@ -4,3 +4,4 @@ background-opacity = 0.8
 custom-shader = ~/.config/ghostty/shaders/smear.glsl
 alpha-blending = linear-corrected
 cursor-style = bar
+font-family = JetBrainsMono Nerd Font Mono

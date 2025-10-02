@@ -5,7 +5,7 @@ local opts = {}
 opts.g = {
   mapleader = " ",
   maplocalleader = "\\",
-  neovide_opacity = 0.8
+  neovide_opacity = 1
 }
 
 opts.o = {
@@ -37,6 +37,7 @@ vim.pack.add({
   "https://github.com/nvim-mini/mini.pick",
   "https://github.com/nvim-mini/mini.icons",
   "https://github.com/nvim-mini/mini.extra",
+  "https://github.com/j-hui/fidget.nvim",
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/vague2k/vague.nvim",
   "https://github.com/rafamadriz/friendly-snippets",
@@ -61,16 +62,18 @@ vim.pack.add({
 require "nvim-surround".setup {}
 require "crates".setup()
 require "mini.pick".setup()
+vim.ui.select = MiniPick.ui_select
 require "mini.icons".setup()
 require "mini.extra".setup()
-require "oil".setup{
+require "fidget".setup {}
+require "oil".setup {
   columns = { "icon" },
   view_options = {
     show_hidden = true
   }
 }
 
-require"present".setup{
+require "present".setup {
   syntax = {
     stop = "---"
   }
@@ -89,7 +92,7 @@ require "blink.cmp".setup {
       selection = { preselect = true, auto_insert = true },
     },
     ghost_text = {
-      enabled = true,
+      enabled = false,
     },
     documentation = {
       auto_show = true,
@@ -132,10 +135,11 @@ require "blink.cmp".setup {
 
 vim.keymap.set("n", "<leader>ff", ":Pick files tool='rg'<CR>")
 vim.keymap.set("n", "<leader>fw", ":Pick grep_live tool='rg'<CR>")
+vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>")
 vim.keymap.set("n", "<leader>fh", ":Pick help<CR>")
 vim.keymap.set("n", "-", ":Oil<CR>")
-vim.keymap.set("n", "<leader>-", require"oil".toggle_float)
-vim.keymap.set("n", "<leader>O", require"oil".toggle_float)
+vim.keymap.set("n", "<leader>-", require "oil".toggle_float)
+vim.keymap.set("n", "<leader>O", require "oil".toggle_float)
 vim.keymap.set("n", "<leader>C", "1z=")
 vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
@@ -147,6 +151,7 @@ vim.keymap.set("n", "<Left>", function() require("origami").h() end)
 vim.keymap.set("n", "<Right>", function() require("origami").l() end)
 
 vim.lsp.enable({
+  "clangd",
   "lua_ls",
   "rust_analyzer"
 })
@@ -179,9 +184,9 @@ vim.lsp.config("rust_analyzer", {
   }
 })
 
-require"tokyonight".setup{
+require "tokyonight".setup {
   style = "night",
-  transparent = true
+  transparent = false
 }
 
 vim.cmd [[

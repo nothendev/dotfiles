@@ -73,9 +73,12 @@
       addSSL = true;
       enableACME = true;
       extraConfig = ''
-        client_max_body_size 512M;
+        client_max_body_size 2048M;
         location /robots.txt {
           return 200 "User-agent: *\nDisallow: /\n";
+        }
+        location /mystatic/ {
+          root /var/www/mystatic;
         }
       '';
       locations."/".proxyPass = "http://localhost:3080";
