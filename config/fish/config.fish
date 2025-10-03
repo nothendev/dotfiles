@@ -38,8 +38,6 @@ status is-interactive; and begin
 
     # /nix/store/wr9gi46jzk63wff2d0y4m3ngqnraq4p6-direnv-2.36.0/bin/direnv hook fish | source
     direnv hook fish | source
-
-    fastfetch
 end
 
 function startw
