@@ -27,7 +27,7 @@ for namespace, options in pairs(opts) do
   end
 end
 
-vim.keymap.set("n", "<leader>o", ":update<CR>:source<CR>")
+vim.keymap.set("n", "<leader>S", ":update<CR>:source<CR>")
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-a>", "0", { noremap = true })
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-c>", "<Esc>", { noremap = true })
 
@@ -85,7 +85,9 @@ require "supermaven-nvim".setup {
 }
 require "blink.cmp".setup {
   fuzzy = {
-    use_frecency = false,
+    frecency = {
+      enabled = false
+    }
   },
   completion = {
     list = {

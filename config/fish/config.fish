@@ -7,6 +7,7 @@ end
 set -gx CUDA_PATH /opt/cuda
 set -gx NVCC_CCBIN /usr/bin/g++-14
 set -gx PATH $HOME/.cache/.bun/bin $HOME/.bun/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.config/emacs/bin $HOME/.local/bin /opt/cuda/bin /opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin $PATH
+set -gx CARGO_HOME /cargo
 
 status is-login; and begin
 end
