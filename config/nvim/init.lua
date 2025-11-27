@@ -9,6 +9,7 @@ opts.g = {
 }
 
 opts.o = {
+  linebreak = true,
   number = true,
   relativenumber = true,
   shiftwidth = 2,
@@ -155,7 +156,8 @@ vim.keymap.set("n", "<Right>", function() require("origami").l() end)
 vim.lsp.enable({
   "clangd",
   "lua_ls",
-  "rust_analyzer"
+  "rust_analyzer",
+  "ts_ls",
 })
 
 vim.lsp.config("rust_analyzer", {

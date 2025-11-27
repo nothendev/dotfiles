@@ -14,6 +14,10 @@ alternating_tint_fg = "none"
 icons = "material-nf"
 
 [[block]]
+block = "music"
+format = " $icon $combo $play "
+
+[[block]]
 block = "cpu"
 info_cpu = 20
 warning_cpu = 50
