@@ -15,7 +15,7 @@ icons = "material-nf"
 
 [[block]]
 block = "music"
-format = " $icon $artist - $title $play "
+format = " $icon $prev $combo $next $play "
 
 [[block]]
 block = "cpu"

@@ -12,3 +12,4 @@ nnoremap <leader>fw :action TextSearchAction<cr>
 nnoremap gS :action GotoSymbol<cr>
 nnoremap <leader><leader> :action SearchEverywhere<cr>
 nnoremap <leader>ra :action RenameElement<cr>
+nnoremap <leader>ca :action ShowIntentionActions<cr>

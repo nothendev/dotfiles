@@ -149,9 +149,9 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename)
-vim.keymap.set("n", "<CR>", "za", { noremap = true })
 vim.keymap.set("n", "<Left>", function() require("origami").h() end)
 vim.keymap.set("n", "<Right>", function() require("origami").l() end)
+vim.keymap.set("n", "gh", ":LspClangdSwitchSourceHeader<CR>")
 
 vim.lsp.enable({
   "clangd",
