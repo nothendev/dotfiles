@@ -15,6 +15,6 @@ echo $cmd
 out=$($cmd && notify-send "Saved$fs screenshot!" "Path: $path" -t 5000 -A default=Copy)
 
 if [[ "$out" == "default" ]]; then
-  notify-send "Copied path to clipboard!" -t 1000
-  wl-copy $path
+  notify-send "Copied to clipboard!" -t 1000
+  wl-copy < $path
 fi
