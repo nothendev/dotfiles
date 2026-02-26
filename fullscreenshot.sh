@@ -6,8 +6,8 @@ if [[ $1 == "full" ]]; then
   path=$path"crop.png"
   fs=" full screen"
 else
-  cmd=$(/usr/bin/grim -g "$(slurp)")
   path=$path"grim.png"
+  cmd=$(/usr/bin/grim -g "$(slurp)" $path)
 fi
 
 echo $cmd
