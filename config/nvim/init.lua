@@ -136,13 +136,41 @@ require "blink.cmp".setup {
 --   end,
 -- })
 
-vim.keymap.set("n", "<leader>ff", ":Pick files tool='rg'<CR>")
+vim.keymap.set("n", "<leader>ff",
+  function()
+    local path = vim.fs.root(vim.fs.dirname(vim.api.nvim_buf_get_name(0)), { '.git', 'Cargo.toml' })
+    print(path)
+    MiniPick.builtin.cli(
+      { command = { 'fd', '--type=f', '--color=never', '--no-ignore', '--fixed-strings', '--search-path', path } },
+      {
+        source = {
+          name = 'Files',
+          show = function(buf_id, items, query)
+            local prefix_data = vim.tbl_map(function(x)
+              local icon, hl = MiniIcons.get('file', x)
+              return { text = icon .. ' ' .. string.sub(x, string.len(path) + 2), hl = hl }
+            end, items)
+
+            MiniPick.default_show(buf_id, prefix_data, query)
+
+            local ns_id = vim.api.nvim_create_namespace('MiniPickRanges')
+            local icon_extmark_opts = { hl_mode = 'combine', priority = 200 }
+            for i = 1, #prefix_data do
+              icon_extmark_opts.hl_group = prefix_data[i].hl
+              icon_extmark_opts.end_row, icon_extmark_opts.end_col = i - 1, 1
+              pcall(vim.api.nvim_buf_set_extmark, buf_id, ns_id, i - 1, 0, icon_extmark_opts)
+            end
+          end
+        }
+      })
+  end)
 vim.keymap.set("n", "<leader>fw", ":Pick grep_live tool='rg'<CR>")
 vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>")
 vim.keymap.set("n", "<leader>fh", ":Pick help<CR>")
-vim.keymap.set("n", "-", ":Oil<CR>")
-vim.keymap.set("n", "<leader>-", require "oil".toggle_float)
+vim.keymap.set("n", "-", require "oil".toggle_float)
+vim.keymap.set("n", "<leader>-", ":Oil<CR>")
 vim.keymap.set("n", "<leader>O", require "oil".toggle_float)
+vim.keymap.set("n", "<leader>o", ":source %<CR>")
 vim.keymap.set("n", "<leader>C", "1z=")
 vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
