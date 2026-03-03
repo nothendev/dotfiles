@@ -29,8 +29,11 @@ for namespace, options in pairs(opts) do
 end
 
 vim.keymap.set("n", "<leader>S", ":update<CR>:source<CR>")
-vim.keymap.set({ "n", "i", "v", "x" }, "<C-a>", "0", { noremap = true })
+vim.keymap.set({ "n", "i", "v", "x" }, "<C-a>", "^", { noremap = true, silent = true })
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-c>", "<Esc>", { noremap = true })
+for _, k in pairs({ 'n', 'a', 'r', 't', 'i', 't' }) do
+  pcall(vim.keymap.del, { "n", "x" }, 'gr' .. k)
+end
 
 vim.pack.add({
   "https://github.com/glacambre/firenvim",
@@ -50,6 +53,7 @@ vim.pack.add({
   "https://github.com/chrisgrieser/nvim-origami",
   "https://github.com/nvim-tree/nvim-web-devicons",
   "https://github.com/tjdevries/present.nvim",
+  "https://github.com/folke/flash.nvim",
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
     version = "main"
@@ -60,6 +64,13 @@ vim.pack.add({
   }
 })
 
+require "flash".setup {
+  modes = {
+    search = {
+      enabled = true,
+    }
+  }
+}
 require "nvim-surround".setup {}
 require "crates".setup()
 require "mini.pick".setup()
@@ -127,19 +138,18 @@ require "blink.cmp".setup {
   },
 }
 
--- require"nvim-treesitter".install{'rust','lua'}
+require"nvim-treesitter".install{'rust','lua'}
 
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = { 'rust', 'lua' },
---   callback = function()
---     vim.treesitter.start()
---   end,
--- })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'rust', 'lua' },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
 
 vim.keymap.set("n", "<leader>ff",
   function()
     local path = vim.fs.root(vim.fs.dirname(vim.api.nvim_buf_get_name(0)), { '.git', 'Cargo.toml' })
-    print(path)
     MiniPick.builtin.cli(
       { command = { 'fd', '--type=f', '--color=never', '--no-ignore', '--fixed-strings', '--search-path', path } },
       {
@@ -175,11 +185,19 @@ vim.keymap.set("n", "<leader>C", "1z=")
 vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
+vim.keymap.set("n", "gr", vim.lsp.buf.references)
+vim.keymap.set("n", "gs", function() MiniExtra.pickers.lsp({ scope = 'document_symbol' }) end)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename)
 vim.keymap.set("n", "<Left>", function() require("origami").h() end)
 vim.keymap.set("n", "<Right>", function() require("origami").l() end)
 vim.keymap.set("n", "gh", ":LspClangdSwitchSourceHeader<CR>")
+vim.keymap.set({ "n", "x", "o" }, "s", function() require'flash'.jump() end)
+vim.keymap.set({ "n", "x", "o" }, "S", function() require'flash'.jump({ forward = false }) end)
+vim.keymap.set({ "n", "x", "o" }, "?", function() require'flash'.treesitter() end)
+vim.keymap.set("o", "o", function() require'flash'.remote() end)
+vim.keymap.set({"o", "x"}, "R", function() require'flash'.treesitter_search() end)
+vim.keymap.set({"c"}, "<C-u>", function() require'flash'.toggle() end)
 
 vim.lsp.enable({
   "clangd",
