@@ -64,13 +64,7 @@ vim.pack.add({
   }
 })
 
-require "flash".setup {
-  modes = {
-    search = {
-      enabled = true,
-    }
-  }
-}
+require "flash".setup {}
 require "nvim-surround".setup {}
 require "crates".setup()
 require "mini.pick".setup()
@@ -207,6 +201,7 @@ vim.lsp.enable({
 })
 
 vim.lsp.config("rust_analyzer", {
+  cmd = { 'env', 'LD_PRELOAD=/lib/libsnmallocshim.so', 'rust-analyzer' },
   settings = {
     ["rust-analyzer"] = {
       cargo = {
@@ -223,13 +218,7 @@ vim.lsp.config("rust_analyzer", {
       lens = {
         enable = true,
       },
-      procMacro = {
-        ignored = {
-          ["leptos_macro"] = { "component", "server", "island" },
-          ["vespid_macros"] = { "component" },
-        },
-      },
-      checkOnSave = false,
+      checkOnSave = true
     },
   }
 })

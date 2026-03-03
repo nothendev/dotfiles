@@ -2,8 +2,8 @@
 
 path=$(date +/home/ilya/Pictures/%Y%m%d_%Hh%Mm%Ss_)
 if [[ $1 == "full" ]]; then
-  cmd=$(/usr/bin/grim -g '0,0 3840x1920' ~/Pictures/.tmp.png && magick ~/Pictures/.tmp.png -crop $(slurp -f '%wx%h+%x+%y') $path)
   path=$path"crop.png"
+  cmd=$(/usr/bin/grim -g '0,0 3840x1920' ~/Pictures/.tmp.png && magick ~/Pictures/.tmp.png -crop $(slurp -f '%wx%h+%x+%y') $path)
   fs=" full screen"
 else
   path=$path"grim.png"
