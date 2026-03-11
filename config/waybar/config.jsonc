@@ -1,0 +1,34 @@
+{
+  "layer": "bottom",
+  "position": "bottom",
+  "height": 32,
+  "spacing": 8,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": [],
+  "modules-right": ["mpris", "cpu", "memory", "hyprland/language", "clock"],
+  "cpu": {
+    "interval": 5,
+    "format": "{usage}% CPU"
+  },
+  "memory": {
+    "interval": 5,
+    "format": "({percentage}%) {used}GB / {total}GB"
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%H:%M:%S}",
+    "timezone": "Europe/Moscow"
+  },
+  "hyprland/language": {
+    "format": "{long}",
+    "on-click": "hyprctl switchxkblayout all next"
+  },
+  "mpris": {
+    "format": "{dynamic} {status_icon}",
+    "dynamic-order": ["title", "artist"],
+    "status-icons": {
+      "paused": "󰏤",
+      "playing": "󰐊"
+    }
+  }
+}

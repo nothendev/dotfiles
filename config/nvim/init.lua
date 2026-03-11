@@ -5,7 +5,8 @@ local opts = {}
 opts.g = {
   mapleader = " ",
   maplocalleader = "\\",
-  neovide_opacity = 1
+  neovide_opacity = 1,
+  cord_defer_startup = true
 }
 
 opts.o = {
@@ -29,11 +30,13 @@ for namespace, options in pairs(opts) do
 end
 
 vim.keymap.set("n", "<leader>S", ":update<CR>:source<CR>")
+vim.keymap.set("n", "<CR>", "za")
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-a>", "^", { noremap = true, silent = true })
 vim.keymap.set({ "n", "i", "v", "x" }, "<C-c>", "<Esc>", { noremap = true })
 for _, k in pairs({ 'n', 'a', 'r', 't', 'i', 't' }) do
   pcall(vim.keymap.del, { "n", "x" }, 'gr' .. k)
 end
+vim.api.nvim_create_user_command("W", function() vim.cmd("update") end, {})
 
 vim.pack.add({
   "https://github.com/glacambre/firenvim",
@@ -54,6 +57,8 @@ vim.pack.add({
   "https://github.com/nvim-tree/nvim-web-devicons",
   "https://github.com/tjdevries/present.nvim",
   "https://github.com/folke/flash.nvim",
+  "https://github.com/vyfor/cord.nvim",
+  "https://github.com/rhysd/vim-llvm",
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
     version = "main"
@@ -76,6 +81,17 @@ require "oil".setup {
   columns = { "icon" },
   view_options = {
     show_hidden = true
+  }
+}
+require"cord".setup{
+  advanced = {
+    server = {
+      update = 'install'
+    }
+  },
+  display = {
+    theme = 'catppuccin',
+    view = 'asset',
   }
 }
 
@@ -174,7 +190,6 @@ vim.keymap.set("n", "<leader>fh", ":Pick help<CR>")
 vim.keymap.set("n", "-", require "oil".toggle_float)
 vim.keymap.set("n", "<leader>-", ":Oil<CR>")
 vim.keymap.set("n", "<leader>O", require "oil".toggle_float)
-vim.keymap.set("n", "<leader>o", ":source %<CR>")
 vim.keymap.set("n", "<leader>C", "1z=")
 vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
@@ -188,7 +203,6 @@ vim.keymap.set("n", "<Right>", function() require("origami").l() end)
 vim.keymap.set("n", "gh", ":LspClangdSwitchSourceHeader<CR>")
 vim.keymap.set({ "n", "x", "o" }, "s", function() require'flash'.jump() end)
 vim.keymap.set({ "n", "x", "o" }, "S", function() require'flash'.jump({ forward = false }) end)
-vim.keymap.set({ "n", "x", "o" }, "?", function() require'flash'.treesitter() end)
 vim.keymap.set("o", "o", function() require'flash'.remote() end)
 vim.keymap.set({"o", "x"}, "R", function() require'flash'.treesitter_search() end)
 vim.keymap.set({"c"}, "<C-u>", function() require'flash'.toggle() end)
