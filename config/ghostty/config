@@ -1,7 +1,7 @@
 window-decoration = false
-theme = TokyoNight Night
+theme = Vague
 background-opacity = 1
-custom-shader = ~/.config/ghostty/shaders/smear.glsl
+# custom-shader = ~/.config/ghostty/shaders/smear.glsl
 alpha-blending = linear-corrected
 cursor-style = bar
 font-family = JetBrainsMono Nerd Font Mono

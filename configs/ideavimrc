@@ -14,3 +14,5 @@ nnoremap <leader><leader> :action SearchEverywhere<cr>
 nnoremap <leader>ra :action RenameElement<cr>
 nnoremap <leader>ca :action ShowIntentionActions<cr>
 nmap <CR> za
+nnoremap gc :action CommentByLineComment<cr>
+vnoremap gc :action CommentByLineComment<cr>
